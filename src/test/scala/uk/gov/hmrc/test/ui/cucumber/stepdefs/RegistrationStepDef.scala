@@ -82,6 +82,13 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.clickContinue()
   }
 
+  When("^the user adds the day (.*) the month (.*) and the year (.*) on the (.*) date page$") {
+    (day: String, month: String, year: String, url: String) =>
+      CommonPage.checkUrl(url)
+      CommonPage.enterDate(day, month, year)
+      CommonPage.clickContinue()
+  }
+
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectAnswer(data)
