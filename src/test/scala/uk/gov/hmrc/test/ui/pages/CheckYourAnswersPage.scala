@@ -111,8 +111,6 @@ object CheckYourAnswersPage extends BrowserDriver with Matchers {
   def addFixedEstablishmentAddress: CheckYourAnswersPage.type = {
     driver.findElement(By.id("line1")).sendKeys("1 Address")
     driver.findElement(By.id("townOrCity")).sendKeys("A town")
-//    textField("line1").value = "1 Address"
-//    textField("townOrCity").value = "A town"
     CommonPage.clickContinue()
     this
   }
