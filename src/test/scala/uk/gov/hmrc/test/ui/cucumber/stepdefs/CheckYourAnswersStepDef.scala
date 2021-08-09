@@ -16,12 +16,44 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import io.cucumber.datatable.DataTable
-import uk.gov.hmrc.test.ui.pages.{AuthPage, CheckYourAnswersPage, CommonPage}
+import uk.gov.hmrc.test.ui.pages.CheckYourAnswersPage
 
 class CheckYourAnswersStepDef extends BaseStepDef {
 
-  Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
-    CheckYourAnswersPage.selectLink(link)
+  And("the user changes answers to yes and is redirected accordingly to add further answers") { () =>
+    CheckYourAnswersPage
+      .changeUkTradingName()
+      .hasDifferentTradingName()
+      .addTradingName("Foo One")
+      .addAnotherTradingName("no")
+      .changeTaxInEu()
+      .hasEuRegistration()
+      .addCountryRegisteredForTaxInEu("France")
+      .registeredForVat("FR123456789")
+      .withoutFixedEstablishment
+      .headingText("France")
+      .continueEu
+      .anotherBusinessRegisteredForTaxInEu
+      .addCountryRegisteredForTaxInEu("Germany")
+      .registeredForVat("DE123456789")
+      .withFixedEstablishment
+      .addTradingName("EU Trading Name")
+      .addFixedEstablishmentAddress
+      .headingText("Germany")
+      .changeVatRegistered
+      .notRegisteredForVat
+      .addTaxIdentificationNumber
+      .continueToCheckAddTaxDetailsPage
+      .continuesToCheckYourAnswersPage
+      .changeDeregistrationDetails
+      .addDeregisteredCountryDetails
+      .continuesToCheckYourAnswersPage
+      .giveWebsiteAddress
+      .addWebsiteAddress("www.example1.com")
+      .addAnotherWebsiteAddress
+      .addWebsiteAddress("www.example2.com")
+      .websiteAddressCount(2)
+      .removeWebsiteAddress(2)
+      .chooseToNotAddAnotherWebsiteAddress()
   }
 }

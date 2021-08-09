@@ -16,10 +16,34 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import uk.gov.hmrc.test.ui.pages.{AlreadyMadeSalesPage, AuthPage, CheckVatDetailsPage, CommonPage, SalesChannelsPage}
+import uk.gov.hmrc.test.ui.pages.{AlreadyMadeSalesPage, AuthPage, BasicRegistrationPage, CheckVatDetailsPage, CommonPage, PreAuthPage, SalesChannelsPage}
 import io.cucumber.datatable.DataTable
 
 class RegistrationStepDef extends BaseStepDef {
+
+  And("the business is responsible for reporting and paying VAT for all sales in EU") { () =>
+    PreAuthPage
+      .goToOneStopShopRegistrationPage()
+      .businessNotRegisteredInEuForOneStopShop()
+      .sellsFromNorthernIrelandToEu()
+      .businessInNorthernIreland()
+      .continueToReportAndPayVatOnSales()
+      .alreadyMadeSales()
+  }
+
+  And("the user registers with minimal details for the one stop shop scheme") { () =>
+    BasicRegistrationPage
+      .registerForOneStopShop()
+      .doesNotHaveDifferentTradingName
+      .withFirstSaleDate("01", "07", "2021")
+      .confirmsSaleStartDate()
+      .businessNotRegisteredForTaxInEu()
+      .businessNotDeregistered()
+      .doesNotHaveAnOnlineMarketPlace()
+      .doesNotAddWebsiteAddress()
+      .addBusinessContactDetails()
+      .addBankDetails()
+  }
 
   Given("^the user accesses the service$") { () =>
     CommonPage.goToStartOfJourney()

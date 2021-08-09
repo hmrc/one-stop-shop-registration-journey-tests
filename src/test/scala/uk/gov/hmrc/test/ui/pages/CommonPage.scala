@@ -85,4 +85,7 @@ object CommonPage extends BrowserDriver with Matchers {
     driver.findElement(By.id("value.month")).sendKeys(month)
     driver.findElement(By.id("value.year")).sendKeys(year)
   }
+
+  def selectLink(link: String): Unit =
+    driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
 }
