@@ -20,6 +20,7 @@ import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import io.cucumber.datatable.DataTable
+import org.junit.Assert
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
 
 import scala.collection.JavaConverters._
@@ -84,5 +85,15 @@ object CommonPage extends BrowserDriver with Matchers {
     driver.findElement(By.id("value.day")).sendKeys(day)
     driver.findElement(By.id("value.month")).sendKeys(month)
     driver.findElement(By.id("value.year")).sendKeys(year)
+  }
+
+  def checkVersion(version: String): Unit = {
+    val htmlBody     = driver.findElement(By.tagName("body")).getText
+    val post10thText = "You registered after the 10th day of the next month following your first eligible sale."
+    version match {
+      case "pre"  => Assert.assertFalse(htmlBody.contains(post10thText))
+      case "post" => Assert.assertTrue(htmlBody.contains(post10thText))
+      case _      => throw new Exception("Version doesn't exist")
+    }
   }
 }
