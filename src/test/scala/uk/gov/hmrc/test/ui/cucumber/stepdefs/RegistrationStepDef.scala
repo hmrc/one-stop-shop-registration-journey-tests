@@ -19,6 +19,8 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import uk.gov.hmrc.test.ui.pages.{AlreadyMadeSalesPage, AuthPage, CheckVatDetailsPage, CommonPage, SalesChannelsPage}
 import io.cucumber.datatable.DataTable
 
+import java.time.LocalDate
+
 class RegistrationStepDef extends BaseStepDef {
 
   Given("^the user accesses the service$") { () =>
@@ -89,6 +91,13 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.clickContinue()
   }
 
+  When("^the user enters a date inside the notification period for date of first sale$") { () =>
+    val today = LocalDate.now().minusDays(1)
+    CommonPage.checkUrl("date-of-first-sale")
+    CommonPage.enterDate(today.getDayOfMonth.toString, today.getMonthValue.toString, today.getYear.toString)
+    CommonPage.clickContinue()
+  }
+
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectAnswer(data)
@@ -134,5 +143,9 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.checkUrl("sales-on-marketplaces")
       SalesChannelsPage.selectChoice(answer)
       CommonPage.clickContinue()
+  }
+  
+  Then("""^the user sees the (pre|post) 10th version of the successful page$""") { (version: String) =>
+    CommonPage.checkVersion(version)
   }
 }
