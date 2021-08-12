@@ -144,7 +144,7 @@ class RegistrationStepDef extends BaseStepDef {
       SalesChannelsPage.selectChoice(answer)
       CommonPage.clickContinue()
   }
-  
+
   Then("""^the user sees the (pre|post) 10th version of the successful page$""") { (version: String) =>
     CommonPage.checkVersion(version)
   }
