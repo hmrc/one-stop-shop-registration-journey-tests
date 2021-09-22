@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 Feature: Not Eligible for One Stop Shop
 
   Scenario: Business is already registered in another county
@@ -20,6 +20,24 @@ Feature: Not Eligible for One Stop Shop
     And the user answers no on the northern-ireland-fixed-establishment page
     And the user picks Online Marketplace on the sales-on-marketplaces page
     Then the user is on the cannot-use-no-vat page
+
+  Scenario: Business outside NI selling some goods via an online marketplace
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers no on the northern-ireland-business page
+    And the user answers no on the northern-ireland-fixed-establishment page
+    And the user picks Mixed on the sales-on-marketplaces page
+    Then the user is on the do-not-pay-sales-on-marketplace page
+
+  Scenario: Business outside NI not selling via an online marketplace
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers no on the northern-ireland-business page
+    And the user answers no on the northern-ireland-fixed-establishment page
+    And the user picks Not Online Marketplace on the sales-on-marketplaces page
+    Then the user is on the business-pay page
 
   Scenario: Incorrect UK VAT details
     Given the user accesses the service
