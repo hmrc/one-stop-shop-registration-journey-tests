@@ -29,7 +29,7 @@ object AuthActions extends BrowserDriver {
     val select = new Select(driver.findElement(By.id("accountType")))
     select.selectByValue(affinityGroup)
 
-    driver.findElement(By.id("isAdmin-true")).click()
+    driver.findElement(By.id("isAdmin")).click()
     driver.findElement(By.id("groupProfile")).sendKeys("123")
 
     driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
@@ -40,7 +40,7 @@ object AuthActions extends BrowserDriver {
   }
 
   def selectMfaSuccess(): Unit = {
-    driver.findElement(By.id("mfaOutcome-success")).click()
+    driver.findElement(By.id("mfaOutcome")).click()
     driver.findElement(By.className("submit")).click()
   }
 }
