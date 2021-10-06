@@ -52,6 +52,29 @@ For example, to execute the `run_tests.sh` script against QA  environment using 
 
     ./run_tests.sh qa remote-chrome
 
+## Running the accessibility tests locally
+
+Instructions for accessibility testing locally - based on: https://github.com/hmrc/accessibility-assessment#running-accessibility-assessment-tests-locally
+
+Run this in terminal:
+
+    A11Y='artefacts.tax.service.gov.uk/accessibility-assessment:latest'
+    docker pull ${A11Y} && docker run --rm --name 'a11y' -p 6010:6010 -e TARGET_IP='host.docker.internal' ${A11Y}`
+
+Run this initialise post - https://github.com/hmrc/accessibility-assessment#post-apiappinitialise
+
+In the journey tests, run `“run_a11y.sh”` which will run the journey tests with the following property `“accessibility-test=true”`
+
+Run the assess pages post - https://github.com/hmrc/accessibility-assessment#post-apiassess-pages
+
+Run the status get - https://github.com/hmrc/accessibility-assessment#get-apistatus
+Status will change to “REPORT_READY” once complete and can also see this in the docker logs.
+This step may take a while.
+
+Go to http://localhost:6010/api/report/html to view the report
+
+May need to run post reset if running this multiple times - https://github.com/hmrc/accessibility-assessment#get-apiappreset
+
 ## Running ZAP tests
 
 ZAP tests can be automated using the HMRC [zap-automation](https://github.com/hmrc/zap-automation) library. It is not mandatory to do so and should not be considered a substitute for manual exploratory testing using OWASP ZAP.

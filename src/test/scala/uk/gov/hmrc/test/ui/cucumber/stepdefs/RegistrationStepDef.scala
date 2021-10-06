@@ -84,13 +84,6 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.clickContinue()
   }
 
-  When("^the user adds the day (.*) the month (.*) and the year (.*) on the (.*) date page$") {
-    (day: String, month: String, year: String, url: String) =>
-      CommonPage.checkUrl(url)
-      CommonPage.enterDate(day, month, year)
-      CommonPage.clickContinue()
-  }
-
   When("^the user enters a date inside the notification period for date of first sale$") { () =>
     val today = LocalDate.now().minusDays(1)
     CommonPage.checkUrl("date-of-first-sale")
