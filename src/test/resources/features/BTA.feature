@@ -1,6 +1,6 @@
 @Registration
-Feature: Registering for One Stop Shop
-  @ZAP @wip
+Feature: Entering the Registration service via BTA
+  @ZAP
   Scenario: A user registers via BTA and then has the correct BTA link on the registration submission page
     Given the user accesses the service
     Then the user manually navigates to the from-external link
@@ -30,6 +30,51 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
+    Then the user clicks on the BTA link
+    And the user is on the business-account page
+
+  Scenario: The user enters the service via BTA and is directed back to BTA via the Already EU Registered kickout page
+    Given the user accesses the service
+    Then the user manually navigates to the from-external link
+    And the user answers yes on the already-eu-registered page
+    Then the user is on the return-later-already-eu-registered page
+    Then the user clicks on the BTA link
+    And the user is on the business-account page
+
+  Scenario: The user enters the service via BTA and is directed back to BTA via the Do Not Sell from NI kickout page
+    Given the user accesses the service
+    Then the user manually navigates to the from-external link
+    And the user answers no on the already-eu-registered page
+    And the user answers no on the sell-from-northern-ireland page
+    Then the user is on the do-not-sell-from-northern-ireland page
+    Then the user clicks on the BTA link
+    And the user is on the business-account page
+
+  Scenario: The user enters the service via BTA and is directed back to BTA via the Cannot Use No VAT kickout page
+    Given the user accesses the service
+    Then the user manually navigates to the from-external link
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers no on the northern-ireland-business page
+    And the user answers no on the northern-ireland-fixed-establishment page
+    And the user picks Online Marketplace on the sales-on-marketplaces page
+    Then the user is on the cannot-use-no-vat page
+    Then the user clicks on the BTA link
+    And the user is on the business-account page
+
+  Scenario: The user enters the service via BTA and is directed back to BTA via the Register Later kickout page
+    Given the user accesses the service
+    Then the user manually navigates to the from-external link
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the have-uk-trading-name page
+    And the user answers no on the already-made-sales page
+    And the user answers no on the planned-first-sale page
+    Then the user is on the register-later page
     Then the user clicks on the BTA link
     And the user is on the business-account page
 
