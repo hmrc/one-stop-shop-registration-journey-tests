@@ -33,6 +33,11 @@ object CommonPage extends BrowserDriver with Matchers {
   def goToStartOfJourney(): Unit =
     driver.navigate().to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/")
 
+  def navigateToBtaLink(link: String): Unit =
+    driver
+      .navigate()
+      .to(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/$link")
+
   def enterData(data: String): Unit = {
     val inputId = "value"
     driver.findElement(By.id(inputId)).sendKeys(data)

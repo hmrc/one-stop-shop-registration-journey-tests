@@ -18,6 +18,8 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import uk.gov.hmrc.test.ui.pages.{AlreadyMadeSalesPage, AuthPage, CheckVatDetailsPage, CommonPage, SalesChannelsPage}
 import io.cucumber.datatable.DataTable
+import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.CommonPage.driver
 
 import java.time.LocalDate
 
@@ -25,6 +27,10 @@ class RegistrationStepDef extends BaseStepDef {
 
   Given("^the user accesses the service$") { () =>
     CommonPage.goToStartOfJourney()
+  }
+
+  When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
+    CommonPage.navigateToBtaLink(link)
   }
 
   Given("a user is signed in") { () =>
@@ -140,5 +146,14 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user sees the (pre|post) 10th version of the successful page$""") { (version: String) =>
     CommonPage.checkVersion(version)
+  }
+
+  Then("""^the user clicks on the (.*) link$""") { (link: String) =>
+    link match {
+      case "BTA" =>
+        driver.findElement(By.id("back-to-your-account")).click()
+      case _     =>
+        throw new Exception("Link doesn't exist")
+    }
   }
 }
