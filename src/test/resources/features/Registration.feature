@@ -43,7 +43,7 @@ Feature: Registering for One Stop Shop
       | 1 Test Address | line1         |
       | Test Town      | townOrCity    |
       | Test Region    | stateOrRegion |
-      | 45236 FR       | postCode      |
+      | DE45236        | postCode      |
     And the user clicks continue on the second check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Poland on the third eu-tax page
@@ -128,7 +128,7 @@ Feature: Registering for One Stop Shop
       | 1 Test Address | line1         |
       | Test Town      | townOrCity    |
       | Test State     | stateOrRegion |
-      | AU12345        | postCode      |
+      | 12345 FR       | postCode      |
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
@@ -142,7 +142,7 @@ Feature: Registering for One Stop Shop
       | 1 Test Address | line1         |
       | Test Town      | townOrCity    |
       | Test Region    | stateOrRegion |
-      | 45236 FR       | postCode      |
+      | 45236 DE       | postCode      |
     And the user clicks continue on the second check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Spain on the third eu-tax page

@@ -18,7 +18,9 @@ When that console is there:
 `rs.initiate()`
 You then should be running 4.0 with a replica set. You may have to re-run the rs.initiate() after you've restarted
 
-`sm --start ONE_STOP_SHOP_ALL -r`
+`sm --start ONE_STOP_SHOP_ALL -r` if running via Service Manager
+
+`sbt run -Dapplication.router=testOnlyDoNotUseInAppConf.Routes` if running a branch locally
 
 Then execute the `run_tests.sh` script:
 
