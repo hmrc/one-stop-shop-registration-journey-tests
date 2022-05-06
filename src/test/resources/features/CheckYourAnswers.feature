@@ -39,13 +39,13 @@ Feature: Check Your Answers
     And the user answers yes on the check-tax-in-eu page
     And the user selects France on the first check-eu-tax page
     And the user chooses yes on the first check-eu-vat page
-    And the user adds FR123456789 on the first check-eu-vat-number page
+    And the user adds E1123456789 on the first check-eu-vat-number page
     And the user chooses no on the first check-eu-fixed-establishment page
     And the user clicks continue on the first change-check-tax-details page
     And the user answers yes on the check-add-tax-details page
     And the user selects Germany on the second check-eu-tax page
     And the user chooses yes on the second check-eu-vat page
-    And the user adds DE123456789 on the second check-eu-vat-number page
+    And the user adds 123456789 on the second check-eu-vat-number page
     And the user chooses yes on the second check-eu-fixed-establishment page
     And the user adds EU trading name on the second check-eu-trading-name page
     And the user completes details on the check-eu-fixed-establishment-address/2 page
@@ -61,7 +61,7 @@ Feature: Check Your Answers
     Then the user selects the change link for check-deregistered
     And the user answers yes on the check-deregistered page
     And the user selects Austria on the first check-deregistered-country page
-    And the user adds AT123 on the first check-deregistered-eu-vat-number page
+    And the user adds U98765432 on the first check-deregistered-eu-vat-number page
     And the user answers no on the check-add-deregistration page
     Then the user is at the check-answers page
     Then the user selects the change link for check-give-website-address
