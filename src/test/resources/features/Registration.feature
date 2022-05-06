@@ -48,7 +48,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the add-tax-details page
     And the user selects Poland on the third eu-tax page
     And the user chooses yes on the third eu-vat page
-    And the user adds PL335577 on the third eu-vat-number page
+    And the user adds 1234567891 on the third eu-vat-number page
     And the user chooses no on the third eu-fixed-establishment page
     And the user chooses no on the third eu-send-goods page
     And the user clicks continue on the third check-tax-details page
@@ -135,7 +135,7 @@ Feature: Registering for One Stop Shop
     And the user chooses no on the second eu-vat page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses yes on the second eu-send-goods page
-    And the user adds DE123456789 on the second eu-tax-number page
+    And the user adds 123456789 on the second eu-tax-number page
     And the user adds German business name on the second eu-send-goods-trading-name page
     And the user completes details on the eu-send-goods-address/2 page
       | data           | fieldId       |
