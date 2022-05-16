@@ -17,7 +17,11 @@
 package uk.gov.hmrc.test.ui.cucumber.utils
 
 import org.mongodb.scala.MongoClient
+import org.mongodb.scala.bson.collection.immutable.Document
+import org.mongodb.scala.model.Filters
+import play.api.libs.iteratee.Done
 
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Await
 import scala.concurrent.duration._
 import scala.language.postfixOps
@@ -32,16 +36,39 @@ object MongoConnection {
     mongoClient.close()
   }
 
-  def dropMongoCollection(db: String, collection: String): Unit =
+  def dropRecord(db: String, collection: String, vrn: String): Unit =
     try Await.result(
       mongoClient
         .getDatabase(db)
         .getCollection(collection)
-        .drop()
+        .deleteMany(filter = Filters.equal("vrn", vrn))
         .head(),
       timeout
     )
     catch {
       case e: Exception => println("Error: " + e)
     }
+
+  def insert(source: List[String], database: String, collection: String): Unit =
+    try {
+      val db  = mongoClient.getDatabase(database)
+      val col = db.getCollection(collection)
+      source.map { e =>
+        val doc = Document(e)
+        Await.result(
+          col.insertOne(doc).toFutureOption().map { _ =>
+            Done
+          },
+          timeout
+        )
+      }
+    } catch {
+      case ex: Exception => println(s"Error inserting data into MongoDB: $ex")
+    }
+
+  def dropRegistrations(): Unit = {
+    dropRecord("one-stop-shop-registration", "registrations", "100000001")
+    dropRecord("one-stop-shop-registration", "registrations", "100000002")
+    dropRecord("one-stop-shop-registration", "registrations", "100000003")
+  }
 }

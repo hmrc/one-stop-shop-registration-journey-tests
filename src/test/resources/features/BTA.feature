@@ -78,3 +78,15 @@ Feature: Entering the Registration service via BTA
     Then the user clicks on the BTA link
     And the user is on the business-account page
 
+  Scenario: The user enters the service via BTA and is directed back to BTA via the post-auth already registered page
+    Given the user accesses the service
+    Then the user manually navigates to the from-external link
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000003 and strong credentials
+    Then the user is on the already-registered page
+    Then the user clicks on the BTA link
+    And the user is on the business-account page
+

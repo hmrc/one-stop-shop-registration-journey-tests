@@ -1,6 +1,5 @@
 @Registration
 Feature: Registering for One Stop Shop
-
   @ZAP
   Scenario: A signed in user can complete a full registration
     Given the user accesses the service
@@ -21,7 +20,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the tax-in-eu page
     And the user selects France on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds FR123456789 on the first eu-vat-number page
+    And the user adds A1123456789 on the first eu-vat-number page
     And the user chooses yes on the first eu-fixed-establishment page
     And the user adds French business name on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
@@ -34,7 +33,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds DE123456789 on the second eu-vat-number page
+    And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses yes on the second eu-send-goods page
     And the user adds German business name on the second eu-send-goods-trading-name page
@@ -55,7 +54,7 @@ Feature: Registering for One Stop Shop
     And the user answers no on the add-tax-details page
     And the user answers yes on the deregistered page
     And the user selects Austria on the first deregistered-country page
-    And the user adds AT123 on the first deregistered-eu-vat-number page
+    And the user adds U98765432 on the first deregistered-eu-vat-number page
     And the user answers no on the add-deregistration page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
@@ -129,9 +128,13 @@ Feature: Registering for One Stop Shop
       | Test Town      | townOrCity    |
       | Test State     | stateOrRegion |
       | 12345 FR       | postCode      |
+    And the user adds XA123456789 on the first eu-tax-number page
+    And the user chooses no on the first eu-fixed-establishment page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
+    And the user chooses yes on the second eu-vat page
+    And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-vat page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses yes on the second eu-send-goods page
