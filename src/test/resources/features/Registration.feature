@@ -9,6 +9,7 @@ Feature: Registering for One Stop Shop
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the uk-vat-group page
     And the user answers yes on the have-uk-trading-name page
     And the user adds Foo on the first uk-trading-name page
     And the user answers yes on the add-uk-trading-name page
@@ -83,6 +84,7 @@ Feature: Registering for One Stop Shop
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the uk-vat-group page
     And the user answers no on the have-uk-trading-name page
     And the user answers no on the already-made-sales page
     And the user answers yes on the planned-first-sale page
@@ -112,6 +114,7 @@ Feature: Registering for One Stop Shop
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the uk-vat-group page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
@@ -128,13 +131,9 @@ Feature: Registering for One Stop Shop
       | Test Town      | townOrCity    |
       | Test State     | stateOrRegion |
       | 12345 FR       | postCode      |
-    And the user adds XA123456789 on the first eu-tax-number page
-    And the user chooses no on the first eu-fixed-establishment page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-vat page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses yes on the second eu-send-goods page
