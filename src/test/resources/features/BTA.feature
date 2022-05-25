@@ -1,6 +1,6 @@
 @Registration
 Feature: Entering the Registration service via BTA
-  @ZAP
+
   Scenario: A user registers via BTA and then has the correct BTA link on the registration submission page
     Given the user accesses the service
     Then the user manually navigates to the from-external link
@@ -89,4 +89,16 @@ Feature: Entering the Registration service via BTA
     Then the user is on the already-registered page
     Then the user clicks on the BTA link
     And the user is on the business-account page
+
+  Scenario: A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing
+    Given the user accesses the service
+    Then the user manually navigates to the from-external?lang=cy link
+    And the user is on the no-more-welsh page
+    Then the user presses the continue button
+    And the user is on the already-eu-registered page
+
+  Scenario: A user enters the service via BTA using the en parameter and is directed straight to the registration service
+    Given the user accesses the service
+    Then the user manually navigates to the from-external?lang=en link
+    And the user is on the already-eu-registered page
 
