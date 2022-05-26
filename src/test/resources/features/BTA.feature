@@ -93,7 +93,7 @@ Feature: Entering the Registration service via BTA
   Scenario: A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing
     Given the user accesses the service
     Then the user manually navigates to the from-external?lang=cy link
-    And the user is on the no-more-welsh page
+    And the user is on the no-welsh-service page
     Then the user presses the continue button
     And the user is on the already-eu-registered page
 
