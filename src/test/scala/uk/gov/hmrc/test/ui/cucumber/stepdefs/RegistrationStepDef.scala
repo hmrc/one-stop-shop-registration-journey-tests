@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import uk.gov.hmrc.test.ui.pages.{AlreadyMadeSalesPage, AuthPage, CheckVatDetailsPage, CommonPage, SalesChannelsPage}
 import io.cucumber.datatable.DataTable
+import org.jsoup.select.Evaluator.Id
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages.CommonPage.driver
 
@@ -155,5 +156,9 @@ class RegistrationStepDef extends BaseStepDef {
       case _     =>
         throw new Exception("Link doesn't exist")
     }
+  }
+
+  Then("""^the user presses the continue button$""") { () =>
+    driver.findElement(By.id("continue")).click()
   }
 }
