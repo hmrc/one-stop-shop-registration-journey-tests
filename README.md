@@ -20,6 +20,9 @@ You then should be running 4.0 with a replica set. You may have to re-run the rs
 
 `sm --start ONE_STOP_SHOP_ALL -r`
 
+Note: if running the frontend locally, you will need to use the following command for the BTA feature:
+`sbt run -Dapplication.router=testOnlyDoNotUseInAppConf.Routes`
+
 Then execute the `run_tests.sh` script:
 
     ./run_tests.sh <environment> <browser-driver>
