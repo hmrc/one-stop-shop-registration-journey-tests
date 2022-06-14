@@ -71,3 +71,12 @@ Feature: Not Eligible for One Stop Shop
     And the user answers no on the already-made-sales page
     And the user answers no on the planned-first-sale page
     Then the user is on the register-later page
+
+  Scenario: NI Protocol Rejection
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 222232222 and strong credentials
+    Then the user is on the niProtocolRejection page
