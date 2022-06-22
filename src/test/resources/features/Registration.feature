@@ -1,6 +1,6 @@
 @Registration
 Feature: Registering for One Stop Shop
-  @ZAP
+  @ZAP @wip
   Scenario: A signed in user can complete a full registration
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
