@@ -16,8 +16,7 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import io.cucumber.datatable.DataTable
-import uk.gov.hmrc.test.ui.pages.{AuthPage, CheckYourAnswersPage, CommonPage}
+import uk.gov.hmrc.test.ui.pages.CheckYourAnswersPage
 
 class CheckYourAnswersStepDef extends BaseStepDef {
 
