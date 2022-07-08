@@ -13,6 +13,7 @@ Feature: Entering the Registration service via BTA
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
     And the user answers no on the deregistered page
