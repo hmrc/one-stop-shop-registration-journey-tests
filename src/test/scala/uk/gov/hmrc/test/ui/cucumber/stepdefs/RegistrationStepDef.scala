@@ -103,7 +103,6 @@ class RegistrationStepDef extends BaseStepDef {
   }
   When("""^the user select (yes|No,delete my answers and start again) on the (.*) page$""") {
     (data: String, url: String) =>
-      Thread.sleep(10000)
       if (url == "continue-registration") {}
       CommonPage.checkUrl(url)
       CommonPage.selectContinueRegistration(data)
