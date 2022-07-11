@@ -18,6 +18,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
+import org.openqa.selenium.interactions.Action
 import uk.gov.hmrc.test.ui.pages._
 
 import java.time.LocalDate
@@ -93,12 +94,19 @@ class RegistrationStepDef extends BaseStepDef {
     val today = LocalDate.now().minusDays(1)
     CommonPage.checkUrl("date-of-first-sale")
     CommonPage.enterDate(today.getDayOfMonth.toString, today.getMonthValue.toString, today.getYear.toString)
-    CommonPage.clickContinue()
   }
 
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectAnswer(data)
+
+  }
+  When("""^the user select (yes|No,delete my answers and start again) on the (.*) page$""") {
+    (data: String, url: String) =>
+      if (url == "continue-registration") {}
+      CommonPage.checkUrl(url)
+      CommonPage.selectContinueRegistration(data)
+
   }
 
   Then("""^the user should be on the (.*) page$""") { (url: String) =>
@@ -131,6 +139,7 @@ class RegistrationStepDef extends BaseStepDef {
 
   When("""^the user chooses (Yes|No, details incorrect|No, wrong account) on the (.*) page$""") {
     (data: String, url: String) =>
+      if (url == "confirm-vat-details") {}
       CommonPage.checkUrl(url)
       CheckVatDetailsPage.selectChoice(data)
       CommonPage.clickContinue()
@@ -149,14 +158,26 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user clicks on the (.*) link$""") { (link: String) =>
     link match {
-      case "BTA" =>
+      case "BTA"                                    =>
         driver.findElement(By.id("back-to-your-account")).click()
-      case _     =>
+      case "continue to complete your registration" =>
+        driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
+      case "sign out and come back later"           =>
+        driver.findElement(By.xpath("/*[@id=‘signOut’]")).click()
+      case _                                        =>
         throw new Exception("Link doesn't exist")
     }
+
   }
 
   Then("""^the user presses the continue button$""") { () =>
     driver.findElement(By.id("continue")).click()
   }
+  Given("""the user clicks on the save and come back later button""") { () =>
+    driver.findElement(By.id("saveProgress")).click()
+  }
+  Then("""^the user select the sign and come back later link""") { () =>
+    driver.findElement(By.id("signOut")).click()
+  }
+
 }
