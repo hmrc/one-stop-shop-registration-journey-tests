@@ -9,6 +9,7 @@ Feature: User registers with different commencement dates
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the uk-vat-group page
     And the user answers no on the have-uk-trading-name page
 
   Scenario: A user registers within notification period
