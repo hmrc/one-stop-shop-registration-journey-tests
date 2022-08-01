@@ -7,8 +7,4 @@ Feature: Not all customer VAT details retrieved from DES
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 700000001 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user enters foo on the business-name page
-    And the user answers yes on the uk-vat-group page
-    And the user provides date 01/01/1980 on the uk-vat-registration-date page
-    Then the user is on the have-uk-trading-name page
+    Then the user is on the registration-service-error page
