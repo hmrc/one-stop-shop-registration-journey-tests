@@ -22,6 +22,7 @@ import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
+import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
 
 import scala.collection.JavaConverters._
 
@@ -32,6 +33,11 @@ object CommonPage extends BrowserDriver with Matchers {
 
   def goToStartOfJourney(): Unit =
     driver.navigate().to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/")
+
+  def goToStartOfExternalJourney(): Unit =
+    driver
+      .navigate()
+      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/from-external")
 
   def navigateToBtaLink(link: String): Unit =
     driver
@@ -109,5 +115,13 @@ object CommonPage extends BrowserDriver with Matchers {
       case "post" => Assert.assertTrue(htmlBody.contains(post10thText))
       case _      => throw new Exception("Version doesn't exist")
     }
+  }
+  def checkButton(button: String): Unit = {
+    val buttonElement = driver.findElement(By.id("backToYourAccount")).getText
+    val buttonText    = "Back to your account"
+    button match {
+      case "back to your account" => Assert.assertTrue(buttonElement.contains(buttonText))
+    }
+
   }
 }
