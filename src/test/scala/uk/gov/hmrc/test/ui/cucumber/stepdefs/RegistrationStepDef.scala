@@ -131,6 +131,9 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.submitRegistration()
     CommonPage.checkUrl("successful")
   }
+  Then("""^the user selects the register button$""") { () =>
+    CommonPage.submitRegistration()
+  }
 
   When("^the user chooses No on the Already Made Sales page$") { () =>
     CommonPage.checkUrl("alreadyMadeSales")

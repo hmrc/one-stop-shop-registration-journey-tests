@@ -21,6 +21,7 @@ import uk.gov.hmrc.test.ui.pages.CommonPage
 class NotBasedInNorthernIrelandStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
+    Thread.sleep(10000)
     CommonPage.checkUrl(url)
   }
 }
