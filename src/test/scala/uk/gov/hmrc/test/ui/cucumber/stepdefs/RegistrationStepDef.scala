@@ -28,21 +28,33 @@ class RegistrationStepDef extends BaseStepDef {
   Given("^the user accesses the service$") { () =>
     CommonPage.goToStartOfJourney()
   }
-
-  When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
-    CommonPage.navigateToBtaLink(link)
+  Given("^the user accesses the external service$") { () =>
+    CommonPage.goToStartOfExternalJourney()
   }
 
-  Given("a user is signed in") { () =>
-    AuthPage.signIn()
-  }
+  Given("""the user accesses the stub url""") { () =>
+    CommonPage.goToStartOfJourneyFromStub()
 
-  Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
-    (vrn: String) =>
-      AuthActions.loginUsingScpStub("Organisation", vrn)
-      AuthActions.selectMfaSuccess()
-  }
+    When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
+      CommonPage.navigateToBtaLink(link)
+    }
 
+    Given("a user is signed in") { () =>
+      AuthPage.signIn()
+    }
+
+    Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
+      (vrn: String) =>
+        AuthActions.loginUsingScpStub("Organisation", vrn)
+        AuthActions.selectMfaSuccess()
+    }
+  }
+  Given(
+    "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
+  ) { (vrn: String) =>
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn)
+
+  }
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.enterData(data)
@@ -157,6 +169,9 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user sees the (pre|post) 10th version of the successful page$""") { (version: String) =>
     CommonPage.checkVersion(version)
+  }
+  Then("""^the user sees the (back to your account) button$""") { (button: String) =>
+    CommonPage.checkButton(button)
   }
 
   Then("""^the user clicks on the (.*) link$""") { (link: String) =>

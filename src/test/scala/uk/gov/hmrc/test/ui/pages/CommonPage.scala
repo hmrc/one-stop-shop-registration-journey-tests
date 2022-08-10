@@ -27,11 +27,19 @@ import scala.collection.JavaConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
 
+  def goToStartOfJourneyFromStub(): Unit =
+    driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
+
   def checkUrl(url: String): Unit =
     driver.getCurrentUrl should endWith(url)
 
   def goToStartOfJourney(): Unit =
     driver.navigate().to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/")
+
+  def goToStartOfExternalJourney(): Unit =
+    driver
+      .navigate()
+      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/from-external")
 
   def navigateToBtaLink(link: String): Unit =
     driver
@@ -72,6 +80,7 @@ object CommonPage extends BrowserDriver with Matchers {
     }
     driver.findElement(By.className("govuk-button")).click()
   }
+
   def selectContinueRegistration(data: String): Unit = {
     data match {
       case "yes"                                  => driver.findElement(By.id("continueProgress")).click()
@@ -108,6 +117,14 @@ object CommonPage extends BrowserDriver with Matchers {
       case "pre"  => Assert.assertFalse(htmlBody.contains(post10thText))
       case "post" => Assert.assertTrue(htmlBody.contains(post10thText))
       case _      => throw new Exception("Version doesn't exist")
+    }
+  }
+
+  def checkButton(button: String): Unit = {
+    val buttonElement = driver.findElement(By.id("backToYourAccount")).getText
+    val buttonText    = "Back to your account"
+    button match {
+      case "back to your account" => Assert.assertTrue(buttonElement.contains(buttonText))
     }
   }
 }

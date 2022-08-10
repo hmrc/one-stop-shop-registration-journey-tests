@@ -152,3 +152,17 @@ Feature: Not Eligible for One Stop Shop
     And the user is at the check-answers page
     And the user selects the register button
     Then the user is on the error-submitting-registration page
+
+  Scenario: Existing enrolment in registration
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment 100000001 and strong credentials
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    Then the user is on the account-restore-error page
+
+
+
+  
+
