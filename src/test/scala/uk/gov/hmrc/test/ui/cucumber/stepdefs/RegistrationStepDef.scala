@@ -28,6 +28,9 @@ class RegistrationStepDef extends BaseStepDef {
   Given("^the user accesses the service$") { () =>
     CommonPage.goToStartOfJourney()
   }
+  Given("^the user accesses the external service$") { () =>
+    CommonPage.goToStartOfExternalJourney()
+  }
 
   When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
     CommonPage.navigateToBtaLink(link)
@@ -157,6 +160,9 @@ class RegistrationStepDef extends BaseStepDef {
 
   Then("""^the user sees the (pre|post) 10th version of the successful page$""") { (version: String) =>
     CommonPage.checkVersion(version)
+  }
+  Then("""^the user sees the (back to your account) button$""") { (button: String) =>
+    CommonPage.checkButton(button)
   }
 
   Then("""^the user clicks on the (.*) link$""") { (link: String) =>
