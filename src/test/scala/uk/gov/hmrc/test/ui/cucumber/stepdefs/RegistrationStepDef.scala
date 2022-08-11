@@ -32,6 +32,10 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.goToStartOfExternalJourney()
   }
 
+  When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
+    CommonPage.navigateToBtaLink(link)
+  }
+
   Given("""the user accesses the stub url""") { () =>
     CommonPage.goToStartOfJourneyFromStub()
 

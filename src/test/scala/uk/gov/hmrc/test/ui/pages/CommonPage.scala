@@ -22,6 +22,7 @@ import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
+import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
 
 import scala.collection.JavaConverters._
 
@@ -126,5 +127,6 @@ object CommonPage extends BrowserDriver with Matchers {
     button match {
       case "back to your account" => Assert.assertTrue(buttonElement.contains(buttonText))
     }
+
   }
 }
