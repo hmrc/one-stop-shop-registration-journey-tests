@@ -28,6 +28,9 @@ import scala.collection.JavaConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
 
+  def goToStartOfJourneyFromStub(): Unit =
+    driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
+
   def checkUrl(url: String): Unit =
     driver.getCurrentUrl should endWith(url)
 
@@ -78,6 +81,7 @@ object CommonPage extends BrowserDriver with Matchers {
     }
     driver.findElement(By.className("govuk-button")).click()
   }
+
   def selectContinueRegistration(data: String): Unit = {
     data match {
       case "yes"                                  => driver.findElement(By.id("continueProgress")).click()
@@ -116,6 +120,7 @@ object CommonPage extends BrowserDriver with Matchers {
       case _      => throw new Exception("Version doesn't exist")
     }
   }
+
   def checkButton(button: String): Unit = {
     val buttonElement = driver.findElement(By.id("backToYourAccount")).getText
     val buttonText    = "Back to your account"

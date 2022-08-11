@@ -36,16 +36,29 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.navigateToBtaLink(link)
   }
 
-  Given("a user is signed in") { () =>
-    AuthPage.signIn()
-  }
+  Given("""the user accesses the stub url""") { () =>
+    CommonPage.goToStartOfJourneyFromStub()
 
-  Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
-    (vrn: String) =>
-      AuthActions.loginUsingScpStub("Organisation", vrn)
-      AuthActions.selectMfaSuccess()
-  }
+    When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
+      CommonPage.navigateToBtaLink(link)
+    }
 
+    Given("a user is signed in") { () =>
+      AuthPage.signIn()
+    }
+
+    Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
+      (vrn: String) =>
+        AuthActions.loginUsingScpStub("Organisation", vrn)
+        AuthActions.selectMfaSuccess()
+    }
+  }
+  Given(
+    "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
+  ) { (vrn: String) =>
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn)
+
+  }
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.enterData(data)

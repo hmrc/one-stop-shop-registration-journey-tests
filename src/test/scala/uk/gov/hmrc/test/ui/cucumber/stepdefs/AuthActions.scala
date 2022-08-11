@@ -23,6 +23,33 @@ import org.openqa.selenium.By
 
 object AuthActions extends BrowserDriver {
 
+  def loginUsingAuthorityWizard(affinityGroup: String, vrn: String): Unit = {
+    driver.findElement(By.id("redirectionUrl")).clear()
+    driver
+      .findElement(By.id("redirectionUrl"))
+      .sendKeys(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/already-eu-registered")
+    val selectCredentialStrength = new Select(driver.findElement(By.id("credentialStrength")))
+    selectCredentialStrength.selectByValue("strong")
+    val selectAffinityGroup      = new Select(driver.findElement(By.id("affinityGroupSelect")))
+    selectAffinityGroup.selectByValue("Organisation")
+    driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
+    driver
+      .findElement(By.id("input-0-0-name"))
+      .sendKeys("VRN")
+    driver
+      .findElement(By.id("input-0-0-value"))
+      .sendKeys(vrn)
+    driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
+    driver
+      .findElement(By.id("input-1-0-name"))
+      .sendKeys("VRN")
+    driver
+      .findElement(By.id("input-1-0-value"))
+      .sendKeys(vrn)
+    driver.findElement(By.cssSelector("Input[value='Submit']")).click()
+
+  }
+
   def loginUsingScpStub(affinityGroup: String, vrn: String): Unit = {
 
     driver.findElement(By.partialLinkText("Register SCP User")).click()
