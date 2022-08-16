@@ -125,3 +125,28 @@ Feature: Registering for One Stop Shop
     Then the user is at the check-answers page
     Then the user submits their registration
 
+  Scenario: A signed in user can continue a saved registration journey when going through filter questions
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user clicks on the save and come back later button
+    And the user select the sign and come back later link
+    And the user accesses the continue on sign in url
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    Then the user is at the continue-registration page
+
+    Scenario: A signed in user can continue-on-sign-in url without starting a registration
+      Given the user accesses the continue on sign in url
+      And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+      Then the user is at the no-saved-registration page
