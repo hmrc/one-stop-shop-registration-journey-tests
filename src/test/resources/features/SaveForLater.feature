@@ -144,17 +144,10 @@ Feature: Save For Later Feature
     And the user enters a date inside the notification period for date of first sale
     And the user clicks on the save and come back later button
     And the user select the sign and come back later link
-    And the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
+    And the user accesses the continue on sign in url
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    Then the user is at the continue-registration page
     And the user select No,delete my answers and start again on the continue-registration page
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
     And the user adds Foo on the first uk-trading-name page

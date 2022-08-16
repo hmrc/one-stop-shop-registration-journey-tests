@@ -37,6 +37,11 @@ object CommonPage extends BrowserDriver with Matchers {
   def goToStartOfJourney(): Unit =
     driver.navigate().to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/")
 
+  def goToContinueOnSignInPage(): Unit =
+    driver
+      .navigate()
+      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/continue-on-sign-in")
+
   def goToStartOfExternalJourney(): Unit =
     driver
       .navigate()

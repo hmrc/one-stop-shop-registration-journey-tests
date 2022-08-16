@@ -28,6 +28,10 @@ class RegistrationStepDef extends BaseStepDef {
   Given("^the user accesses the service$") { () =>
     CommonPage.goToStartOfJourney()
   }
+  Given("^the user accesses the continue on sign in url$") { () =>
+    CommonPage.goToContinueOnSignInPage()
+    Thread.sleep(10000)
+  }
   Given("^the user accesses the external service$") { () =>
     CommonPage.goToStartOfExternalJourney()
   }
@@ -38,20 +42,17 @@ class RegistrationStepDef extends BaseStepDef {
 
   Given("""the user accesses the stub url""") { () =>
     CommonPage.goToStartOfJourneyFromStub()
+  }
 
-    When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
-      CommonPage.navigateToBtaLink(link)
-    }
+  Given("a user is signed in") { () =>
+    AuthPage.signIn()
+  }
 
-    Given("a user is signed in") { () =>
-      AuthPage.signIn()
-    }
+  Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
+    (vrn: String) =>
+      AuthActions.loginUsingScpStub("Organisation", vrn)
+      AuthActions.selectMfaSuccess()
 
-    Given("^the user signs in as an Organisation Admin with VAT enrolment (.*) and strong credentials$") {
-      (vrn: String) =>
-        AuthActions.loginUsingScpStub("Organisation", vrn)
-        AuthActions.selectMfaSuccess()
-    }
   }
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
@@ -200,6 +201,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
   Then("""^the user select the sign and come back later link""") { () =>
     driver.findElement(By.id("signOut")).click()
+    Thread.sleep(10000)
   }
 
 }
