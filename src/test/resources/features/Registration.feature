@@ -125,7 +125,7 @@ Feature: Registering for One Stop Shop
     Then the user is at the check-answers page
     Then the user submits their registration
 
-  Scenario: A user continue saved registration journey with going through pre reg questions
+  Scenario: A signed in user can continue a saved registration journey when going through filter questions
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
@@ -146,7 +146,7 @@ Feature: Registering for One Stop Shop
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     Then the user is at the continue-registration page
 
-    Scenario: A user continue-on-sign-in url without starting a registration
+    Scenario: A signed in user can continue-on-sign-in url without starting a registration
       Given the user accesses the continue on sign in url
       And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
       Then the user is at the no-saved-registration page
