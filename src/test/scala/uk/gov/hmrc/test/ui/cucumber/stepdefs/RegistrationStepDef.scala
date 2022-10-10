@@ -139,6 +139,11 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
     CommonPage.completeForm(dataTable)
   }
+  And("""the user completes the email verification process""") { () =>
+    CommonPage.navigateToEmailVerificationUrl()
+    CommonPage.navigateToEmailVerificationPasscodeGeneratorUrl()
+
+  }
 
   Then("""^the user is at the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
@@ -201,7 +206,6 @@ class RegistrationStepDef extends BaseStepDef {
   }
   Then("""^the user select the sign and come back later link""") { () =>
     driver.findElement(By.id("signOut")).click()
-    Thread.sleep(10000)
   }
 
 }

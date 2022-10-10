@@ -16,17 +16,26 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
-import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
+import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
-import org.scalatest.matchers.must.Matchers.convertToAnyMustWrapper
+import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
 import scala.collection.JavaConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
+
+  def navigateToEmailVerificationUrl(): Unit =
+    driver
+      .navigate()
+      .to(
+        "http://localhost:9890/email-verification/journey/6ba3bd1f-ccbe-494c-bf31-7e2cada91780/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS"
+      )
+  def navigateToEmailVerificationPasscodeGeneratorUrl(): Unit = {
+    driver.navigate.to("http://localhost:9890/email-verification/test-only/passcodes")
+  }
 
   def goToStartOfJourneyFromStub(): Unit =
     driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
