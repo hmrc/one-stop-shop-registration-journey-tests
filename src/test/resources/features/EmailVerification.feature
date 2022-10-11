@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 
 Feature: Email verification
 

@@ -27,15 +27,15 @@ import scala.collection.JavaConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
 
-  def navigateToEmailVerificationUrl(): Unit =
+  def navigateToEmailVerificationUrl(journeyId: String): Unit =
     driver
       .navigate()
       .to(
-        "http://localhost:9890/email-verification/journey/6ba3bd1f-ccbe-494c-bf31-7e2cada91780/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS"
+        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS"
       )
-  def navigateToEmailVerificationPasscodeGeneratorUrl(): Unit = {
-    driver.navigate.to("http://localhost:9890/email-verification/test-only/passcodes")
-  }
+  def navigateToEmailVerificationPasscodeGeneratorUrl(): Unit =
+    driver.navigate
+      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/get-passcodes")
 
   def goToStartOfJourneyFromStub(): Unit =
     driver.navigate().to("http://localhost:9949/auth-login-stub/gg-sign-in/")
@@ -61,8 +61,7 @@ object CommonPage extends BrowserDriver with Matchers {
       .navigate()
       .to(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/$link")
 
-  def enterData(data: String): Unit = {
-    val inputId = "value"
+  def enterData(data: String, inputId: String = "value"): Unit = {
     driver.findElement(By.id(inputId)).sendKeys(data)
     driver.findElement(By.className("govuk-button")).click()
   }

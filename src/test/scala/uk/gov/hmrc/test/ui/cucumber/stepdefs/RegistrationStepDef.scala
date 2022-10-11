@@ -18,8 +18,9 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
-import org.openqa.selenium.interactions.Action
 import uk.gov.hmrc.test.ui.pages._
+import play.api.libs.json.{JsError, JsSuccess, Json}
+import uk.gov.hmrc.test.ui.models.Passcode
 
 import java.time.LocalDate
 
@@ -139,9 +140,25 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
     CommonPage.completeForm(dataTable)
   }
+
   And("""the user completes the email verification process""") { () =>
-    CommonPage.navigateToEmailVerificationUrl()
+    val journeyId = driver.getCurrentUrl.split("/")(5)
+    println(s"URL journey id was: $journeyId")
+
     CommonPage.navigateToEmailVerificationPasscodeGeneratorUrl()
+    val data = driver.findElement(By.tagName("body")).getText
+    println("BODY TEXT IS: " + data)
+    val js   = Json.parse(data)
+    println("JsValue IS: " + js)
+    (js \ "passcodes").validate[Seq[Passcode]] match {
+      case JsSuccess(passcode +: _, _) =>
+        println("passcode IS: " + passcode.passcode)
+        CommonPage.navigateToEmailVerificationUrl(journeyId)
+//        Thread.sleep(100000000)
+        CommonPage.enterData(passcode.passcode, inputId = "passcode")
+
+      case _ => fail("No passcode found")
+    }
 
   }
 
