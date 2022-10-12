@@ -27,13 +27,14 @@ import scala.collection.JavaConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
 
-  def navigateToEmailVerificationUrl(journeyId: String): Unit =
+  def goToEmailVerificationUrl(journeyId: String): Unit =
     driver
       .navigate()
       .to(
         s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS"
       )
-  def navigateToEmailVerificationPasscodeGeneratorUrl(): Unit =
+
+  def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
     driver.navigate
       .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/get-passcodes")
 
