@@ -89,8 +89,8 @@ Feature: Entering the Registration service via BTA
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000003 and strong credentials
     Then the user is on the already-registered page
-    Then the user clicks on the BTA link
-    And the user is on the business-account page
+    Then the user clicks on the continue to your account link
+
 
   Scenario: A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing
     Given the user accesses the service

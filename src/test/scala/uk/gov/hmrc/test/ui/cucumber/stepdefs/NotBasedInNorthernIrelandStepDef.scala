@@ -22,5 +22,6 @@ class NotBasedInNorthernIrelandStepDef extends BaseStepDef {
 
   Then("""^the user is on the (.*) page$""") { (url: String) =>
     CommonPage.checkUrl(url)
+
   }
 }
