@@ -53,7 +53,6 @@ class RegistrationStepDef extends BaseStepDef {
     (vrn: String) =>
       AuthActions.loginUsingScpStub("Organisation", vrn)
       AuthActions.selectMfaSuccess()
-      Thread.sleep(10000)
 
   }
   Given(
