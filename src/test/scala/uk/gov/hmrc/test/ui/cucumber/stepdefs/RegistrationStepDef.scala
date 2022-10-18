@@ -53,6 +53,7 @@ class RegistrationStepDef extends BaseStepDef {
     (vrn: String) =>
       AuthActions.loginUsingScpStub("Organisation", vrn)
       AuthActions.selectMfaSuccess()
+      Thread.sleep(10000)
 
   }
   Given(
@@ -211,6 +212,8 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
       case "sign out and come back later"           =>
         driver.findElement(By.xpath("/*[@id=‘signOut’]")).click()
+      case "continue to your account"               =>
+        driver.findElement(By.xpath("//*[@id='main-content']/div/div/div[1]/a"))
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }
