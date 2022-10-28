@@ -31,7 +31,6 @@ class RegistrationStepDef extends BaseStepDef {
   }
   Given("^the user accesses the continue on sign in url$") { () =>
     CommonPage.goToContinueOnSignInPage()
-    Thread.sleep(10000)
   }
   Given("^the user accesses the external service$") { () =>
     CommonPage.goToStartOfExternalJourney()

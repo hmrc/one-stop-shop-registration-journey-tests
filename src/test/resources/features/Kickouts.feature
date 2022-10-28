@@ -275,4 +275,47 @@ Feature: Not Eligible for One Stop Shop
 #    Then the user is on the account-restore-error page
 
 
+  Scenario: User vat number have been excluded
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the have-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Germany on the first eu-tax page
+    And the user chooses no on the first eu-vat page
+    And the user chooses yes on the first eu-fixed-establishment page
+    And the user adds 333333336 on the first eu-tax-number page
+    Then the user is at the excluded-vrn page
+
+  Scenario:User vat number already registered elsewhere
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the have-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Germany on the first eu-tax page
+    And the user chooses yes on the first eu-vat page
+    And the user adds 333333331 on the first eu-vat-number page
+    Then the user is at the excluded-vrn page
+
+
+
+
+
 
