@@ -311,7 +311,7 @@ Feature: Not Eligible for One Stop Shop
     And the user answers yes on the tax-in-eu page
     And the user selects Germany on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds 333333331 on the first eu-vat-number page
+    And the user adds 333333332 on the first eu-vat-number page
     Then the user is at the excluded-vrn page
 
 
