@@ -274,8 +274,8 @@ Feature: Not Eligible for One Stop Shop
 #    And the user clicks through the business-pay page
 #    Then the user is on the account-restore-error page
 
-
-  Scenario: User vat number have been excluded
+@wip
+  Scenario: User vat number have been excluded on a fixed establishment
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
@@ -295,7 +295,7 @@ Feature: Not Eligible for One Stop Shop
     And the user adds 333333336 on the first eu-tax-number page
     Then the user is at the excluded-vrn page
 
-  Scenario:User vat number already registered elsewhere
+  Scenario:User vat number already registered elsewhere on a fix establishment
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
