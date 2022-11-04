@@ -274,7 +274,7 @@ Feature: Not Eligible for One Stop Shop
 #    And the user clicks through the business-pay page
 #    Then the user is on the account-restore-error page
 
-@wip
+git
   Scenario: User vat number have been excluded on a fixed establishment
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
