@@ -10,7 +10,6 @@ Feature: Entering the Registration service via BTA
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the uk-vat-group page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
@@ -74,7 +73,6 @@ Feature: Entering the Registration service via BTA
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the uk-vat-group page
     And the user answers no on the have-uk-trading-name page
     And the user answers no on the already-made-sales page
     And the user answers no on the planned-first-sale page
