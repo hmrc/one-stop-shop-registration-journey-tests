@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 Feature: Registering for One Stop Shop
 
   @ZAP
@@ -140,7 +140,6 @@ Feature: Registering for One Stop Shop
     And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses yes on the second eu-send-goods page
-    And the user adds 123456789 on the second eu-tax-number page
     And the user adds German business name on the second eu-send-goods-trading-name page
     And the user completes details on the eu-send-goods-address/2 page
       | data           | fieldId       |

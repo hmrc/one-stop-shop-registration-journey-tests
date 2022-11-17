@@ -28,12 +28,14 @@ Feature: Save For Later Feature
     And the user chooses yes on the first eu-vat page
     And the user adds A1123456789 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
     And the user chooses yes on the second eu-vat page
     And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
+    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
@@ -97,12 +99,14 @@ Feature: Save For Later Feature
     And the user chooses yes on the first eu-vat page
     And the user adds A1123456789 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
     And the user chooses yes on the second eu-vat page
     And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
+    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers yes on the deregistered page
@@ -165,12 +169,14 @@ Feature: Save For Later Feature
     And the user chooses yes on the first eu-vat page
     And the user adds A1123456789 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
     And the user chooses yes on the second eu-vat page
     And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
+    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers yes on the deregistered page
