@@ -9,6 +9,7 @@ Feature: Check Your Answers
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the uk-vat-group page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
@@ -43,6 +44,14 @@ Feature: Check Your Answers
     And the user chooses yes on the first check-eu-vat page
     And the user adds E1123456789 on the first check-eu-vat-number page
     And the user chooses no on the first check-eu-fixed-establishment page
+    And the user chooses yes on the first check-eu-send-goods page
+    And the user adds French business name on the first check-eu-send-goods-trading-name page
+    And the user completes details on the check-eu-send-goods-address/1 page
+      | data           | fieldId       |
+      | 1 Test Address | line1         |
+      | Test Town      | townOrCity    |
+      | Test Region    | stateOrRegion |
+      | 45236 FR       | postCode      |
     And the user clicks continue on the first change-check-tax-details page
     And the user answers yes on the check-add-tax-details page
     And the user selects Germany on the second check-eu-tax page
