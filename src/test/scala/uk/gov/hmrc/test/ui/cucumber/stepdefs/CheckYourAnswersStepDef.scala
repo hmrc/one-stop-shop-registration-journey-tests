@@ -22,5 +22,6 @@ class CheckYourAnswersStepDef extends BaseStepDef {
 
   Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
     CheckYourAnswersPage.selectLink(link)
+
   }
 }
