@@ -31,7 +31,6 @@ class RegistrationStepDef extends BaseStepDef {
   }
   Given("^the user accesses the continue on sign in url$") { () =>
     CommonPage.goToContinueOnSignInPage()
-    Thread.sleep(10000)
   }
   Given("^the user accesses the external service$") { () =>
     CommonPage.goToStartOfExternalJourney()
@@ -70,6 +69,14 @@ class RegistrationStepDef extends BaseStepDef {
     index match {
       case "first"  => CommonPage.checkUrl(url + "/1")
       case "second" => CommonPage.checkUrl(url + "/2")
+      case _        => throw new Exception("Index doesn't exist")
+    }
+    CommonPage.enterData(data)
+  }
+  When("""^the user add (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
+    index match {
+      case "first"  => CommonPage.checkUrl(url + "/1" + "/1")
+      case "second" => CommonPage.checkUrl(url + "/2" + "/2")
       case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.enterData(data)
@@ -118,6 +125,10 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
     CommonPage.selectAnswer(data)
 
+  }
+  When("""^the user answer (oss|ioss) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url + "/1" + "/1")
+    CommonPage.selectAnswerAs(data)
   }
   When("""^the user select (yes|No,delete my answers and start again) on the (.*) page$""") {
     (data: String, url: String) =>

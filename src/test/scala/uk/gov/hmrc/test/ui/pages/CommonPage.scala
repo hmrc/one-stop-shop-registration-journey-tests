@@ -96,6 +96,15 @@ object CommonPage extends BrowserDriver with Matchers {
     driver.findElement(By.className("govuk-button")).click()
   }
 
+  def selectAnswerAs(data: String): Unit = {
+    data match {
+      case "oss"  => driver.findElement(By.id("value_0")).click()
+      case "ioss" => driver.findElement(By.id("value_1")).click()
+      case _      => throw new Exception("Option doesn't exist")
+    }
+    driver.findElement(By.className("govuk-button")).click()
+  }
+
   def selectContinueRegistration(data: String): Unit = {
     data match {
       case "yes"                                  => driver.findElement(By.id("continueProgress")).click()
