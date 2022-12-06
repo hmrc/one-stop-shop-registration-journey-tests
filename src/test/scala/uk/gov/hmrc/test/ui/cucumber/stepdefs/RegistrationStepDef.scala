@@ -21,6 +21,7 @@ import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages._
 import play.api.libs.json.{JsSuccess, Json}
 import uk.gov.hmrc.test.ui.models.Passcode
+import uk.gov.hmrc.test.ui.pages.AuthPage.url
 
 import java.time.LocalDate
 
@@ -126,10 +127,15 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.selectAnswer(data)
 
   }
-  When("""^the user answer (oss|ioss) on the (.*) page$""") { (data: String, url: String) =>
+  When("""^the user answer (oss) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url + "/1" + "/1")
     CommonPage.selectAnswerAs(data)
   }
+  When("""^the user answers (oss) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectAnswerAs(data)
+  }
+
   When("""^the user select (yes|No,delete my answers and start again) on the (.*) page$""") {
     (data: String, url: String) =>
       if (url == "continue-registration") {}

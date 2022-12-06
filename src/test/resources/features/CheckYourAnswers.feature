@@ -15,7 +15,13 @@ Feature: Check Your Answers
     And the user presses the continue button
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
-    And the user answers no on the deregistered page
+    And the user answers yes on the previous-oss page
+    And the user selects France on the first previous-country page
+    And the user answer oss on the previous-scheme page
+    And the user add FR123456789 on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answer/1 page
+    And the user answers no on the previous-scheme-answer/1 page
+    And the user answers no on the add-deregistration page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -43,6 +49,7 @@ Feature: Check Your Answers
     And the user chooses yes on the first check-eu-vat page
     And the user adds E1123456789 on the first check-eu-vat-number page
     And the user chooses no on the first check-eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first change-check-tax-details page
     And the user answers yes on the check-add-tax-details page
     And the user selects Germany on the second check-eu-tax page
@@ -60,9 +67,10 @@ Feature: Check Your Answers
     And the user clicks continue on the second change-check-tax-details page
     And the user answers no on the check-add-tax-details page
     Then the user is at the check-answers page
-    Then the user selects the change link for check-deregistered
-    And the user answers yes on the check-deregistered page
-    And the user selects Austria on the first check-deregistered-country page
+    Then the user selects the change link for check-add-deregistration
+    And the user answers yes on the check-add-deregistration page
+    And the user selects Austria on the second check-previous-country page
+    And the user answers oss on the check-previous-scheme/2/1 page
     And the user adds U98765432 on the first check-deregistered-eu-vat-number page
     And the user answers no on the check-add-deregistration page
     Then the user is at the check-answers page

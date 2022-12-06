@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
+import org.openqa.selenium.support.ui.{ExpectedConditions, Wait, WebDriverWait}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
