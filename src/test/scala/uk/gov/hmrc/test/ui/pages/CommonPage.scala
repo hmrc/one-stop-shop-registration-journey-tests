@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.{ExpectedConditions, WebDriverWait}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
@@ -68,9 +68,7 @@ object CommonPage extends BrowserDriver with Matchers {
   }
 
   def waitForElement(by: By) =
-    new WebDriverWait(driver, 3).until {
-      ExpectedConditions.presenceOfElementLocated(by)
-    }
+    new FluentWait(driver).until(ExpectedConditions.presenceOfElementLocated(by))
 
   def selectValueAutocomplete(data: String): Unit = {
     val inputId = "value"
