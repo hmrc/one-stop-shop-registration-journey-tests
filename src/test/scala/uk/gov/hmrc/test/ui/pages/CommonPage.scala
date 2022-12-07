@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.pages
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.{ExpectedConditions, Wait, WebDriverWait}
+import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
@@ -68,9 +68,7 @@ object CommonPage extends BrowserDriver with Matchers {
   }
 
   def waitForElement(by: By) =
-    new WebDriverWait(driver, 3).until {
-      ExpectedConditions.presenceOfElementLocated(by)
-    }
+    new FluentWait(driver).until(ExpectedConditions.presenceOfElementLocated(by))
 
   def selectValueAutocomplete(data: String): Unit = {
     val inputId = "value"
@@ -92,15 +90,6 @@ object CommonPage extends BrowserDriver with Matchers {
       case "yes" => driver.findElement(By.id("value")).click()
       case "no"  => driver.findElement(By.id("value-no")).click()
       case _     => throw new Exception("Option doesn't exist")
-    }
-    driver.findElement(By.className("govuk-button")).click()
-  }
-
-  def selectAnswerAs(data: String): Unit = {
-    data match {
-      case "oss"  => driver.findElement(By.id("value_0")).click()
-      case "ioss" => driver.findElement(By.id("value_1")).click()
-      case _      => throw new Exception("Option doesn't exist")
     }
     driver.findElement(By.className("govuk-button")).click()
   }
