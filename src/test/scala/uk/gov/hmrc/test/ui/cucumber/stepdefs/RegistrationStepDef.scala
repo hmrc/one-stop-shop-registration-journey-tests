@@ -21,7 +21,6 @@ import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages._
 import play.api.libs.json.{JsSuccess, Json}
 import uk.gov.hmrc.test.ui.models.Passcode
-import uk.gov.hmrc.test.ui.pages.AuthPage.url
 
 import java.time.LocalDate
 

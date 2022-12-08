@@ -71,7 +71,8 @@ Feature: Check Your Answers
     And the user answers yes on the check-add-deregistration page
     And the user selects Austria on the second check-previous-country page
     And the user answers oss on the check-previous-scheme/2/1 page
-    And the user adds U98765432 on the first check-deregistered-eu-vat-number page
+    And the user enters U98765432 on the check-previous-oss-scheme-number/2/1 page
+    And the user answers no on the check-previous-scheme-answer/2 page
     And the user answers no on the check-add-deregistration page
     Then the user is at the check-answers page
     Then the user selects the change link for check-give-website-address
