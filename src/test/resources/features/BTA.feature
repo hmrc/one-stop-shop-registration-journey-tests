@@ -19,7 +19,7 @@ Feature: Entering the Registration service via BTA
     And the user answers yes on the previous-oss page
     And the user selects France on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FR123456789 on the first previous-oss-scheme-number page
+    And the user add FR1B123456789 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page

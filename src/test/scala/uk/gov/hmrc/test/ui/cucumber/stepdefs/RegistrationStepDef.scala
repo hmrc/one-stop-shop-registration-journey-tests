@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -243,6 +243,9 @@ class RegistrationStepDef extends BaseStepDef {
   }
   Then("""^the user select the sign and come back later link""") { () =>
     driver.findElement(By.id("signOut")).click()
+  }
+  Then("""an error message is display as {string}""") { (errorMessage: String) =>
+    assert(driver.findElement(By.id("value-error")).getText.contains(errorMessage))
   }
 
 }

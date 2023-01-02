@@ -21,14 +21,14 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the tax-in-eu page
     And the user selects France on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds A1123456789 on the first eu-vat-number page
+    And the user adds FRA1123456789 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
     And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds 123456789 on the second eu-vat-number page
+    And the user adds DE123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
@@ -36,7 +36,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the previous-oss page
     And the user selects France on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FR123456789 on the first previous-oss-scheme-number page
+    And the user add FRXQ123456789 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page
@@ -76,7 +76,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the previous-oss page
     And the user selects France on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FR123456789 on the first previous-oss-scheme-number page
+    And the user add FRDS123456789 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page
@@ -118,7 +118,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the add-tax-details page
     And the user selects Germany on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds 123456789 on the second eu-vat-number page
+    And the user adds DE123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
@@ -126,7 +126,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the previous-oss page
     And the user selects France on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FR123456789 on the first previous-oss-scheme-number page
+    And the user add FRA1123456789 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page
