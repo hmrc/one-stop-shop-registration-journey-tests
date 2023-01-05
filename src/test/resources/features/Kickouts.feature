@@ -521,3 +521,163 @@ Scenario: user registration number must start with an alphabet in capital letter
     And the user answer oss on the previous-scheme page
     And the user add LV9999999999 on the first previous-oss-scheme-number page
     Then an error message is displayed as "Enter a registration number in the correct format"
+
+  Scenario: A user entered Invalid Ioss registration in Belgium
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Belgium on the first eu-tax page
+    And the user chooses yes on the first eu-vat page
+    And the user adds BE1234567890 on the first eu-vat-number page
+    And the user chooses no on the first eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Germany on the second eu-tax page
+    And the user chooses yes on the second eu-vat page
+    And the user adds DE123456789 on the second eu-vat-number page
+    And the user chooses no on the second eu-fixed-establishment page
+    And the user chooses no on the second eu-send-goods page
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
+    And the user answers yes on the previous-oss page
+    And the user selects France on the first previous-country page
+    And the user answer ioss on the previous-scheme page
+    And the user answers yes on the previous-ioss-scheme/1/1 page
+    And the user inputs ioss reg number IM0561234567 on the previous-ioss-number/1/1 page
+    And the user clicks continue on the first previous-ioss-number/1 page
+    Then an error message is displayed as "Enter a valid IOSS registration number"
+
+  Scenario: A user entered Invalid intermediary identification number  in France
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects France on the first eu-tax page
+    And the user chooses yes on the first eu-vat page
+    And the user adds FRXX999999999 on the first eu-vat-number page
+    And the user chooses no on the first eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Germany on the second eu-tax page
+    And the user chooses yes on the second eu-vat page
+    And the user adds DE123456789 on the second eu-vat-number page
+    And the user chooses no on the second eu-fixed-establishment page
+    And the user chooses no on the second eu-send-goods page
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
+    And the user answers yes on the previous-oss page
+    And the user selects France on the first previous-country page
+    And the user answer ioss on the previous-scheme page
+    And the user answers yes on the previous-ioss-scheme/1/1 page
+    And the user inputs ioss reg number IM250123456 on the previous-ioss-number/1/1 page
+    And the user inputs intermediary identification number IN2601234567 on the previous-ioss-number/1/1 page
+    Then an error message is displayed as "Enter a valid intermediary identification number"
+
+  Scenario: A user did not enter Ioss registration
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Belgium on the first eu-tax page
+    And the user chooses yes on the first eu-vat page
+    And the user adds BE1234567890 on the first eu-vat-number page
+    And the user chooses no on the first eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Germany on the second eu-tax page
+    And the user chooses yes on the second eu-vat page
+    And the user adds DE123456789 on the second eu-vat-number page
+    And the user chooses no on the second eu-fixed-establishment page
+    And the user chooses no on the second eu-send-goods page
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
+    And the user answers yes on the previous-oss page
+    And the user selects France on the first previous-country page
+    And the user answer ioss on the previous-scheme page
+    And the user answers yes on the previous-ioss-scheme/1/1 page
+    And the user inputs ioss reg number  on the previous-ioss-number/1/1 page
+    And the user clicks continue on the first previous-ioss-number/1 page
+    Then an error message is displayed as "Enter your IOSS registration number"
+
+  Scenario: A user did not enter the intermediary identification number
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects France on the first eu-tax page
+    And the user chooses yes on the first eu-vat page
+    And the user adds FRXX999999999 on the first eu-vat-number page
+    And the user chooses no on the first eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Germany on the second eu-tax page
+    And the user chooses yes on the second eu-vat page
+    And the user adds DE123456789 on the second eu-vat-number page
+    And the user chooses no on the second eu-fixed-establishment page
+    And the user chooses no on the second eu-send-goods page
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
+    And the user answers yes on the previous-oss page
+    And the user selects France on the first previous-country page
+    And the user answer ioss on the previous-scheme page
+    And the user answers yes on the previous-ioss-scheme/1/1 page
+    And the user inputs ioss reg number IM2509999999 on the previous-ioss-number/1/1 page
+    And the user inputs intermediary identification number  on the previous-ioss-number/1/1 page
+    Then an error message is displayed as "Enter your intermediary number"

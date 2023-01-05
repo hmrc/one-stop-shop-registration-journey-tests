@@ -67,7 +67,7 @@ object CommonPage extends BrowserDriver with Matchers {
     driver.findElement(By.className("govuk-button")).click()
   }
 
-  def waitForElement(by: By) =
+  def waitForElement(by: By)                        =
     new FluentWait(driver).until(ExpectedConditions.presenceOfElementLocated(by))
 
   def selectValueAutocomplete(data: String): Unit = {
@@ -82,6 +82,12 @@ object CommonPage extends BrowserDriver with Matchers {
     driver.findElement(By.id("value.day")).sendKeys(date.substring(0, 2))
     driver.findElement(By.id("value.month")).sendKeys(date.substring(3, 5))
     driver.findElement(By.id("value.year")).sendKeys(date.substring(6, 10))
+    driver.findElement(By.className("govuk-button")).click()
+  }
+  def enterTheIossNumbers(iossNumber: String): Unit =
+    driver.findElement(By.id("previousSchemeNumber")).sendKeys(iossNumber)
+  def enterTheIntermediaryIdentificationNumber(intermediaryNumber: String) {
+    driver.findElement(By.id("previousIntermediaryNumber")).sendKeys(intermediaryNumber)
     driver.findElement(By.className("govuk-button")).click()
   }
 
