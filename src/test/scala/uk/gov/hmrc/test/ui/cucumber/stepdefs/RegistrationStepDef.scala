@@ -117,7 +117,6 @@ class RegistrationStepDef extends BaseStepDef {
       case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.clickContinue()
-    Thread.sleep(10000)
   }
 
   When("^the user clicks through the (.*) page$") { (url: String) =>
