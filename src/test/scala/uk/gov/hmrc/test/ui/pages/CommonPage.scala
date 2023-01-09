@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -90,6 +90,14 @@ object CommonPage extends BrowserDriver with Matchers {
       case "yes" => driver.findElement(By.id("value")).click()
       case "no"  => driver.findElement(By.id("value-no")).click()
       case _     => throw new Exception("Option doesn't exist")
+    }
+    driver.findElement(By.className("govuk-button")).click()
+  }
+  def selectAnswerAs(data: String): Unit = {
+    data match {
+      case "oss"  => driver.findElement(By.id("value_0")).click()
+      case "ioss" => driver.findElement(By.id("value_1")).click()
+      case _      => throw new Exception("Option doesn't exist")
     }
     driver.findElement(By.className("govuk-button")).click()
   }

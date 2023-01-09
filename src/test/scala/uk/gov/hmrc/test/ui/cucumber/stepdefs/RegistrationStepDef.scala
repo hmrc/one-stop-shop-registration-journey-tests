@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 HM Revenue & Customs
+ * Copyright 2023 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,6 +73,14 @@ class RegistrationStepDef extends BaseStepDef {
     }
     CommonPage.enterData(data)
   }
+  When("""^the user add (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
+    index match {
+      case "first"  => CommonPage.checkUrl(url + "/1" + "/1")
+      case "second" => CommonPage.checkUrl(url + "/2" + "/2")
+      case _        => throw new Exception("Index doesn't exist")
+    }
+    CommonPage.enterData(data)
+  }
 
   When("""^the user selects (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
     index match {
@@ -118,6 +126,15 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.selectAnswer(data)
 
   }
+  When("""^the user answer (oss) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url + "/1" + "/1")
+    CommonPage.selectAnswerAs(data)
+  }
+  When("""^the user answers (oss) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectAnswerAs(data)
+  }
+
   When("""^the user select (yes|No,delete my answers and start again) on the (.*) page$""") {
     (data: String, url: String) =>
       if (url == "continue-registration") {}
@@ -226,6 +243,9 @@ class RegistrationStepDef extends BaseStepDef {
   }
   Then("""^the user select the sign and come back later link""") { () =>
     driver.findElement(By.id("signOut")).click()
+  }
+  Then("""an error message is displayed as {string}""") { (errorMessage: String) =>
+    assert(driver.findElement(By.id("value-error")).getText.contains(errorMessage))
   }
 
 }
