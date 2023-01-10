@@ -64,7 +64,16 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
     CommonPage.enterData(data)
   }
+  And("""^the user inputs ioss reg number (.*) on the (.*) page$""") { (iossNumber: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.enterTheIossNumbers(iossNumber)
 
+  }
+  And("""^the user inputs intermediary identification number (.*) on the (.*) page$""") {
+    (intermediaryNumber: String, url: String) =>
+      CommonPage.checkUrl(url)
+      CommonPage.enterTheIntermediaryIdentificationNumber(intermediaryNumber)
+  }
   When("""^the user adds (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
     index match {
       case "first"  => CommonPage.checkUrl(url + "/1")
@@ -126,7 +135,7 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.selectAnswer(data)
 
   }
-  When("""^the user answer (oss) on the (.*) page$""") { (data: String, url: String) =>
+  When("""^the user answer (oss|ioss) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url + "/1" + "/1")
     CommonPage.selectAnswerAs(data)
   }
@@ -245,7 +254,20 @@ class RegistrationStepDef extends BaseStepDef {
     driver.findElement(By.id("signOut")).click()
   }
   Then("""an error message is displayed as {string}""") { (errorMessage: String) =>
-    assert(driver.findElement(By.id("value-error")).getText.contains(errorMessage))
-  }
+    errorMessage match {
+      case "Enter a registration number in the correct format" =>
+        assert(driver.findElement(By.id("value-error")).getText.contains(errorMessage))
+      case "Enter a valid IOSS registration number"            =>
+        assert(driver.findElement(By.id("previousSchemeNumber-error")).getText.contains(errorMessage))
+      case "Enter a valid intermediary identification number"  =>
+        assert(driver.findElement(By.id("previousIntermediaryNumber-error")).getText.contains(errorMessage))
+      case "Enter your IOSS registration number"               =>
+        assert(driver.findElement(By.id("previousSchemeNumber-error")).getText.contains(errorMessage))
+      case "Enter your intermediary number"                    =>
+        assert(driver.findElement(By.id("previousIntermediaryNumber-error")).getText.contains(errorMessage))
+      case _                                                   =>
+        throw new Exception("Error message doesn't exist")
+    }
 
+  }
 }
