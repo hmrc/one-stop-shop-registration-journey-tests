@@ -16,9 +16,9 @@ Feature: Check Your Answers
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
     And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
+    And the user selects Estonia on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FRA1123456789 on the first previous-oss-scheme-number page
+    And the user add EE123456789 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page
@@ -45,16 +45,16 @@ Feature: Check Your Answers
     Then the user is at the check-answers page
     Then the user selects the change link for check-tax-in-eu
     And the user answers yes on the check-tax-in-eu page
-    And the user selects France on the first check-eu-tax page
+    And the user selects Bulgaria on the first check-eu-tax page
     And the user chooses yes on the first check-eu-vat page
-    And the user adds FRXX123456789 on the first check-eu-vat-number page
+    And the user adds BG123456789 on the first check-eu-vat-number page
     And the user chooses no on the first check-eu-fixed-establishment page
     And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first change-check-tax-details page
     And the user answers yes on the check-add-tax-details page
-    And the user selects Germany on the second check-eu-tax page
+    And the user selects Finland on the second check-eu-tax page
     And the user chooses yes on the second check-eu-vat page
-    And the user adds DE123456789 on the second check-eu-vat-number page
+    And the user adds FI12345678 on the second check-eu-vat-number page
     And the user chooses yes on the second check-eu-fixed-establishment page
     And the user adds EU trading name on the second check-eu-trading-name page
     And the user completes details on the check-eu-fixed-establishment-address/2 page
