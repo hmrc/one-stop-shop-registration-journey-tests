@@ -24,16 +24,16 @@ Feature: Save For Later Feature
     And the user presses the continue button
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
-    And the user selects France on the first eu-tax page
+    And the user selects Czech Republic on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds FRX1123456789 on the first eu-vat-number page
+    And the user adds CZ123456789 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
     And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
-    And the user selects Germany on the second eu-tax page
+    And the user selects Portugal on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds DE123456789 on the second eu-vat-number page
+    And the user adds PT123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
@@ -41,9 +41,9 @@ Feature: Save For Later Feature
     Then the user clicks on the continue to complete your registration link
     And the user answers no on the add-tax-details page
     And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
+    And the user selects Ireland on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FRF3123456789 on the first previous-oss-scheme-number page
+    And the user add IE1234567WI on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page
@@ -97,24 +97,24 @@ Feature: Save For Later Feature
     And the user presses the continue button
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
-    And the user selects France on the first eu-tax page
+    And the user selects Ireland on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds FRAA123456789 on the first eu-vat-number page
+    And the user adds IE1234567WI on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
     And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
-    And the user selects Germany on the second eu-tax page
+    And the user selects Italy on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds DE123456789 on the second eu-vat-number page
+    And the user adds IT01234567899 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
+    And the user selects Portugal on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FRV2123456789 on the first previous-oss-scheme-number page
+    And the user add PT123456789 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page
@@ -170,24 +170,24 @@ Feature: Save For Later Feature
     And the user presses the continue button
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
-    And the user selects France on the first eu-tax page
+    And the user selects Italy on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds FRA1123456789 on the first eu-vat-number page
+    And the user adds IT01234567899 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
     And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
-    And the user selects Germany on the second eu-tax page
+    And the user selects Ireland on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds DE123456789 on the second eu-vat-number page
+    And the user adds IE1234567WI on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
+    And the user selects Hungary on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add FRBB123456789 on the first previous-oss-scheme-number page
+    And the user add HU12345678 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answer/1 page
     And the user answers no on the previous-scheme-answer/1 page
     And the user answers no on the add-deregistration page

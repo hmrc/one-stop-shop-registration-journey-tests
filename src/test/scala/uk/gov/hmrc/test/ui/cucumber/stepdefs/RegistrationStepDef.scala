@@ -73,6 +73,7 @@ class RegistrationStepDef extends BaseStepDef {
     (intermediaryNumber: String, url: String) =>
       CommonPage.checkUrl(url)
       CommonPage.enterTheIntermediaryIdentificationNumber(intermediaryNumber)
+
   }
   When("""^the user adds (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
     index match {
