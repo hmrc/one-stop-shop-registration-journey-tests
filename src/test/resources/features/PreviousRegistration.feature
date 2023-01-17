@@ -23,7 +23,7 @@ Feature: Previously registered journey
     And the user selects Luxembourg on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add LU99999999 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
+    Then the user is on the previous-scheme-answers/1 page
 
   Scenario: Oss validate with valid oss registration number(9 digits)
     Given the user accesses the service
@@ -47,7 +47,7 @@ Feature: Previously registered journey
     And the user selects Denmark on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add DK12345678 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
+    Then the user is on the previous-scheme-answers/1 page
 
   Scenario: Oss validate with valid oss registration number(10 digits)
     Given the user accesses the service
@@ -71,7 +71,7 @@ Feature: Previously registered journey
     And the user selects Belgium on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add BE1234567890 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
+    Then the user is on the previous-scheme-answers/1 page
 
   Scenario: Oss validate with valid oss registration number(11 digits)
     Given the user accesses the service
@@ -95,7 +95,7 @@ Feature: Previously registered journey
     And the user selects Croatia on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add HR12345678910 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
+    Then the user is on the previous-scheme-answers/1 page
 
   Scenario: Oss validate with valid oss registration number(12 digits)
     Given the user accesses the service
@@ -119,7 +119,7 @@ Feature: Previously registered journey
     And the user selects Netherlands on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add NL123456789101 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
+    Then the user is on the previous-scheme-answers/1 page
 
   Scenario: Oss validate with valid oss registration number(digits and Alphabets)
     Given the user accesses the service
@@ -143,7 +143,7 @@ Feature: Previously registered journey
     And the user selects Spain on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add ESX1234567X on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
+    Then the user is on the previous-scheme-answers/1 page
 
 #    Core validations
  Scenario: New Registration (not in Core DB)
@@ -184,8 +184,8 @@ Feature: Previously registered journey
    And the user answers yes on the previous-ioss-scheme/1/1 page
    And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
    And the user inputs intermediary identification number IN2501234567 on the previous-ioss-number/1/1 page
-   And the user answers no on the previous-scheme-answer/1 page
-   And the user answers no on the add-deregistration page
+   And the user answers no on the previous-scheme-answers/1 page
+   And the user answers no on the previous-schemes-overview page
    And the user answers no on the online-marketplace page
    And the user answers yes on the give-website-address page
    And the user adds www.example.com on the first website-address page
@@ -244,8 +244,8 @@ Feature: Previously registered journey
    And the user answers yes on the previous-ioss-scheme/1/1 page
    And the user inputs ioss reg number IM3481234567 on the previous-ioss-number/1/1 page
    And the user inputs intermediary identification number IN3481234567 on the previous-ioss-number/1/1 page
-   And the user answers no on the previous-scheme-answer/1 page
-   And the user answers no on the add-deregistration page
+   And the user answers no on the previous-scheme-answers/1 page
+   And the user answers no on the previous-schemes-overview page
    And the user answers no on the online-marketplace page
    And the user answers yes on the give-website-address page
    And the user adds www.example.com on the first website-address page
@@ -290,5 +290,5 @@ Feature: Previously registered journey
     And the user answers yes on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM3801234567 on the previous-ioss-number/1/1 page
     And the user inputs intermediary identification number IN3801234567 on the previous-ioss-number/1/1 page
-    And the user answers no on the previous-scheme-answer/1 page
+    And the user answers no on the previous-scheme-answers/1 page
 
