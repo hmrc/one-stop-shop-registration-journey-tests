@@ -37,9 +37,9 @@ Feature: Registering for One Stop Shop
     And the user selects Czech Republic on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add CZ123456789 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
-    And the user answers no on the previous-scheme-answer/1 page
-    And the user answers no on the add-deregistration page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -77,9 +77,9 @@ Feature: Registering for One Stop Shop
     And the user selects Czech Republic on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add CZ123456789 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
-    And the user answers no on the previous-scheme-answer/1 page
-    And the user answers no on the add-deregistration page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -127,9 +127,9 @@ Feature: Registering for One Stop Shop
     And the user selects Malta on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add MT12345678 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answer/1 page
-    And the user answers no on the previous-scheme-answer/1 page
-    And the user answers no on the add-deregistration page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -210,8 +210,8 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
     And the user inputs intermediary identification number IN2501234567 on the previous-ioss-number/1/1 page
-    And the user answers no on the previous-scheme-answer/1 page
-    And the user answers no on the add-deregistration page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -270,8 +270,8 @@ Feature: Registering for One Stop Shop
     And the user answers no on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
     And the user clicks continue on the first previous-ioss-number/1 page
-    And the user answers no on the previous-scheme-answer/1 page
-    And the user answers no on the add-deregistration page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
