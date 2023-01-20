@@ -21,9 +21,9 @@ Feature: User registers with different commencement dates
     And the user selects France on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add FRDB123456789 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answers/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
+    Then the user is on the previous-scheme-answer/1 page
+    And the user answers no on the previous-scheme-answer/1 page
+    And the user answers no on the add-deregistration page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -50,9 +50,9 @@ Feature: User registers with different commencement dates
     And the user selects France on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add FRX1123456789 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answers/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
+    Then the user is on the previous-scheme-answer/1 page
+    And the user answers no on the previous-scheme-answer/1 page
+    And the user answers no on the add-deregistration page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page

@@ -44,9 +44,9 @@ Feature: Save For Later Feature
     And the user selects Ireland on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add IE1234567WI on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answers/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
+    Then the user is on the previous-scheme-answer/1 page
+    And the user answers no on the previous-scheme-answer/1 page
+    And the user answers no on the add-deregistration page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -115,9 +115,9 @@ Feature: Save For Later Feature
     And the user selects Portugal on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add PT123456789 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answers/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
+    Then the user is on the previous-scheme-answer/1 page
+    And the user answers no on the previous-scheme-answer/1 page
+    And the user answers no on the add-deregistration page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -188,9 +188,9 @@ Feature: Save For Later Feature
     And the user selects Hungary on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add HU12345678 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answers/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
+    Then the user is on the previous-scheme-answer/1 page
+    And the user answers no on the previous-scheme-answer/1 page
+    And the user answers no on the add-deregistration page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
