@@ -274,255 +274,8 @@ Feature: Not Eligible for One Stop Shop
 #    And the user clicks through the business-pay page
 #    Then the user is on the account-restore-error page
 
-#Previously registered
-Scenario: user registration number must start with an alphabet in capital letter
-  Given the user accesses the service
-  And the user answers no on the already-eu-registered page
-  And the user answers yes on the sell-from-northern-ireland page
-  And the user answers yes on the northern-ireland-business page
-  And the user clicks through the business-pay page
-  And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-  And the user chooses Yes on the confirm-vat-details page
-  And the user answers no on the have-uk-trading-name page
-  And the user answers no on the already-made-sales page
-  And the user answers yes on the planned-first-sale page
-  And the user clicks through the start-date page
-  And the user answers no on the tax-in-eu page
-  And the user answers yes on the previous-oss page
-  And the user selects France on the first previous-country page
-  And the user answer oss on the previous-scheme page
-  And the user add frsx123456789 on the first previous-oss-scheme-number page
-  Then an error message is displayed as "Enter a registration number in the correct format"
 
-  Scenario: user registration number without the Alphabet at the start of the reg
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add 123456789 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: valid Oss registration in Bulgaria in another EU country
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add BG123456789 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in Austria
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Austria on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add ATA1234567 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in Belgium
-  Given the user accesses the service
-  And the user answers no on the already-eu-registered page
-  And the user answers yes on the sell-from-northern-ireland page
-  And the user answers yes on the northern-ireland-business page
-  And the user clicks through the business-pay page
-  And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-  And the user chooses Yes on the confirm-vat-details page
-  And the user answers no on the have-uk-trading-name page
-  And the user answers no on the already-made-sales page
-  And the user answers yes on the planned-first-sale page
-  And the user clicks through the start-date page
-  And the user answers no on the tax-in-eu page
-  And the user answers yes on the previous-oss page
-  And the user selects Belgium on the first previous-country page
-  And the user answer oss on the previous-scheme page
-  And the user add BE2123456789 on the first previous-oss-scheme-number page
-  Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in Bulgaria
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Bulgaria on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add BG12345678 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in Cyprus(Spain,Ireland)
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Cyprus on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add CY123456789 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration with less than 8 characters in Czech Republic(Denmark,Hungary,LuxemBourg,Malta,Slovenia,Finland)
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Czech Republic on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add CZ1234567 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration with more than 10 characters in Czech Republic
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Czech Republic on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add CZ12345678972 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in Germany(Estonia,Greece,Portugal)
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Germany on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add DE12346789 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in France
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add FR2234567897 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in Netherlands(Sweden)
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Netherlands on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add 2234567897 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-  Scenario: Invalid Oss registration in Latvia(Croatia)
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers yes on the previous-oss page
-    And the user selects Latvia on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add LV9999999999 on the first previous-oss-scheme-number page
-    Then an error message is displayed as "Enter a registration number in the correct format"
-
-#    Core validation
+##    Core validation
  Scenario: Active OSS Reg in another EU country
    Given the user accesses the service
    And the user answers no on the already-eu-registered page
@@ -546,7 +299,7 @@ Scenario: user registration number must start with an alphabet in capital letter
    And the user answer oss on the previous-scheme page
    And the user add DE123456789 on the first previous-oss-scheme-number page
    Then the user is on the scheme-still-active?countryCode=EE page
-
+#
   Scenario: Quarantined OSS in another EU country
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -597,27 +350,27 @@ Scenario: user registration number must start with an alphabet in capital letter
     And the user clicks continue on the first previous-ioss-number/1 page
     Then the user is on the scheme-quarantined page
 
-#  Scenario: Quarantined intermediary identification number in another EU country
-#    Given the user accesses the service
-#    And the user answers no on the already-eu-registered page
-#    And the user answers yes on the sell-from-northern-ireland page
-#    And the user answers yes on the northern-ireland-business page
-#    And the user clicks through the business-pay page
-#    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
-#    And the user chooses Yes on the confirm-vat-details page
-#    And the user answers yes on the have-uk-trading-name page
-#    And the user adds Foo on the first uk-trading-name page
-#    And the user answers yes on the add-uk-trading-name page
-#    And the user adds Foo Two on the second uk-trading-name page
-#    And the user answers no on the add-uk-trading-name page
-#    And the user answers yes on the already-made-sales page
-#    And the user enters a date inside the notification period for date of first sale
-#    And the user presses the continue button
-#    And the user clicks through the start-date page
-#    And the user answers no on the tax-in-eu page
-#    And the user answers yes on the previous-oss page
-#    And the user selects Germany on the first previous-country page
-#    And the user answer ioss on the previous-scheme page
-#    And the user inputs ioss reg number IM0401234567 on the previous-ioss-number/1/1 page
-#    And the user inputs intermediary identification number IN0401234567 on the previous-ioss-number/1/1 page
-#    Then the user is on the scheme-quarantined page
+  Scenario: Quarantined intermediary identification number in another EU country
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers no on the tax-in-eu page
+    And the user answers yes on the previous-oss page
+    And the user selects Germany on the first previous-country page
+    And the user answer ioss on the previous-scheme page
+    And the user inputs ioss reg number IM0401234567 on the previous-ioss-number/1/1 page
+    And the user inputs intermediary identification number IN0401234567 on the previous-ioss-number/1/1 page
+    Then the user is on the scheme-quarantined page
