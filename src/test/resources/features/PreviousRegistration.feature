@@ -292,3 +292,70 @@ Feature: Previously registered journey
     And the user inputs intermediary identification number IN3801234567 on the previous-ioss-number/1/1 page
     And the user answers no on the previous-scheme-answers/1 page
 
+  Scenario: User Remove single Previously Reg Scheme
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers no on the tax-in-eu page
+    And the user answers yes on the previous-oss page
+    And the user selects Spain on the first previous-country page
+    And the user answer oss on the previous-scheme page
+    And the user add ESX1234567X on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-scheme-answers/1 page
+    And the user answers ioss on the previous-scheme page
+    And the user answers no on the previous-ioss-scheme/1/2 page
+    And the user inputs ioss reg number IM7241234567 on the previous-ioss-number/1/2 page
+    And the user clicks through the previous-ioss-number/1/2 page
+    Then the user selects the remove link for remove-previous-scheme
+    And the user answers yes on the remove-previous-scheme/1/1 page
+    Then the user is at the previous-scheme-answers/1 page
+
+  Scenario: User Remove multiple Previously Reg Scheme
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Foo on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Foo Two on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters a date inside the notification period for date of first sale
+    And the user presses the continue button
+    And the user clicks through the start-date page
+    And the user answers no on the tax-in-eu page
+    And the user answers yes on the previous-oss page
+    And the user selects Spain on the first previous-country page
+    And the user answer oss on the previous-scheme page
+    And the user add ESX1234567X on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-scheme-answers/1 page
+    And the user answers ioss on the previous-scheme page
+    And the user answers no on the previous-ioss-scheme/1/2 page
+    And the user inputs ioss reg number IM7241234567 on the previous-ioss-number/1/2 page
+    And the user clicks through the previous-ioss-number/1/2 page
+    Then the user selects the remove link for remove-previous-scheme
+    And the user answers yes on the remove-previous-scheme/1/1 page
+    Then the user selects the remove link for remove-previous-scheme
+    And the user answers yes on the remove-previous-scheme/1/1 page
+    Then the user is at the previous-oss page
+
+
