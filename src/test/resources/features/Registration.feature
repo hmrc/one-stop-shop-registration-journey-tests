@@ -17,6 +17,13 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
+    And the user answers yes on the previous-oss page
+    And the user selects Czech Republic on the first previous-country page
+    And the user answer oss on the previous-scheme page
+    And the user add CZ123456789 on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Luxembourg on the first eu-tax page
@@ -33,13 +40,6 @@ Feature: Registering for One Stop Shop
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
-    And the user answers yes on the previous-oss page
-    And the user selects Czech Republic on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add CZ123456789 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answers/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -71,8 +71,6 @@ Feature: Registering for One Stop Shop
     And the user answers no on the have-uk-trading-name page
     And the user answers no on the already-made-sales page
     And the user answers yes on the planned-first-sale page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
     And the user answers yes on the previous-oss page
     And the user selects Czech Republic on the first previous-country page
     And the user answer oss on the previous-scheme page
@@ -80,6 +78,8 @@ Feature: Registering for One Stop Shop
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers no on the tax-in-eu page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -108,6 +108,13 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
+    And the user answers yes on the previous-oss page
+    And the user selects Malta on the first previous-country page
+    And the user answer oss on the previous-scheme page
+    And the user add MT12345678 on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Luxembourg on the first eu-tax page
@@ -123,13 +130,6 @@ Feature: Registering for One Stop Shop
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
-    And the user answers yes on the previous-oss page
-    And the user selects Malta on the first previous-country page
-    And the user answer oss on the previous-scheme page
-    And the user add MT12345678 on the first previous-oss-scheme-number page
-    Then the user is on the previous-scheme-answers/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -188,6 +188,14 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
+    And the user answers yes on the previous-oss page
+    And the user selects France on the first previous-country page
+    And the user answer ioss on the previous-scheme page
+    And the user answers yes on the previous-ioss-scheme/1/1 page
+    And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
+    And the user inputs intermediary identification number IN2501234567 on the previous-ioss-number/1/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Malta on the first eu-tax page
@@ -204,14 +212,6 @@ Feature: Registering for One Stop Shop
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
-    And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
-    And the user answer ioss on the previous-scheme page
-    And the user answers yes on the previous-ioss-scheme/1/1 page
-    And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
-    And the user inputs intermediary identification number IN2501234567 on the previous-ioss-number/1/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -248,6 +248,14 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
+    And the user answers yes on the previous-oss page
+    And the user selects France on the first previous-country page
+    And the user answer ioss on the previous-scheme page
+    And the user answers no on the previous-ioss-scheme/1/1 page
+    And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
+    And the user clicks continue on the first previous-ioss-number/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Latvia on the first eu-tax page
@@ -264,14 +272,6 @@ Feature: Registering for One Stop Shop
     And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
-    And the user answers yes on the previous-oss page
-    And the user selects France on the first previous-country page
-    And the user answer ioss on the previous-scheme page
-    And the user answers no on the previous-ioss-scheme/1/1 page
-    And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
-    And the user clicks continue on the first previous-ioss-number/1 page
-    And the user answers no on the previous-scheme-answers/1 page
-    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page

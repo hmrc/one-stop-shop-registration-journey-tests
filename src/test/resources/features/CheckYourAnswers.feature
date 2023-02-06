@@ -13,8 +13,6 @@ Feature: Check Your Answers
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
     And the user answers yes on the previous-oss page
     And the user selects Estonia on the first previous-country page
     And the user answer oss on the previous-scheme page
@@ -22,6 +20,8 @@ Feature: Check Your Answers
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers no on the tax-in-eu page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
