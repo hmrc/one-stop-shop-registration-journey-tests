@@ -28,16 +28,14 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the tax-in-eu page
     And the user selects Luxembourg on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds LU12345678 on the first eu-vat-number page
+    And the user adds 12345678 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Latvia on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds LV01234567899 on the second eu-vat-number page
+    And the user adds 01234567899 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
@@ -117,17 +115,16 @@ Feature: Registering for One Stop Shop
     And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
-    And the user selects Luxembourg on the first eu-tax page
+    And the user selects France on the first eu-tax page
     And the user chooses no on the first eu-vat page
+    And the user adds FR123456789 on the first eu-tax-number page
     And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Czech Republic on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds CZ123456789 on the second eu-vat-number page
+    And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
@@ -291,3 +288,4 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555  | iban            |
     Then the user is at the check-answers page
     Then the user submits their registration
+

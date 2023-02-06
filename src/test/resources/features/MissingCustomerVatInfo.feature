@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 Feature: Not all customer VAT details retrieved from DES
   Scenario: Missing Customer Vat Info from UK VAT details
     Given the user accesses the service

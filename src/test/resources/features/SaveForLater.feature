@@ -33,16 +33,14 @@ Feature: Save For Later Feature
     And the user answers yes on the tax-in-eu page
     And the user selects Czech Republic on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds CZ123456789 on the first eu-vat-number page
+    And the user adds 123456789 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Portugal on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds PT123456789 on the second eu-vat-number page
+    And the user adds 123456789 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
@@ -106,16 +104,14 @@ Feature: Save For Later Feature
     And the user answers yes on the tax-in-eu page
     And the user selects Ireland on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds IE1234567WI on the first eu-vat-number page
+    And the user adds 1234567WI on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Italy on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds IT01234567899 on the second eu-vat-number page
+    And the user adds 01234567899 on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
@@ -179,16 +175,14 @@ Feature: Save For Later Feature
     And the user answers yes on the tax-in-eu page
     And the user selects Italy on the first eu-tax page
     And the user chooses yes on the first eu-vat page
-    And the user adds IT01234567899 on the first eu-vat-number page
+    And the user adds 01234567899 on the first eu-vat-number page
     And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Ireland on the second eu-tax page
     And the user chooses yes on the second eu-vat page
-    And the user adds IE1234567WI on the second eu-vat-number page
+    And the user adds 1234567WI on the second eu-vat-number page
     And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
