@@ -47,13 +47,14 @@ Feature: Check Your Answers
     And the user answers yes on the check-tax-in-eu page
     And the user selects Bulgaria on the first check-eu-tax page
     And the user chooses yes on the first check-eu-vat page
-    And the user adds 123456789 on the first check-eu-vat-number page
+    And the user adds BG123456789 on the first check-eu-vat-number page
     And the user chooses no on the first check-eu-fixed-establishment page
+    And the user chooses no on the first eu-send-goods page
     And the user clicks continue on the first change-check-tax-details page
     And the user answers yes on the check-add-tax-details page
     And the user selects Finland on the second check-eu-tax page
     And the user chooses yes on the second check-eu-vat page
-    And the user adds 12345678 on the second check-eu-vat-number page
+    And the user adds FI12345678 on the second check-eu-vat-number page
     And the user chooses yes on the second check-eu-fixed-establishment page
     And the user adds EU trading name on the second check-eu-trading-name page
     And the user completes details on the check-eu-fixed-establishment-address/2 page
