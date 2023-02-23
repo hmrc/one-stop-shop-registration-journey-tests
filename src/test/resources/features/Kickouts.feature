@@ -78,7 +78,7 @@ Feature: Not Eligible for One Stop Shop
     And the user answers yes on the sell-from-northern-ireland page
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 222232222 and strong credentials
+    And the user signs in as an Organisation Admin with VAT enrolment 500000001 and strong credentials
     Then the user is on the cannot-register-ni-protocol page
 
   Scenario: Vat details Api down with vrn number starting with 8
