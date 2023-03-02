@@ -162,7 +162,6 @@ Feature: Previously registered journey
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
 
-
 #    Core validations
  Scenario: New Registration (not in Core DB)
    Given the user accesses the service
@@ -181,29 +180,38 @@ Feature: Previously registered journey
    And the user enters a date inside the notification period for date of first sale
    And the user presses the continue button
    And the user answers yes on the previous-oss page
-   And the user selects France on the first previous-country page
-   And the user answer ioss on the previous-scheme page
-   And the user answers yes on the previous-ioss-scheme/1/1 page
-   And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
-   And the user inputs intermediary identification number IN2501234567 on the previous-ioss-number/1/1 page
+   And the user selects spain on the first previous-country page
+   And the user answer oss on the previous-scheme page
+   And the user answers yes on the previous-oss-scheme-number/1/1 page
+   And the user add ESX1234567X on the first previous-oss-scheme-number page
    And the user answers no on the previous-scheme-answers/1 page
    And the user answers no on the previous-schemes-overview page
    And the user clicks through the start-date page
    And the user answers yes on the tax-in-eu page
    And the user selects Croatia on the first eu-tax page
-   And the user chooses yes on the first eu-vat page
-   And the user adds HR01234567899 on the first eu-vat-number page
-   And the user chooses no on the first eu-fixed-establishment page
-   And the user chooses no on the first eu-send-goods page
+   And the user chooses yes on the first sells-goods-to-eu-consumers page
+   And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+   And the user answer tax id number on the registration-type/1 page
+   And the user adds HR01234567899  on the first eu-tax-number page
+   And the user adds soo on the first eu-trading-name page
+   And the user completes details on the eu-fixed-establishment-address/1 page
+     | data      | fieldId    |
+     | 1 Address | line1      |
+     | A Town    | townOrCity |
    And the user clicks continue on the first check-tax-details page
    And the user answers yes on the add-tax-details page
    And the user selects Denmark on the second eu-tax page
-   And the user chooses yes on the second eu-vat page
-   And the user adds DK12345678 on the second eu-vat-number page
-   And the user chooses no on the second eu-fixed-establishment page
-   And the user chooses no on the second eu-send-goods page
-   And the user clicks continue on the second check-tax-details page
-   And the user answers no on the add-tax-details page
+   And the user chooses yes on the second sells-goods-to-eu-consumers page
+   And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+   And the user answer tax id number on the registration-type/2 page
+   And the user adds DK12345678 on the second eu-tax-number page
+   And the user adds roo on the second eu-trading-name page
+   And the user completes details on the eu-fixed-establishment-address/2 page
+     | data      | fieldId    |
+     | 1 Address | line1      |
+     | A Town    | townOrCity |
+  And the user clicks continue on the second check-tax-details page
+  And the user answers no on the add-tax-details page
    And the user answers no on the online-marketplace page
    And the user answers yes on the give-website-address page
    And the user adds www.example.com on the first website-address page
@@ -251,18 +259,28 @@ Feature: Previously registered journey
    And the user clicks through the start-date page
    And the user answers yes on the tax-in-eu page
    And the user selects Denmark on the first eu-tax page
-   And the user chooses yes on the first eu-vat page
-   And the user adds DK12345678 on the first eu-vat-number page
-   And the user chooses no on the first eu-fixed-establishment page
-   And the user chooses no on the first eu-send-goods page
-   And the user clicks continue on the first check-tax-details page
-   And the user answers yes on the add-tax-details page
-   And the user selects Croatia on the second eu-tax page
-   And the user chooses yes on the second eu-vat page
+   And the user chooses yes on the first sells-goods-to-eu-consumers page
+   And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+  And the user answer vat number on the registration-type/1 page
+  And the user adds DK12345678 on the first eu-vat-number page
+  And the user adds soo on the first eu-trading-name page
+  And the user completes details on the eu-fixed-establishment-address/1 page
+    | data      | fieldId    |
+    | 1 Address | line1      |
+    | A Town    | townOrCity |
+  And the user clicks continue on the first check-tax-details page
+  And the user answers yes on the add-tax-details page
+  And the user selects Croatia on the second eu-tax page
+   And the user chooses yes on the second sells-goods-to-eu-consumers page
+   And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+   And the user answer vat number on the registration-type/2 page
    And the user adds HR01234567899 on the second eu-vat-number page
-   And the user chooses no on the second eu-fixed-establishment page
-   And the user chooses no on the second eu-send-goods page
-   And the user clicks continue on the second check-tax-details page
+  And the user adds roo on the second eu-trading-name page
+  And the user completes details on the eu-fixed-establishment-address/2 page
+    | data      | fieldId    |
+    | 1 Address | line1      |
+    | A Town    | townOrCity |
+  And the user clicks continue on the second check-tax-details page
    And the user answers no on the add-tax-details page
    And the user answers no on the online-marketplace page
    And the user answers yes on the give-website-address page

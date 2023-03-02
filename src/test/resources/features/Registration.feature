@@ -1,7 +1,7 @@
 @Registration
 Feature: Registering for One Stop Shop
   @ZAP
-  Scenario: A signed in user can complete a full registration
+  Scenario: A signed in user can complete a full registration with vat tax id number
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
@@ -27,17 +27,27 @@ Feature: Registering for One Stop Shop
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Luxembourg on the first eu-tax page
-    And the user chooses yes on the first eu-vat page
-    And the user adds LU12345678 on the first eu-vat-number page
-    And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer tax id number on the registration-type/1 page
+    And the user adds LU12345678  on the first eu-tax-number page
+    And the user adds soo on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Latvia on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds LV01234567899 on the second eu-vat-number page
-    And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
+    And the user chooses yes on the second sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer tax id number on the registration-type/2 page
+    And the user adds LV01234567899 on the second eu-tax-number page
+    And the user adds moo on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
@@ -118,16 +128,27 @@ Feature: Registering for One Stop Shop
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects France on the first eu-tax page
-    And the user chooses no on the first eu-vat page
-    And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer tax id number on the registration-type/1 page
+    And the user adds LU12345678  on the first eu-tax-number page
+    And the user adds soo on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Czech Republic on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds CZ123456789 on the second eu-vat-number page
-    And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
+    And the user chooses yes on the second sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer tax id number on the registration-type/2 page
+    And the user adds LU12345678  on the second eu-tax-number page
+    And the user adds roo on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
@@ -199,17 +220,27 @@ Feature: Registering for One Stop Shop
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Malta on the first eu-tax page
-    And the user chooses yes on the first eu-vat page
-    And the user adds MT12345678 on the first eu-vat-number page
-    And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer tax id number on the registration-type/1 page
+    And the user adds MT12345678  on the first eu-tax-number page
+    And the user adds soo on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Latvia on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds LV01234567899 on the second eu-vat-number page
-    And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
+    And the user chooses yes on the second sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer tax id number on the registration-type/2 page
+    And the user adds LV01234567899 on the second eu-tax-number page
+    And the user adds soo on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
@@ -259,17 +290,27 @@ Feature: Registering for One Stop Shop
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Latvia on the first eu-tax page
-    And the user chooses yes on the first eu-vat page
-    And the user adds LV01234567899 on the first eu-vat-number page
-    And the user chooses no on the first eu-fixed-establishment page
-    And the user chooses no on the first eu-send-goods page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer tax id number on the registration-type/1 page
+    And the user adds LV01234567899 on the first eu-tax-number page
+    And the user adds soo on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the first check-tax-details page
     And the user answers yes on the add-tax-details page
     And the user selects Luxembourg on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds LU12345678 on the second eu-vat-number page
-    And the user chooses no on the second eu-fixed-establishment page
-    And the user chooses no on the second eu-send-goods page
+    And the user chooses yes on the second sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer tax id number on the registration-type/2 page
+    And the user adds LU12345678 on the second eu-tax-number page
+    And the user adds soo on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page

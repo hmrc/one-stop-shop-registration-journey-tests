@@ -108,6 +108,24 @@ object CommonPage extends BrowserDriver with Matchers {
     driver.findElement(By.className("govuk-button")).click()
   }
 
+  def selectSortOfRegistrationAs(data: String): Unit = {
+    data match {
+      case "vat number"    => driver.findElement(By.id("value_0")).click()
+      case "tax id number" => driver.findElement(By.id("value_1")).click()
+      case _               => throw new Exception("Option doesn't exist")
+    }
+    driver.findElement(By.className("govuk-button")).click()
+  }
+
+  def selectOperationAs(data: String): Unit = {
+    data match {
+      case "fixed establishment" => driver.findElement(By.id("value_0")).click()
+      case "dispatch warehouse"  => driver.findElement(By.id("value_1")).click()
+      case _                     => throw new Exception("Option doesn't exist")
+    }
+    driver.findElement(By.className("govuk-button")).click()
+  }
+
   def selectContinueRegistration(data: String): Unit = {
     data match {
       case "yes"                                  => driver.findElement(By.id("continueProgress")).click()

@@ -90,6 +90,7 @@ class RegistrationStepDef extends BaseStepDef {
       case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.enterData(data)
+
   }
 
   When("""^the user selects (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
@@ -139,6 +140,15 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user answer (oss|ioss) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url + "/1" + "/1")
     CommonPage.selectAnswerAs(data)
+  }
+  When("""^the user answer (fixed establishment|dispatch warehouse) on the (.*) page$""") {
+    (data: String, url: String) =>
+      CommonPage.checkUrl(url)
+      CommonPage.selectOperationAs(data)
+  }
+  When("""^the user answer (vat number|tax id number) on the (.*) page$""") { (data: String, url: String) =>
+    CommonPage.checkUrl(url)
+    CommonPage.selectSortOfRegistrationAs(data)
   }
   When("""^the user answers (oss) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
