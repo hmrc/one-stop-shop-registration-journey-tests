@@ -141,7 +141,7 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url + "/1" + "/1")
     CommonPage.selectAnswerAs(data)
   }
-<<<<<<< HEAD
+
   When("""^the user answer (fixed establishment|dispatch warehouse) on the (.*) page$""") {
     (data: String, url: String) =>
       CommonPage.checkUrl(url)
@@ -150,11 +150,10 @@ class RegistrationStepDef extends BaseStepDef {
   When("""^the user answer (vat number|tax id number) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.selectSortOfRegistrationAs(data)
-=======
+  }
   When("""^the user answers (oss|ioss) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url + "/1" + "/2")
     CommonPage.selectAnswerAs(data)
->>>>>>> main
   }
   When("""^the user answers (oss) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
@@ -285,6 +284,5 @@ class RegistrationStepDef extends BaseStepDef {
       case _                                                   =>
         throw new Exception("Error message doesn't exist")
     }
-
   }
 }

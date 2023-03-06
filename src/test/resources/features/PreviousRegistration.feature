@@ -162,8 +162,7 @@ Feature: Previously registered journey
     And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
-=======
->>>>>>> main
+
 
 #    Core validations
  Scenario: New Registration (not in Core DB)
