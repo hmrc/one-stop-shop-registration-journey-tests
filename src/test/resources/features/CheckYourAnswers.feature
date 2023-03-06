@@ -15,10 +15,13 @@ Feature: Check Your Answers
     And the user presses the continue button
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
-    And the user answers yes on the deregistered page
-    And the user selects Estonia on the first deregistered-country page
-    And the user adds 123456789 on the first deregistered-eu-vat-number page
-    And the user answers no on the add-deregistration page
+    And the user answers yes on the previous-oss page
+    And the user selects Estonia on the first previous-country page
+    And the user answer oss on the previous-scheme page
+    And the user add EE123456789 on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -63,11 +66,13 @@ Feature: Check Your Answers
     And the user clicks continue on the second change-check-tax-details page
     And the user answers no on the check-add-tax-details page
     Then the user is at the check-answers page
-    Then the user selects the change link for check-add-deregistration
-    And the user answers yes on the check-add-deregistration page
-    And the user selects Austria on the second check-deregistered-country page
-    And the user enters U12345678 on the check-deregistered-eu-vat-number/2 page
-    And the user answers no on the check-add-deregistration page
+    Then the user selects the change link for check-previous-schemes-overview
+    And the user answers yes on the previous-schemes-overview page
+    And the user selects Austria on the second check-previous-country page
+    And the user answers oss on the check-previous-scheme/2/1 page
+    And the user enters ATU99999999 on the check-previous-oss-scheme-number/2/1 page
+    And the user answers no on the check-previous-scheme-answers/2 page
+    And the user answers no on the previous-schemes-overview page
     Then the user is at the check-answers page
     Then the user selects the change link for check-give-website-address
     And the user answers yes on the check-give-website-address page
