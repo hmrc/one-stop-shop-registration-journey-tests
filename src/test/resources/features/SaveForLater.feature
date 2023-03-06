@@ -2,7 +2,6 @@
 
 Feature: Save For Later Feature
 
-
   Scenario: A user can save their progress and return to the last page they were on
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -22,22 +21,6 @@ Feature: Save For Later Feature
     Then the user clicks on the continue to complete your registration link
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
-    And the user clicks through the start-date page
-    And the user answers yes on the tax-in-eu page
-    And the user selects Czech Republic on the first eu-tax page
-    And the user chooses yes on the first eu-vat page
-    And the user adds 123456789 on the first eu-vat-number page
-    And the user chooses no on the first eu-fixed-establishment page
-    And the user clicks continue on the first check-tax-details page
-    And the user answers yes on the add-tax-details page
-    And the user selects Portugal on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds 123456789 on the second eu-vat-number page
-    And the user chooses no on the second eu-fixed-establishment page
-    And the user clicks continue on the second check-tax-details page
-    And the user clicks on the save and come back later button
-    Then the user clicks on the continue to complete your registration link
-    And the user answers no on the add-tax-details page
     And the user answers yes on the previous-oss page
     And the user selects Ireland on the first previous-country page
     And the user answer oss on the previous-scheme page
@@ -45,6 +28,34 @@ Feature: Save For Later Feature
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Czech Republic on the first eu-tax page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer vat number on the registration-type/1 page
+    And the user adds CZ123456789 on the first eu-vat-number page
+    And the user adds moo on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Portugal on the second eu-tax page
+    And the user chooses yes on the second sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer tax id number on the registration-type/2 page
+    And the user adds PT123456789 on the second eu-tax-number page
+    And the user adds moo on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
+    And the user clicks on the save and come back later button
+    Then the user clicks on the continue to complete your registration link
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -93,20 +104,6 @@ Feature: Save For Later Feature
     And the user select yes on the continue-registration page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
-    And the user clicks through the start-date page
-    And the user answers yes on the tax-in-eu page
-    And the user selects Ireland on the first eu-tax page
-    And the user chooses yes on the first eu-vat page
-    And the user adds 1234567WI on the first eu-vat-number page
-    And the user chooses no on the first eu-fixed-establishment page
-    And the user clicks continue on the first check-tax-details page
-    And the user answers yes on the add-tax-details page
-    And the user selects Italy on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds 01234567899 on the second eu-vat-number page
-    And the user chooses no on the second eu-fixed-establishment page
-    And the user clicks continue on the second check-tax-details page
-    And the user answers no on the add-tax-details page
     And the user answers yes on the previous-oss page
     And the user selects Portugal on the first previous-country page
     And the user answer oss on the previous-scheme page
@@ -114,6 +111,32 @@ Feature: Save For Later Feature
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Ireland on the first eu-tax page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer vat number on the registration-type/1 page
+    And the user adds IE1234567WI on the first eu-vat-number page
+    And the user adds moo on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Italy on the second eu-tax page
+    And the user chooses yes on the second sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer tax id number on the registration-type/2 page
+    And the user adds IT01234567899 on the second eu-tax-number page
+    And the user adds moo on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -121,16 +144,16 @@ Feature: Save For Later Feature
     And the user adds www.second-example.com on the second website-address page
     And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
-      | data            | fieldId         |
-      | Joe Bloggs      | fullName        |
-      | 01234567890     | telephoneNumber |
-      | email@test.com  | emailAddress    |
+      | data           | fieldId         |
+      | Joe Bloggs     | fullName        |
+      | 01234567890    | telephoneNumber |
+      | email@test.com | emailAddress    |
     And the user completes the email verification process
     And the user completes details on the bank-details page
-      | data                    | fieldId         |
-      | Account Name            | accountName     |
-      | ABCDEF2A                | bic             |
-      | GB33BUKB20201555555555  | iban            |
+      | data                   | fieldId     |
+      | Account Name           | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
 
@@ -164,20 +187,6 @@ Feature: Save For Later Feature
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
-    And the user clicks through the start-date page
-    And the user answers yes on the tax-in-eu page
-    And the user selects Italy on the first eu-tax page
-    And the user chooses yes on the first eu-vat page
-    And the user adds 01234567899 on the first eu-vat-number page
-    And the user chooses no on the first eu-fixed-establishment page
-    And the user clicks continue on the first check-tax-details page
-    And the user answers yes on the add-tax-details page
-    And the user selects Ireland on the second eu-tax page
-    And the user chooses yes on the second eu-vat page
-    And the user adds 1234567WI on the second eu-vat-number page
-    And the user chooses no on the second eu-fixed-establishment page
-    And the user clicks continue on the second check-tax-details page
-    And the user answers no on the add-tax-details page
     And the user answers yes on the previous-oss page
     And the user selects Hungary on the first previous-country page
     And the user answer oss on the previous-scheme page
@@ -185,6 +194,32 @@ Feature: Save For Later Feature
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Italy on the first eu-tax page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer vat number on the registration-type/1 page
+    And the user adds IT01234567899 on the first eu-vat-number page
+    And the user adds moo on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Ireland on the second eu-tax page
+    And the user chooses yes on the second sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer tax id number on the registration-type/2 page
+    And the user adds IE1234567WI  on the second eu-tax-number page
+    And the user adds moo on the second eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.example.com on the first website-address page
@@ -192,16 +227,16 @@ Feature: Save For Later Feature
     And the user adds www.second-example.com on the second website-address page
     And the user answers no on the add-website-address page
     And the user completes details on the business-contact-details page
-      | data            | fieldId         |
-      | Joe Bloggs      | fullName        |
-      | 01234567890     | telephoneNumber |
-      | email@test.com  | emailAddress    |
+      | data           | fieldId         |
+      | Joe Bloggs     | fullName        |
+      | 01234567890    | telephoneNumber |
+      | email@test.com | emailAddress    |
     And the user completes the email verification process
     And the user completes details on the bank-details page
-      | data                    | fieldId         |
-      | Account Name            | accountName     |
-      | ABCDEF2A                | bic             |
-      | GB33BUKB20201555555555  | iban            |
+      | data                   | fieldId     |
+      | Account Name           | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
 

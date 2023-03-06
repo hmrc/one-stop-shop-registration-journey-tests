@@ -1,6 +1,5 @@
 @Registration
 Feature: Check Your Answers
-
   Scenario: Changing answers in Check Your Answers
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -13,8 +12,6 @@ Feature: Check Your Answers
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
     And the user answers yes on the previous-oss page
     And the user selects Estonia on the first previous-country page
     And the user answer oss on the previous-scheme page
@@ -46,32 +43,38 @@ Feature: Check Your Answers
     Then the user selects the change link for check-tax-in-eu
     And the user answers yes on the check-tax-in-eu page
     And the user selects Bulgaria on the first check-eu-tax page
-    And the user chooses yes on the first check-eu-vat page
-    And the user adds 123456789 on the first check-eu-vat-number page
-    And the user chooses no on the first check-eu-fixed-establishment page
+    And the user chooses yes on the first check-sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the check-sells-goods-to-eu-consumer-method/1 page
+    And the user answer vat number on the check-registration-type/1 page
+    And the user adds BG123456789 on the first check-eu-vat-number page
+    And the user adds soo on the first check-eu-trading-name page
+    And the user completes details on the check-eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
     And the user clicks continue on the first change-check-tax-details page
     And the user answers yes on the check-add-tax-details page
     And the user selects Finland on the second check-eu-tax page
-    And the user chooses yes on the second check-eu-vat page
-    And the user adds 12345678 on the second check-eu-vat-number page
-    And the user chooses yes on the second check-eu-fixed-establishment page
-    And the user adds EU trading name on the second check-eu-trading-name page
+    And the user chooses yes on the second check-sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the check-sells-goods-to-eu-consumer-method/2 page
+    And the user answer vat number on the check-registration-type/2 page
+    And the user adds FI12345678 on the second check-eu-vat-number page
+    And the user adds roo on the second check-eu-trading-name page
     And the user completes details on the check-eu-fixed-establishment-address/2 page
       | data      | fieldId    |
       | 1 Address | line1      |
       | A Town    | townOrCity |
-    And the user selects the change link for check-eu-vat\/2
-    And the user chooses no on the second check-eu-vat page
-    And the user adds ABC123 on the second check-eu-tax-number page
     And the user clicks continue on the second change-check-tax-details page
     And the user answers no on the check-add-tax-details page
+    Then the user selects the change link for check-previous-oss
+    And the user answers no on the check-previous-oss page
     Then the user is at the check-answers page
-    Then the user selects the change link for check-previous-schemes-overview
-    And the user answers yes on the previous-schemes-overview page
-    And the user selects Austria on the second check-previous-country page
-    And the user answers oss on the check-previous-scheme/2/1 page
-    And the user enters ATU99999999 on the check-previous-oss-scheme-number/2/1 page
-    And the user answers no on the check-previous-scheme-answers/2 page
+    Then the user selects the change link for check-previous-oss
+    And the user answers yes on the check-previous-oss page
+    And the user selects Austria on the first check-previous-country page
+    And the user answers oss on the check-previous-scheme/1/1 page
+    And the user enters ATU99999999 on the check-previous-oss-scheme-number/1/1 page
+    And the user answers no on the check-previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
     Then the user is at the check-answers page
     Then the user selects the change link for check-give-website-address
