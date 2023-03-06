@@ -19,8 +19,6 @@ Feature: Check Your Answers
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
