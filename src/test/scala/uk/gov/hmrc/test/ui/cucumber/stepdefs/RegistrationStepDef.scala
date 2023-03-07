@@ -155,10 +155,6 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.checkUrl(url)
     CommonPage.selectAnswerAs(data)
 
-//  }
-//  When("""^the user answers (oss) on the (.*) page$""") { (data: String, url: String) =>
-//    CommonPage.checkUrl(url)
-//    CommonPage.selectAnswerAs(data)
   }
 
   When("""^the user select (yes|No,delete my answers and start again) on the (.*) page$""") {

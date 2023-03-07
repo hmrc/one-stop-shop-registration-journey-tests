@@ -1,4 +1,4 @@
-@Registration @wip
+@Registration
 
 Feature: Save For Later Feature
 
