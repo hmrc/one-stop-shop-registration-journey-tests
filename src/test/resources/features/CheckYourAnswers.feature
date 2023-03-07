@@ -13,12 +13,14 @@ Feature: Check Your Answers
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
     And the user answers yes on the previous-oss page
-    And the user selects Estonia on the first previous-country page
+    And the user selects Latvia on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add EE123456789 on the first previous-oss-scheme-number page
+    And the user add LV01234567899 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers no on the tax-in-eu page
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     And the user completes details on the business-contact-details page
@@ -42,11 +44,11 @@ Feature: Check Your Answers
     Then the user is at the check-answers page
     Then the user selects the change link for check-tax-in-eu
     And the user answers yes on the check-tax-in-eu page
-    And the user selects Bulgaria on the first check-eu-tax page
+    And the user selects Poland on the first check-eu-tax page
     And the user chooses yes on the first check-sells-goods-to-eu-consumers page
     And the user answer fixed establishment on the check-sells-goods-to-eu-consumer-method/1 page
     And the user answer vat number on the check-registration-type/1 page
-    And the user adds BG123456789 on the first check-eu-vat-number page
+    And the user adds PL1234567890 on the first check-eu-vat-number page
     And the user adds soo on the first check-eu-trading-name page
     And the user completes details on the check-eu-fixed-establishment-address/1 page
       | data      | fieldId    |
