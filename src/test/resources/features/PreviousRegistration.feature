@@ -1,4 +1,5 @@
 @Registration
+
 Feature: Previously registered journey
 
   Scenario: Oss validate with valid oss registration number(8 digits)
@@ -331,7 +332,6 @@ Feature: Previously registered journey
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
 
-
   Scenario: User Remove single Previously Reg Scheme
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -348,15 +348,13 @@ Feature: Previously registered journey
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add ESX1234567X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page
-    And the user answers ioss on the previous-scheme page
+    And the user answers ioss on the previous-scheme/1/2 page
     And the user answers no on the previous-ioss-scheme/1/2 page
     And the user inputs ioss reg number IM7241234567 on the previous-ioss-number/1/2 page
     And the user clicks through the previous-ioss-number/1/2 page
@@ -380,15 +378,13 @@ Feature: Previously registered journey
     And the user answers yes on the already-made-sales page
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
     And the user answer oss on the previous-scheme page
     And the user add ESX1234567X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page
-    And the user answers ioss on the previous-scheme page
+    And the user answers ioss on the previous-scheme/1/2 page
     And the user answers no on the previous-ioss-scheme/1/2 page
     And the user inputs ioss reg number IM7241234567 on the previous-ioss-number/1/2 page
     And the user clicks through the previous-ioss-number/1/2 page

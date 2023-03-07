@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 
 Feature: Save For Later Feature
 
@@ -30,11 +30,11 @@ Feature: Save For Later Feature
     And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
-    And the user selects Czech Republic on the first eu-tax page
+    And the user selects Romania on the first eu-tax page
     And the user chooses yes on the first sells-goods-to-eu-consumers page
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
     And the user answer vat number on the registration-type/1 page
-    And the user adds CZ123456789 on the first eu-vat-number page
+    And the user adds RO1234567890 on the first eu-vat-number page
     And the user adds moo on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data      | fieldId    |
@@ -105,9 +105,9 @@ Feature: Save For Later Feature
     And the user enters a date inside the notification period for date of first sale
     And the user presses the continue button
     And the user answers yes on the previous-oss page
-    And the user selects Portugal on the first previous-country page
+    And the user selects Sweden on the first previous-country page
     And the user answer oss on the previous-scheme page
-    And the user add PT123456789 on the first previous-oss-scheme-number page
+    And the user add SE012345678987 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
