@@ -188,7 +188,7 @@ Feature: Registering for One Stop Shop
     And the user accesses the continue on sign in url
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     Then the user is at the continue-registration page
-  @wip
+
   Scenario: A signed in user can continue-on-sign-in url without starting a registration
     Given the user accesses the continue on sign in url
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
