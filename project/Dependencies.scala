@@ -13,8 +13,7 @@ object Dependencies {
     "com.novocode"         % "junit-interface"    % "0.11"          % Test,
     "com.typesafe"         % "config"             % "1.4.2"         % Test,
     "org.mongodb.scala"   %% "mongo-scala-driver" % "4.7.1"         % Test,
-    "com.typesafe.play"   %% "play-iteratees"     % "2.6.1"         % Test,
-    "uk.gov.hmrc"         %% "play-language"      % "5.3.0-play-28" % Test
+    "uk.gov.hmrc"         %% "play-language"      % "6.2.0-play-28" % Test
   )
 
 }
