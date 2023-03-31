@@ -2,13 +2,13 @@
 Feature: Entering the Registration service via BTA
 
   Scenario: A user registers via BTA and then has the correct BTA link on the registration submission page
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
     Then the user manually navigates to the from-external link
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
@@ -42,7 +42,8 @@ Feature: Entering the Registration service via BTA
     And the user is on the business-account page
 
   Scenario: The user enters the service via BTA and is directed back to BTA via the Already EU Registered kickout page
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
     Then the user manually navigates to the from-external link
     And the user answers yes on the already-eu-registered page
     Then the user is on the return-later-already-eu-registered page
@@ -50,7 +51,8 @@ Feature: Entering the Registration service via BTA
     And the user is on the business-account page
 
   Scenario: The user enters the service via BTA and is directed back to BTA via the Do Not Sell from NI kickout page
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
     Then the user manually navigates to the from-external link
     And the user answers no on the already-eu-registered page
     And the user answers no on the sell-from-northern-ireland page
@@ -59,7 +61,8 @@ Feature: Entering the Registration service via BTA
     And the user is on the business-account page
 
   Scenario: The user enters the service via BTA and is directed back to BTA via the Cannot Use No VAT kickout page
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
     Then the user manually navigates to the from-external link
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
@@ -71,13 +74,13 @@ Feature: Entering the Registration service via BTA
     And the user is on the business-account page
 
   Scenario: The user enters the service via BTA and is directed back to BTA via the Register Later kickout page
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
     Then the user manually navigates to the from-external link
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers no on the already-made-sales page
@@ -87,26 +90,28 @@ Feature: Entering the Registration service via BTA
     And the user is on the business-account page
 
   Scenario: The user enters the service via BTA and is directed back to BTA via the post-auth already registered page
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000003 and strong credentials via authwiz
     Then the user manually navigates to the from-external link
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000003 and strong credentials
     Then the user is on the already-registered page
     Then the user clicks on the continue to your account link
 
 
   Scenario: A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
     Then the user manually navigates to the from-external?lang=cy link
     And the user is on the no-welsh-service page
     Then the user presses the continue button
     And the user is on the already-eu-registered page
 
   Scenario: A user enters the service via BTA using the en parameter and is directed straight to the registration service
-    Given the user accesses the service
+    Given the user accesses the stub url
+    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
     Then the user manually navigates to the from-external?lang=en link
     And the user is on the already-eu-registered page
 

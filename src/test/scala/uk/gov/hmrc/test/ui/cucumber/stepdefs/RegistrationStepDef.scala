@@ -57,9 +57,15 @@ class RegistrationStepDef extends BaseStepDef {
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
   ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn)
-
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true)
   }
+
+  Given(
+    "^the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
+  ) { (vrn: String) =>
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = false)
+  }
+
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
     CommonPage.checkUrl(url)
     CommonPage.enterData(data)
@@ -190,7 +196,8 @@ class RegistrationStepDef extends BaseStepDef {
     (js \ "passcodes").validate[Seq[Passcode]] match {
       case JsSuccess(passcode +: _, _) =>
         CommonPage.goToEmailVerificationUrl(journeyId)
-        CommonPage.enterData(passcode.passcode, inputId = "passcode")
+        driver.findElement(By.id("passcode")).sendKeys(passcode.passcode)
+        driver.findElement(By.className("govuk-button")).click()
 
         driver
           .navigate()
