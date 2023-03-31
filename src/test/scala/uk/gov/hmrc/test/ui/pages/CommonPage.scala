@@ -64,7 +64,7 @@ object CommonPage extends BrowserDriver with Matchers {
 
   def enterData(data: String, inputId: String = "value"): Unit = {
     driver.findElement(By.id(inputId)).sendKeys(data)
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def waitForElement(by: By)                        =
@@ -75,20 +75,20 @@ object CommonPage extends BrowserDriver with Matchers {
     driver.findElement(By.id(inputId)).sendKeys(data)
     waitForElement(By.id(inputId))
     driver.findElement(By.cssSelector("li#value__option--0")).click()
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def provideDate(date: String): Unit = {
     driver.findElement(By.id("value.day")).sendKeys(date.substring(0, 2))
     driver.findElement(By.id("value.month")).sendKeys(date.substring(3, 5))
     driver.findElement(By.id("value.year")).sendKeys(date.substring(6, 10))
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
   def enterTheIossNumbers(iossNumber: String): Unit =
     driver.findElement(By.id("previousSchemeNumber")).sendKeys(iossNumber)
   def enterTheIntermediaryIdentificationNumber(intermediaryNumber: String) {
     driver.findElement(By.id("previousIntermediaryNumber")).sendKeys(intermediaryNumber)
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def selectAnswer(data: String): Unit = {
@@ -97,15 +97,16 @@ object CommonPage extends BrowserDriver with Matchers {
       case "no"  => driver.findElement(By.id("value-no")).click()
       case _     => throw new Exception("Option doesn't exist")
     }
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
+
   def selectAnswerAs(data: String): Unit = {
     data match {
       case "oss"  => driver.findElement(By.id("value_0")).click()
       case "ioss" => driver.findElement(By.id("value_1")).click()
       case _      => throw new Exception("Option doesn't exist")
     }
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def selectSortOfRegistrationAs(data: String): Unit = {
@@ -114,7 +115,7 @@ object CommonPage extends BrowserDriver with Matchers {
       case "tax id number" => driver.findElement(By.id("value_1")).click()
       case _               => throw new Exception("Option doesn't exist")
     }
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def selectOperationAs(data: String): Unit = {
@@ -123,7 +124,7 @@ object CommonPage extends BrowserDriver with Matchers {
       case "dispatch warehouse"  => driver.findElement(By.id("value_1")).click()
       case _                     => throw new Exception("Option doesn't exist")
     }
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def selectContinueRegistration(data: String): Unit = {
@@ -132,21 +133,21 @@ object CommonPage extends BrowserDriver with Matchers {
       case "No,delete my answers and start again" => driver.findElement(By.id("deleteProgress")).click()
       case _                                      => throw new Exception("Option doesn't exist")
     }
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def completeForm(dataTable: DataTable): Unit = {
     dataTable.asMaps[String, String](classOf[String], classOf[String]).asScala.foreach { row =>
       driver.findElement(By.id(row.get("fieldId"))).sendKeys(row.get("data"))
     }
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
   }
 
   def submitRegistration(): Unit =
-    driver.findElement(By.className("govuk-button")).click()
+    CommonPage.clickContinue()
 
   def clickContinue(): Unit =
-    driver.findElement(By.className("govuk-button")).click()
+    driver.findElement(By.id("continue")).click()
 
   def enterDate(day: String, month: String, year: String): Unit = {
     driver.findElement(By.id("value.day")).sendKeys(day)
