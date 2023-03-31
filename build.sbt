@@ -4,7 +4,7 @@ lazy val testSuite = (project in file("."))
   .settings(
     name := "one-stop-shop-registration-journey-tests",
     version := "0.1.0",
-    scalaVersion := "2.12.15",
+    scalaVersion := "2.13.8",
     scalacOptions ++= Seq("-feature", "-Xfatal-warnings"),
     libraryDependencies ++= Dependencies.test,
     //The testOptions from SbtAutoBuildPlugin supports only ScalaTest. Resetting testOptions for Cucumber Tests.

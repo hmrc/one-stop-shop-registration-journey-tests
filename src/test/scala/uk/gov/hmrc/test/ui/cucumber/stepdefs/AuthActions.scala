@@ -19,7 +19,6 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.Select
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
-import org.openqa.selenium.By
 
 object AuthActions extends BrowserDriver {
 

@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
 
@@ -86,7 +86,7 @@ object CommonPage extends BrowserDriver with Matchers {
   }
   def enterTheIossNumbers(iossNumber: String): Unit =
     driver.findElement(By.id("previousSchemeNumber")).sendKeys(iossNumber)
-  def enterTheIntermediaryIdentificationNumber(intermediaryNumber: String) {
+  def enterTheIntermediaryIdentificationNumber(intermediaryNumber: String): Unit = {
     driver.findElement(By.id("previousIntermediaryNumber")).sendKeys(intermediaryNumber)
     CommonPage.clickContinue()
   }
@@ -171,6 +171,7 @@ object CommonPage extends BrowserDriver with Matchers {
     val buttonText    = "Back to your account"
     button match {
       case "back to your account" => Assert.assertTrue(buttonElement.contains(buttonText))
+      case _                      => fail("unknown check button")
     }
 
   }

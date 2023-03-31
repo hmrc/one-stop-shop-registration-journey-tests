@@ -21,7 +21,7 @@ import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-import scala.collection.JavaConverters._
+import scala.jdk.CollectionConverters._
 
 object CheckYourAnswersPage extends BrowserDriver with Matchers {
 

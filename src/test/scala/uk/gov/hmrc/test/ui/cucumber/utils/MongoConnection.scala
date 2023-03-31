@@ -19,9 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.utils
 import org.mongodb.scala.MongoClient
 import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.model.Filters
-import play.api.libs.iteratee.Done
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Await
 import scala.concurrent.duration._
 
@@ -55,9 +53,7 @@ object MongoConnection {
       source.map { e =>
         val doc = Document(e)
         Await.result(
-          col.insertOne(doc).toFutureOption().map { _ =>
-            Done
-          },
+          col.insertOne(doc).toFutureOption(),
           timeout
         )
       }
