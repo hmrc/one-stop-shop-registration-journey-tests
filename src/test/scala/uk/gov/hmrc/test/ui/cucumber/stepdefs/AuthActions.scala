@@ -23,7 +23,7 @@ import org.openqa.selenium.By
 
 object AuthActions extends BrowserDriver {
 
-  def loginUsingAuthorityWizard(affinityGroup: String, vrn: String): Unit = {
+  def loginUsingAuthorityWizard(affinityGroup: String, vrn: String, withOssEnrolment: Boolean): Unit = {
     driver.findElement(By.id("redirectionUrl")).clear()
     driver
       .findElement(By.id("redirectionUrl"))
@@ -39,13 +39,15 @@ object AuthActions extends BrowserDriver {
     driver
       .findElement(By.id("input-0-0-value"))
       .sendKeys(vrn)
-    driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
-    driver
-      .findElement(By.id("input-1-0-name"))
-      .sendKeys("VRN")
-    driver
-      .findElement(By.id("input-1-0-value"))
-      .sendKeys(vrn)
+    if (withOssEnrolment) {
+      driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
+      driver
+        .findElement(By.id("input-1-0-name"))
+        .sendKeys("VRN")
+      driver
+        .findElement(By.id("input-1-0-value"))
+        .sendKeys(vrn)
+    }
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
 
   }
