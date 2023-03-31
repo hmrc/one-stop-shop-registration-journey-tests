@@ -31,7 +31,7 @@ object CommonPage extends BrowserDriver with Matchers {
     driver
       .navigate()
       .to(
-        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS"
+        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS&service=one-stop-shop-registration-frontend"
       )
 
   def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
