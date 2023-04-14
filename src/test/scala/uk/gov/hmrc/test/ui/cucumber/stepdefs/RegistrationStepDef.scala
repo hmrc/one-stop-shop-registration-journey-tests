@@ -19,8 +19,8 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages._
-import play.api.libs.json.{JsSuccess, Json}
-import uk.gov.hmrc.test.ui.models.Passcode
+//import play.api.libs.json.{JsSuccess, Json}
+//import uk.gov.hmrc.test.ui.models.Passcode
 
 import java.time.LocalDate
 
@@ -190,23 +190,16 @@ class RegistrationStepDef extends BaseStepDef {
 
     CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
 
-    val data = driver.findElement(By.tagName("body")).getText
-    val js   = Json.parse(data)
+    val passcode = driver.findElement(By.tagName("body")).getText.split(">")(3).dropRight(3)
+    CommonPage.goToEmailVerificationUrl(journeyId)
+    driver.findElement(By.id("passcode")).sendKeys(passcode)
+    driver.findElement(By.className("govuk-button")).click()
 
-    (js \ "passcodes").validate[Seq[Passcode]] match {
-      case JsSuccess(passcode +: _, _) =>
-        CommonPage.goToEmailVerificationUrl(journeyId)
-        driver.findElement(By.id("passcode")).sendKeys(passcode.passcode)
-        driver.findElement(By.className("govuk-button")).click()
-
-        driver
-          .navigate()
-          .to(
-            "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details"
-          )
-      case _                           => fail("No passcode found")
-    }
-
+    driver
+      .navigate()
+      .to(
+        "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details"
+      )
   }
 
   Then("""^the user is at the (.*) page$""") { (url: String) =>
