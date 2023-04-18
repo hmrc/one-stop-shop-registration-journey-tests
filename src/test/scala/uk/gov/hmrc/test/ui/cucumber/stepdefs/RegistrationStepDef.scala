@@ -151,15 +151,14 @@ class RegistrationStepDef extends BaseStepDef {
 
   When("^the start-date page displays a commencement date of (today|yesterday)$") { (day: String) =>
     val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
-    val today                            = LocalDate.now()
-      if (day == "yesterday") {
-        today.minusDays(1).format(dateFormatter)
-      }
-      else {
-        today.format(dateFormatter)
-      }
+    val date                             = LocalDate.now()
+    if (day == "yesterday") {
+      date.minusDays(1).format(dateFormatter)
+    } else {
+      date.format(dateFormatter)
+    }
     val htmlBody                         = driver.findElement(By.tagName("body")).getText
-    val startDateText                    = "You must include all eligible sales from " + today + "in your first return."
+    val startDateText                    = "You must include all eligible sales from " + date + "in your first return."
     CommonPage.checkUrl("start-date")
     Assert.assertTrue(htmlBody.contains(startDateText))
   }

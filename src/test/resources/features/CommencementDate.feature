@@ -68,7 +68,7 @@ Feature: User registers with different commencement dates
     Then the user is at the check-answers page
     Then the user submits their registration
     Then the user sees the pre 10th version of the successful page
-@wip
+
   Scenario: A user's previous registration effective date overrides the date of first sale for commencement date
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
@@ -102,7 +102,7 @@ Feature: User registers with different commencement dates
     And the user clicks through the start-date page
     Then the user submits their registration
     Then the user sees the pre 10th version of the successful page
-  @wip
+
   Scenario: A user adds a previous registration via CYA and commencement date is displayed correctly following the change
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
