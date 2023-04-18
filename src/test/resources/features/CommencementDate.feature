@@ -13,7 +13,7 @@ Feature: User registers with different commencement dates
 
   Scenario: A user registers within notification period
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects France on the first previous-country page
     And the user answers oss on the previous-scheme/1/1 page
@@ -71,7 +71,7 @@ Feature: User registers with different commencement dates
 @wip
   Scenario: A user's previous registration effective date overrides the date of first sale for commencement date
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Belgium on the first previous-country page
     And the user answers oss on the previous-scheme/1/1 page
@@ -105,7 +105,7 @@ Feature: User registers with different commencement dates
   @wip
   Scenario: A user adds a previous registration via CYA and commencement date is displayed correctly following the change
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers no on the previous-oss page
     Then the start-date page displays a commencement date of yesterday
     And the user clicks through the start-date page

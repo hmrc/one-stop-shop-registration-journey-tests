@@ -109,7 +109,7 @@ Feature: Not Eligible for One Stop Shop
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers no on the previous-oss page
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
@@ -140,7 +140,7 @@ Feature: Not Eligible for One Stop Shop
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers no on the previous-oss page
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
@@ -171,7 +171,7 @@ Feature: Not Eligible for One Stop Shop
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers no on the previous-oss page
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page
@@ -203,7 +203,7 @@ Feature: Not Eligible for One Stop Shop
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers no on the previous-oss page
     And the user clicks through the start-date page
     And the user answers no on the tax-in-eu page

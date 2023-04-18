@@ -16,7 +16,7 @@ Feature: Previous OSS or IOSS registrations in other countries
    And the user adds Foo Two on the second uk-trading-name page
    And the user answers no on the add-uk-trading-name page
    And the user answers yes on the already-made-sales page
-   And the user enters the previous day for date-of-first-sale
+   And the user enters yesterday for date-of-first-sale
    And the user presses the continue button
    And the user answers yes on the previous-oss page
    And the user selects France on the first previous-country page
@@ -86,7 +86,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user adds Foo Two on the second uk-trading-name page
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Italy on the first previous-country page
     And the user answer ioss on the previous-scheme page
@@ -112,7 +112,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user adds Foo Two on the second uk-trading-name page
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
     And the user answer oss on the previous-scheme page
@@ -141,7 +141,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user adds Foo Two on the second uk-trading-name page
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
     And the user answer oss on the previous-scheme page

@@ -10,7 +10,7 @@ Feature: Check Your Answers
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers yes on the already-made-sales page
-    And the user enters the previous day for date-of-first-sale
+    And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Latvia on the first previous-country page
     And the user answer oss on the previous-scheme page
