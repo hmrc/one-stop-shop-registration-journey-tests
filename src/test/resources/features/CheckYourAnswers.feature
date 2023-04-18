@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 Feature: Check Your Answers
   Scenario: Changing answers in Check Your Answers
     Given the user accesses the service
@@ -78,6 +78,8 @@ Feature: Check Your Answers
     And the user enters ATU99999999 on the check-previous-oss-scheme-number/1/1 page
     And the user answers no on the check-previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
+    Then the user is at the check-start-date page
+    And the user presses the continue button
     Then the user is at the check-answers page
     Then the user selects the change link for check-give-website-address
     And the user answers yes on the check-give-website-address page
