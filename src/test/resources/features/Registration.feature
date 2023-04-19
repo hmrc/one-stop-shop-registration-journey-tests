@@ -1,7 +1,7 @@
 @Registration
 Feature: Registering for One Stop Shop
 
-  @ZAP
+  @ZAP @Accessibility
   Scenario: A signed in user can complete a full registration with vat tax id number
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -69,7 +69,7 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-
+  @Accessibility
   Scenario: A signed in user can submit a registration when they have not yet made sales but plan to
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -165,7 +165,7 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-
+  @Accessibility
   Scenario: A signed in user can continue-on-sign-in url without starting a registration
     Given the user accesses the continue on sign in url
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
@@ -308,7 +308,7 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-
+@Accessibility
   Scenario: A signed in user can complete a full registration without selling goods
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -366,7 +366,7 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-
+  @Accessibility
   Scenario: A signed in user who is part of a VAT group cannot add fixed establishments
     Given the user accesses the service
     And the user answers no on the already-eu-registered page

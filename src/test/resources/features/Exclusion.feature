@@ -1,4 +1,4 @@
-@Registration
+@Registration @Accessibility
 Feature: VRN exclusion reason pages after GG login
 
   Scenario: User is excluded from OSS due to already being registered for a scheme in Estonia
