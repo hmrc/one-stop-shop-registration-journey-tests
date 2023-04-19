@@ -141,6 +141,7 @@ class RegistrationStepDef extends BaseStepDef {
       }
     }
     CommonPage.checkUrl(url)
+    CommonPage.clearDate()
     CommonPage.enterDate(
       dateOfFirstSale.getDayOfMonth.toString,
       dateOfFirstSale.getMonthValue.toString,
@@ -151,14 +152,13 @@ class RegistrationStepDef extends BaseStepDef {
 
   When("^the start-date page displays a commencement date of (today|yesterday)$") { (day: String) =>
     val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
-    val date                             = LocalDate.now()
+    var date                             = LocalDate.now()
     if (day == "yesterday") {
-      date.minusDays(1).format(dateFormatter)
-    } else {
-      date.format(dateFormatter)
+      date = date.minusDays(1)
     }
     val htmlBody                         = driver.findElement(By.tagName("body")).getText
-    val startDateText                    = "You must include all eligible sales from " + date + "in your first return."
+    val startDateText                    =
+      "You must include all eligible sales from " + date.format(dateFormatter) + " in your first return."
     CommonPage.checkUrl("start-date")
     Assert.assertTrue(htmlBody.contains(startDateText))
   }

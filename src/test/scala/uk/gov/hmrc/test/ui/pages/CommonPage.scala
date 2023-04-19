@@ -149,6 +149,13 @@ object CommonPage extends BrowserDriver with Matchers {
   def clickContinue(): Unit =
     driver.findElement(By.id("continue")).click()
 
+  def clearDate(): Unit = {
+    driver.findElement(By.id("value.day")).clear()
+    driver.findElement(By.id("value.month")).clear()
+    driver.findElement(By.id("value.year")).clear()
+
+  }
+
   def enterDate(day: String, month: String, year: String): Unit = {
     driver.findElement(By.id("value.day")).sendKeys(day)
     driver.findElement(By.id("value.month")).sendKeys(month)
