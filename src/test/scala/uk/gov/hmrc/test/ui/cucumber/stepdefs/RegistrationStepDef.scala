@@ -150,7 +150,7 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.clickContinue()
   }
 
-  When("^the start-date page displays a commencement date of (today|yesterday)$") { (day: String) =>
+  When("^the (.*) page displays a commencement date of (today|yesterday)$") { (url: String, day: String) =>
     val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
     var date                             = LocalDate.now()
     if (day == "yesterday") {

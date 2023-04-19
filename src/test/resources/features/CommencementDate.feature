@@ -132,7 +132,9 @@ Feature: User registers with different commencement dates
     Then the user is on the check-previous-scheme-answers/1 page
     And the user answers no on the check-previous-scheme-answers/1 page
     And the user answers no on the check-previous-schemes-overview page
-    Then the start-date page displays a commencement date of today
+    Then the check-start-date page displays a commencement date of today
+    Then the user clicks through the check-start-date page
+    Then the user is at the check-answers page
     Then the user submits their registration
     Then the user sees the pre 10th version of the successful page
 
