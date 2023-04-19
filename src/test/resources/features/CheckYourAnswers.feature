@@ -1,4 +1,4 @@
-@Registration @wip
+@Registration
 Feature: Check Your Answers
   Scenario: Changing answers in Check Your Answers
     Given the user accesses the service
