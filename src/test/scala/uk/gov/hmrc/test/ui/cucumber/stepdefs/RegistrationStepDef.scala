@@ -17,10 +17,12 @@
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import io.cucumber.datatable.DataTable
+import org.junit.Assert
 import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages._
 
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class RegistrationStepDef extends BaseStepDef {
 
@@ -130,10 +132,35 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.clickContinue()
   }
 
-  When("^the user enters a date inside the notification period for date of first sale$") { () =>
-    val today = LocalDate.now().minusDays(1)
-    CommonPage.checkUrl("date-of-first-sale")
-    CommonPage.enterDate(today.getDayOfMonth.toString, today.getMonthValue.toString, today.getYear.toString)
+  When("^the user enters (yesterday|7 days ago) for (.*)$") { (date: String, url: String) =>
+    val dateOfFirstSale = {
+      if (date == "7 days ago") {
+        LocalDate.now().minusDays(6)
+      } else {
+        LocalDate.now() minusDays 1
+      }
+    }
+    CommonPage.checkUrl(url)
+    CommonPage.clearDate()
+    CommonPage.enterDate(
+      dateOfFirstSale.getDayOfMonth.toString,
+      dateOfFirstSale.getMonthValue.toString,
+      dateOfFirstSale.getYear.toString
+    )
+    CommonPage.clickContinue()
+  }
+
+  When("^the (.*) page displays a commencement date of (today|yesterday)$") { (url: String, day: String) =>
+    val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
+    var date                             = LocalDate.now()
+    if (day == "yesterday") {
+      date = date.minusDays(1)
+    }
+    val htmlBody                         = driver.findElement(By.tagName("body")).getText
+    val startDateText                    =
+      "You must include all eligible sales from " + date.format(dateFormatter) + " in your first return."
+    CommonPage.checkUrl("start-date")
+    Assert.assertTrue(htmlBody.contains(startDateText))
   }
 
   When("""^the user answers (yes|no) on the (.*) page$""") { (data: String, url: String) =>
