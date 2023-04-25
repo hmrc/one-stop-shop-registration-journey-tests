@@ -242,3 +242,10 @@ Feature: Not Eligible for One Stop Shop
     And the user clicks through the business-pay page
     Then the user is on the already-registered page
 
+#  Test reminder: User can’t end up at amend reg without having the OSS enrolment
+#  To be developed
+#
+#  Test reminder: User can’t end up at amend reg without having a previous registration
+
+
+

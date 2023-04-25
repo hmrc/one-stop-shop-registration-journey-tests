@@ -57,13 +57,19 @@ class RegistrationStepDef extends BaseStepDef {
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
   ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true)
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true, "registration")
   }
 
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
   ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = false)
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = false, "registration")
+  }
+
+  When("""^a user with VRN (.*) accesses the amend registration journey""") { (vrn: String) =>
+    CommonPage.goToStartOfJourneyFromStub()
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true, "amend")
+
   }
 
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
