@@ -1,6 +1,7 @@
 @Registration @ZAP @Accessibility
 Feature: Amending a registration for One Stop Shop
-@wip
+
+  @wip
   Scenario: A user can amend all of the answers on their registration - first combination
 #  Currently works via an existing registration in the database and pulls it into authenticated user answers
 #  This will be amended to use an API to pull the reg from ETMP but will be stubbed/use a test only endpoint to continue using own db for tests
@@ -14,7 +15,15 @@ Feature: Amending a registration for One Stop Shop
     And the user adds www.first-website.com on the first amend-website-address page
     And the user answers yes on the amend-add-website-address page
     And the user adds www.anotherwebsiteurl.com on the second amend-website-address page
+  #  Then change and remove?
     And the user answers no on the amend-add-website-address page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-bank-details
+    And the user amends details on the bank-details page
+      | data                      | fieldId     |
+      | Different Name            | accountName |
+      | ABCDDD2A                  | bic         |
+      | GB33BUKB20201555555555555 | iban        |
     Then the user is on the change-your-registration page
     When the user presses the continue button
 #    Then the user is on the amend-confirmation page - not developed yet, says registration already exists
@@ -28,7 +37,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the change-your-registration page
 #    bug 1575
     When the user selects the change link for amend-add-website-address
-#  Then change and remove?
+#remove websites completely?
     Then the user answers no on the amend-give-website-address page
     Then the user is on the change-your-registration page
     When the user presses the continue button

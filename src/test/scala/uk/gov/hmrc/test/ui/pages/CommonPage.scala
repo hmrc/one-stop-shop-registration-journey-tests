@@ -138,6 +138,7 @@ object CommonPage extends BrowserDriver with Matchers {
 
   def completeForm(dataTable: DataTable): Unit = {
     dataTable.asMaps[String, String](classOf[String], classOf[String]).asScala.foreach { row =>
+      driver.findElement(By.id(row.get("fieldId"))).clear()
       driver.findElement(By.id(row.get("fieldId"))).sendKeys(row.get("data"))
     }
     CommonPage.clickContinue()

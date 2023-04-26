@@ -211,9 +211,10 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.provideDate(date)
   }
 
-  When("""^the user completes details on the (.*) page$""") { (url: String, dataTable: DataTable) =>
-    CommonPage.checkUrl(url)
-    CommonPage.completeForm(dataTable)
+  When("""^the user (completes|amends) details on the (.*) page$""") {
+    (mode: String, url: String, dataTable: DataTable) =>
+      CommonPage.checkUrl(url)
+      CommonPage.completeForm(dataTable)
   }
 
   And("""the user completes the email verification process""") { () =>
