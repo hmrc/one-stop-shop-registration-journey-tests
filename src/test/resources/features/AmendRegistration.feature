@@ -37,8 +37,17 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the change-your-registration page
 #    bug 1575
     When the user selects the change link for amend-add-website-address
-#remove websites completely?
+#  change one and then remove one
     Then the user answers no on the amend-give-website-address page
     Then the user is on the change-your-registration page
     When the user presses the continue button
+
+  Scenario: A user can amend all of the answers on their registration - third combination
+    Given a user with VRN 300000002 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    #  Will need ticket pulled in from main when change goes in
+#    When the user selects the change link for amend-give-website-address
+#    Then the user selects no on the amend-give-website-address page
+#   Then the user answers yes on the amend-remove-all-websites page
+#    Then the user is on the change-your-registration page
 
