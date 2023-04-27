@@ -90,3 +90,41 @@ Feature: Check Your Answers
     And the user answers no on the check-add-website-address page
     Then the user is at the check-answers page
 
+  Scenario: Changing sell goods online from yes to no from CYA
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the have-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters yesterday for date-of-first-sale
+    And the user answers no on the previous-oss page
+    And the user clicks through the start-date page
+    And the user answers no on the tax-in-eu page
+    And the user answers no on the online-marketplace page
+    And the user answers yes on the give-website-address page
+    And the user adds www.website1.co.uk on the first website-address page
+    And the user answers yes on the add-website-address page
+    And the user adds www.another-website.org on the second website-address page
+    And the user answers no on the add-website-address page
+    And the user completes details on the business-contact-details page
+      | data           | fieldId         |
+      | Joe Bloggs     | fullName        |
+      | 01234567890    | telephoneNumber |
+      | email@test.com | emailAddress    |
+    And the user completes the email verification process
+    And the user completes details on the bank-details page
+      | data                   | fieldId     |
+      | Account Name           | accountName |
+      | ABCDEF2A               | bic         |
+      | GB33BUKB20201555555555 | iban        |
+    Then the user is at the check-answers page
+    When the user selects the change link for check-give-website-address
+    And the user answers no on the check-give-website-address page
+    Then the user answers yes on the check-remove-all-websites page
+    And the user is on the check-answers page
+    Then the user submits their registration
+
