@@ -402,7 +402,7 @@ Feature: Registering for One Stop Shop
     Then the user is at the check-answers page
     Then the user submits their registration
 
-  Scenario: A user without an organisation name can log in and submit their return under their individual name
+  Scenario: A user without an organisation name can log in and submit their registration under their individual name
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
