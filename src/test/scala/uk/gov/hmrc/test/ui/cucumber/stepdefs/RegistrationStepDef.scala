@@ -314,4 +314,9 @@ class RegistrationStepDef extends BaseStepDef {
         throw new Exception("Error message doesn't exist")
     }
   }
+
+  When("""^the user amends answer to (.*)$""") { (answer: String) =>
+    driver.findElement(By.id("value")).clear()
+    CommonPage.enterData(answer)
+  }
 }
