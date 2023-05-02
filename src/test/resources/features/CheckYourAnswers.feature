@@ -90,7 +90,7 @@ Feature: Check Your Answers
     And the user answers no on the check-add-website-address page
     Then the user is at the check-answers page
 
-  Scenario: Changing sell goods online from yes to no from CYA
+  Scenario: Changing answers from yes to no from CYA to show delete all pages
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
@@ -98,7 +98,11 @@ Feature: Check Your Answers
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds Trading Name on the first uk-trading-name page
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds Another One on the second uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
     And the user answers no on the previous-oss page
@@ -125,6 +129,10 @@ Feature: Check Your Answers
     When the user selects the change link for check-give-website-address
     And the user answers no on the check-give-website-address page
     Then the user answers yes on the check-remove-all-websites page
+    And the user is on the check-answers page
+    When the user selects the change link for check-have-uk-trading-name
+    And the user answers no on the check-have-uk-trading-name page
+    Then the user answers yes on the check-remove-all-trading-names page
     And the user is on the check-answers page
     Then the user submits their registration
 
