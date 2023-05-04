@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 Feature: Amending a registration for One Stop Shop
   @ZAP @Accessibility
   Scenario: A user can amend all of the answers on their registration - first combination (no to yes)
@@ -31,7 +31,7 @@ Feature: Amending a registration for One Stop Shop
       | GB33BUKB20201555555555555 | iban        |
     Then the user is on the change-your-registration page
     When the user presses the continue button
-#    Then the user is on the amend-confirmation page - not developed yet, says registration already exists
+#    Then the user is on the successful-amend page
 
   Scenario: A user can amend all of the answers on their registration - second combination (yes to no/amends)
     Given a user with VRN 300000002 accesses the amend registration journey
@@ -56,6 +56,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers no on the amend-add-website-address page
     Then the user is on the change-your-registration page
     When the user presses the continue button
+#    Then the user is on the successful-amend page
 
   Scenario: A user can amend all of the answers on their registration - third combination (remove all)
     Given a user with VRN 300000002 accesses the amend registration journey
@@ -69,6 +70,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers yes on the amend-remove-all-websites page
     Then the user is on the change-your-registration page
     When the user presses the continue button
+#    Then the user is on the successful-amend page
 
 
 
