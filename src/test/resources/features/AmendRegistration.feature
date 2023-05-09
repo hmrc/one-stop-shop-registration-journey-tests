@@ -1,5 +1,6 @@
-@Registration @wip
+@Registration
 Feature: Amending a registration for One Stop Shop
+
   @ZAP @Accessibility
   Scenario: A user can amend all of the answers on their registration - first combination (no to yes)
 #  Currently works via an existing registration in the database and pulls it into authenticated user answers
@@ -13,6 +14,34 @@ Feature: Amending a registration for One Stop Shop
     And the user adds another company on the second amend-uk-trading-name page
     Then the user answers no on the amend-add-uk-trading-name page
     And the user is on the change-your-registration page
+    When the user selects the change link for amend-tax-in-eu
+    Then the user answers yes on the amend-tax-in-eu page
+    And the user selects Portugal on the first amend-eu-tax page
+    Then the user answers yes on the amend-sells-goods-to-eu-consumers/1 page
+    And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/1 page
+    Then the user answer tax id number on the amend-registration-type/1 page
+    And the user adds PT8521472 on the first amend-eu-tax-number page
+    And the user adds Portugal Sales on the first amend-eu-trading-name page
+    And the user completes details on the amend-eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the first amend-check-tax-details page
+    Then the user answers yes on the amend-add-tax-details page
+    And the user selects Slovenia on the second amend-eu-tax page
+    Then the user answers yes on the amend-sells-goods-to-eu-consumers/2 page
+    And the user answer dispatch warehouse on the amend-sells-goods-to-eu-consumer-method/2 page
+    Then the user answer vat number on the amend-registration-type/2 page
+    And the user adds SI12345678 on the second amend-eu-vat-number page
+    And the user adds Slovenia Goods on the second amend-eu-send-goods-trading-name page
+    And the user completes details on the amend-eu-send-goods-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+      | SL123355  | postCode   |
+    And the user clicks continue on the second amend-check-tax-details page
+    Then the user answers no on the amend-add-tax-details page
+    Then the user is on the change-your-registration page
     When the user selects the change link for amend-online-marketplace
     Then the user answers yes on the amend-online-marketplace page
     Then the user is on the change-your-registration page
@@ -31,7 +60,7 @@ Feature: Amending a registration for One Stop Shop
       | GB33BUKB20201555555555555 | iban        |
     Then the user is on the change-your-registration page
     When the user presses the continue button
-#    Then the user is on the successful-amend page
+    Then the user is on the successful-amend page
 
   Scenario: A user can amend all of the answers on their registration - second combination (yes to no/amends)
     Given a user with VRN 300000002 accesses the amend registration journey
@@ -44,6 +73,7 @@ Feature: Amending a registration for One Stop Shop
     And the user answers yes on the amend-remove-uk-trading-name/1 page
     Then the user answers no on the amend-add-uk-trading-name page
     Then the user is on the change-your-registration page
+#    add amends to tax-in-eu section
     When the user selects the change link for amend-online-marketplace
     Then the user answers no on the amend-online-marketplace page
     Then the user is on the change-your-registration page
@@ -56,7 +86,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers no on the amend-add-website-address page
     Then the user is on the change-your-registration page
     When the user presses the continue button
-#    Then the user is on the successful-amend page
+    Then the user is on the successful-amend page
 
   Scenario: A user can amend all of the answers on their registration - third combination (remove all)
     Given a user with VRN 300000002 accesses the amend registration journey
@@ -65,12 +95,16 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers no on the amend-have-uk-trading-name page
     Then the user answers yes on the amend-remove-all-trading-names page
     Then the user is on the change-your-registration page
+    When the user selects the change link for amend-tax-in-eu
+    Then the user answers no on the amend-tax-in-eu page
+#    will extend this to for remove all page when developed
+    Then the user is on the change-your-registration page
     When the user selects the change link for amend-give-website-address
     Then the user answers no on the amend-give-website-address page
     Then the user answers yes on the amend-remove-all-websites page
     Then the user is on the change-your-registration page
     When the user presses the continue button
-#    Then the user is on the successful-amend page
+    Then the user is on the successful-amend page
 
 
 
