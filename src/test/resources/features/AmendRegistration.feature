@@ -73,7 +73,30 @@ Feature: Amending a registration for One Stop Shop
     And the user answers yes on the amend-remove-uk-trading-name/1 page
     Then the user answers no on the amend-add-uk-trading-name page
     Then the user is on the change-your-registration page
-#    add amends to tax-in-eu section
+    When the user selects the change link for amend-add-tax-details
+    Then the user selects the change link for amend-check-tax-details\/2
+    And the user selects the change link for amend-sells-goods-to-eu-consumers\/2
+    Then the user answers yes on the amend-sells-goods-to-eu-consumers/2 page
+    And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/2 page
+    And the user answer vat number on the amend-registration-type/2 page
+    And the user adds NL0123456789AB on the second amend-eu-vat-number page
+    And the user adds Amsterdam trading on the second amend-eu-trading-name page
+    And the user completes details on the amend-eu-fixed-establishment-address/2 page
+      | data               | fieldId    |
+      | 123 Address Street | line1      |
+      | A Town-City        | townOrCity |
+      | AM4563 H           | postCode   |
+    Then the user clicks continue on the second amend-check-tax-details page
+#    Bug 1590
+#    When the user selects the change link for amend-check-tax-details\/1
+#    Then the user selects the change link for amend-sells-goods-to-eu-consumers/1
+#    And the user answers no on the amend-sells-goods-to-eu-consumers/1 page
+#    And the user clicks continue on the first amend-sales-declaration-not-required page
+#    Then the user answers no on the amend-eu-vat/1 page
+    When the user selects the remove link for amend-remove-tax-details\/3
+    And the user answers yes on the amend-remove-tax-details/3 page
+    Then the user answers no on the amend-add-tax-details page
+    Then the user is on the change-your-registration page
     When the user selects the change link for amend-online-marketplace
     Then the user answers no on the amend-online-marketplace page
     Then the user is on the change-your-registration page

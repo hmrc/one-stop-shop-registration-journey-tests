@@ -87,10 +87,11 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.enterTheIntermediaryIdentificationNumber(intermediaryNumber)
 
   }
-  When("""^the user adds (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
+  When("""^the user adds (.*) on the (first|second|third) (.*) page$""") { (data: String, index: String, url: String) =>
     index match {
       case "first"  => CommonPage.checkUrl(url + "/1")
       case "second" => CommonPage.checkUrl(url + "/2")
+      case "third"  => CommonPage.checkUrl(url + "/3")
       case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.enterData(data)
