@@ -119,8 +119,8 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers yes on the amend-remove-all-trading-names page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-tax-in-eu
-    Then the user answers no on the amend-tax-in-eu page
-#    will extend this to for remove all page when developed
+    And the user answers no on the amend-tax-in-eu page
+    Then the user answers yes on the amend-remove-all-eu-details page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-give-website-address
     Then the user answers no on the amend-give-website-address page
