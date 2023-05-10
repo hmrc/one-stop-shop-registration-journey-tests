@@ -108,7 +108,31 @@ Feature: Check Your Answers
     And the user enters yesterday for date-of-first-sale
     And the user answers no on the previous-oss page
     And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Croatia on the first eu-tax page
+    And the user answers yes on the sells-goods-to-eu-consumers/1 page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer tax id number on the registration-type/1 page
+    And the user adds CR987654 on the first eu-tax-number page
+    And the user adds Croatian Products on the first eu-trading-name page
+    And the user completes details on the eu-fixed-establishment-address/1 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the first check-tax-details page
+    And the user answers yes on the add-tax-details page
+    And the user selects Finland on the second eu-tax page
+    And the user answers yes on the sells-goods-to-eu-consumers/2 page
+    And the user answer dispatch warehouse on the sells-goods-to-eu-consumer-method/2 page
+    And the user answer vat number on the registration-type/2 page
+    And the user adds FI12345678 on the second eu-vat-number page
+    And the user adds Finnish Sales on the second eu-send-goods-trading-name page
+    And the user completes details on the eu-send-goods-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+    And the user clicks continue on the second check-tax-details page
+    And the user answers no on the add-tax-details page
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
     And the user adds www.website1.co.uk on the first website-address page
@@ -127,6 +151,10 @@ Feature: Check Your Answers
       | ABCDEF2A               | bic         |
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
+    When the user selects the change link for check-tax-in-eu
+    And the user answers no on the check-tax-in-eu page
+    Then the user answers yes on the check-remove-all-eu-details page
+    And the user is on the check-answers page
     When the user selects the change link for check-give-website-address
     And the user answers no on the check-give-website-address page
     Then the user answers yes on the check-remove-all-websites page
