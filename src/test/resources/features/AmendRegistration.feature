@@ -5,7 +5,7 @@ Feature: Amending a registration for One Stop Shop
   Scenario: A user can amend all of the answers on their registration - first combination (no to yes)
 #  Currently works via an existing registration in the database and pulls it into authenticated user answers
 #  This will be amended to use an API to pull the reg from ETMP but will be stubbed/use a test only endpoint to continue using own db for tests
-    Given a user with VRN 300000001 accesses the amend registration journey
+    Given a registered user with VRN 300000001 accesses the amend registration journey
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-have-uk-trading-name
     Then the user answers yes on the amend-have-uk-trading-name page
@@ -63,7 +63,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the successful-amend page
 
   Scenario: A user can amend all of the answers on their registration - second combination (yes to no/amends)
-    Given a user with VRN 300000002 accesses the amend registration journey
+    Given a registered user with VRN 300000002 accesses the amend registration journey
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-add-uk-trading-name
     Then the user selects the change link for amend-uk-trading-name\/2
@@ -112,7 +112,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the successful-amend page
 
   Scenario: A user can amend all of the answers on their registration - third combination (remove all)
-    Given a user with VRN 300000002 accesses the amend registration journey
+    Given a registered user with VRN 300000002 accesses the amend registration journey
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-have-uk-trading-name
     Then the user answers no on the amend-have-uk-trading-name page

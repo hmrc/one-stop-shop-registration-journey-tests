@@ -242,10 +242,10 @@ Feature: Not Eligible for One Stop Shop
     And the user clicks through the business-pay page
     Then the user is on the already-registered page
 
-#  Test reminder: User can’t end up at amend reg without having the OSS enrolment
-#  To be developed
-#
-#  Test reminder: User can’t end up at amend reg without having a previous registration
+  Scenario: A user who has not previously registered for OSS cannot access the amend registration journey
+    Given a non-registered user with VRN 100000001 accesses the amend registration journey
+    Then the user is on the cannot-use-not-registered page
 
+#  Test reminder: User can’t end up at amend reg without having the OSS enrolment
 
 

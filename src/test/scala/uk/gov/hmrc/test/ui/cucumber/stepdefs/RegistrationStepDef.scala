@@ -66,9 +66,14 @@ class RegistrationStepDef extends BaseStepDef {
     AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = false, "registration")
   }
 
-  When("""^a user with VRN (.*) accesses the amend registration journey""") { (vrn: String) =>
-    CommonPage.goToStartOfJourneyFromStub()
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true, "amend")
+  When("""^a (non-registered|registered) user with VRN (.*) accesses the amend registration journey""") {
+    (registrationStatus: String, vrn: String) =>
+      CommonPage.goToStartOfJourneyFromStub()
+      var withOssEnrolment = true
+      if (registrationStatus == "non-registered") {
+        withOssEnrolment = false
+      }
+      AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment, "amend")
 
   }
 
