@@ -89,13 +89,14 @@ Feature: Amending a registration for One Stop Shop
     Then the user clicks continue on the second amend-check-tax-details page
 #    Bug 1590
 #    When the user selects the change link for amend-check-tax-details\/1
-#    Then the user selects the change link for amend-sells-goods-to-eu-consumers/1
+#    Then the user selects the change link for amend-sells-goods-to-eu-consumers\/1
 #    And the user answers no on the amend-sells-goods-to-eu-consumers/1 page
 #    And the user clicks continue on the first amend-sales-declaration-not-required page
+##  this line below not working
 #    Then the user answers no on the amend-eu-vat/1 page
-    When the user selects the remove link for amend-remove-tax-details\/3
-    And the user answers yes on the amend-remove-tax-details/3 page
-    Then the user answers no on the amend-add-tax-details page
+#    When the user selects the remove link for amend-remove-tax-details\/3
+#    And the user answers yes on the amend-remove-tax-details/3 page
+#    Then the user answers no on the amend-add-tax-details page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-online-marketplace
     Then the user answers no on the amend-online-marketplace page

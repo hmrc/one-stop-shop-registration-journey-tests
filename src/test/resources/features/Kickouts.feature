@@ -246,6 +246,14 @@ Feature: Not Eligible for One Stop Shop
     Given a non-registered user with VRN 100000001 accesses the amend registration journey
     Then the user is on the cannot-use-not-registered page
 
+  Scenario: A user is directed to an error page when there is an issue submitting their amended registration
+    Given a registered user with VRN 600000022 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user presses the continue button
+    Then the user is on the error-submitting-amendment page
+    When the user clicks on the try again later link
+    Then the user is on the change-your-registration page
+
 #  Test reminder: User can’t end up at amend reg without having the OSS enrolment
 
 

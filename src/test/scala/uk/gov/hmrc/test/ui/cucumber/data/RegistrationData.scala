@@ -522,6 +522,136 @@ object RegistrationData {
          |    "lastUpdated" : "2023-04-26T16:06:02.548767Z",
          |    "dateOfFirstSale" : "2023-04-01"
          |}
+         |""".stripMargin,
+      s"""
+         |{
+         |    "_id" : ObjectId("646b4ba909ed405309579450"),
+         |    "vrn" : "600000022",
+         |    "registeredCompanyName" : {
+         |        "value" : "CC5ENIQGuFf2wV0aQRbtiUn3A+2BWu0c6+Z2qA==",
+         |        "nonce" : "+yHQ+/hPnOvs8xwLLMzz1RbyZMt2T9oYVJQUnwwDe41gMjo7O2PfB0yrA0v5TMa8TcT1hKs5K5NMPr05Y5dJfOuvZPs7VDIGsRrppStPvcGngtCKkkTs640vyyxPF8t/"
+         |    },
+         |    "tradingNames" : [
+         |        {
+         |            "value" : "uvDstdwHYDMh/MwZsS3RRsVklYMcqa/HPokWaIU1",
+         |            "nonce" : "4CzmJNmLgu40R75f5Cneb3+BFLFd+ss0FrsGtY5rN9mVe/ZSzKZR8MQFoOioY9Tb/qz2Ssj/HvRiNk1tI0quQOWHJf277jcTNbpa3H8ox0oxHcr6U8Q1g0vyTEtFTVLe"
+         |        }
+         |    ],
+         |    "vatDetails" : {
+         |        "registrationDate" : "2020-01-01",
+         |        "address" : {
+         |            "line1" : {
+         |                "value" : "cLWA3cR8PfGH27RYuVMPxbh/sXiB0PI0JO0ptw==",
+         |                "nonce" : "ENFJjNQbGn+XHf722CMLmkCXASgMnKHObVAAUXF8v734B862hxji1HIErqTycDmlHVDv+kPGNpIIun74bxFJXpjdXDLd39v5TzVDPZ6zCUjDRXKFw5PBoWlA1pdpwg9u"
+         |            },
+         |            "line2" : {
+         |                "value" : "ttgkrQ7UHtFnUOHQ+KwhKNuGGMx7PN2/ZA==",
+         |                "nonce" : "+eu44Y89MWtqnA5ikAPclv+qFvEeKyiwPy+WaQepxDWn2HEqF93PdO0QXG411qYHR/6zKm6p0Bj1fOE9YdzwckpOBXZm9ZYy6VUFtmqgbGDGs0gwle65gO+y/bQ+mWfV"
+         |            },
+         |            "postCode" : {
+         |                "value" : "c/ifqxsYBC9RgKvwXhAMkcioxVheu273",
+         |                "nonce" : "vxiifnTvSfo1IkV6etQYEn3N6BJ0zLzHEYtJdGs9g0B6rcXs3fi5Kilwh+KzScfJ+qTDbLTMM/4yqwMEBzIuHaXrnjlSi1UXAcJjqCIajhW64FGeevzRGiamVl+yzeNk"
+         |            },
+         |            "countryCode" : {
+         |                "value" : "upqeesiJJWNRbKMUEQGAhEZx",
+         |                "nonce" : "cxMGFFYSSopfdc2rlispThrCaPoqdrJCC6B0CvKQZ1s/e9rMWd4s+iyScK7tDIehnsjsVlpOoIwjvgAROXhv0OW6mqeKIRaBRxRVn0yxRKkn95ffRqp3Kj6d+8gMmPuQ"
+         |            }
+         |        },
+         |        "partOfVatGroup" : {
+         |            "value" : "cV0ERQmUKFTGY+VUQqInsZLaBXwy",
+         |            "nonce" : "utvsJxSpymFp/v2u0dBhE1hWh1HbkN5erBtBfWtVZwSpDsCc4o/KFjmV68y8M/4atSuwQXdgqQ8U1b5TgEob38frUhu0YScVig0HiP57KXFLOQrGyZOSqTobanpOMwtu"
+         |        },
+         |        "source" : "etmp"
+         |    },
+         |    "euRegistrations" : [
+         |        {
+         |            "country" : {
+         |                "code" : {
+         |                    "value" : "MdTZ+yOCXqIZBM6Iumi9xZvj",
+         |                    "nonce" : "yILBvPjsFcdSoqq/0JYxiV332+bxOZPJPBB8BqBYRLNN+G+NnhamCS80wuxrm68lsfSdHsQaMp9vbIvXvSA3BcpfyIDB1TCcQX0gXbfBU4xKp7oxJxnlusvifyNMe/it"
+         |                },
+         |                "name" : {
+         |                    "value" : "bWDVVJW+VIYCynKoaxA5fJ/G+f26Pp4=",
+         |                    "nonce" : "5F36xmLjKiLmANbk/jsBRZXx1ly+jWtJ2AxDxfzRYHZ3ELOxtXDfkBJ9sjxCq1+kzhf1dXj2fX9rmS8Mho4bJCAZfV6aHlx+ftdWS3rOB2jCRTXaDsywvJ/NIWxdTpkv"
+         |                }
+         |            },
+         |            "taxIdentifier" : {
+         |                "identifierType" : {
+         |                    "value" : "SayCUtpnH2NR58RuMsSP1qZcig==",
+         |                    "nonce" : "9lk0x7+iPD5V4S5HGNJuC+Zg0XCE2WGpqv1nP8Cax6UL4RjY5YuUUcIQf/8RqMdH8/2Urxd+gs4a8R5soC5iBQe0zDFZY4SFJUz4x9J1EYScU0W4MNu7+P5OwwvJgGVo"
+         |                },
+         |                "value" : {
+         |                    "value" : "2tGSdR3Glwqzx9SB2stwOp3VX8BJd3H6x21R",
+         |                    "nonce" : "DYi/gtpIOuVSwDY++aJKJiVGXWGSdMg+6n0My3Tt+hnm1qLlpfJW7CEmf7oVeZZ/B0H+cCiLbh1KOwFPkABotJiMLq0tFOwabfahQxU9V6e9b8qTNJmHSBMOU9l0xYpx"
+         |                }
+         |            },
+         |            "fixedEstablishment" : {
+         |                "tradingName" : {
+         |                    "value" : "/3yCwK2PqkSMvrml4DTCR9WVtz7yBD30sCEHJAk+",
+         |                    "nonce" : "L4XcxFHJs7+AcdQiplMcJ0YCoq2TOLu8+H2dVg6G7HHFXH4Ahb+sckXACMe3udzqwZCThHozhfPzt76cOVRGXaIfyhbwlcnBd0TcOZ52WUHMhDf6jLYgSn9eUSe5L4zC"
+         |                },
+         |                "address" : {
+         |                    "line1" : {
+         |                        "value" : "2sBnQbSWh+JlPq1Dku8mV1g/9hJ+l9VkFXWhfcjO",
+         |                        "nonce" : "xQafX0vhPqbI5GdqR5WSiPcNChhOwDJqB7OEJ89hywYWSh8VSw3JGr6I0CEW+6rtmDPfRqB/4GtmjP+u+WRGhtoRJUJnInAgpVstmdoWNijLWx2jdtnWkYw/VwyKHOKL"
+         |                    },
+         |                    "townOrCity" : {
+         |                        "value" : "pRQbC6rqhPe7sYcyUtSf03Y98pwYSlrKzQ==",
+         |                        "nonce" : "UD5ghVd3nsIsiymGFouGunmv474nu0ya3Nf2IVOwkPHW3/S2lwMioVz8Ara6UxcI4gL2YV2e0A281Dpve4fMrT9b3dUhbxZvEtX08jrGDp/OLxQVUbvmh10+f4yJmBFd"
+         |                    },
+         |                    "postCode" : {
+         |                        "value" : "taBFTt9/lvmCub3X0IwesQ+KA+G6",
+         |                        "nonce" : "XlF6nBap77QluksmAcIiiISqS1ClHXNIzBTIWKamiqP/Q2sG4tPIHWHxnJKUhg8aoFfjCXs3DZ6ToF0QAtQQjxqw18qmIDu4o1p8tMIXj/7yvfBWWxey9P2/8BAMrQ8/"
+         |                    },
+         |                    "country" : {
+         |                        "code" : "AT",
+         |                        "name" : "Austria"
+         |                    }
+         |                }
+         |            }
+         |        }
+         |    ],
+         |    "contactDetails" : {
+         |        "fullName" : {
+         |            "value" : "ii9pLGwy/DAdh9rshdhAJh6Bdtw=",
+         |            "nonce" : "mfBlsteN96ggj+m4U9qlM28Vnw7sYZFwgtLa/1OIi1Uv46caDzWWyY07t05pJCXgWD0vlO23awvHbeS5HRV/dIZIPp+TOeZ8B8MaCTLntzpi5sMHEdtOgi8c/0YVc70J"
+         |        },
+         |        "telephoneNumber" : {
+         |            "value" : "ec0VDlaozwH83ucodfXk0DUYugcayPqS",
+         |            "nonce" : "ubzxO1S5IqXWPM56mw6ntl9fdOZyRMCIFSul6UbGsqqFRk2hc0Kgs+A61fBK4ivkJHPkf/DBsYDoVZoC8EhRVEs/E230AT3mgsmjub5cMN24oRmpRxphFEP1AatGOTZe"
+         |        },
+         |        "emailAddress" : {
+         |            "value" : "guOdF8N4WQCA1VxEFb/UPL45+U1UPR1cG03DWiI=",
+         |            "nonce" : "eQD9vT9PUT5udu+MemJrOATC9IxnzZrC51zsxRJJYUbWS1UjACABeKFnq6PSPNyR+wn9xIr3QpujMF8fSZ8pP2SXoeMQZldJgRAYrd7Mtd4QOu47v8K7jj1WbwbPK4nl"
+         |        }
+         |    },
+         |    "websites" : [
+         |        {
+         |            "value" : "CMXnmByufUyZ7HoAAgV0bsWLfuXHEB/TC0708CfRCc1P4Lrn+QAqoaXgEO62",
+         |            "nonce" : "90V+/kSyuETq/EMMq+Jw09S6O3aAxUYzzUBp//BYhCm+HQcfTRbZSPgthJeNcdB4Q6mQdpFGATHXb527sJWwmxcKD5Ttik7sUUxvFSW1x4Q7Mh++W83yMGI0JLqMtrxB"
+         |        }
+         |    ],
+         |    "commencementDate" : "2023-05-01",
+         |    "previousRegistrations" : [],
+         |    "bankDetails" : {
+         |        "accountName" : {
+         |            "value" : "Cb/+GDx+GsIuFcvmuqHBCfHMZe8=",
+         |            "nonce" : "YH5jvopoKdfOXSgD9rg8bRBmdKTXiLHWy8zjIKMOPnAI9dzYysSotxMhSB7Q2AKbW8pVxz/oAz1F3YfzQLQI23RJOTY241vwyODbd57Y9y8CjyhhnlEo7nBgSy+8aBWm"
+         |        },
+         |        "iban" : {
+         |            "value" : "S12aqNdGPvjfN1U3TB7zT/Xwsd91HgOEK0d3ZDVDRhNAxKXr8DE=",
+         |            "nonce" : "eFrFAo67NOjEQ9ksQhaGtqzEimAuZFwXaZYyvGi/YuhZ9SDFuOlaM/KW1rDrEcG4CXR9hhPxrlPFCpTDVgkifzSMRPYpfLFuVpzevrMuXnAJi94+aOssSX1qg4c+Hf8J"
+         |        }
+         |    },
+         |    "isOnlineMarketplace" : {
+         |        "value" : "XvTHgSg4RqSJEEQ1oJ/r8rvJV3tP",
+         |        "nonce" : "ZC0bnrkk9NyfQC/ny73sWg9EJ23JySyQcmYmoHe9DjUX9Uv5Wl5B/gaLlwnD/5jL7EUPaA8PHk/s3yobEJf/1yaeUQboQRsIXnSZ1G5At/eq28mo6xT4M1I62LSN2MJ+"
+         |    },
+         |    "niPresence" : "principalPlaceOfBusinessInNi",
+         |    "submissionReceived" : "2023-05-22T11:02:01.623800Z",
+         |    "lastUpdated" : "2023-05-22T11:02:01.623801Z",
+         |    "dateOfFirstSale" : "2023-05-01"
+         |}
          |""".stripMargin
     )
 }
