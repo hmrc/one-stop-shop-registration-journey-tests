@@ -253,6 +253,9 @@ Feature: Not Eligible for One Stop Shop
     Then the user is on the error-submitting-amendment page
     When the user clicks on the try again later link
     Then the user is on the change-your-registration page
+    When the user presses the continue button
+    And the user clicks on the back to your account link
+    Then the user is on the your-account page
 
 #  Test reminder: User can’t end up at amend reg without having the OSS enrolment
 

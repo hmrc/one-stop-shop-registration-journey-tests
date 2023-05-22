@@ -291,6 +291,8 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.xpath("//*[@id='main-content']/div/div/div[1]/a"))
       case "try again later"                        =>
         driver.findElement(By.xpath("/html/body/div/main/div/div/p[1]/a")).click()
+      case "back to your account"                   =>
+        driver.findElement(By.id("backToYourAccount")).click()
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }
