@@ -115,7 +115,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add ESX1234567X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page
@@ -144,7 +144,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add ESX1234567X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page

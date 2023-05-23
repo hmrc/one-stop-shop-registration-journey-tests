@@ -14,6 +14,20 @@ Feature: Amending a registration for One Stop Shop
     And the user adds another company on the second amend-uk-trading-name page
     Then the user answers no on the amend-add-uk-trading-name page
     And the user is on the change-your-registration page
+    When the user selects the change link for amend-previous-oss
+    Then the user answers yes on the amend-previous-oss page
+    And the user selects Finland on the first amend-previous-country page
+    And the user answer oss on the amend-previous-scheme/1/1 page
+    And the user add FI11111111 on the first amend-previous-oss-scheme-number page
+    And the user answers yes on the amend-previous-scheme-answers/1 page
+    And the user answer ioss on the amend-previous-scheme/1/2 page
+    And the user answers no on the amend-previous-ioss-scheme/1/2 page
+    And the user inputs ioss reg number IM2467777777 on the amend-previous-ioss-number/1/2 page
+    And the user presses the continue button
+    And the user answers no on the amend-previous-scheme-answers/1 page
+    Then the user answers no on the amend-previous-schemes-overview page
+    And the user clicks through the amend-start-date page
+    And the user is on the change-your-registration page
     When the user selects the change link for amend-tax-in-eu
     Then the user answers yes on the amend-tax-in-eu page
     And the user selects Portugal on the first amend-eu-tax page
@@ -73,6 +87,34 @@ Feature: Amending a registration for One Stop Shop
     And the user answers yes on the amend-remove-uk-trading-name/1 page
     Then the user answers no on the amend-add-uk-trading-name page
     Then the user is on the change-your-registration page
+    When the user selects the add link for amend-previous-schemes-overview
+    Then the user selects the change link for amend-previous-scheme-answers\/2
+    And the user answers yes on the amend-previous-scheme-answers/2 page
+    And the user answer oss on the amend-previous-scheme/2/2 page
+    And the user add BG987654321 on the second amend-previous-oss-scheme-number page
+    And the user answers no on the amend-previous-scheme-answers/2 page
+    Then the user answers yes on the amend-previous-schemes-overview page
+    And the user selects Spain on the fifth amend-previous-country page
+    And the user answer ioss on the amend-previous-scheme/5/1 page
+    And the user answers yes on the amend-previous-ioss-scheme/5/1 page
+    And the user inputs ioss reg number IM7241234567 on the amend-previous-ioss-number/5/1 page
+    And the user inputs intermediary identification number IN7241234567 on the amend-previous-ioss-number/5/1 page
+    Then the user answers yes on the amend-previous-scheme-answers/5 page
+    And the user answer oss on the amend-previous-scheme/5/2 page
+    And the user add ESX1234567X on the fifth amend-previous-oss-scheme-number page
+    Then the user selects the remove link for amend-remove-previous-scheme\/5\/2
+    And the user answers yes on the amend-remove-previous-scheme/5/2 page
+    And the user answers no on the amend-previous-scheme-answers/5 page
+    Then the user answers yes on the amend-previous-schemes-overview page
+    And the user selects Malta on the sixth amend-previous-country page
+    And the user answer oss on the amend-previous-scheme/6/1 page
+    And the user add MT12345666 on the sixth amend-previous-oss-scheme-number page
+    And the user answers no on the amend-previous-scheme-answers/6 page
+    Then the user selects the remove link for amend-remove-deregistration\/6
+    And the user answers yes on the amend-remove-deregistration/6 page
+    Then the user answers no on the amend-previous-schemes-overview page
+    And the user clicks through the amend-start-date page
+    Then the user is on the change-your-registration page
     When the user selects the change link for amend-add-tax-details
     Then the user selects the change link for amend-check-tax-details\/2
     And the user selects the change link for amend-sells-goods-to-eu-consumers\/2
@@ -87,6 +129,7 @@ Feature: Amending a registration for One Stop Shop
       | A Town-City        | townOrCity |
       | AM4563 H           | postCode   |
     Then the user clicks continue on the second amend-check-tax-details page
+    Then the user answers no on the amend-add-tax-details page
 #    Bug 1590
 #    When the user selects the change link for amend-check-tax-details\/1
 #    Then the user selects the change link for amend-sells-goods-to-eu-consumers\/1

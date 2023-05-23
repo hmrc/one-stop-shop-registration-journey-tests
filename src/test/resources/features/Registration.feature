@@ -19,7 +19,7 @@ Feature: Registering for One Stop Shop
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Sweden on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add SE012345678987 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
@@ -83,7 +83,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the planned-first-sale page
     And the user answers yes on the previous-oss page
     And the user selects Hungary on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add HU12345678 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
@@ -119,7 +119,7 @@ Feature: Registering for One Stop Shop
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Malta on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add MT12345678 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
@@ -326,7 +326,7 @@ Feature: Registering for One Stop Shop
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Malta on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add MT12345678 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
@@ -418,7 +418,7 @@ Feature: Registering for One Stop Shop
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Republic of Cyprus on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add CY12345678X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page

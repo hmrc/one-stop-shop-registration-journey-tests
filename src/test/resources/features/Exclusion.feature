@@ -34,7 +34,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Germany on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add DE123456789 on the first previous-oss-scheme-number page
     Then the user is on the scheme-still-active?countryCode=EE page
 
@@ -51,7 +51,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects France on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add FRXX123456789 on the first previous-oss-scheme-number page
     Then the user is on the scheme-quarantined page
 

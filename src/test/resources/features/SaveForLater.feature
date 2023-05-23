@@ -21,7 +21,7 @@ Feature: Save For Later Feature
     Then the user clicks on the continue to complete your registration link
     And the user answers yes on the previous-oss page
     And the user selects Ireland on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add IE1234567WI on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
@@ -102,7 +102,7 @@ Feature: Save For Later Feature
     And the user select yes on the continue-registration page
     And the user answers yes on the previous-oss page
     And the user selects Sweden on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add SE012345678987 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
@@ -184,7 +184,7 @@ Feature: Save For Later Feature
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Hungary on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add HU12345678 on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers no on the previous-scheme-answers/1 page
