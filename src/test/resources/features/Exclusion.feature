@@ -114,3 +114,24 @@ Feature: VRN exclusion reason pages after GG login
     And the user adds EL123456789 on the first eu-vat-number page
     Then the user is on the fixed-establishment-vrn-already-registered page
 
+  Scenario: Cannot register with a fixed establishment that is excluded on a One Stop Shop service
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers no on the have-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters yesterday for date-of-first-sale
+    And the user answers no on the previous-oss page
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Greece on the first eu-tax page
+    And the user chooses yes on the first sells-goods-to-eu-consumers page
+    And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
+    And the user answer tax id number on the registration-type/1 page
+    And the user adds 333333336 on the first eu-tax-number page
+    Then the user is on the excluded-vrn page
+
