@@ -66,8 +66,14 @@ Feature: Amending a registration for One Stop Shop
     And the user adds www.anotherwebsiteurl.com on the second amend-website-address page
     And the user answers no on the amend-add-website-address page
     Then the user is on the change-your-registration page
+    When the user selects the change link for amend-business-contact-details
+    And the user amends details on the amend-business-contact-details page
+      | data              | fieldId         |
+      | Another full name | fullName        |
+      | 09852355522525    | telephoneNumber |
+    Then the user is on the change-your-registration page
     When the user selects the change link for amend-bank-details
-    And the user amends details on the bank-details page
+    And the user amends details on the amend-bank-details page
       | data                      | fieldId     |
       | Different Name            | accountName |
       | ABCDDD2A                  | bic         |
@@ -151,6 +157,13 @@ Feature: Amending a registration for One Stop Shop
     Then the user selects the remove link for amend-remove-website-address\/2
     And the user answers yes on the amend-remove-website-address/2 page
     Then the user answers no on the amend-add-website-address page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-business-contact-details
+    And the user amends details on the amend-business-contact-details page
+      | data                | fieldId      |
+      | Another full-name   | fullName     |
+      | email-test@test.com | emailAddress |
+    And the user completes the amend email verification process
     Then the user is on the change-your-registration page
     When the user presses the continue button
     Then the user is on the successful-amend page

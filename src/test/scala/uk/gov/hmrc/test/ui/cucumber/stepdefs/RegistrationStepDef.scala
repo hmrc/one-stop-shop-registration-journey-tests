@@ -229,7 +229,7 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.completeForm(dataTable)
   }
 
-  And("""the user completes the email verification process""") { () =>
+  And("""^the user completes the (registration|amend) email verification process""") { (mode: String) =>
     val journeyId = driver.getCurrentUrl.split("/")(5)
 
     CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
@@ -239,11 +239,15 @@ class RegistrationStepDef extends BaseStepDef {
     driver.findElement(By.id("passcode")).sendKeys(passcode)
     driver.findElement(By.className("govuk-button")).click()
 
-    driver
-      .navigate()
-      .to(
-        "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details"
-      )
+    if (mode == "amend") {
+      driver
+        .navigate()
+        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/change-your-registration")
+    } else {
+      driver
+        .navigate()
+        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details")
+    }
   }
 
   Then("""^the user is at the (.*) page$""") { (url: String) =>

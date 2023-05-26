@@ -61,7 +61,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -97,7 +97,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -157,7 +157,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -231,7 +231,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -300,7 +300,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -358,7 +358,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -393,7 +393,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -446,7 +446,7 @@ Feature: Registering for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
