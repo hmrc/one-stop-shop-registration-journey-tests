@@ -150,10 +150,12 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.clickContinue()
   }
 
-  When("^the user enters (yesterday|7 days ago) for (.*)$") { (date: String, url: String) =>
+  When("^the user enters (yesterday|7 days ago|today) for (.*)$") { (date: String, url: String) =>
     val dateOfFirstSale = {
       if (date == "7 days ago") {
         LocalDate.now().minusDays(6)
+      } else if (date == "today") {
+        LocalDate.now()
       } else {
         LocalDate.now() minusDays 1
       }

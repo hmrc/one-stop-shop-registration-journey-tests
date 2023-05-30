@@ -3,8 +3,6 @@ Feature: Amending a registration for One Stop Shop
 
   @ZAP @Accessibility
   Scenario: A user can amend all of the answers on their registration - first combination (no to yes)
-#  Currently works via an existing registration in the database and pulls it into authenticated user answers
-#  This will be amended to use an API to pull the reg from ETMP but will be stubbed/use a test only endpoint to continue using own db for tests
     Given a registered user with VRN 300000001 accesses the amend registration journey
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-have-uk-trading-name
@@ -186,6 +184,28 @@ Feature: Amending a registration for One Stop Shop
     When the user presses the continue button
     Then the user is on the successful-amend page
 
+  Scenario: A user is no longer able to amend their start date due to being over the time limit
+    Given a registered user with VRN 300000001 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-planned-first-sale
+    Then the user is on the no-longer-amendable page
+    When the user presses the continue button
+    Then the user is on the change-your-registration page
+    And the user selects the change link for amend-already-made-sales
+    Then the user is on the no-longer-amendable page
+    When the user presses the continue button
+    Then the user is on the change-your-registration page
+    When the user presses the continue button
+    Then the user is on the successful-amend page
 
+  Scenario: A user is can amend their start date within the time limit
+    Given a registered user with VRN 300000003 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-already-made-sales
+    And the user answers yes on the amend-already-made-sales page
+    Then the user enters today for amend-date-of-first-sale
+    And the user presses the continue button
+    When the user presses the continue button
+    Then the user is on the successful-amend page
 
 

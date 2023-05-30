@@ -16,6 +16,8 @@
 
 package uk.gov.hmrc.test.ui.cucumber.data
 
+import java.time.LocalDate
+
 object RegistrationData {
   val data: List[String] =
     List(
@@ -141,7 +143,7 @@ object RegistrationData {
          |        }
          |    },
          |    "websites" : [],
-         |    "commencementDate" : "2023-04-26",
+         |    "commencementDate" : "2023-01-26",
          |    "previousRegistrations" : [],
          |    "bankDetails" : {
          |        "accountName" : {
@@ -158,8 +160,8 @@ object RegistrationData {
          |        "nonce" : "ZaAhEdGfxp2NzNxxV065y0i1O/ZrMCI6ntP7Qun6y0ex/jhZB9zv52OYy2ujnUwpLisw6R85g0dcOTv04fnBl8NMtaRJ9qo5OsckTXpd+FYfYFK15KKBOULKGm/wErvG"
          |    },
          |    "niPresence" : "principalPlaceOfBusinessInNi",
-         |    "submissionReceived" : "2023-04-26T15:12:10.848897Z",
-         |    "lastUpdated" : "2023-04-26T15:12:10.848907Z"
+         |    "submissionReceived" : "2023-01-26T15:12:10.848897Z",
+         |    "lastUpdated" : "2023-01-26T15:12:10.848907Z"
          |}
          |""".stripMargin,
       s"""
@@ -651,6 +653,165 @@ object RegistrationData {
          |    "submissionReceived" : "2023-05-22T11:02:01.623800Z",
          |    "lastUpdated" : "2023-05-22T11:02:01.623801Z",
          |    "dateOfFirstSale" : "2023-05-01"
+         |}
+         |""".stripMargin,
+      s"""
+         |{
+         |    "_id" : ObjectId("6475ac3918128b30fa58a6f6"),
+         |    "vrn" : "300000003",
+         |    "registeredCompanyName" : {
+         |        "value" : "17xr9hqGnfAdWH3dFXO9bh5jVKP0Ie9pJacoEQ==",
+         |        "nonce" : "0E9MT7ajy/4WzQTfrG9vuVpYeTGXz/bcn9VH8VdkfqALNQLefXOvcUMPA4UM8bpzFkkkz/EAFdnsadD3tNEsbNdEREjwo+ApSQjENCQmEKEGCDCBV0DK16f3ylLMJsVO"
+         |    },
+         |    "tradingNames" : [],
+         |    "vatDetails" : {
+         |        "registrationDate" : "2020-01-01",
+         |        "address" : {
+         |            "line1" : {
+         |                "value" : "Pm5BS6RRxZzATVnxV6POEdCHh0wVNBxz17xpLQ==",
+         |                "nonce" : "CLAUWdNqOdK6VH7LEKng2Ux+Q0WCel2UviBzoiSptiJpQn5PXOwHWZ/vZZ6vYlX5WNCZ31BvKTuluEYHks/VRlJZuhBdGHnTQ+cRbkd1aewUH4uUXYLxywYepzqa9tTI"
+         |            },
+         |            "line2" : {
+         |                "value" : "b0dg+wSmxD3fTxEz8UdPHdmyu2MCDE1LGg==",
+         |                "nonce" : "q/9tw/VhPhJT38nhDGOBYOHvuZFplcvghAJ6JRfEPRfiXkkcEEPmsqPsCRjXh5PQox7BQ95OpJSxLwm7vewrJBAso19CJQP9qVRpDV4smOxpDd5kn/D9N9O4V0Iw0+3G"
+         |            },
+         |            "postCode" : {
+         |                "value" : "k6Z8fEW5vH0BPcx2szyty/xh4fuqVoig",
+         |                "nonce" : "uJ6cCpOa/xHzEfoInf393GQWyEQ50pJ2PA8t7AT7E0QkvoJOwyVJZ+QzjjbRHhcQLRSz1SOIyfCrpNvFGcO1bjv0bGeelc6VEc1B2nchPf62Z54yD6vkdEsh8iLcRBxs"
+         |            },
+         |            "countryCode" : {
+         |                "value" : "+VOUszJJQhLTU/uNj8hAfOyU",
+         |                "nonce" : "01Vh0k1Dr5F0sPaQr0FDAc6IVVZxgKfyfPttiQ2997MRMXMracGae6ZPQzuBc/w6cUvOr9AbOzh4C7bpT/Zfoe4gfgf7WRO3P0cVg9lj129kuGM7IOmo91wayoIPB9lT"
+         |            }
+         |        },
+         |        "partOfVatGroup" : {
+         |            "value" : "mw9z538xjg0seT90XVXRyH5o4jWQ",
+         |            "nonce" : "TMX3NLJ6sGDy8DMad87+C75dcFKd5fbA5XtoBZ7SZc0IiOC4rddbvZagBFahclkXWcCIuWFaacsU9lBRH26xSSnhWfwHQ2NJPSBSYdkh3pVZyt1AZQLVLo21O4TKHcsT"
+         |        },
+         |        "source" : "etmp"
+         |    },
+         |    "euRegistrations" : [
+         |        {
+         |            "country" : {
+         |                "code" : {
+         |                    "value" : "Ic55Wam2MgFNfTf7hv/YIibe",
+         |                    "nonce" : "4NQ/z+8nm1gdJ4EpADVuG58zNX4UOXGotr0+9gAaR9i4XmsogqgVeyRI59z6vFjV1qFZbWKHOTWaCdro3xjFUIHjISS3d8+Q3W5l+4Wkjg/ulvIaH03691zVh1aQ5vsU"
+         |                },
+         |                "name" : {
+         |                    "value" : "dlYsjTJzqmFE/CuuLGoQ2O0jSxRIta8=",
+         |                    "nonce" : "+95UN1aTZGzI9qzfQAXWAHplzdz4uEPTvB1xZz9v3kS05cZC+8xo0kpO6LBT0oP4AsnnInAoLKSYhI5Cw23c7fLK8gpShY0RmnuZawvyfoR+1jzOMHmwGQ8hgh5+GFJ3"
+         |                }
+         |            },
+         |            "taxIdentifier" : {
+         |                "identifierType" : {
+         |                    "value" : "/r8SPU7UpsoggcNUFCZZ+Xo4pg==",
+         |                    "nonce" : "d82V6WJ/CzJ/Y3aG2ZOXb/rJdXQVrj3Utq5Xp9pGND0ey1pR6jhioOlHPIH6onvUuQPBaH29AnYsLMtgjnHcTiGNe4VkVFR1rzERCrhUfvQE2zvJiEvvTYVb1MSVys50"
+         |                },
+         |                "value" : {
+         |                    "value" : "qBfC/4b9UuVr/iXpiiKakAqf27krJpuPGHA=",
+         |                    "nonce" : "RAHkoTINAW9fiEl9Mtx7JLXRnw4KrbaKc8iNX72Iai/JpGoNq+oI6fiPGHwYfWa+BHWQKktoYJn+uwE/mdboqbO+wR6Totyby7i0EChmcni7YS/T6Dt6CdhcEJz4UqCh"
+         |                }
+         |            },
+         |            "fixedEstablishment" : {
+         |                "tradingName" : {
+         |                    "value" : "EUEUe+kRYZXPvf5KzlXkOnvllmAs0CeItLlzJHnAEw==",
+         |                    "nonce" : "vlthWF6gsb4tE7BpSaBE0x2QrGY0XORiPJtjDHhMmBbIhsN7M3ldEdq60ZSkYIxV1O8ylseKEG2xwlCgjJJcWplwBLqJGON56a18UinT4C0iS5YUC0DaJ3WV+T7o0hVK"
+         |                },
+         |                "address" : {
+         |                    "line1" : {
+         |                        "value" : "kFjV8alVNm27L84zOrV4XrOpzdcB16ZSfvmzrzcU",
+         |                        "nonce" : "+1kOjvplAQ1jYmhs5w7/7wEn7DjH6fCaZsAP8y/oWJBvushblrtDFxXFqk0ozDqRXrsrNSKOTPIoSFWFWJOCC36iTI1i05Q+/6CbFsCGdR4fw6Rsxcv1vu+tLn6ned83"
+         |                    },
+         |                    "townOrCity" : {
+         |                        "value" : "bRScDM68rr1SfZeBVW0eFwmZ+flOsiDv4g==",
+         |                        "nonce" : "UbRANQrtCPyN9xKT+gVAe+d3v8zWVcDDXWjTusjRhqUVJ0tVvheVk6k0mzbR4qTMOyi8F5G7BX9XUQ5rIesDk44x8gz42CFJobD3hRppX0VXzlJmfoONlVsFLGYtlmbj"
+         |                    },
+         |                    "stateOrRegion" : {
+         |                        "value" : "Yc78pHudQgcFqYaAhh3BGs6wJeKjGKB2oGE=",
+         |                        "nonce" : "SQ4MAULjvHuXuuEojrvWxVlKdgsrgNMFu9rT5LlUYT5cKdps2qf01f3NEs20q7M33RMdlEewaqAxYlrxAq9Ks2guTgyjjdTXq380h9HpWgosq3Kmkv4R8/yelf1uNJs4"
+         |                    },
+         |                    "postCode" : {
+         |                        "value" : "PMQI5qvqBVcCG961euWZVNaBKgHXlDqP",
+         |                        "nonce" : "Zt+mqUbRBND32Qvqb00P2icq6NcO3rB4uXLyE+D59TYDVjqmNj1hnnIYztuVcn8ypNZIy/TfoONJHe/aap3FQXf4ScDHxxajCTRMymwgljXgyIBpZwDLYAJe7xn8vJqv"
+         |                    },
+         |                    "country" : {
+         |                        "code" : "DK",
+         |                        "name" : "Denmark"
+         |                    }
+         |                }
+         |            }
+         |        }
+         |    ],
+         |    "contactDetails" : {
+         |        "fullName" : {
+         |            "value" : "A4gBISd8TyiZ18ktxKlKj6WoZ/qWqZvlSg==",
+         |            "nonce" : "GYE+EwFwdWUhC/VvJ69Gc9oRYgtO17FVHkGZPz71XBPFTUqVutQAmXTbORN5/2/q2q0PyMH5VrXd7pOkyaZ01dqrb8X8jms1s1f04Bao0xFQs6VkPgu8OxTbT9cLF3XA"
+         |        },
+         |        "telephoneNumber" : {
+         |            "value" : "yNPsfo/cwbxJIW10j5Ve0MhBMzNYgh2TWjE=",
+         |            "nonce" : "Qwa2oZ1Be+lS1lUFKgqoWgfwg7bd0DR+cqjTgpgcFVGglreD//swJySzyHNOAePtwOIv1C5NklT0T1QHRyFbEc2KCvdXlOvd5+iYuGMaUWOPXZnZJZJnLjEVBC/DA1if"
+         |        },
+         |        "emailAddress" : {
+         |            "value" : "sCpv9zRIWI8CZH4YuUNyMD18jghw+J0W5KYUi15yHBl88A==",
+         |            "nonce" : "MWzXGKavGu/5C9nyjjNP6/MDNg4c/MbVPS/crKrKBH/icHB//jsgrmp75vkM5iLSXHclHGdughQrn2TtLBjM7pzGU3fTjXDwg2T6F3EaxC4DiwC2YiQAh2r0HU8H3dK9"
+         |        }
+         |    },
+         |    "websites" : [
+         |        {
+         |            "value" : "XUoOq80iWm9y0/Yvd3b8NMrH4eF/Bai0D6oaCyaX0uKYSJ/FS90=",
+         |            "nonce" : "l2aUCuEJLc3ZZVz03gqBFCJX0Y29DVOenzHwHwylaNkT+m6pSVzqKdAvcdClmyOXaajISNxgn6r2IKLBd2+xyCk9Oza22JGph7C0v+MS0qv2lASNNj/R0J1TjWT5Q+F+"
+         |        },
+         |        {
+         |            "value" : "w4XfWsS0Vj0JoCf6iv6JnyIClaZILp8cbonKk1FmR54AfSfsMKAXiuIp1WowjMMTXA==",
+         |            "nonce" : "EvBkrAei3oymaP4/qW9wAdhlW9W0jAnHkqg4KNbmw8auw5meuDR3yfA6AcGCPnZMlse6c23VzHTGXSNs8AtbhsrULkZ3xG64mLVT4x/jmEmSVzCrPNgopHLjAZqDoaN2"
+         |        }
+         |    ],
+         |    "commencementDate" : "${LocalDate.now().minusDays(1)}",
+         |    "previousRegistrations" : [
+         |        {
+         |            "country" : {
+         |                "code" : {
+         |                    "value" : "nuCt6CaEF5jwN4XOju/z6/cs",
+         |                    "nonce" : "ayp+kmPV4JWSxIGjDLipyF7wZMG7JpCYr3sW4wj6JvB7zbCLJLPlZJxO9KoiGtZMIIdlkgTdnQhOA166f8QrlHI8jApEbIO/5bxVy4fQJ0URZpTB361XHVI99LxCZfep"
+         |                },
+         |                "name" : {
+         |                    "value" : "fIwxQVeK8Hd+KvNsyitMIC2LC7kjLqU=",
+         |                    "nonce" : "j/iSThsumwsc35MRyRzhCJrLCs92MltEEB7R4EB0uifaMOmhrG0unjPJhsrmQ2DQ0WQGdKawsornixrPb/36OAeOh1DY2WZUcR/fBOApFfDC0o110qIGpOugvumqh855"
+         |                }
+         |            },
+         |            "previousSchemeDetails" : [
+         |                {
+         |                    "previousScheme" : {
+         |                        "value" : "Is3SWwDCj1Xbb+91dLvagocHsbU=",
+         |                        "nonce" : "nXjy5Y7QT4KcBPmhw53xjqYHFASthe20zWXmOr8LORpnux9MuoFfUAyCIvFhVGtYhSn+OQVfT3I4/FciXnr916rFTGLDc0N31E1yPdmjV+rBUgOgW5jk5DQ5J9FDX1JB"
+         |                    },
+         |                    "previousSchemeNumbers" : {
+         |                        "previousSchemeNumber" : {
+         |                            "value" : "5n2K5GvKVa9Yp7az8F/dYbFLBqni2b/WDzuldQ==",
+         |                            "nonce" : "ZleQwhzVhOL8hhEOsol10I3UsuzRnaWkAdnS3LnLHzNNQxCs2H90fmXDbbKvGmWwurH0CIzd60Dkclr6BcZbGSGmQ9bYg0cuAdXcsX26KFn13E+/Ux0pgFum8Wqz6mm7"
+         |                        }
+         |                    }
+         |                }
+         |            ]
+         |        }
+         |    ],
+         |    "bankDetails" : {
+         |        "accountName" : {
+         |            "value" : "vNrLtGCuGs69ruf5vW7SA19l+9m8coKqtw==",
+         |            "nonce" : "o+YvGjhnaQ5//OtxbTan3PTG7DpxV0D6Z1uvXh2AnM/nUvhRJ8yxs5OXbSsib0FNDAKKEHetPhe35jyv0dW5X17yB7Xj0rYpstcyQOeQRGAUv9eGVwAqGwC/uEUpAGB+"
+         |        },
+         |        "iban" : {
+         |            "value" : "VdQL9eN8E9rCrhGFqeJTyaaGmkF0ppMqKQ93sazYhKAXzuFTEmU=",
+         |            "nonce" : "jJqq8tSo2NvpP8c2mk8Ao5pqoI4QGZwl66S5KIv6+9oalXkReEDxp+3WJOqfViwE4y+dsxlQgx8jS5pYgAMXXcmlZxOsXpd7oiT0W/eUhAAqusg+mCTe1hYJKg0yACpK"
+         |        }
+         |    },
+         |    "isOnlineMarketplace" : {
+         |        "value" : "VD3n3xNZTXl1/POGzMtakYJwjoKU",
+         |        "nonce" : "t9gSM16Bekam+ze67+naJ3h/C3olxpnM+xQD4HlKHB98uSm/d/STjUSWYOl7rGuknO8v8xFeo/tUZTtbQF1Bt4IkwtEMze128uAuBsxwxrcZcZYaEnJo88cupckZZxA8"
+         |    },
+         |    "niPresence" : "principalPlaceOfBusinessInNi",
+         |    "submissionReceived" : "2023-05-30T07:56:41.967955Z",
+         |    "lastUpdated" : "2023-05-30T07:56:41.967957Z"
          |}
          |""".stripMargin
     )
