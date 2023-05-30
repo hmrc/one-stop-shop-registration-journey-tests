@@ -208,4 +208,11 @@ Feature: Amending a registration for One Stop Shop
     When the user presses the continue button
     Then the user is on the successful-amend page
 
+  Scenario: A user with fixed establishments enters amend registration after having VAT Group changed from No to Yes
+    Given a registered user with VRN 777777771 accesses the returns service
+    Then the user is on the delete-all-fixed-establishment page
+    When the user presses the continue button
+    Then the user is on the successful-amend page
+
+
 

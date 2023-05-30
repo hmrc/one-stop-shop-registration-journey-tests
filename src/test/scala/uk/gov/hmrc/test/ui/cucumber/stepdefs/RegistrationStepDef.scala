@@ -74,7 +74,11 @@ class RegistrationStepDef extends BaseStepDef {
         withOssEnrolment = false
       }
       AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment, "amend")
+  }
 
+  When("""^a registered user with VRN (.*) accesses the returns service""") { (vrn: String) =>
+    CommonPage.goToStartOfJourneyFromStub()
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, true, "returns")
   }
 
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
@@ -305,6 +309,8 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.xpath("/html/body/div/main/div/div/p[1]/a")).click()
       case "back to your account"                   =>
         driver.findElement(By.id("backToYourAccount")).click()
+      case "Change your registration"               =>
+        driver.findElement(By.id("change-your-registration")).click()
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }

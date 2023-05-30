@@ -30,11 +30,14 @@ object AuthActions extends BrowserDriver {
   ): Unit = {
     driver.findElement(By.id("redirectionUrl")).clear()
 
-    val url                      = journey match {
+    val url = journey match {
       case "registration" =>
         "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/already-eu-registered"
       case "amend"        => "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/start-amend-journey"
+      case "returns"      =>
+        "http://localhost:10204/pay-vat-on-goods-sold-to-eu/northern-ireland-returns-payments/your-account"
     }
+
     driver.findElement(By.id("redirectionUrl")).sendKeys(url)
     val selectCredentialStrength = new Select(driver.findElement(By.id("credentialStrength")))
     selectCredentialStrength.selectByValue("strong")
