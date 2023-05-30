@@ -311,6 +311,8 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.id("backToYourAccount")).click()
       case "Change your registration"               =>
         driver.findElement(By.id("change-your-registration")).click()
+      case "Returns account"                        =>
+        driver.findElement(By.id("back-to-your-account")).click()
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }

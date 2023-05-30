@@ -401,7 +401,6 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-    #    Add in an amendment at the end with this VRN
 
   Scenario: A user without an organisation name can log in and submit their registration under their individual name
     Given the user accesses the service

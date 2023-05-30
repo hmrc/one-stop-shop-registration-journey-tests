@@ -213,6 +213,16 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the delete-all-fixed-establishment page
     When the user presses the continue button
     Then the user is on the successful-amend page
+    When the user clicks on the Returns account link
+#  Awaiting bug 1624 fix
+#    Then the user clicks on the Change your registration link
+#  Awaiting bug 1625 fix
+#    And the user selects the change link for amend-add-tax-details
+#    Then the user answers yes on the amend-tax-in-eu page
+#    And the user selects Portugal on the first amend-eu-tax page
+#    Then the user answers yes on the amend-sells-goods-to-eu-consumers/3 page
+#    And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/3 page
+#    Then the user is on the no-fixed-establishments-required/3 page
 
 
 
