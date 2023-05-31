@@ -106,7 +106,18 @@ Feature: Check Your Answers
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
-    And the user answers no on the previous-oss page
+    And the user answers yes on the previous-oss page
+    And the user selects Sweden on the first previous-country page
+    And the user answer oss on the previous-scheme page
+    And the user add SE012345678999 on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers yes on the previous-scheme-answers/1 page
+    And the user answers ioss on the previous-scheme/1/2 page
+    And the user answers no on the previous-ioss-scheme/1/2 page
+    And the user inputs ioss reg number IM7527777777 on the previous-ioss-number/1/2 page
+    And the user clicks through the previous-ioss-number/1/2 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Croatia on the first eu-tax page
@@ -151,6 +162,10 @@ Feature: Check Your Answers
       | ABCDEF2A               | bic         |
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
+    When the user selects the change link for check-previous-oss
+    And the user answers no on the check-previous-oss page
+    Then the user answers yes on the check-remove-all-previous-registrations page
+    And the user is at the check-answers page
     When the user selects the change link for check-tax-in-eu
     And the user answers no on the check-tax-in-eu page
     Then the user answers yes on the check-remove-all-eu-details page
