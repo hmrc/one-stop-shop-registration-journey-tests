@@ -214,8 +214,7 @@ Feature: Amending a registration for One Stop Shop
     When the user presses the continue button
     Then the user is on the successful-amend page
     When the user clicks on the Returns account link
-#  Awaiting bug 1624 fix
-#    Then the user clicks on the Change your registration link
+    Then the user clicks on the Change your registration link
 #  Awaiting bug 1625 fix
 #    And the user selects the change link for amend-add-tax-details
 #    Then the user answers yes on the amend-tax-in-eu page
