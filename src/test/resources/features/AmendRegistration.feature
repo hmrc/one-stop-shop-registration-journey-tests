@@ -125,7 +125,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers yes on the amend-sells-goods-to-eu-consumers/2 page
     And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/2 page
     And the user answer vat number on the amend-registration-type/2 page
-    And the user adds NL0123456789AB on the second amend-eu-vat-number page
+    And the user amends NL0123456788AB on the second amend-eu-vat-number page
     And the user adds Amsterdam trading on the second amend-eu-trading-name page
     And the user completes details on the amend-eu-fixed-establishment-address/2 page
       | data               | fieldId    |
@@ -133,17 +133,15 @@ Feature: Amending a registration for One Stop Shop
       | A Town-City        | townOrCity |
       | AM4563 H           | postCode   |
     Then the user clicks continue on the second amend-check-tax-details page
+    When the user selects the change link for amend-check-tax-details\/1
+    Then the user selects the change link for amend-sells-goods-to-eu-consumers\/1
+    And the user answers no on the amend-sells-goods-to-eu-consumers/1 page
+    And the user clicks continue on the first amend-sales-declaration-not-required page
+    Then the user answers no on the amend-eu-vat/1 page
+    And the user presses the continue button
+    When the user selects the remove link for amend-remove-tax-details\/3
+    And the user answers yes on the amend-remove-tax-details/3 page
     Then the user answers no on the amend-add-tax-details page
-#    Bug 1590
-#    When the user selects the change link for amend-check-tax-details\/1
-#    Then the user selects the change link for amend-sells-goods-to-eu-consumers\/1
-#    And the user answers no on the amend-sells-goods-to-eu-consumers/1 page
-#    And the user clicks continue on the first amend-sales-declaration-not-required page
-##  this line below not working
-#    Then the user answers no on the amend-eu-vat/1 page
-#    When the user selects the remove link for amend-remove-tax-details\/3
-#    And the user answers yes on the amend-remove-tax-details/3 page
-#    Then the user answers no on the amend-add-tax-details page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-online-marketplace
     Then the user answers no on the amend-online-marketplace page
@@ -215,13 +213,12 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the successful-amend page
     When the user clicks on the Returns account link
     Then the user clicks on the Change your registration link
-#  Awaiting bug 1625 fix
-#    And the user selects the change link for amend-add-tax-details
-#    Then the user answers yes on the amend-tax-in-eu page
-#    And the user selects Portugal on the first amend-eu-tax page
-#    Then the user answers yes on the amend-sells-goods-to-eu-consumers/3 page
-#    And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/3 page
-#    Then the user is on the no-fixed-establishments-required/3 page
+    And the user selects the change link for amend-add-tax-details
+    And the user answers yes on the amend-add-tax-details page
+    And the user selects Portugal on the third amend-eu-tax page
+    Then the user answers yes on the amend-sells-goods-to-eu-consumers/3 page
+    And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/3 page
+    Then the user is on the amend-no-fixed-establishments-required/3 page
 
 
 

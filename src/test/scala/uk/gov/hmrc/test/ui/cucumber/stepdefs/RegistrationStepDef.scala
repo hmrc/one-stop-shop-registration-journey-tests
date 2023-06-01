@@ -96,14 +96,18 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.enterTheIntermediaryIdentificationNumber(intermediaryNumber)
 
   }
-  When("""^the user adds (.*) on the (first|second|third) (.*) page$""") { (data: String, index: String, url: String) =>
-    index match {
-      case "first"  => CommonPage.checkUrl(url + "/1")
-      case "second" => CommonPage.checkUrl(url + "/2")
-      case "third"  => CommonPage.checkUrl(url + "/3")
-      case _        => throw new Exception("Index doesn't exist")
-    }
-    CommonPage.enterData(data)
+  When("""^the user (adds|amends) (.*) on the (first|second|third) (.*) page$""") {
+    (mode: String, data: String, index: String, url: String) =>
+      index match {
+        case "first"  => CommonPage.checkUrl(url + "/1")
+        case "second" => CommonPage.checkUrl(url + "/2")
+        case "third"  => CommonPage.checkUrl(url + "/3")
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      if (mode == "amends") {
+        driver.findElement(By.id("value")).clear()
+      }
+      CommonPage.enterData(data)
   }
   When("""^the user add (.*) on the (first|second|fifth|sixth) (.*) page$""") {
     (data: String, index: String, url: String) =>
@@ -118,11 +122,12 @@ class RegistrationStepDef extends BaseStepDef {
 
   }
 
-  When("""^the user selects (.*) on the (first|second|fifth|sixth) (.*) page$""") {
+  When("""^the user selects (.*) on the (first|second|third|fifth|sixth) (.*) page$""") {
     (data: String, index: String, url: String) =>
       index match {
         case "first"  => CommonPage.checkUrl(url + "/1")
         case "second" => CommonPage.checkUrl(url + "/2")
+        case "third"  => CommonPage.checkUrl(url + "/3")
         case "fifth"  => CommonPage.checkUrl(url + "/5")
         case "sixth"  => CommonPage.checkUrl(url + "/6")
         case _        => throw new Exception("Index doesn't exist")
