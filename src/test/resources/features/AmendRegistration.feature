@@ -220,5 +220,24 @@ Feature: Amending a registration for One Stop Shop
     And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/3 page
     Then the user is on the amend-no-fixed-establishments-required/3 page
 
+  Scenario: A user can cancel their registration amends
+    Given a registered user with VRN 300000001 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-online-marketplace
+    Then the user answers yes on the amend-online-marketplace page
+    And the user selects the change link for amend-give-website-address
+    And the user answers yes on the amend-give-website-address page
+    And the user adds www.1stwebsite.org on the first amend-website-address page
+    And the user answers yes on the amend-add-website-address page
+    And the user adds www.a-website-url.eu on the second amend-website-address page
+    And the user answers no on the amend-add-website-address page
+    Then the user is on the change-your-registration page
+    When the user clicks on the cancel link
+    Then the user is on the cancel-amend-registration page
+    And the user presses the continue button
+    Then the user is on the your-account page
+
+
+
 
 
