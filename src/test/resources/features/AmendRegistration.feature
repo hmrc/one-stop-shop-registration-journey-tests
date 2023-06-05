@@ -233,8 +233,7 @@ Feature: Amending a registration for One Stop Shop
     And the user answers no on the amend-add-website-address page
     Then the user is on the change-your-registration page
     When the user clicks on the cancel link
-    Then the user is on the cancel-amend-registration page
-    And the user presses the continue button
+    Then the user answers yes on the cancel-amend-registration page
     Then the user is on the your-account page
 
 
