@@ -235,5 +235,4 @@ Feature: Save For Later Feature
     Then the user is at the check-answers page
     Then the user submits their registration
 
-#    Awaiting decision on whether Save for Later will be an option for Amend Registration - either add test or check buttons removed
 
