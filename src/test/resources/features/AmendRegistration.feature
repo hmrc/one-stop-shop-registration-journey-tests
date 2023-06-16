@@ -137,7 +137,8 @@ Feature: Amending a registration for One Stop Shop
     Then the user selects the change link for amend-sells-goods-to-eu-consumers\/1
     And the user answers no on the amend-sells-goods-to-eu-consumers/1 page
     And the user clicks continue on the first amend-sales-declaration-not-required page
-    Then the user answers no on the amend-eu-vat/1 page
+    Then the user answers yes on the amend-eu-vat/1 page
+    And the user amends CY12555678X on the first amend-eu-vat-number page
     And the user presses the continue button
     When the user selects the remove link for amend-remove-tax-details\/3
     And the user answers yes on the amend-remove-tax-details/3 page
