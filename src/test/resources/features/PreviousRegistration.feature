@@ -20,7 +20,7 @@ Feature: Previous OSS or IOSS registrations in other countries
    And the user presses the continue button
    And the user answers yes on the previous-oss page
    And the user selects France on the first previous-country page
-   And the user answer ioss on the previous-scheme page
+   And the user answer ioss on the previous-scheme/1/1 page
    And the user answers yes on the previous-ioss-scheme/1/1 page
    And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
    And the user inputs intermediary identification number IN2501234567 on the previous-ioss-number/1/1 page
@@ -63,7 +63,7 @@ Feature: Previous OSS or IOSS registrations in other countries
      | Joe Bloggs      | fullName        |
      | 01234567890     | telephoneNumber |
      | email@test.com  | emailAddress    |
-   And the user completes the email verification process
+   And the user completes the registration email verification process
    And the user completes details on the bank-details page
      | data                    | fieldId         |
      | Account Name            | accountName     |
@@ -89,7 +89,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Italy on the first previous-country page
-    And the user answer ioss on the previous-scheme page
+    And the user answer ioss on the previous-scheme/1/1 page
     And the user answers yes on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM3801234567 on the previous-ioss-number/1/1 page
     And the user inputs intermediary identification number IN3801234567 on the previous-ioss-number/1/1 page
@@ -115,7 +115,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add ESX1234567X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page
@@ -144,7 +144,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
     And the user selects Spain on the first previous-country page
-    And the user answer oss on the previous-scheme page
+    And the user answer oss on the previous-scheme/1/1 page
     And the user add ESX1234567X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
     And the user answers yes on the previous-scheme-answers/1 page

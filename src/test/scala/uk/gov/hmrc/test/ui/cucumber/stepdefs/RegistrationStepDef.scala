@@ -57,13 +57,28 @@ class RegistrationStepDef extends BaseStepDef {
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
   ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true)
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true, "registration")
   }
 
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
   ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = false)
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = false, "registration")
+  }
+
+  When("""^a (non-registered|registered) user with VRN (.*) accesses the amend registration journey""") {
+    (registrationStatus: String, vrn: String) =>
+      CommonPage.goToStartOfJourneyFromStub()
+      var withOssEnrolment = true
+      if (registrationStatus == "non-registered") {
+        withOssEnrolment = false
+      }
+      AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment, "amend")
+  }
+
+  When("""^a registered user with VRN (.*) accesses the returns service""") { (vrn: String) =>
+    CommonPage.goToStartOfJourneyFromStub()
+    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, true, "returns")
   }
 
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
@@ -81,31 +96,43 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.enterTheIntermediaryIdentificationNumber(intermediaryNumber)
 
   }
-  When("""^the user adds (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
-    index match {
-      case "first"  => CommonPage.checkUrl(url + "/1")
-      case "second" => CommonPage.checkUrl(url + "/2")
-      case _        => throw new Exception("Index doesn't exist")
-    }
-    CommonPage.enterData(data)
+  When("""^the user (adds|amends) (.*) on the (first|second|third) (.*) page$""") {
+    (mode: String, data: String, index: String, url: String) =>
+      index match {
+        case "first"  => CommonPage.checkUrl(url + "/1")
+        case "second" => CommonPage.checkUrl(url + "/2")
+        case "third"  => CommonPage.checkUrl(url + "/3")
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      if (mode == "amends") {
+        driver.findElement(By.id("value")).clear()
+      }
+      CommonPage.enterData(data)
   }
-  When("""^the user add (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
-    index match {
-      case "first"  => CommonPage.checkUrl(url + "/1" + "/1")
-      case "second" => CommonPage.checkUrl(url + "/2" + "/2")
-      case _        => throw new Exception("Index doesn't exist")
-    }
-    CommonPage.enterData(data)
+  When("""^the user add (.*) on the (first|second|fifth|sixth) (.*) page$""") {
+    (data: String, index: String, url: String) =>
+      index match {
+        case "first"  => CommonPage.checkUrl(url + "/1" + "/1")
+        case "second" => CommonPage.checkUrl(url + "/2" + "/2")
+        case "fifth"  => CommonPage.checkUrl(url + "/5" + "/2")
+        case "sixth"  => CommonPage.checkUrl(url + "/6" + "/1")
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      CommonPage.enterData(data)
 
   }
 
-  When("""^the user selects (.*) on the (first|second) (.*) page$""") { (data: String, index: String, url: String) =>
-    index match {
-      case "first"  => CommonPage.checkUrl(url + "/1")
-      case "second" => CommonPage.checkUrl(url + "/2")
-      case _        => throw new Exception("Index doesn't exist")
-    }
-    CommonPage.selectValueAutocomplete(data)
+  When("""^the user selects (.*) on the (first|second|third|fifth|sixth) (.*) page$""") {
+    (data: String, index: String, url: String) =>
+      index match {
+        case "first"  => CommonPage.checkUrl(url + "/1")
+        case "second" => CommonPage.checkUrl(url + "/2")
+        case "third"  => CommonPage.checkUrl(url + "/3")
+        case "fifth"  => CommonPage.checkUrl(url + "/5")
+        case "sixth"  => CommonPage.checkUrl(url + "/6")
+        case _        => throw new Exception("Index doesn't exist")
+      }
+      CommonPage.selectValueAutocomplete(data)
   }
 
   When("""^the user chooses (yes|no) on the (first|second) (.*) page$""") {
@@ -132,10 +159,12 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.clickContinue()
   }
 
-  When("^the user enters (yesterday|7 days ago) for (.*)$") { (date: String, url: String) =>
+  When("^the user enters (yesterday|7 days ago|today) for (.*)$") { (date: String, url: String) =>
     val dateOfFirstSale = {
       if (date == "7 days ago") {
         LocalDate.now().minusDays(6)
+      } else if (date == "today") {
+        LocalDate.now()
       } else {
         LocalDate.now() minusDays 1
       }
@@ -169,7 +198,7 @@ class RegistrationStepDef extends BaseStepDef {
 
   }
   When("""^the user answer (oss|ioss) on the (.*) page$""") { (data: String, url: String) =>
-    CommonPage.checkUrl(url + "/1" + "/1")
+    CommonPage.checkUrl(url)
     CommonPage.selectAnswerAs(data)
   }
 
@@ -205,12 +234,13 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.provideDate(date)
   }
 
-  When("""^the user completes details on the (.*) page$""") { (url: String, dataTable: DataTable) =>
-    CommonPage.checkUrl(url)
-    CommonPage.completeForm(dataTable)
+  When("""^the user (completes|amends) details on the (.*) page$""") {
+    (mode: String, url: String, dataTable: DataTable) =>
+      CommonPage.checkUrl(url)
+      CommonPage.completeForm(dataTable)
   }
 
-  And("""the user completes the email verification process""") { () =>
+  And("""^the user completes the (registration|amend) email verification process""") { (mode: String) =>
     val journeyId = driver.getCurrentUrl.split("/")(5)
 
     CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
@@ -220,11 +250,15 @@ class RegistrationStepDef extends BaseStepDef {
     driver.findElement(By.id("passcode")).sendKeys(passcode)
     driver.findElement(By.className("govuk-button")).click()
 
-    driver
-      .navigate()
-      .to(
-        "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details"
-      )
+    if (mode == "amend") {
+      driver
+        .navigate()
+        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/change-your-registration")
+    } else {
+      driver
+        .navigate()
+        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details")
+    }
   }
 
   Then("""^the user is at the (.*) page$""") { (url: String) =>
@@ -276,6 +310,16 @@ class RegistrationStepDef extends BaseStepDef {
         driver.findElement(By.xpath("/*[@id=‘signOut’]")).click()
       case "continue to your account"               =>
         driver.findElement(By.xpath("//*[@id='main-content']/div/div/div[1]/a"))
+      case "try again later"                        =>
+        driver.findElement(By.xpath("/html/body/div/main/div/div/p[1]/a")).click()
+      case "back to your account"                   =>
+        driver.findElement(By.id("backToYourAccount")).click()
+      case "Change your registration"               =>
+        driver.findElement(By.id("change-your-registration")).click()
+      case "Returns account"                        =>
+        driver.findElement(By.id("back-to-your-account")).click()
+      case "cancel"                                 =>
+        driver.findElement(By.id("cancel")).click()
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }
@@ -306,5 +350,10 @@ class RegistrationStepDef extends BaseStepDef {
       case _                                                   =>
         throw new Exception("Error message doesn't exist")
     }
+  }
+
+  When("""^the user amends answer to (.*)$""") { (answer: String) =>
+    driver.findElement(By.id("value")).clear()
+    CommonPage.enterData(answer)
   }
 }

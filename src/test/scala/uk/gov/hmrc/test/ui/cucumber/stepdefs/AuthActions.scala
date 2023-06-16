@@ -22,11 +22,23 @@ import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
 object AuthActions extends BrowserDriver {
 
-  def loginUsingAuthorityWizard(affinityGroup: String, vrn: String, withOssEnrolment: Boolean): Unit = {
+  def loginUsingAuthorityWizard(
+    affinityGroup: String,
+    vrn: String,
+    withOssEnrolment: Boolean,
+    journey: String
+  ): Unit = {
     driver.findElement(By.id("redirectionUrl")).clear()
-    driver
-      .findElement(By.id("redirectionUrl"))
-      .sendKeys(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/already-eu-registered")
+
+    val url = journey match {
+      case "registration" =>
+        "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/already-eu-registered"
+      case "amend"        => "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/start-amend-journey"
+      case "returns"      =>
+        "http://localhost:10204/pay-vat-on-goods-sold-to-eu/northern-ireland-returns-payments/your-account"
+    }
+
+    driver.findElement(By.id("redirectionUrl")).sendKeys(url)
     val selectCredentialStrength = new Select(driver.findElement(By.id("credentialStrength")))
     selectCredentialStrength.selectByValue("strong")
     val selectAffinityGroup      = new Select(driver.findElement(By.id("affinityGroupSelect")))

@@ -20,7 +20,7 @@ import uk.gov.hmrc.test.ui.pages.CheckYourAnswersPage
 
 class CheckYourAnswersStepDef extends BaseStepDef {
 
-  Then("""^the user selects the (change|remove) link for (.*)$""") { (linkType: String, link: String) =>
+  Then("""^the user selects the (change|remove|add) link for (.*)$""") { (linkType: String, link: String) =>
     CheckYourAnswersPage.selectLink(link)
   }
 }

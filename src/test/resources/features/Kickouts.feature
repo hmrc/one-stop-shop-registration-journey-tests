@@ -120,7 +120,7 @@ Feature: Not Eligible for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                    | fieldId         |
       | Account Name            | accountName     |
@@ -151,7 +151,7 @@ Feature: Not Eligible for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                    | fieldId         |
       | Account Name            | accountName     |
@@ -182,7 +182,7 @@ Feature: Not Eligible for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                    | fieldId         |
       | Account Name            | accountName     |
@@ -214,7 +214,7 @@ Feature: Not Eligible for One Stop Shop
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
-    And the user completes the email verification process
+    And the user completes the registration email verification process
     And the user completes details on the bank-details page
       | data                    | fieldId         |
       | Account Name            | accountName     |
@@ -241,4 +241,22 @@ Feature: Not Eligible for One Stop Shop
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
     Then the user is on the already-registered page
+
+  Scenario: A user who has not previously registered for OSS cannot access the amend registration journey
+    Given a non-registered user with VRN 100000001 accesses the amend registration journey
+    Then the user is on the cannot-use-not-registered page
+
+  Scenario: A user is directed to an error page when there is an issue submitting their amended registration
+    Given a registered user with VRN 600000022 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user presses the continue button
+    Then the user is on the error-submitting-amendment page
+    When the user clicks on the try again later link
+    Then the user is on the change-your-registration page
+    When the user presses the continue button
+    And the user clicks on the back to your account link
+    Then the user is on the your-account page
+
+#  Test reminder: User can’t end up at amend reg without having the OSS enrolment
+
 
