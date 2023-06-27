@@ -36,7 +36,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user selects Germany on the first previous-country page
     And the user answer oss on the previous-scheme/1/1 page
     And the user add DE123456789 on the first previous-oss-scheme-number page
-    Then the user is on the scheme-still-active?countryCode=EE page
+    Then the user is on the scheme-still-active/1/1?countryCode=EE page
 
   Scenario: Quarantined OSS in another EU country
     Given the user accesses the service
@@ -53,7 +53,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user selects France on the first previous-country page
     And the user answer oss on the previous-scheme/1/1 page
     And the user add FRXX123456789 on the first previous-oss-scheme-number page
-    Then the user is on the scheme-quarantined page
+    Then the user is on the scheme-quarantined/1/1 page
 
   Scenario: Quarantined IOSS in another EU country
     Given the user accesses the service
@@ -72,7 +72,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user answers no on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM3001234567 on the previous-ioss-number/1/1 page
     And the user clicks continue on the first previous-ioss-number/1 page
-    Then the user is on the scheme-quarantined page
+    Then the user is on the scheme-quarantined/1/1 page
 
   Scenario: Quarantined intermediary identification number in another EU country
     Given the user accesses the service
@@ -91,7 +91,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user answers yes on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM2761234567 on the previous-ioss-number/1/1 page
     And the user inputs intermediary identification number IN2761234567 on the previous-ioss-number/1/1 page
-    Then the user is on the scheme-quarantined page
+    Then the user is on the scheme-quarantined/1/1 page
 
   Scenario: Cannot register with a fixed establishment that is already registered on a One Stop Shop service
     Given the user accesses the service
@@ -112,7 +112,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
     And the user answer vat number on the registration-type/1 page
     And the user adds EL123456789 on the first eu-vat-number page
-    Then the user is on the fixed-establishment-vrn-already-registered page
+    Then the user is on the fixed-establishment-vrn-already-registered/1 page
 
   Scenario: Cannot register with a fixed establishment that is excluded on a One Stop Shop service
     Given the user accesses the service
