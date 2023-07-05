@@ -257,6 +257,8 @@ Feature: Not Eligible for One Stop Shop
     And the user clicks on the back to your account link
     Then the user is on the your-account page
 
-#  Test reminder: User can’t end up at amend reg without having the OSS enrolment
+  Scenario: A historic user who was registered on oss without an enrolment can't access the amend journey
+    Given a non-registered user with VRN 300000002 accesses the amend registration journey
+    Then the user is presented with the technical difficulties page
 
 

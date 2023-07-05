@@ -356,4 +356,9 @@ class RegistrationStepDef extends BaseStepDef {
     driver.findElement(By.id("value")).clear()
     CommonPage.enterData(answer)
   }
+
+  Then("""^the user is presented with the technical difficulties page$""") { () =>
+    val htmlHeader = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(htmlHeader.equals("Sorry, we’re experiencing technical difficulties"))
+  }
 }
