@@ -125,7 +125,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers yes on the amend-sells-goods-to-eu-consumers/2 page
     And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/2 page
     And the user answer vat number on the amend-registration-type/2 page
-    And the user amends NL0123456788AB on the second amend-eu-vat-number page
+    And the user clicks continue on the second amend-eu-vat-number page
     And the user adds Amsterdam trading on the second amend-eu-trading-name page
     And the user completes details on the amend-eu-fixed-establishment-address/2 page
       | data               | fieldId    |
