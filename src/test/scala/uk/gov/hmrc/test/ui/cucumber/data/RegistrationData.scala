@@ -810,8 +810,8 @@ object RegistrationData {
          |        "nonce" : "t9gSM16Bekam+ze67+naJ3h/C3olxpnM+xQD4HlKHB98uSm/d/STjUSWYOl7rGuknO8v8xFeo/tUZTtbQF1Bt4IkwtEMze128uAuBsxwxrcZcZYaEnJo88cupckZZxA8"
          |    },
          |    "niPresence" : "principalPlaceOfBusinessInNi",
-         |    "submissionReceived" : "2023-05-30T07:56:41.967955Z",
-         |    "lastUpdated" : "2023-05-30T07:56:41.967957Z"
+         |    "submissionReceived" : "${LocalDate.now().minusDays(1)}T15:12:10.848897Z",
+         |    "lastUpdated" : "${LocalDate.now().minusDays(1)}T15:12:10.848897Z"
          |}
          |""".stripMargin,
       s"""
