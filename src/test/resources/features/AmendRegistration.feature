@@ -24,7 +24,6 @@ Feature: Amending a registration for One Stop Shop
     And the user presses the continue button
     And the user answers no on the amend-previous-scheme-answers/1 page
     Then the user answers no on the amend-previous-schemes-overview page
-    And the user clicks through the amend-start-date page
     And the user is on the change-your-registration page
     When the user selects the change link for amend-tax-in-eu
     Then the user answers yes on the amend-tax-in-eu page
@@ -117,7 +116,6 @@ Feature: Amending a registration for One Stop Shop
     Then the user selects the remove link for amend-remove-deregistration\/6
     And the user answers yes on the amend-remove-deregistration/6 page
     Then the user answers no on the amend-previous-schemes-overview page
-    And the user clicks through the amend-start-date page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-add-tax-details
     Then the user selects the change link for amend-check-tax-details\/2
