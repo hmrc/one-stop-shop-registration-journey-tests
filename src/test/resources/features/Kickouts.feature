@@ -261,4 +261,13 @@ Feature: Not Eligible for One Stop Shop
     Given a non-registered user with VRN 300000002 accesses the amend registration journey
     Then the user is presented with the technical difficulties page
 
+  Scenario: User with expired VRN cannot register
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 600000001 and strong credentials
+    Then the user is on the invalid-vrn-date page
+
 
