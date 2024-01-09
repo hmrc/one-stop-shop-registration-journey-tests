@@ -111,7 +111,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user chooses yes on the first sells-goods-to-eu-consumers page
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
     And the user answer vat number on the registration-type/1 page
-    And the user adds EL123456789 on the first eu-vat-number page
+    And the user adds EL123456788 on the first eu-vat-number page
     Then the user is on the fixed-establishment-vrn-already-registered/1 page
 
   Scenario: Cannot register with a fixed establishment that is excluded on a One Stop Shop service
