@@ -1,4 +1,4 @@
-@Registration
+@Registration @wip
 Feature: Registering for One Stop Shop
 
   @ZAP @Accessibility
