@@ -16,18 +16,12 @@
 
 package uk.gov.hmrc.test.ui.driver
 
-import com.typesafe.scalalogging.LazyLogging
-import org.openqa.selenium.WebDriver
-import org.openqa.selenium.chrome.ChromeOptions
-import uk.gov.hmrc.webdriver.SingletonDriver
 
-trait BrowserDriver extends LazyLogging {
-  logger.info(
-    s"Instantiating Browser: ${sys.props.getOrElse("browser", "'browser' System property not set. This is required")}"
-  )
+import org.openqa.selenium.remote.RemoteWebDriver
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-  val options = new ChromeOptions()
-  options.addArguments("--remote-allow-origins=*")
+trait BrowserDriver {
 
-  implicit lazy val driver: WebDriver = SingletonDriver.getInstance(Some(options))
+  implicit def driver: RemoteWebDriver = Driver.instance
+
 }

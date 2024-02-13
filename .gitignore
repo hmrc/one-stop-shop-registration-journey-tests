@@ -12,6 +12,7 @@ logs
 .history
 
 # IDE files
+/.bsp
 /.idea
 /*.iml
 /*.ipr
