@@ -226,7 +226,7 @@ Feature: Not Eligible for One Stop Shop
 
   Scenario: User who already has an OSS VAT enrolment but has no saved registration sees an error page
     Given the user accesses the stub url
-    And the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment 100000001 and strong credentials
+    And the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment 100000700 and strong credentials
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
     And the user answers yes on the northern-ireland-business page
@@ -243,7 +243,7 @@ Feature: Not Eligible for One Stop Shop
     Then the user is on the already-registered page
 
   Scenario: A user who has not previously registered for OSS cannot access the amend registration journey
-    Given a non-registered user with VRN 100000001 accesses the amend registration journey
+    Given a non-registered user with VRN 100000700 accesses the amend registration journey
     Then the user is on the cannot-use-not-registered page
 
   Scenario: A user is directed to an error page when there is an issue submitting their amended registration

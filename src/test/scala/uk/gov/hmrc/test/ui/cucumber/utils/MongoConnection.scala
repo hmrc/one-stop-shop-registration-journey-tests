@@ -95,5 +95,7 @@ object MongoConnection {
     dropRecord("one-stop-shop-registration", "saved-user-answers", "300000002")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "300000003")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "600000022")
+
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000600")
   }
 }

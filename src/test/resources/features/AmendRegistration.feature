@@ -184,7 +184,7 @@ Feature: Amending a registration for One Stop Shop
   Scenario: A user is no longer able to amend their start date due to being over the time limit
     Given a registered user with VRN 300000001 accesses the amend registration journey
     Then the user is on the change-your-registration page
-    When the user selects the change link for amend-planned-first-sale
+    When the user selects the change link for amend-date-of-first-sale
     Then the user is on the no-longer-amendable page
     When the user presses the continue button
     Then the user is on the change-your-registration page
@@ -198,9 +198,9 @@ Feature: Amending a registration for One Stop Shop
   Scenario: A user is can amend their start date within the time limit
     Given a registered user with VRN 300000003 accesses the amend registration journey
     Then the user is on the change-your-registration page
-    When the user selects the change link for amend-already-made-sales
-    And the user answers yes on the amend-already-made-sales page
+    When the user selects the change link for amend-date-of-first-sale
     Then the user enters today for amend-date-of-first-sale
+    Then the user is on the amend-start-date page
     And the user presses the continue button
     When the user presses the continue button
     Then the user is on the successful-amend page
@@ -210,14 +210,6 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the delete-all-fixed-establishment page
     When the user presses the continue button
     Then the user is on the successful-amend page
-    When the user clicks on the Returns account link
-    Then the user clicks on the Change your registration link
-    And the user selects the change link for amend-add-tax-details
-    And the user answers yes on the amend-add-tax-details page
-    And the user selects Portugal on the third amend-eu-tax page
-    Then the user answers yes on the amend-sells-goods-to-eu-consumers/3 page
-    And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/3 page
-    Then the user is on the amend-no-fixed-establishments-required/3 page
 
   Scenario: A user can cancel their registration amends
     Given a registered user with VRN 300000001 accesses the amend registration journey
