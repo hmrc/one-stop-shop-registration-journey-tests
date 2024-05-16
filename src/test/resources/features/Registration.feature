@@ -76,7 +76,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the sell-from-northern-ireland page
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000002 and strong credentials
+    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
     And the user answers no on the have-uk-trading-name page
     And the user answers no on the already-made-sales page
