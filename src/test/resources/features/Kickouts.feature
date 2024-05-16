@@ -130,37 +130,6 @@ Feature: Not Eligible for One Stop Shop
     And the user selects the register button
     Then the user is on the error-submitting-registration page
 
-  Scenario: Submitting a registration when already registered on ETMP
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 222222223 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers yes on the already-made-sales page
-    And the user enters yesterday for date-of-first-sale
-    And the user answers no on the previous-oss page
-    And the user clicks through the start-date page
-    And the user answers no on the tax-in-eu page
-    And the user answers no on the online-marketplace page
-    And the user answers no on the give-website-address page
-    And the user completes details on the business-contact-details page
-      | data           | fieldId         |
-      | Joe Bloggs     | fullName        |
-      | 01234567890    | telephoneNumber |
-      | email@test.com | emailAddress    |
-    And the user completes the registration email verification process
-    And the user completes details on the bank-details page
-      | data                    | fieldId         |
-      | Account Name            | accountName     |
-      | ABCDEF2A                | bic             |
-      | GB33BUKB20201555555555  | iban            |
-    And the user is at the check-answers page
-    And the user selects the register button
-    Then the user is on the error-submitting-registration page
-
   Scenario: Error creating enrolment when submitting registration to ETMP
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -240,6 +209,15 @@ Feature: Not Eligible for One Stop Shop
     And the user answers yes on the sell-from-northern-ireland page
     And the user answers yes on the northern-ireland-business page
     And the user clicks through the business-pay page
+    Then the user is on the already-registered page
+
+  Scenario: Submitting a registration when the user has no OSS enrolment but is already registered on ETMP
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 222222223 and strong credentials
     Then the user is on the already-registered page
 
   Scenario: A user who has not previously registered for OSS cannot access the amend registration journey
