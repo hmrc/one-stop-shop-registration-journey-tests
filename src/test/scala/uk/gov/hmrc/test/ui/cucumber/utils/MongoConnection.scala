@@ -17,7 +17,6 @@
 package uk.gov.hmrc.test.ui.cucumber.utils
 
 import org.mongodb.scala.MongoClient
-import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.model.Filters
 
 import scala.concurrent.Await
@@ -46,54 +45,20 @@ object MongoConnection {
       case e: Exception => println("Error: " + e)
     }
 
-  def insert(source: List[String], database: String, collection: String): Unit =
-    try {
-      val db  = mongoClient.getDatabase(database)
-      val col = db.getCollection(collection)
-      source.map { e =>
-        val doc = Document(e)
-        Await.result(
-          col.insertOne(doc).toFutureOption(),
-          timeout
-        )
-      }
-    } catch {
-      case ex: Exception => println(s"Error inserting data into MongoDB: $ex")
-    }
-
-  def dropRegistrations(): Unit = {
-    dropRecord("one-stop-shop-registration", "registrations", "100000001")
-    dropRecord("one-stop-shop-registration", "registrations", "100000002")
-    dropRecord("one-stop-shop-registration", "registrations", "100000003")
-    dropRecord("one-stop-shop-registration", "registrations", "123456789")
-    dropRecord("one-stop-shop-registration", "registrations", "777777771")
-    dropRecord("one-stop-shop-registration", "registrations", "777777778")
-    dropRecord("one-stop-shop-registration", "registrations", "777777779")
-    dropRecord("one-stop-shop-registration", "registrations", "222222223")
-    dropRecord("one-stop-shop-registration", "registrations", "300000001")
-    dropRecord("one-stop-shop-registration", "registrations", "300000002")
-    dropRecord("one-stop-shop-registration", "registrations", "300000003")
-    dropRecord("one-stop-shop-registration", "registrations", "600000022")
-  }
   def dropSavedAnswers(): Unit = {
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000001")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "222222222")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "222222223")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "222222233")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000002")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000003")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000004")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000005")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "444444444")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "666000001")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "666000004")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "123456789")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "777777771")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "777777778")
-    dropRecord("one-stop-shop-registration", "saved-user-answers", "777777779")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000600")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "300000001")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "300000002")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "300000003")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "600000022")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "777777771")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000001")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "100000002")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "777777779")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "777777778")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "666000004")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "222222223")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "222222233")
+    dropRecord("one-stop-shop-registration", "saved-user-answers", "666000001")
   }
 }
