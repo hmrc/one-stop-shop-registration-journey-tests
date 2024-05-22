@@ -23,6 +23,7 @@ import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
+import java.time.LocalDate
 import scala.jdk.CollectionConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
@@ -182,5 +183,14 @@ object CommonPage extends BrowserDriver with Matchers {
       case _                      => fail("unknown check button")
     }
 
+  }
+
+  def getNextQuarterCommencementDate(): LocalDate = {
+
+    val lastMonthofQuarter = (((LocalDate.now().getMonthValue  - 1) / 3) + 1) * 3
+    val dateInLastMonthOfQuarter = LocalDate.now().withMonth(lastMonthofQuarter)
+    val lastDayOfCurrentQuarter = dateInLastMonthOfQuarter.withDayOfMonth(dateInLastMonthOfQuarter.lengthOfMonth())
+
+    lastDayOfCurrentQuarter.plusDays(1)
   }
 }
