@@ -361,4 +361,14 @@ class RegistrationStepDef extends BaseStepDef {
     val htmlHeader = driver.findElement(By.tagName("h1")).getText
     Assert.assertTrue(htmlHeader.equals("Sorry, we’re experiencing technical difficulties"))
   }
+
+  Then("""^the commencement date is set to the first day of the next quarter$""") { () =>
+
+    val dateFormatter: DateTimeFormatter     = DateTimeFormatter.ofPattern("d MMMM yyyy")
+    val firstDayOfNextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
+
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains(s"You must include all eligible sales from $firstDayOfNextQuarter in your first return."))
+    Assert.assertTrue(htmlBody.contains(s"If you make your first sale before $firstDayOfNextQuarter you must amend your registration to tell us."))
+  }
 }

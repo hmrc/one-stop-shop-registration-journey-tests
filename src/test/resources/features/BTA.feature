@@ -72,22 +72,6 @@ Feature: Entering the Registration service via BTA
     Then the user clicks on the BTA link
     And the user is on the business-account page
 
-  Scenario: The user enters the service via BTA and is directed back to BTA via the Register Later kickout page
-    Given the user accesses the stub url
-    And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
-    Then the user manually navigates to the from-external link
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers no on the already-made-sales page
-    And the user answers no on the planned-first-sale page
-    Then the user is on the register-later page
-    Then the user clicks on the BTA link
-    And the user is on the business-account page
-
   Scenario: The user enters the service via BTA and is directed back to BTA via the post-auth already registered page
     Given the user accesses the stub url
     And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000003 and strong credentials via authwiz
