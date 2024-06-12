@@ -23,6 +23,7 @@ import uk.gov.hmrc.test.ui.driver.BrowserDriver
 object AuthActions extends BrowserDriver {
 
   def loginUsingAuthorityWizard(
+    user: String,
     affinityGroup: String,
     vrn: String,
     withOssEnrolment: Boolean,
@@ -43,6 +44,12 @@ object AuthActions extends BrowserDriver {
     selectCredentialStrength.selectByValue("strong")
     val selectAffinityGroup      = new Select(driver.findElement(By.id("affinityGroupSelect")))
     selectAffinityGroup.selectByValue("Organisation")
+
+    if (user == "assistant") {
+      val selectCredentialRole = new Select(driver.findElement(By.id("credential-role-select")))
+      selectCredentialRole.selectByValue("Assistant")
+    }
+
     driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
     driver
       .findElement(By.id("input-0-0-name"))
@@ -66,8 +73,8 @@ object AuthActions extends BrowserDriver {
   def loginUsingScpStub(affinityGroup: String, vrn: String): Unit = {
 
     driver.findElement(By.partialLinkText("Register SCP User")).click()
-    val select = new Select(driver.findElement(By.id("accountType")))
-    select.selectByValue(affinityGroup)
+    val selectAccountType = new Select(driver.findElement(By.id("accountType")))
+    selectAccountType.selectByValue(affinityGroup)
 
     driver.findElement(By.id("isAdmin")).click()
     driver.findElement(By.id("groupProfile")).sendKeys("123")

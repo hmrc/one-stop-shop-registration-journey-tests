@@ -187,9 +187,9 @@ object CommonPage extends BrowserDriver with Matchers {
 
   def getNextQuarterCommencementDate(): LocalDate = {
 
-    val lastMonthofQuarter = (((LocalDate.now().getMonthValue  - 1) / 3) + 1) * 3
+    val lastMonthofQuarter       = (((LocalDate.now().getMonthValue - 1) / 3) + 1) * 3
     val dateInLastMonthOfQuarter = LocalDate.now().withMonth(lastMonthofQuarter)
-    val lastDayOfCurrentQuarter = dateInLastMonthOfQuarter.withDayOfMonth(dateInLastMonthOfQuarter.lengthOfMonth())
+    val lastDayOfCurrentQuarter  = dateInLastMonthOfQuarter.withDayOfMonth(dateInLastMonthOfQuarter.lengthOfMonth())
 
     lastDayOfCurrentQuarter.plusDays(1)
   }
