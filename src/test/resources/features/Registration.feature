@@ -420,3 +420,12 @@ Feature: Registering for One Stop Shop
     Then the user is at the check-answers page
     Then the user submits their registration
 
+  Scenario: An assistant user can access the registration service
+    Given the user accesses the stub url
+    And the assistant signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user is on the confirm-vat-details page
+

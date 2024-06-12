@@ -57,13 +57,13 @@ class RegistrationStepDef extends BaseStepDef {
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
   ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = true, "registration")
+    AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, withOssEnrolment = true, "registration")
   }
 
   Given(
-    "^the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
-  ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment = false, "registration")
+    "^the (user|assistant) signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
+  ) { (user: String, vrn: String) =>
+    AuthActions.loginUsingAuthorityWizard(user, "Organisation", vrn, withOssEnrolment = false, "registration")
   }
 
   When("""^a (non-registered|registered) user with VRN (.*) accesses the amend registration journey""") {
@@ -73,12 +73,12 @@ class RegistrationStepDef extends BaseStepDef {
       if (registrationStatus == "non-registered") {
         withOssEnrolment = false
       }
-      AuthActions.loginUsingAuthorityWizard("Organisation", vrn, withOssEnrolment, "amend")
+      AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, withOssEnrolment, "amend")
   }
 
   When("""^a registered user with VRN (.*) accesses the returns service""") { (vrn: String) =>
     CommonPage.goToStartOfJourneyFromStub()
-    AuthActions.loginUsingAuthorityWizard("Organisation", vrn, true, "returns")
+    AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, true, "returns")
   }
 
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
@@ -363,12 +363,17 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^the commencement date is set to the first day of the next quarter$""") { () =>
-
-    val dateFormatter: DateTimeFormatter     = DateTimeFormatter.ofPattern("d MMMM yyyy")
-    val firstDayOfNextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
+    val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
+    val firstDayOfNextQuarter            = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
 
     val htmlBody = driver.findElement(By.tagName("body")).getText
-    Assert.assertTrue(htmlBody.contains(s"You must include all eligible sales from $firstDayOfNextQuarter in your first return."))
-    Assert.assertTrue(htmlBody.contains(s"If you make your first sale before $firstDayOfNextQuarter you must amend your registration to tell us."))
+    Assert.assertTrue(
+      htmlBody.contains(s"You must include all eligible sales from $firstDayOfNextQuarter in your first return.")
+    )
+    Assert.assertTrue(
+      htmlBody.contains(
+        s"If you make your first sale before $firstDayOfNextQuarter you must amend your registration to tell us."
+      )
+    )
   }
 }
