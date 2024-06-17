@@ -66,14 +66,14 @@ class RegistrationStepDef extends BaseStepDef {
     AuthActions.loginUsingAuthorityWizard(user, "Organisation", vrn, withOssEnrolment = false, "registration")
   }
 
-  When("""^a (non-registered|registered) user with VRN (.*) accesses the amend registration journey""") {
-    (registrationStatus: String, vrn: String) =>
+  When("""^a (non-registered|registered) user with VRN (.*) accesses the (amend|rejoin) registration journey""") {
+    (registrationStatus: String, vrn: String, journey: String) =>
       CommonPage.goToStartOfJourneyFromStub()
       var withOssEnrolment = true
       if (registrationStatus == "non-registered") {
         withOssEnrolment = false
       }
-      AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, withOssEnrolment, "amend")
+      AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, withOssEnrolment, journey)
   }
 
   When("""^a registered user with VRN (.*) accesses the returns service""") { (vrn: String) =>
@@ -375,5 +375,9 @@ class RegistrationStepDef extends BaseStepDef {
         s"If you make your first sale before $firstDayOfNextQuarter you must amend your registration to tell us."
       )
     )
+  }
+
+  When("""^the user manually navigates to the (.*) page$""") { (page: String) =>
+    CommonPage.navigateToPage(page)
   }
 }
