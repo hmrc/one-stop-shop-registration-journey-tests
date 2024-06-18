@@ -155,6 +155,23 @@ Feature: Re-register for OSS Scheme
     When the user presses the continue button
     Then the user is on the successful-rejoin page
 
+  Scenario: A trader amends their email address during rejoin
+    Given a registered user with VRN 600000019 accesses the rejoin registration journey
+    Then the user is on the rejoin-already-made-sales page
+    When the user answers yes on the rejoin-already-made-sales page
+    Then the user enters today for date-of-first-sale
+    Then the rejoin-start-date page displays a commencement date of today
+    And the user presses the continue button
+    Then the user is on the rejoin-registration page
+    When the user selects the change link for amend-business-contact-details
+    And the user amends details on the rejoin-amend-business-contact-details page
+      | data                  | fieldId      |
+      | rejoin-test@email.com | emailAddress |
+    And the user completes the rejoin email verification process
+    Then the user is on the rejoin-registration page
+    When the user presses the continue button
+    Then the user is on the successful-rejoin page
+
   Scenario: A trader who is rejoining cannot remove existing previous registrations retrieved from ETMP
     Given a registered user with VRN 600000050 accesses the rejoin registration journey
     Then the user is on the rejoin-already-made-sales page
