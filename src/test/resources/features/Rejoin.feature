@@ -23,6 +23,21 @@ Feature: Re-register for OSS Scheme
     When the user presses the continue button
     Then the user is on the successful-rejoin page
 
+  Scenario: An excluded user can set date of first sale to this quarter and then change to not made sales in this quarter
+    Given a registered user with VRN 600000019 accesses the rejoin registration journey
+    Then the user is on the rejoin-already-made-sales page
+    When the user answers yes on the rejoin-already-made-sales page
+    Then the user enters today for date-of-first-sale
+    Then the rejoin-start-date page displays a commencement date of today
+    And the user presses the continue button
+    Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-already-made-sales
+    And the user answers no on the rejoin-already-made-sales page
+    And the commencement date is set to the first day of the next quarter
+    And the user presses the continue button
+    When the user presses the continue button
+    Then the user is on the successful-rejoin page
+
   Scenario: An excluded user who is rejoining the OSS scheme can make amendments to their minimal registration data
     Given a registered user with VRN 600000019 accesses the rejoin registration journey
     Then the user is on the rejoin-already-made-sales page
@@ -64,19 +79,19 @@ Feature: Re-register for OSS Scheme
       | 1 Address | line1      |
       | A Town    | townOrCity |
     And the user clicks continue on the first rejoin-amend-check-tax-details page
-#    Then the user answers yes on the rejoin-amend-add-tax-details page
-#    And the user selects Slovenia on the second rejoin-amend-eu-tax page
-#    Then the user answers yes on the rejoin-sells-goods-to-eu-consumers/2 page
-#    And the user answer dispatch warehouse on the rejoin-sells-goods-to-eu-consumer-method/2 page
-#    Then the user answer vat number on the rejoin-registration-type/2 page
-#    And the user adds SI12345678 on the second rejoin-amend-eu-vat-number page
-#    And the user adds Slovenia Goods on the second rejoin-amend-eu-send-goods-trading-name page
-#    And the user completes details on the rejoin-amend-eu-send-goods-address/2 page
-#      | data      | fieldId    |
-#      | 1 Address | line1      |
-#      | A Town    | townOrCity |
-#      | SL123355  | postCode   |
-#    And the user clicks continue on the second rejoin-amend-check-tax-details page
+    Then the user answers yes on the rejoin-amend-add-tax-details page
+    And the user selects Slovenia on the second rejoin-amend-eu-tax page
+    Then the user answers yes on the rejoin-sells-goods-to-eu-consumers/2 page
+    And the user answer dispatch warehouse on the rejoin-sells-goods-to-eu-consumer-method/2 page
+    Then the user answer vat number on the rejoin-registration-type/2 page
+    And the user adds SI12345678 on the second rejoin-amend-eu-vat-number page
+    And the user adds Slovenia Goods on the second rejoin-amend-eu-send-goods-trading-name page
+    And the user completes details on the rejoin-amend-eu-send-goods-address/2 page
+      | data      | fieldId    |
+      | 1 Address | line1      |
+      | A Town    | townOrCity |
+      | SL123355  | postCode   |
+    And the user clicks continue on the second rejoin-amend-check-tax-details page
     Then the user answers no on the rejoin-amend-add-tax-details page
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-give-website-address
@@ -99,12 +114,8 @@ Feature: Re-register for OSS Scheme
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-have-uk-trading-name
     And the user answers no on the rejoin-amend-have-uk-trading-name page
-#    technical difficulties
+    And the user answers yes on the rejoin-amend-remove-all-trading-names page
     Then the user is on the rejoin-registration page
-#    this should not exist in rejoin
-#    When the user selects the change link for rejoin-amend-previous-oss
-#    Then the user answers no on the rejoin-amend-previous-oss page
-#    Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-tax-in-eu
     Then the user answers no on the rejoin-amend-tax-in-eu page
     And the user answers yes on the amend-remove-all-eu-details page
@@ -202,6 +213,7 @@ Feature: Re-register for OSS Scheme
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
+#    not set up
     When the user manually navigates to the rejoin-amend-remove-previous-scheme/1/1 page
     Then the user is presented with the technical difficulties page
 
