@@ -19,6 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.CommonPage.clickBackButton
 import uk.gov.hmrc.test.ui.pages._
 
 import java.time.LocalDate
@@ -240,7 +241,7 @@ class RegistrationStepDef extends BaseStepDef {
       CommonPage.completeForm(dataTable)
   }
 
-  And("""^the user completes the (registration|amend) email verification process""") { (mode: String) =>
+  And("""^the user completes the (registration|amend|rejoin) email verification process""") { (mode: String) =>
     val journeyId = driver.getCurrentUrl.split("/")(5)
 
     CommonPage.goToEmailVerificationPasscodeGeneratorUrl()
@@ -254,6 +255,10 @@ class RegistrationStepDef extends BaseStepDef {
       driver
         .navigate()
         .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/change-your-registration")
+    } else if (mode == "rejoin") {
+      driver
+        .navigate()
+        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/rejoin-registration")
     } else {
       driver
         .navigate()
@@ -379,5 +384,9 @@ class RegistrationStepDef extends BaseStepDef {
 
   When("""^the user manually navigates to the (.*) page$""") { (page: String) =>
     CommonPage.navigateToPage(page)
+  }
+
+  Then("""^the user clicks back on the browser$""") { () =>
+    clickBackButton()
   }
 }

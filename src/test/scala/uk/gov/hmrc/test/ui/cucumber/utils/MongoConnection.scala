@@ -17,6 +17,7 @@
 package uk.gov.hmrc.test.ui.cucumber.utils
 
 import org.mongodb.scala.MongoClient
+import org.mongodb.scala.bson.collection.immutable.Document
 import org.mongodb.scala.model.Filters
 
 import scala.concurrent.Await
@@ -45,6 +46,21 @@ object MongoConnection {
       case e: Exception => println("Error: " + e)
     }
 
+  def insert(source: List[String], database: String, collection: String): Unit =
+    try {
+      val db  = mongoClient.getDatabase(database)
+      val col = db.getCollection(collection)
+      source.map { e =>
+        val doc = Document(e)
+        Await.result(
+          col.insertOne(doc).toFutureOption(),
+          timeout
+        )
+      }
+    } catch {
+      case ex: Exception => println(s"Error inserting data into MongoDB: $ex")
+    }
+
   def dropSavedAnswers(): Unit = {
     dropRecord("one-stop-shop-registration", "saved-user-answers", "100000600")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "300000001")
@@ -60,5 +76,11 @@ object MongoConnection {
     dropRecord("one-stop-shop-registration", "saved-user-answers", "222222223")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "222222233")
     dropRecord("one-stop-shop-registration", "saved-user-answers", "666000001")
+  }
+
+  def dropReturns(): Unit = {
+    dropRecord("one-stop-shop-returns", "returns", "600000019")
+    dropRecord("one-stop-shop-returns", "returns", "100000301")
+    dropRecord("one-stop-shop-returns", "returns", "600000050")
   }
 }

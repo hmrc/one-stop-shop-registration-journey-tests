@@ -198,4 +198,9 @@ object CommonPage extends BrowserDriver with Matchers {
     driver
       .navigate()
       .to(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/$page")
+
+  def clickBackButton(): Unit =
+    driver
+      .navigate()
+      .back()
 }
