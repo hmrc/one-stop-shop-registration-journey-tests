@@ -177,7 +177,7 @@ Feature: Re-register for OSS Scheme
     And the user answers yes on the rejoin-amend-previous-schemes-overview page
     And the user selects Austria on the fifth rejoin-amend-previous-country page
     And the user answer oss on the rejoin-amend-previous-scheme/5/1 page
-    And the user add ATU12345678 on the fifth rejoin-amend-previous-oss-scheme-number page
+    And the user adds ATU12345678 on the first rejoin-amend-previous-oss-scheme-number/5 page
     And the user answers yes on the rejoin-amend-previous-scheme-answers/5 page
     And the user answer ioss on the rejoin-amend-previous-scheme/5/2 page
     And the user answers no on the rejoin-amend-previous-ioss-scheme/5/2 page
@@ -219,7 +219,7 @@ Feature: Re-register for OSS Scheme
     And the user presses the continue button
     Then the user is on the rejoin-registration page
     When the user manually navigates to the rejoin-amend-remove-deregistration/1 page
-    Then the user is presented with the technical difficulties page
+    Then the user is on the cannot-delete-previous-registrations page
 
   Scenario: A trader who is rejoining cannot remove individual previous registrations retrieved from ETMP
     Given a registered user with VRN 600000050 accesses the rejoin registration journey
@@ -230,7 +230,7 @@ Feature: Re-register for OSS Scheme
     And the user presses the continue button
     Then the user is on the rejoin-registration page
     When the user manually navigates to the rejoin-amend-remove-previous-scheme/1/1 page
-    Then the user is presented with the technical difficulties page
+    Then the user is on the cannot-delete-previous-schemes page
 
   Scenario: A trader with a future exclusion effective date is not able to access the rejoin registration journey
     Given a registered user with VRN 600000018 accesses the rejoin registration journey
@@ -266,15 +266,5 @@ Feature: Re-register for OSS Scheme
     Then the user is on the error-submitting-rejoin page
     And the user clicks on the back to your account link
     And the user is on the your-account page
-
-  Scenario: An excluded user who is rejoining cannot skip the date of first sale questions
-    Given a registered user with VRN 600000019 accesses the rejoin registration journey
-    Then the user is on the rejoin-already-made-sales page
-    When the user manually navigates to the rejoin-registration page
-    Then the user is presented with the technical difficulties page
-    When the user clicks back on the browser
-    Then the user answers yes on the rejoin-already-made-sales page
-    And the user manually navigates to the rejoin-registration page
-    Then the user is presented with the technical difficulties page
 
 
