@@ -138,10 +138,10 @@ Feature: Re-register for OSS Scheme
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
-    When the user selects the change link for rejoin-amend-previous-schemes-overview
-    Then the user selects the remove link for rejoin-amend-remove-deregistration\/2
-    And the user answers yes on the rejoin-amend-remove-deregistration/2 page
-    And the user answers no on the rejoin-amend-previous-schemes-overview page
+    When the user selects the change link for rejoin-amend-add-tax-details
+    Then the user selects the remove link for rejoin-amend-remove-tax-details\/2
+    And the user answers yes on the rejoin-amend-remove-tax-details/2 page
+    And the user answers no on the rejoin-amend-add-tax-details page
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-add-website-address
     Then the user selects the remove link for rejoin-remove-website-address\/1
@@ -191,6 +191,7 @@ Feature: Re-register for OSS Scheme
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
+#    might not be required for oss
     When the user manually navigates to the remove-all-previous-registrations page
     Then the user is presented with the technical difficulties page
 
