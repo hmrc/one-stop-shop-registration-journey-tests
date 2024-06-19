@@ -153,7 +153,6 @@ Feature: Re-register for OSS Scheme
       | data                     | fieldId         |
       | Another full rejoin name | fullName        |
       | 09852355522525           | telephoneNumber |
-#    Currently having to do this even without changing email
     And the user completes the rejoin email verification process
     Then the user is on the rejoin-registration page
     When the user selects the change link for amend-bank-details
@@ -162,6 +161,34 @@ Feature: Re-register for OSS Scheme
       | Different Rejoin Name     | accountName |
       | ABCDDD2A                  | bic         |
       | GB33BUKB20201555555555555 | iban        |
+    Then the user is on the rejoin-registration page
+    When the user presses the continue button
+    Then the user is on the successful-rejoin page
+
+  Scenario: A trader can add and remove new previous schemes during rejoin
+    Given a registered user with VRN 600000050 accesses the rejoin registration journey
+    Then the user is on the rejoin-already-made-sales page
+    When the user answers yes on the rejoin-already-made-sales page
+    Then the user enters today for date-of-first-sale
+    Then the rejoin-start-date page displays a commencement date of today
+    And the user presses the continue button
+    Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-amend-previous-schemes-overview
+    And the user answers yes on the rejoin-amend-previous-schemes-overview page
+    And the user selects Austria on the fifth rejoin-amend-previous-country page
+    And the user answer oss on the rejoin-amend-previous-scheme/5/1 page
+    And the user add ATU12345678 on the fifth rejoin-amend-previous-oss-scheme-number page
+    And the user answers yes on the rejoin-amend-previous-scheme-answers/5 page
+    And the user answer ioss on the rejoin-amend-previous-scheme/5/2 page
+    And the user answers no on the rejoin-amend-previous-ioss-scheme/5/2 page
+    And the user inputs ioss reg number IM0407777777 on the rejoin-amend-previous-ioss-number/5/2 page
+    And the user presses the continue button
+    When the user selects the remove link for rejoin-amend-remove-previous-scheme\/5\/1
+    Then the user answers yes on the rejoin-amend-remove-previous-scheme/5/1 page
+    And the user answers no on the rejoin-amend-previous-scheme-answers/5 page
+    When the user selects the remove link for rejoin-amend-remove-deregistration\/5
+    Then the user answers yes on the rejoin-amend-remove-deregistration/5 page
+    And the user answers no on the rejoin-amend-previous-schemes-overview page
     Then the user is on the rejoin-registration page
     When the user presses the continue button
     Then the user is on the successful-rejoin page
@@ -183,18 +210,6 @@ Feature: Re-register for OSS Scheme
     When the user presses the continue button
     Then the user is on the successful-rejoin page
 
-  Scenario: A trader who is rejoining cannot remove existing previous registrations retrieved from ETMP
-    Given a registered user with VRN 600000050 accesses the rejoin registration journey
-    Then the user is on the rejoin-already-made-sales page
-    When the user answers yes on the rejoin-already-made-sales page
-    Then the user enters today for date-of-first-sale
-    Then the rejoin-start-date page displays a commencement date of today
-    And the user presses the continue button
-    Then the user is on the rejoin-registration page
-#    might not be required for oss
-    When the user manually navigates to the remove-all-previous-registrations page
-    Then the user is presented with the technical difficulties page
-
   Scenario: A trader who is rejoining cannot remove previous registrations for a country retrieved from ETMP
     Given a registered user with VRN 600000050 accesses the rejoin registration journey
     Then the user is on the rejoin-already-made-sales page
@@ -214,7 +229,6 @@ Feature: Re-register for OSS Scheme
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
-#    not set up
     When the user manually navigates to the rejoin-amend-remove-previous-scheme/1/1 page
     Then the user is presented with the technical difficulties page
 
