@@ -68,6 +68,7 @@ Feature: Amending a registration for One Stop Shop
       | data              | fieldId         |
       | Another full name | fullName        |
       | 09852355522525    | telephoneNumber |
+    And the user completes the amend email verification process
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-bank-details
     And the user amends details on the amend-bank-details page
