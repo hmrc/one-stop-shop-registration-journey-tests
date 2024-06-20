@@ -193,4 +193,14 @@ object CommonPage extends BrowserDriver with Matchers {
 
     lastDayOfCurrentQuarter.plusDays(1)
   }
+
+  def navigateToPage(page: String): Unit =
+    driver
+      .navigate()
+      .to(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/$page")
+
+  def clickBackButton(): Unit =
+    driver
+      .navigate()
+      .back()
 }
