@@ -82,5 +82,6 @@ object MongoConnection {
     dropRecord("one-stop-shop-returns", "returns", "600000019")
     dropRecord("one-stop-shop-returns", "returns", "100000301")
     dropRecord("one-stop-shop-returns", "returns", "600000050")
+    dropRecord("one-stop-shop-returns", "returns", "500000002")
   }
 }

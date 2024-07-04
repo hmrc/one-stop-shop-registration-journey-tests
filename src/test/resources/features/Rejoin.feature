@@ -267,4 +267,8 @@ Feature: Re-register for OSS Scheme
     And the user clicks on the back to your account link
     And the user is on the your-account page
 
+  Scenario: A user with expired NI protocol cannot re-register for the OSS scheme
+    Given a registered user with VRN 500000002 accesses the rejoin registration journey
+    Then the user is on the ni-protocol-expired page
+
 
