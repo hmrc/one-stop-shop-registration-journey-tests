@@ -271,4 +271,8 @@ Feature: Re-register for OSS Scheme
     Given a registered user with VRN 500000002 accesses the rejoin registration journey
     Then the user is on the ni-protocol-expired page
 
+  Scenario: A user that has now deregistered from VAT cannot re-register for the OSS scheme
+    Given a registered user with VRN 600000003 accesses the rejoin registration journey
+    Then the user is on the deregistered-kickout page
+
 

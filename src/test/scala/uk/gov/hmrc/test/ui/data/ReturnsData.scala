@@ -90,6 +90,24 @@ object ReturnsData {
          |    "submissionReceived" : "2024-07-02T09:54:46.918713Z",
          |    "lastUpdated" : "2024-07-02T09:54:46.918713Z"
          |}
+         |""".stripMargin,
+      s"""
+         |{
+         |    "_id" : ObjectId("668d4672f8ba07271a9969ff"),
+         |    "vrn" : "600000003",
+         |    "period" : {
+         |        "year" : 2024,
+         |        "quarter" : "Q1"
+         |    },
+         |    "reference" : "XI/XI600000003/Q1.2024",
+         |    "paymentReference" : "NI600000003Q124",
+         |    "startDate" : "2024-01-01",
+         |    "endDate" : "2024-03-31",
+         |    "salesFromNi" : [],
+         |    "salesFromEu" : [],
+         |    "submissionReceived" : "2024-07-09T14:17:22.201312Z",
+         |    "lastUpdated" : "2024-07-09T14:17:22.201312Z"
+         |}
          |""".stripMargin
     )
 }
