@@ -273,6 +273,6 @@ Feature: Re-register for OSS Scheme
 
   Scenario: A user that has now deregistered from VAT cannot re-register for the OSS scheme
     Given a registered user with VRN 600000003 accesses the rejoin registration journey
-    Then the user is on the deregistered-kickout page
+    Then the user is on the cannot-rejoin page
 
 
