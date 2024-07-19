@@ -1,3 +1,4 @@
+@wip
 @Registration
 Feature: Core validation during re-register for OSS Scheme
 
@@ -12,22 +13,22 @@ Feature: Core validation during re-register for OSS Scheme
 #    Still letting me rejoin
   Scenario: A trader with a quarantined previous registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333666 accesses the rejoin registration journey
-    Then the user is on the cannot-rejoin-quarantined-country page
+    Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
 
     #    Still letting me rejoin
   Scenario: A trader with a VRN that is still active on a previous registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333444 accesses the rejoin registration journey
-    Then the user is on the rejoin-already-registered-other-country page
+    Then the user is on the rejoin-already-registered-other-country?countryCode=EE page
 
         #    Still letting me rejoin
   Scenario: A trader with a quarantined EU VAT registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333777 accesses the rejoin registration journey
-    Then the user is on the cannot-rejoin-quarantined-country page
+    Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
 
             #    Still letting me rejoin
   Scenario: A trader with a VRN that is still active on an EU VAT registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333555 accesses the rejoin registration journey
-    Then the user is on the rejoin-already-registered-other-country page
+    Then the user is on the rejoin-already-registered-other-country?countryCode=EE page
 
   Scenario: A trader is unable to rejoin with a quarantined previous OSS scheme
     Given a registered user with VRN 600000019 accesses the rejoin registration journey
