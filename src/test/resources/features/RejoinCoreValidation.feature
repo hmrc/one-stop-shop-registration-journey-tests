@@ -74,7 +74,7 @@ Feature: Core validation during re-register for OSS Scheme
     Then the user answers yes on the rejoin-amend-previous-oss page
     And the user selects Greece on the first rejoin-amend-previous-country page
     And the user answer ioss on the rejoin-amend-previous-scheme/1/1 page
-    And the user answers no on the amend-previous-ioss-scheme page
+    And the user answers no on the rejoin-amend-previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM3001234567 on the rejoin-amend-previous-ioss-number/1/1 page
     And the user presses the continue button
     Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
@@ -92,9 +92,9 @@ Feature: Core validation during re-register for OSS Scheme
     Then the user answers yes on the rejoin-amend-previous-oss page
     And the user selects Germany on the first rejoin-amend-previous-country page
     And the user answer ioss on the rejoin-amend-previous-scheme/1/1 page
-    And the user answers yes on the amend-previous-ioss-scheme page
+    And the user answers yes on the rejoin-amend-previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM2761234567 on the rejoin-amend-previous-ioss-number/1/1 page
-    And the user inputs intermediary identification number IN2761234567 on the amend-previous-ioss-number/5/1 page
+    And the user inputs intermediary identification number IN2761234567 on the rejoin-amend-previous-ioss-number/1/1 page
     Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
 
   Scenario: A trader is able to rejoin with a previous IOSS scheme that is still active
@@ -109,7 +109,7 @@ Feature: Core validation during re-register for OSS Scheme
     Then the user answers yes on the rejoin-amend-previous-oss page
     And the user selects France on the first rejoin-amend-previous-country page
     And the user answer ioss on the rejoin-amend-previous-scheme/1/1 page
-    And the user answers no on the amend-previous-ioss-scheme page
+    And the user answers no on the rejoin-amend-previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM2501234567 on the rejoin-amend-previous-ioss-number/1/1 page
     And the user presses the continue button
     And the user answers no on the rejoin-amend-previous-scheme-answers/1 page
