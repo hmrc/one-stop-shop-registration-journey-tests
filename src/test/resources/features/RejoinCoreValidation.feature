@@ -1,4 +1,3 @@
-@wip
 @Registration
 Feature: Core validation during re-register for OSS Scheme
 
@@ -10,22 +9,18 @@ Feature: Core validation during re-register for OSS Scheme
     Given a registered user with VRN 333333111 accesses the rejoin registration journey
     Then the user is on the rejoin-already-registered-other-country?countryCode=EE page
 
-#    Still letting me rejoin
   Scenario: A trader with a quarantined previous registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333666 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
 
-    #    Still letting me rejoin
   Scenario: A trader with a VRN that is still active on a previous registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333444 accesses the rejoin registration journey
     Then the user is on the rejoin-already-registered-other-country?countryCode=EE page
 
-        #    Still letting me rejoin
   Scenario: A trader with a quarantined EU VAT registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333777 accesses the rejoin registration journey
     Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
 
-            #    Still letting me rejoin
   Scenario: A trader with a VRN that is still active on an EU VAT registration retrieved from ETMP cannot access the rejoin journey
     Given a registered user with VRN 333333555 accesses the rejoin registration journey
     Then the user is on the rejoin-already-registered-other-country?countryCode=EE page
@@ -44,7 +39,6 @@ Feature: Core validation during re-register for OSS Scheme
     And the user answer oss on the rejoin-amend-previous-scheme/1/1 page
     And the user add FRXX123456789 on the first rejoin-amend-previous-oss-scheme-number page
     Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
-#    Currently going to different kickout rejoin-amend-scheme-quarantined/1/1
 
   Scenario: A trader is unable to rejoin with a previous OSS scheme that is still active
     Given a registered user with VRN 600000019 accesses the rejoin registration journey
@@ -60,7 +54,6 @@ Feature: Core validation during re-register for OSS Scheme
     And the user answer oss on the rejoin-amend-previous-scheme/1/1 page
     And the user add DE123456789 on the first rejoin-amend-previous-oss-scheme-number page
     Then the user is on the rejoin-already-registered-other-country?countryCode=EE page
-#    Currently going to a different kickout rejoin-amend-scheme-still-active/1/1?countryCode=EE
 
   Scenario: A trader is unable to rejoin with a quarantined previous IOSS scheme
     Given a registered user with VRN 600000019 accesses the rejoin registration journey
@@ -78,7 +71,6 @@ Feature: Core validation during re-register for OSS Scheme
     And the user inputs ioss reg number IM3001234567 on the rejoin-amend-previous-ioss-number/1/1 page
     And the user presses the continue button
     Then the user is on the cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=2023-01-01 page
-#    Currently going to a different kickout /rejoin-amend-scheme-quarantined/1/1
 
   Scenario: A trader is unable to rejoin with a quarantined previous IOSS scheme with intermediary
     Given a registered user with VRN 600000019 accesses the rejoin registration journey
