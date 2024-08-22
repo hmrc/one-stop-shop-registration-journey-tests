@@ -27,6 +27,8 @@ import java.time.format.DateTimeFormatter
 
 class RegistrationStepDef extends BaseStepDef {
 
+  val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
+
   Given("^the user accesses the service$") { () =>
     CommonPage.goToStartOfJourney()
   }
@@ -181,13 +183,12 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When("^the (.*) page displays a commencement date of (today|yesterday)$") { (url: String, day: String) =>
-    val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
-    var date                             = LocalDate.now()
+    var date          = LocalDate.now()
     if (day == "yesterday") {
       date = date.minusDays(1)
     }
-    val htmlBody                         = driver.findElement(By.tagName("body")).getText
-    val startDateText                    =
+    val htmlBody      = driver.findElement(By.tagName("body")).getText
+    val startDateText =
       "You must include all eligible sales from " + date.format(dateFormatter) + " in your first return."
     CommonPage.checkUrl("start-date")
     Assert.assertTrue(htmlBody.contains(startDateText))
@@ -368,8 +369,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   Then("""^the commencement date is set to the first day of the next quarter$""") { () =>
-    val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
-    val firstDayOfNextQuarter            = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
+    val firstDayOfNextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
 
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(
@@ -389,4 +389,78 @@ class RegistrationStepDef extends BaseStepDef {
   Then("""^the user clicks back on the browser$""") { () =>
     clickBackButton()
   }
+
+  Then("""^the confirmation of no answers changed is displayed$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You haven't changed any details"))
+  }
+
+  Then("""^the confirmation of a changed date of first sale is displayed$""") { () =>
+    val today    = LocalDate.now().format(dateFormatter)
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Already made eligible sales Yes"))
+    Assert.assertTrue(htmlBody.contains(s"Date of first sale $today"))
+    Assert.assertTrue(htmlBody.contains(s"Include sales from this date $today"))
+  }
+
+  Then("""^the confirmation of changing to having not made eligible sales is displayed$""") { () =>
+    val nextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
+    val htmlBody    = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Already made eligible sales No"))
+    Assert.assertTrue(htmlBody.contains(s"Include sales from this date $nextQuarter"))
+  }
+
+  Then("""^all of the first combination answers are displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Have a different UK trading name Yes"))
+    Assert.assertTrue(htmlBody.contains("Trading names added my trading name"))
+    Assert.assertTrue(htmlBody.contains("another company"))
+    Assert.assertTrue(htmlBody.contains("Other One Stop Shop registrations Yes"))
+    Assert.assertTrue(htmlBody.contains("Countries registered in Finland"))
+    Assert.assertTrue(htmlBody.contains("Registered for tax in other EU countries Yes"))
+    Assert.assertTrue(htmlBody.contains("EU tax details added Portugal"))
+    Assert.assertTrue(htmlBody.contains("Slovenia"))
+    Assert.assertTrue(htmlBody.contains("Sell goods online Yes"))
+    Assert.assertTrue(htmlBody.contains("Trading websites added https://www.first-website.com"))
+    Assert.assertTrue(htmlBody.contains("https://www.anotherwebsiteurl.com"))
+    Assert.assertTrue(htmlBody.contains("Contact name or business department Another full name"))
+    Assert.assertTrue(htmlBody.contains("Telephone number 09852355522525"))
+    Assert.assertTrue(htmlBody.contains("Name on the account Different Name"))
+    Assert.assertTrue(htmlBody.contains("BIC or SWIFT code (if you have one) ABCDDD2A"))
+    Assert.assertTrue(htmlBody.contains("IBAN GB33BUKB20201555555555555"))
+  }
+
+  Then("""^all of the second combination answers are displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Trading names added Trading name two"))
+    Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
+    Assert.assertTrue(htmlBody.contains("Trading name 2"))
+    Assert.assertTrue(htmlBody.contains("Countries registered in Spain"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Republic of Cyprus"))
+    Assert.assertTrue(htmlBody.contains("Other businesses sell goods on your website or app No"))
+    Assert.assertTrue(htmlBody.contains("Trading websites added https://www.anotherwebsite.com"))
+    Assert.assertTrue(htmlBody.contains("Trading websites removed www.onewebsite.co.uk"))
+    Assert.assertTrue(htmlBody.contains("Contact name or business department Another full-name"))
+    Assert.assertTrue(htmlBody.contains("Email address email-test@test.com"))
+  }
+
+  Then("""^all of the third combination answers are displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Have a different UK trading name No"))
+    Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
+    Assert.assertTrue(htmlBody.contains("Trading name 2"))
+    Assert.assertTrue(htmlBody.contains("Registered for tax in other EU countries No"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Republic of Cyprus"))
+    Assert.assertTrue(htmlBody.contains("Netherlands"))
+    Assert.assertTrue(htmlBody.contains("Romania"))
+    Assert.assertTrue(htmlBody.contains("Sell goods online No"))
+    Assert.assertTrue(htmlBody.contains("Trading websites removed www.onewebsite.co.uk"))
+    Assert.assertTrue(htmlBody.contains("www.website2.org.uk"))
+  }
+
 }
