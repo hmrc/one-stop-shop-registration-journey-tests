@@ -1,4 +1,4 @@
-@Registration @wip
+@Registration
 Feature: Amending a registration for One Stop Shop
 
   @ZAP @Accessibility
