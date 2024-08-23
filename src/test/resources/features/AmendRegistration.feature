@@ -79,6 +79,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the change-your-registration page
     When the user presses the continue button
     Then the user is on the successful-amend page
+    And all of the first combination answers are displayed as changed on the confirmation page
 
   Scenario: A user can amend all of the answers on their registration - second combination (yes to no/amends)
     Given a registered user with VRN 300000002 accesses the amend registration journey
@@ -163,6 +164,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the change-your-registration page
     When the user presses the continue button
     Then the user is on the successful-amend page
+    And all of the second combination answers are displayed as changed on the confirmation page
 
   Scenario: A user can amend all of the answers on their registration - third combination (remove all)
     Given a registered user with VRN 300000002 accesses the amend registration journey
@@ -181,6 +183,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the change-your-registration page
     When the user presses the continue button
     Then the user is on the successful-amend page
+    And all of the third combination answers are displayed as changed on the confirmation page
 
   Scenario: A user is no longer able to amend their start date due to being over the time limit
     Given a registered user with VRN 300000001 accesses the amend registration journey
@@ -196,7 +199,20 @@ Feature: Amending a registration for One Stop Shop
     When the user presses the continue button
     Then the user is on the successful-amend page
 
-  Scenario: A user is can amend their start date within the time limit
+  Scenario: A user can amend their registration to have not yet made eligible sales within the time limit
+    Given a registered user with VRN 300000003 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-already-made-sales
+    Then the user answers no on the amend-already-made-sales page
+#    Temporary step - see bug VEOSS-1910
+    Then the user answers no on the amend-previous-oss page
+#    Then the user is on the amend-start-date page
+#    And the user presses the continue button
+    When the user presses the continue button
+    Then the user is on the successful-amend page
+    And the confirmation of changing to having not made eligible sales is displayed
+
+  Scenario: A user can amend their start date within the time limit
     Given a registered user with VRN 300000003 accesses the amend registration journey
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-date-of-first-sale
@@ -205,6 +221,7 @@ Feature: Amending a registration for One Stop Shop
     And the user presses the continue button
     When the user presses the continue button
     Then the user is on the successful-amend page
+    And the confirmation of a changed date of first sale is displayed
 
   Scenario: A user with fixed establishments enters amend registration after having VAT Group changed from No to Yes
     Given a registered user with VRN 777777771 accesses the returns service
@@ -228,7 +245,11 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers yes on the cancel-amend-registration page
     Then the user is on the your-account page
 
-
-
+  Scenario: A user can submit an amended registration without changing any details
+    Given a registered user with VRN 300000001 accesses the amend registration journey
+    Then the user is on the change-your-registration page
+    When the user presses the continue button
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
 
 
