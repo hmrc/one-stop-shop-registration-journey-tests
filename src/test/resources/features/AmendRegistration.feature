@@ -204,10 +204,9 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-already-made-sales
     Then the user answers no on the amend-already-made-sales page
-#    Temporary step - see bug VEOSS-1910
-    Then the user answers no on the amend-previous-oss page
-#    Then the user is on the amend-start-date page
-#    And the user presses the continue button
+    Then the user is on the amend-start-date page
+    And the user presses the continue button
+    Then the user is on the change-your-registration page
     When the user presses the continue button
     Then the user is on the successful-amend page
     And the confirmation of changing to having not made eligible sales is displayed
