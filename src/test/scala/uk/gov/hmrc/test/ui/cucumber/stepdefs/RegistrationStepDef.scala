@@ -251,20 +251,6 @@ class RegistrationStepDef extends BaseStepDef {
     CommonPage.goToEmailVerificationUrl(journeyId)
     driver.findElement(By.id("passcode")).sendKeys(passcode)
     driver.findElement(By.className("govuk-button")).click()
-
-    if (mode == "amend") {
-      driver
-        .navigate()
-        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/change-your-registration")
-    } else if (mode == "rejoin") {
-      driver
-        .navigate()
-        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/rejoin-registration")
-    } else {
-      driver
-        .navigate()
-        .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details")
-    }
   }
 
   Then("""^the user is at the (.*) page$""") { (url: String) =>
