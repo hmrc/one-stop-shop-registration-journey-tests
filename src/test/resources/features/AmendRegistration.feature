@@ -77,7 +77,7 @@ Feature: Amending a registration for One Stop Shop
       | ABCDDD2A                  | bic         |
       | GB33BUKB20201555555555555 | iban        |
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-amend page
     And all of the first combination answers are displayed as changed on the confirmation page
 
@@ -162,7 +162,7 @@ Feature: Amending a registration for One Stop Shop
       | email-test@test.com | emailAddress |
     And the user completes the amend email verification process
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-amend page
     And all of the second combination answers are displayed as changed on the confirmation page
 
@@ -181,7 +181,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers no on the amend-give-website-address page
     Then the user answers yes on the amend-remove-all-websites page
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-amend page
     And all of the third combination answers are displayed as changed on the confirmation page
 
@@ -196,7 +196,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the no-longer-amendable page
     When the user presses the continue button
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-amend page
 
   Scenario: A user can amend their registration to have not yet made eligible sales within the time limit
@@ -207,7 +207,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the amend-start-date page
     And the user presses the continue button
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-amend page
     And the confirmation of changing to having not made eligible sales is displayed
 
@@ -218,7 +218,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user enters today for amend-date-of-first-sale
     Then the user is on the amend-start-date page
     And the user presses the continue button
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-amend page
     And the confirmation of a changed date of first sale is displayed
 
@@ -247,7 +247,7 @@ Feature: Amending a registration for One Stop Shop
   Scenario: A user can submit an amended registration without changing any details
     Given a registered user with VRN 300000001 accesses the amend registration journey
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-amend page
     And the confirmation of no answers changed is displayed
 

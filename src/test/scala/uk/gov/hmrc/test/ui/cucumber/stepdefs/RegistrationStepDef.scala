@@ -318,9 +318,14 @@ class RegistrationStepDef extends BaseStepDef {
 
   }
 
-  Then("""^the user presses the continue button$""") { () =>
-    driver.findElement(By.id("continue")).click()
+  Then("""^the user presses the (continue|submit) button$""") { (button: String) =>
+    if (button == "submit") {
+      CommonPage.clickSubmit()
+    } else {
+      CommonPage.clickContinue()
+    }
   }
+
   Given("""the user clicks on the save and come back later button""") { () =>
     driver.findElement(By.id("saveProgress")).click()
   }
