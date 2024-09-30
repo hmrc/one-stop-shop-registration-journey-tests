@@ -107,7 +107,7 @@ Feature: Core validation during re-register for OSS Scheme
     And the user answers no on the rejoin-amend-previous-scheme-answers/1 page
     Then the user answers no on the rejoin-amend-previous-schemes-overview page
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: A trader is unable to rejoin with a quarantined EU registration

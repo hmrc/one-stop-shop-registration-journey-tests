@@ -146,10 +146,13 @@ object CommonPage extends BrowserDriver with Matchers {
   }
 
   def submitRegistration(): Unit =
-    CommonPage.clickContinue()
+    CommonPage.clickSubmit()
 
   def clickContinue(): Unit =
     driver.findElement(By.id("continue")).click()
+
+  def clickSubmit(): Unit =
+    driver.findElement(By.id("submit")).click()
 
   def clearDate(): Unit = {
     driver.findElement(By.id("value.day")).clear()

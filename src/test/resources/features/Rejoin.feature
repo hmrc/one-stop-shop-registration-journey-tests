@@ -9,7 +9,7 @@ Feature: Re-register for OSS Scheme
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: An excluded user who has not made sales in this quarter can re-register for the OSS scheme
@@ -20,7 +20,7 @@ Feature: Re-register for OSS Scheme
     And the commencement date is set to the first day of the next quarter
     And the user presses the continue button
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: An excluded user can set date of first sale to this quarter and then change to not made sales in this quarter
@@ -35,7 +35,7 @@ Feature: Re-register for OSS Scheme
     And the user answers no on the rejoin-already-made-sales page
     And the commencement date is set to the first day of the next quarter
     And the user presses the continue button
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: An excluded user who is rejoining the OSS scheme can make amendments to their minimal registration data
@@ -101,7 +101,7 @@ Feature: Re-register for OSS Scheme
     And the user adds www.anotherrejoinwebsiteurl.com on the second rejoin-amend-website-address page
     And the user answers no on the rejoin-amend-add-website-address page
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: A trader with non-mandatory answers in original registration set to yes can change to no and rejoin
@@ -127,7 +127,7 @@ Feature: Re-register for OSS Scheme
     Then the user answers no on the rejoin-amend-give-website-address page
     And the user answers yes on the amend-remove-all-websites page
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: A trader removes some registration answers and amends mandatory answers during rejoin
@@ -162,7 +162,7 @@ Feature: Re-register for OSS Scheme
       | ABCDDD2A                  | bic         |
       | GB33BUKB20201555555555555 | iban        |
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: A trader can add and remove new previous schemes during rejoin
@@ -190,7 +190,7 @@ Feature: Re-register for OSS Scheme
     Then the user answers yes on the rejoin-amend-remove-deregistration/5 page
     And the user answers no on the rejoin-amend-previous-schemes-overview page
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: A trader amends their email address during rejoin
@@ -207,7 +207,7 @@ Feature: Re-register for OSS Scheme
       | rejoin-test@email.com | emailAddress |
     And the user completes the rejoin email verification process
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the successful-rejoin page
 
   Scenario: A trader who is rejoining cannot remove previous registrations for a country retrieved from ETMP
@@ -262,7 +262,7 @@ Feature: Re-register for OSS Scheme
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the error-submitting-rejoin page
     And the user clicks on the back to your account link
     And the user is on the your-account page

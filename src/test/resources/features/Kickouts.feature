@@ -214,11 +214,11 @@ Feature: Not Eligible for One Stop Shop
   Scenario: A user is directed to an error page when there is an issue submitting their amended registration
     Given a registered user with VRN 600000022 accesses the amend registration journey
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     Then the user is on the error-submitting-amendment page
     When the user clicks on the try again later link
     Then the user is on the change-your-registration page
-    When the user presses the continue button
+    When the user presses the submit button
     And the user clicks on the back to your account link
     Then the user is on the your-account page
 
