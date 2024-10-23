@@ -35,7 +35,6 @@ object CheckYourAnswersPage extends BrowserDriver with Matchers {
       driver.findElement(By.xpath("//*[@id='main-content']/div/div/form/button")).click()
     }
 
-  def selectLink(link: String): Unit = {
+  def selectLink(link: String): Unit =
     driver.findElement(By.cssSelector(s"a[href*='$link']")).click()
-  }
 }
