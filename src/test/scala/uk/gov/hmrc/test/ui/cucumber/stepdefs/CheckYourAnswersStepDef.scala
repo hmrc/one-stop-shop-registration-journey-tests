@@ -16,11 +16,14 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
+import org.openqa.selenium.By
 import uk.gov.hmrc.test.ui.pages.CheckYourAnswersPage
+import uk.gov.hmrc.test.ui.pages.CommonPage.waitForElement
 
 class CheckYourAnswersStepDef extends BaseStepDef {
 
   Then("""^the user selects the (change|remove|add) link for (.*)$""") { (linkType: String, link: String) =>
+    waitForElement(By.cssSelector(s"a[href*='$link']"))
     CheckYourAnswersPage.selectLink(link)
   }
 }
