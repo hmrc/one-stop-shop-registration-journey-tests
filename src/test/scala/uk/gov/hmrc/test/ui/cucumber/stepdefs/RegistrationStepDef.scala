@@ -457,4 +457,10 @@ class RegistrationStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("www.website2.org.uk"))
   }
 
+  Then("""^the confirmation of a removed fixed establishment is displayed$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Republic of Cyprus"))
+  }
+
 }

@@ -227,6 +227,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the delete-all-fixed-establishment page
     When the user presses the continue button
     Then the user is on the successful-amend page
+    And the confirmation of a removed fixed establishment is displayed
 
   Scenario: A user can cancel their registration amends
     Given a registered user with VRN 300000001 accesses the amend registration journey
