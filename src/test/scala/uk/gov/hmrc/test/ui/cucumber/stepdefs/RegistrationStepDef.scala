@@ -60,13 +60,13 @@ class RegistrationStepDef extends BaseStepDef {
   Given(
     "^the user signs in as an Organisation Admin with Hmrc Mdt and OSS VAT enrolment (.*) and strong credentials$"
   ) { (vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, withOssEnrolment = true, "registration")
+    AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, None, withOssEnrolment = true, "registration")
   }
 
   Given(
     "^the (user|assistant) signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
   ) { (user: String, vrn: String) =>
-    AuthActions.loginUsingAuthorityWizard(user, "Organisation", vrn, withOssEnrolment = false, "registration")
+    AuthActions.loginUsingAuthorityWizard(user, "Organisation", vrn, None, withOssEnrolment = false, "registration")
   }
 
   When("""^a (non-registered|registered) user with VRN (.*) accesses the (amend|rejoin) registration journey""") {
@@ -76,12 +76,23 @@ class RegistrationStepDef extends BaseStepDef {
       if (registrationStatus == "non-registered") {
         withOssEnrolment = false
       }
-      AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, withOssEnrolment, journey)
+      AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, None, withOssEnrolment, journey)
   }
 
   When("""^a registered user with VRN (.*) accesses the returns service""") { (vrn: String) =>
     CommonPage.goToStartOfJourneyFromStub()
-    AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, true, "returns")
+    AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, None, true, "returns")
+  }
+
+  Given(
+    "^the IOSS registered user signs into OSS (registration|amend|rejoin) with IOSS number (.*) and VRN (.*)$"
+  ) { (journey: String, iossNumber: String, vrn: String) =>
+    val withOssEnrolment = if (journey == "registration") {
+      false
+    } else {
+      true
+    }
+    AuthActions.loginUsingAuthorityWizard("user", "Organisation", vrn, Some(iossNumber), withOssEnrolment, journey)
   }
 
   When("""^the user enters (.*) on the (.*) page$""") { (data: String, url: String) =>
