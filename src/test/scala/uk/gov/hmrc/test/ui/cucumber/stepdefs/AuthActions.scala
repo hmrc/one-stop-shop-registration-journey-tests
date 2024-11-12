@@ -26,6 +26,7 @@ object AuthActions extends BrowserDriver {
     user: String,
     affinityGroup: String,
     vrn: String,
+    iossNumber: Option[String],
     withOssEnrolment: Boolean,
     journey: String
   ): Unit = {
@@ -67,7 +68,27 @@ object AuthActions extends BrowserDriver {
       driver
         .findElement(By.id("input-1-0-value"))
         .sendKeys(vrn)
+      if (iossNumber.nonEmpty) {
+        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
+        driver
+          .findElement(By.id("input-2-0-name"))
+          .sendKeys("IOSSNumber")
+        driver
+          .findElement(By.id("input-2-0-value"))
+          .sendKeys(iossNumber.get)
+      }
     }
+
+    if (!withOssEnrolment && iossNumber.nonEmpty) {
+      driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
+      driver
+        .findElement(By.id("input-1-0-name"))
+        .sendKeys("IOSSNumber")
+      driver
+        .findElement(By.id("input-1-0-value"))
+        .sendKeys(iossNumber.get)
+    }
+
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
 
   }

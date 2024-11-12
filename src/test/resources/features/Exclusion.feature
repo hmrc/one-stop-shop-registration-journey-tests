@@ -135,3 +135,66 @@ Feature: VRN exclusion reason pages after GG login
     And the user adds 333333336 on the first eu-tax-number page
     Then the user is on the excluded-vrn page
 
+  Scenario: Kickout in the registration journey when the user is quarantined on the Import One Stop Shop service
+    Given the user accesses the stub url
+    When the IOSS registered user signs into OSS registration with IOSS number IM9003999993 and VRN 100000001
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    Then the user is on the cannot-register-quarantined-ioss-trader page
+
+  Scenario: User can access the registration journey when a quarantine on the Import One Stop Shop service has expired
+    Given the user accesses the stub url
+    When the IOSS registered user signs into OSS registration with IOSS number IM9002999993 and VRN 100000001
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    Then the user is on the confirm-vat-details page
+
+  Scenario: Kickout when the user returns to a saved registration but is now quarantined on the Import One Stop Shop service
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000600 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds First trading name on the first uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters yesterday for date-of-first-sale
+    And the user answers yes on the previous-oss page
+    And the user selects Ireland on the first previous-country page
+    And the user answer oss on the previous-scheme/1/1 page
+    And the user add IE1234567WI on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Romania on the first eu-tax page
+    And the user clicks on the save and come back later button
+    And the user select the sign and come back later link
+    When the user accesses the stub url
+    Then the IOSS registered user signs into OSS registration with IOSS number IM9003999993 and VRN 100000600
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    Then the user is on the cannot-register-quarantined-ioss-trader page
+
+  Scenario: Kickout when the user attempts to rejoin the service but is quarantined on the Import One Stop Shop service
+    When the user accesses the stub url
+    Then the IOSS registered user signs into OSS rejoin with IOSS number IM9003999993 and VRN 600000050
+    Then the user is on the cannot-register-quarantined-ioss-trader page
+
+  Scenario: User can access the amend registration journey when quarantined on the Import One Stop Shop service
+    When the user accesses the stub url
+    Then the IOSS registered user signs into OSS amend with IOSS number IM9003999993 and VRN 300000001
+    Then the user is on the change-your-registration page
+    When the user presses the submit button
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
