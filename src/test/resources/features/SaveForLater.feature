@@ -1,4 +1,4 @@
-@Registration @Accessibility
+@Registration
 
 Feature: Save For Later Feature
 

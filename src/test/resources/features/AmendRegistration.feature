@@ -1,7 +1,6 @@
 @Registration
 Feature: Amending a registration for One Stop Shop
 
-  @ZAP @Accessibility
   Scenario: A user can amend all of the answers on their registration - first combination (no to yes)
     Given a registered user with VRN 300000001 accesses the amend registration journey
     Then the user is on the change-your-registration page

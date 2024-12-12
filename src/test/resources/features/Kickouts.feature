@@ -1,4 +1,4 @@
-@Registration @Accessibility
+@Registration
 Feature: Not Eligible for One Stop Shop
 
   Scenario: Business is already registered in another county
