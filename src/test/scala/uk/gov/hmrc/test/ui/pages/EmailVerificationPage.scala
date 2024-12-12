@@ -19,7 +19,6 @@ package uk.gov.hmrc.test.ui.pages
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-
 object EmailVerificationPage extends BrowserDriver with Matchers {
 
   def goToEmailVerificationUrl(journeyId: String): Unit =
@@ -32,6 +31,5 @@ object EmailVerificationPage extends BrowserDriver with Matchers {
   def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
     driver.navigate
       .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/get-passcodes")
-
 
 }

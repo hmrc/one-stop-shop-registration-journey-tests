@@ -33,7 +33,7 @@ class AmendedAnswersStepDef extends BaseStepDef {
   }
 
   Then("""^the confirmation of a changed date of first sale is displayed$""") { () =>
-    val today = LocalDate.now().format(dateFormatter)
+    val today    = LocalDate.now().format(dateFormatter)
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Already made eligible sales Yes"))
@@ -43,7 +43,7 @@ class AmendedAnswersStepDef extends BaseStepDef {
 
   Then("""^the confirmation of changing to having not made eligible sales is displayed$""") { () =>
     val nextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
-    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val htmlBody    = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
     Assert.assertTrue(htmlBody.contains("Already made eligible sales No"))
     Assert.assertTrue(htmlBody.contains(s"Include sales from this date $nextQuarter"))

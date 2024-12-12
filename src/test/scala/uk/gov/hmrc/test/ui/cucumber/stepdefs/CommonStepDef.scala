@@ -38,10 +38,10 @@ class CommonStepDef extends BaseStepDef {
   When("""^the user (adds|amends) (.*) on the (first|second|third) (.*) page$""") {
     (mode: String, data: String, index: String, url: String) =>
       index match {
-        case "first" => CommonPage.checkUrl(url + "/1")
+        case "first"  => CommonPage.checkUrl(url + "/1")
         case "second" => CommonPage.checkUrl(url + "/2")
-        case "third" => CommonPage.checkUrl(url + "/3")
-        case _ => throw new Exception("Index doesn't exist")
+        case "third"  => CommonPage.checkUrl(url + "/3")
+        case _        => throw new Exception("Index doesn't exist")
       }
       if (mode == "amends") {
         driver.findElement(By.id("value")).clear()
@@ -52,11 +52,11 @@ class CommonStepDef extends BaseStepDef {
   When("""^the user add (.*) on the (first|second|fifth|sixth) (.*) page$""") {
     (data: String, index: String, url: String) =>
       index match {
-        case "first" => CommonPage.checkUrl(url + "/1" + "/1")
+        case "first"  => CommonPage.checkUrl(url + "/1" + "/1")
         case "second" => CommonPage.checkUrl(url + "/2" + "/2")
-        case "fifth" => CommonPage.checkUrl(url + "/5" + "/2")
-        case "sixth" => CommonPage.checkUrl(url + "/6" + "/1")
-        case _ => throw new Exception("Index doesn't exist")
+        case "fifth"  => CommonPage.checkUrl(url + "/5" + "/2")
+        case "sixth"  => CommonPage.checkUrl(url + "/6" + "/1")
+        case _        => throw new Exception("Index doesn't exist")
       }
       CommonPage.enterData(data)
   }
@@ -64,12 +64,12 @@ class CommonStepDef extends BaseStepDef {
   When("""^the user selects (.*) on the (first|second|third|fifth|sixth) (.*) page$""") {
     (data: String, index: String, url: String) =>
       index match {
-        case "first" => CommonPage.checkUrl(url + "/1")
+        case "first"  => CommonPage.checkUrl(url + "/1")
         case "second" => CommonPage.checkUrl(url + "/2")
-        case "third" => CommonPage.checkUrl(url + "/3")
-        case "fifth" => CommonPage.checkUrl(url + "/5")
-        case "sixth" => CommonPage.checkUrl(url + "/6")
-        case _ => throw new Exception("Index doesn't exist")
+        case "third"  => CommonPage.checkUrl(url + "/3")
+        case "fifth"  => CommonPage.checkUrl(url + "/5")
+        case "sixth"  => CommonPage.checkUrl(url + "/6")
+        case _        => throw new Exception("Index doesn't exist")
       }
       CommonPage.selectValueAutocomplete(data)
   }
@@ -77,18 +77,18 @@ class CommonStepDef extends BaseStepDef {
   When("""^the user chooses (yes|no) on the (first|second) (.*) page$""") {
     (data: String, index: String, url: String) =>
       index match {
-        case "first" => CommonPage.checkUrl(url + "/1")
+        case "first"  => CommonPage.checkUrl(url + "/1")
         case "second" => CommonPage.checkUrl(url + "/2")
-        case _ => throw new Exception("Index doesn't exist")
+        case _        => throw new Exception("Index doesn't exist")
       }
       CommonPage.selectAnswer(data)
   }
 
   When("""^the user clicks continue on the (first|second) (.*) page$""") { (index: String, url: String) =>
     index match {
-      case "first" => CommonPage.checkUrl(url + "/1")
+      case "first"  => CommonPage.checkUrl(url + "/1")
       case "second" => CommonPage.checkUrl(url + "/2")
-      case _ => throw new Exception("Index doesn't exist")
+      case _        => throw new Exception("Index doesn't exist")
     }
     CommonPage.clickContinue()
   }
@@ -109,25 +109,25 @@ class CommonStepDef extends BaseStepDef {
 
   Then("""^the user clicks on the (.*) link$""") { (link: String) =>
     link match {
-      case "BTA" =>
+      case "BTA"                                    =>
         driver.findElement(By.id("back-to-your-account")).click()
       case "continue to complete your registration" =>
         driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
-      case "sign out and come back later" =>
+      case "sign out and come back later"           =>
         driver.findElement(By.xpath("/*[@id=‘signOut’]")).click()
-      case "continue to your account" =>
+      case "continue to your account"               =>
         driver.findElement(By.xpath("//*[@id='main-content']/div/div/div[1]/a"))
-      case "try again later" =>
+      case "try again later"                        =>
         driver.findElement(By.xpath("/html/body/div/main/div/div/p[1]/a")).click()
-      case "back to your account" =>
+      case "back to your account"                   =>
         driver.findElement(By.id("backToYourAccount")).click()
-      case "Change your registration" =>
+      case "Change your registration"               =>
         driver.findElement(By.id("change-your-registration")).click()
-      case "Returns account" =>
+      case "Returns account"                        =>
         driver.findElement(By.id("back-to-your-account")).click()
-      case "cancel" =>
+      case "cancel"                                 =>
         driver.findElement(By.id("cancel")).click()
-      case _ =>
+      case _                                        =>
         throw new Exception("Link doesn't exist")
     }
   }
