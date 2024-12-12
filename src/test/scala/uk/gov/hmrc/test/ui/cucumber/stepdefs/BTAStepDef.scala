@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.test.ui.pages
+package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import uk.gov.hmrc.test.ui.pages._
 
-object PayOnlinePage extends BasePage {
-  val url: String = TestConfiguration.url("pay-frontend")
-  val title       = "Select the tax you want to pay - Pay your tax - GOV.UK"
+class BTAStepDef extends BaseStepDef {
+
+  Given("^the user accesses the external service$") { () =>
+    BTAPage.goToStartOfExternalJourney()
+  }
+
+  When("""^the user manually navigates to the (.*) link$""") { (link: String) =>
+    BTAPage.navigateToBtaLink(link)
+  }
 
 }

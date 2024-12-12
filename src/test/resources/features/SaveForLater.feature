@@ -33,7 +33,7 @@ Feature: Save For Later Feature
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
     And the user answer vat number on the registration-type/1 page
     And the user adds RO1234567890 on the first eu-vat-number page
-    And the user adds moo on the first eu-trading-name page
+    And the user adds name on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data      | fieldId    |
       | 1 Address | line1      |
@@ -45,7 +45,7 @@ Feature: Save For Later Feature
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
     And the user answer tax id number on the registration-type/2 page
     And the user adds PT123456789 on the second eu-tax-number page
-    And the user adds moo on the second eu-trading-name page
+    And the user adds name on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data      | fieldId    |
       | 1 Address | line1      |
@@ -114,7 +114,7 @@ Feature: Save For Later Feature
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
     And the user answer vat number on the registration-type/1 page
     And the user adds IE1234567WI on the first eu-vat-number page
-    And the user adds moo on the first eu-trading-name page
+    And the user adds name on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data      | fieldId    |
       | 1 Address | line1      |
@@ -126,7 +126,7 @@ Feature: Save For Later Feature
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
     And the user answer tax id number on the registration-type/2 page
     And the user adds IT01234567899 on the second eu-tax-number page
-    And the user adds moo on the second eu-trading-name page
+    And the user adds name on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data      | fieldId    |
       | 1 Address | line1      |
@@ -196,7 +196,7 @@ Feature: Save For Later Feature
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
     And the user answer vat number on the registration-type/1 page
     And the user adds IT01234567899 on the first eu-vat-number page
-    And the user adds moo on the first eu-trading-name page
+    And the user adds name on the first eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/1 page
       | data      | fieldId    |
       | 1 Address | line1      |
@@ -208,7 +208,7 @@ Feature: Save For Later Feature
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
     And the user answer tax id number on the registration-type/2 page
     And the user adds IE1234567WI  on the second eu-tax-number page
-    And the user adds moo on the second eu-trading-name page
+    And the user adds name on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data      | fieldId    |
       | 1 Address | line1      |

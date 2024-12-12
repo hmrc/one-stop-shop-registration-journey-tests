@@ -16,13 +16,22 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import org.openqa.selenium.By
+import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-object AlreadyMadeSalesPage extends BrowserDriver {
 
-  def selectNo(): Unit = {
-    driver.findElement(By.id("value_1")).click()
-    driver.findElement(By.xpath("//*[@id='main-content']/div/div/form/button")).click()
-  }
+object EmailVerificationPage extends BrowserDriver with Matchers {
+
+  def goToEmailVerificationUrl(journeyId: String): Unit =
+    driver
+      .navigate()
+      .to(
+        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS&service=one-stop-shop-registration-frontend"
+      )
+
+  def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
+    driver.navigate
+      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/get-passcodes")
+
+
 }

@@ -16,9 +16,20 @@
 
 package uk.gov.hmrc.test.ui.pages
 
-import uk.gov.hmrc.test.ui.conf.TestConfiguration
+import org.scalatest.matchers.should.Matchers
+import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-object RegisteredCompanyNamePage extends BasePage {
-  val url: String = TestConfiguration.url("one-stop-shop-registration-frontend")
+
+object BTAPage extends BrowserDriver with Matchers {
+
+  def goToStartOfExternalJourney(): Unit =
+    driver
+      .navigate()
+      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/from-external")
+
+  def navigateToBtaLink(link: String): Unit =
+    driver
+      .navigate()
+      .to(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/$link")
 
 }

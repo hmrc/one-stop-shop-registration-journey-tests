@@ -43,7 +43,7 @@ Feature: Registering for One Stop Shop
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
     And the user answer tax id number on the registration-type/2 page
     And the user adds LV01234567899 on the second eu-tax-number page
-    And the user adds moo on the second eu-trading-name page
+    And the user adds name on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data      | fieldId    |
       | 1 Address | line1      |
