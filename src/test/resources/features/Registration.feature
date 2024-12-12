@@ -1,7 +1,6 @@
 @Registration
 Feature: Registering for One Stop Shop
 
-  @ZAP @Accessibility
   Scenario: A signed in user can complete a full registration with vat tax id number
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -43,7 +42,7 @@ Feature: Registering for One Stop Shop
     And the user answer fixed establishment on the sells-goods-to-eu-consumer-method/2 page
     And the user answer tax id number on the registration-type/2 page
     And the user adds LV01234567899 on the second eu-tax-number page
-    And the user adds moo on the second eu-trading-name page
+    And the user adds name on the second eu-trading-name page
     And the user completes details on the eu-fixed-establishment-address/2 page
       | data      | fieldId    |
       | 1 Address | line1      |
@@ -129,7 +128,7 @@ Feature: Registering for One Stop Shop
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-  @Accessibility
+
   Scenario: A signed in user can continue-on-sign-in url without starting a registration
     Given the user accesses the continue on sign in url
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
@@ -273,7 +272,6 @@ Feature: Registering for One Stop Shop
     Then the user is at the check-answers page
     Then the user submits their registration
 
- @Accessibility
   Scenario: A signed in user can complete a full registration without selling goods
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -332,7 +330,6 @@ Feature: Registering for One Stop Shop
     Then the user is at the check-answers page
     Then the user submits their registration
 
-  @Accessibility
   Scenario: A signed in user who is part of a VAT group cannot add fixed establishments
     Given the user accesses the service
     And the user answers no on the already-eu-registered page

@@ -126,7 +126,7 @@ Feature: Previous OSS or IOSS registrations in other countries
     Then the user selects the remove link for remove-previous-scheme
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user is at the previous-scheme-answers/1 page
-  @Accessibility
+
   Scenario: User Remove multiple Previously Reg Scheme
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
