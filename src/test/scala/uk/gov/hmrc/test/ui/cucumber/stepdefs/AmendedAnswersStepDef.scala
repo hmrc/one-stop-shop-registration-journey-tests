@@ -109,4 +109,10 @@ class AmendedAnswersStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("EU tax details removed Republic of Cyprus"))
   }
 
+  Then("""^the updated email address is displayed as changed on the confirmation page$""") { () =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+    Assert.assertTrue(htmlBody.contains("Email address different-email@test.com"))
+  }
+
 }
