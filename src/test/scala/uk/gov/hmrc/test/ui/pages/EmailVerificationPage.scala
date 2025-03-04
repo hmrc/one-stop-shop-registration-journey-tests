@@ -42,7 +42,7 @@ object EmailVerificationPage extends BrowserDriver with Matchers {
     driver.getCurrentUrl should startWith(
       TestConfiguration.url(
         "one-stop-shop-registration-frontend"
-      ) + "/business-contact-details?waypoints=change-your-registration"
+      ) + "/amend-business-contact-details"
     )
 
 }
