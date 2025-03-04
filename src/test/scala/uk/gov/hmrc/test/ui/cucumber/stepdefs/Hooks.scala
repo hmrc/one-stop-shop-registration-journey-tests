@@ -24,8 +24,11 @@ import uk.gov.hmrc.test.ui.data.ReturnsData
 object Hooks extends ScalaDsl with EN with Browser {
   Before {
     MongoConnection.dropSavedAnswers()
-    MongoConnection.dropReturns()
-    MongoConnection.insert(ReturnsData.data, "one-stop-shop-returns", "returns")
+
+//    This section is only required when strategic returns is toggled off
+//    MongoConnection.dropReturns()
+//    MongoConnection.insert(ReturnsData.data, "one-stop-shop-returns", "returns")
+
     startBrowser()
   }
 
