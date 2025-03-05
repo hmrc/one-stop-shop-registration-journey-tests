@@ -19,6 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
+import uk.gov.hmrc.test.ui.pages.EmailVerificationPage.{checkBusinessContactDetails, checkInterceptPage}
 import uk.gov.hmrc.test.ui.pages._
 
 import java.time.LocalDate
@@ -191,6 +192,18 @@ class RegistrationStepDef extends BaseStepDef {
         s"If you make your first sale before $firstDayOfNextQuarter you must amend your registration to tell us."
       )
     )
+  }
+
+  Then("""^the user is redirected to the email intercept page$""") { () =>
+    checkInterceptPage()
+  }
+
+  Then("""^the user clicks the Confirm email address button$""") { () =>
+    CommonPage.clickContinue()
+  }
+
+  Then("""^the user is redirected to the Business contact details page within Change your registration$""") { () =>
+    checkBusinessContactDetails()
   }
 
 }
