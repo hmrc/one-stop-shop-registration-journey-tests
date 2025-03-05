@@ -19,7 +19,7 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.scala.{EN, ScalaDsl}
 import uk.gov.hmrc.selenium.webdriver.Browser
 import uk.gov.hmrc.test.ui.cucumber.utils.MongoConnection
-import uk.gov.hmrc.test.ui.data.ReturnsData
+//import uk.gov.hmrc.test.ui.data.ReturnsData
 
 object Hooks extends ScalaDsl with EN with Browser {
   Before {
