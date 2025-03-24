@@ -116,4 +116,8 @@ object CommonPage extends BrowserDriver with Matchers {
     driver
       .navigate()
       .back()
+
+  def selectLink(link: String): Unit =
+    driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
+
 }
