@@ -28,22 +28,28 @@ import java.time.format.DateTimeFormatter
 class CrossSchemaStepDef extends BaseStepDef {
 
   Then(
-    """^the correct number of existing trading names are displayed for a trader with (a current|a previous|multiple) IOSS (registration|registrations)$"""
+    """^the correct number of existing trading names are displayed for a trader with (a current|a previous|multiple|no) IOSS (registration|registrations)$"""
   ) { (version: String, registrationNumber: String) =>
     val header = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(header.equals("You have 2 UK trading names from your Import One Stop Shop registration"))
+    if (version == "no") {
+      Assert.assertTrue(header.equals("You have added one UK trading name"))
+    } else {
+      Assert.assertTrue(header.equals("You have 2 UK trading names from your Import One Stop Shop registration"))
+    }
   }
 
   Then(
-    """^the trading name warnings (are|are not) displayed for a trader with (a current|a previous|multiple) IOSS (registration|registrations)$"""
+    """^the trading name warnings (are|are not) displayed for a trader with (a current|a previous|multiple|no) IOSS (registration|registrations)$"""
   ) { (displayed: String, version: String, registrationsNumber: String) =>
-    val htmlBody    = driver.findElement(By.tagName("body")).getText
-    val hintText    =
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+    val hintText =
       "We added the trading names you entered when you registered for the Import One Stop Shop service. Check they are still correct."
     val warningText = if (version == "multiple") {
       "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
-    } else {
+    } else if (version != "no") {
       "Any changes you make here will also update the trading names in your Import One Stop Shop registration."
+    } else {
+      "Any changes you make here will also update the trading names in"
     }
 
     if (displayed == "are not") {
@@ -56,7 +62,7 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the (contact|bank) details warnings (are|are not) displayed for a trader with (a current|a previous|multiple) IOSS (registration|registrations)$"""
+    """^the (contact|bank) details warnings (are|are not) displayed for a trader with (a current|a previous|multiple|no) IOSS (registration|registrations)$"""
   ) { (page: String, displayed: String, version: String, registrationsNumber: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     val hintText =
@@ -66,8 +72,10 @@ class CrossSchemaStepDef extends BaseStepDef {
       s"Any changes you make here will also update the $page details in your Import One Stop Shop registration."
     } else if (version == "a previous") {
       s"Any changes you make here will also update the $page details in your previous Import One Stop Shop registration."
-    } else {
+    } else if (version == "multiple") {
       s"Any changes you make here will also update the $page details in all of your Import One Stop Shop registrations."
+    } else {
+      s"Any changes you make here will also update the $page details in"
     }
 
     if (displayed == "are not") {
@@ -100,5 +108,18 @@ class CrossSchemaStepDef extends BaseStepDef {
       Assert.assertTrue(htmlBody.contains(iossConfirmationText))
     }
   }
+
+  Then("""^the contact details are blank$""") { () =>
+    Assert.assertTrue(driver.findElement(By.id("fullName")).getAttribute("value").isEmpty)
+    Assert.assertTrue(driver.findElement(By.id("telephoneNumber")).getAttribute("value").isEmpty)
+    Assert.assertTrue(driver.findElement(By.id("emailAddress")).getAttribute("value").isEmpty)
+  }
+
+  Then("""^the bank details are blank$""") { () =>
+    Assert.assertTrue(driver.findElement(By.id("accountName")).getAttribute("value").isEmpty)
+    Assert.assertTrue(driver.findElement(By.id("bic")).getAttribute("value").isEmpty)
+    Assert.assertTrue(driver.findElement(By.id("iban")).getAttribute("value").isEmpty)
+  }
+
 
 }

@@ -159,10 +159,8 @@ Feature: Cross Schema scenarios
     And the user clicks through the business-pay page
     Then the user is on the confirm-vat-details page
     And the user is on the add-uk-trading-name page
-#    check heading
-#    check hint text
-#    check warning
-#    don't make amends
+    And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
+    And the trading name warnings are displayed for a trader with multiple IOSS registrations
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters today for date-of-first-sale
@@ -171,28 +169,15 @@ Feature: Cross Schema scenarios
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     Then the user is on the business-contact-details page
-#    check hint text
-#    check auto-populated
-#    check warning
-#    don't make amends
-    And the user completes details on the business-contact-details page
-      | data           | fieldId         |
-      | Joe Bloggs     | fullName        |
-      | 01234567890    | telephoneNumber |
-      | email@test.com | emailAddress    |
+    And the contact details warnings are displayed for a trader with multiple IOSS registrations
+    And the user presses the continue button
     And the user completes the registration email verification process
-  #    check hint text
-  #    check auto-populated
-  #    check warning
-  #    don't make amends
-    And the user completes details on the bank-details page
-      | data                   | fieldId     |
-      | Account Name           | accountName |
-      | ABCDEF2A               | bic         |
-      | GB33BUKB20201555555555 | iban        |
+    Then the user is on the bank-details page
+    And the bank details warnings are displayed for a trader with multiple IOSS registrations
+    And the user presses the continue button
     Then the user is at the check-answers page
     Then the user submits their registration
-#  check acknowledgement page
+    And the text on the confirmation page is not displayed when the trader has not made changes and has multiple IOSS registrations
 
   Scenario: Amend registration for trader with multiple IOSS registrations - does not amend data
     Given the IOSS registered user signs into OSS amend with IOSS number IM9007231111 and VRN 600000050
@@ -219,12 +204,10 @@ Feature: Cross Schema scenarios
     And the user signs in as an Organisation Admin with VAT enrolment 100005555 and strong credentials
     And the user chooses Yes on the confirm-vat-details page
     And the user answers yes on the have-uk-trading-name page
-    And the user adds Trading Name on the first uk-trading-name page
+    And the user adds Only Trading Name on the first uk-trading-name page
     And the user is on the add-uk-trading-name page
-#    check heading
-#    check hint text
-#    check warning
-#    make amends
+    And the correct number of existing trading names are displayed for a trader with no IOSS registrations
+    And the trading name warnings are not displayed for a trader with no IOSS registrations
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters today for date-of-first-sale
@@ -233,20 +216,17 @@ Feature: Cross Schema scenarios
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     Then the user is on the business-contact-details page
-#    check hint text
-#    check not auto-populated
-#    check warning
-#    make amends
+    And the contact details warnings are not displayed for a trader with no IOSS registrations
+    And the contact details are blank
     And the user completes details on the business-contact-details page
       | data           | fieldId         |
       | Joe Bloggs     | fullName        |
       | 01234567890    | telephoneNumber |
       | email@test.com | emailAddress    |
     And the user completes the registration email verification process
-  #    check hint text
-  #    check not auto-populated
-  #    check warning
-  #    make amends
+    Then the user is on the bank-details page
+    And the bank details warnings are not displayed for a trader with no IOSS registrations
+    And the bank details are blank
     And the user completes details on the bank-details page
       | data                   | fieldId     |
       | Account Name           | accountName |
@@ -254,7 +234,7 @@ Feature: Cross Schema scenarios
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-#  check acknowledgement page
+    And the text on the confirmation page is not displayed when the trader has made changes and has no IOSS registrations
 
   Scenario: Amend registration for trader with no other registrations - amends data
     Given a registered user with VRN 300000002 accesses the amend registration journey
