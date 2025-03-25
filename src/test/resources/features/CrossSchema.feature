@@ -30,8 +30,8 @@ Feature: Cross Schema scenarios
     And the user completes the registration email verification process
     And the bank details warnings are displayed for a trader with a current IOSS registration
     And the user completes details on the bank-details page
-      | data                   | fieldId     |
-      | GB29NWBK60161331926819 | iban        |
+      | data                   | fieldId |
+      | GB29NWBK60161331926819 | iban    |
     Then the user is at the check-answers page
     Then the user submits their registration
     And the text on the confirmation page is displayed when the trader has made changes and has a current IOSS registration
@@ -44,10 +44,10 @@ Feature: Cross Schema scenarios
     And the user clicks through the business-pay page
     Then the user is on the confirm-vat-details page
     And the user is on the add-uk-trading-name page
-#    check heading
-#    check hint text
-#    check warning
-#    make amends
+    And the correct number of existing trading names are displayed for a trader with a previous IOSS registration
+    And the trading name warnings are displayed for a trader with a previous IOSS registration
+    And the user clicks change via list for second uk-trading-name
+    And the user amends answer to an amended cross schema trading name
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters today for date-of-first-sale
@@ -56,28 +56,19 @@ Feature: Cross Schema scenarios
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     Then the user is on the business-contact-details page
-#    check hint text
-#    check auto-populated
-#    check warning
-#    make amends
+    And the contact details warnings are displayed for a trader with a previous IOSS registration
     And the user completes details on the business-contact-details page
-      | data           | fieldId         |
-      | Joe Bloggs     | fullName        |
-      | 01234567890    | telephoneNumber |
-      | email@test.com | emailAddress    |
+      | data                            | fieldId         |
+      | +441234567890                   | telephoneNumber |
+      | email-new-cross-schema@test.com | emailAddress    |
     And the user completes the registration email verification process
-  #    check hint text
-  #    check auto-populated
-  #    check warning
-  #    make amends
+    And the bank details warnings are displayed for a trader with a previous IOSS registration
     And the user completes details on the bank-details page
-      | data                   | fieldId     |
-      | Account Name           | accountName |
-      | ABCDEF2A               | bic         |
-      | GB33BUKB20201555555555 | iban        |
+      | data            | fieldId     |
+      | Account Name CS | accountName |
     Then the user is at the check-answers page
     Then the user submits their registration
-#  check acknowledgement page
+    And the text on the confirmation page is displayed when the trader has made changes and has a previous IOSS registration
 
   Scenario: Registration for trader with multiple IOSS registrations - amends data
     Given the IOSS registered user signs into OSS registration with IOSS number IM9007231111 and VRN 100005555
@@ -87,10 +78,10 @@ Feature: Cross Schema scenarios
     And the user clicks through the business-pay page
     Then the user is on the confirm-vat-details page
     And the user is on the add-uk-trading-name page
-#    check heading
-#    check hint text
-#    check warning
-#    make amends
+    And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
+    And the trading name warnings are displayed for a trader with multiple IOSS registrations
+    And the user answers yes on the add-uk-trading-name page
+    And the user adds cross-schema name on the third uk-trading-name page
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters today for date-of-first-sale
@@ -99,28 +90,18 @@ Feature: Cross Schema scenarios
     And the user answers no on the online-marketplace page
     And the user answers no on the give-website-address page
     Then the user is on the business-contact-details page
-#    check hint text
-#    check auto-populated
-#    check warning
-#    make amends
+    And the contact details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the business-contact-details page
-      | data           | fieldId         |
-      | Joe Bloggs     | fullName        |
-      | 01234567890    | telephoneNumber |
-      | email@test.com | emailAddress    |
+      | data            | fieldId         |
+      | 123654448485656 | telephoneNumber |
     And the user completes the registration email verification process
-  #    check hint text
-  #    check auto-populated
-  #    check warning
-  #    make amends
+    And the bank details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the bank-details page
       | data                   | fieldId     |
-      | Account Name           | accountName |
-      | ABCDEF2A               | bic         |
-      | GB33BUKB20201555555555 | iban        |
+      | GB29NWBK60161331926819 | iban        |
     Then the user is at the check-answers page
     Then the user submits their registration
-#  check acknowledgement page
+    And the text on the confirmation page is displayed when the trader has made changes and has multiple IOSS registrations
 
   Scenario: Amend registration for trader with a current IOSS registration - amends data
     Given the IOSS registered user signs into OSS amend with IOSS number IM9001234567 and VRN 300000002
