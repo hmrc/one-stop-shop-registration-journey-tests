@@ -10,7 +10,7 @@ Feature: Cross Schema scenarios
     Then the user is on the confirm-vat-details page
     And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with a current IOSS registration
-    And the trading name warnings are displayed for a trader with a current IOSS registration
+    And the registration trading name warnings are displayed for a trader with a current IOSS registration
     And the user clicks remove via list for first uk-trading-name
     And the user answers yes on the remove-uk-trading-name/1 page
     And the user answers yes on the add-uk-trading-name page
@@ -45,7 +45,7 @@ Feature: Cross Schema scenarios
     Then the user is on the confirm-vat-details page
     And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with a previous IOSS registration
-    And the trading name warnings are displayed for a trader with a previous IOSS registration
+    And the registration trading name warnings are displayed for a trader with a previous IOSS registration
     And the user clicks change via list for second uk-trading-name
     And the user amends answer to an amended cross schema trading name
     And the user answers no on the add-uk-trading-name page
@@ -79,7 +79,7 @@ Feature: Cross Schema scenarios
     Then the user is on the confirm-vat-details page
     And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
-    And the trading name warnings are displayed for a trader with multiple IOSS registrations
+    And the registration trading name warnings are displayed for a trader with multiple IOSS registrations
     And the user answers yes on the add-uk-trading-name page
     And the user adds cross-schema name on the third uk-trading-name page
     And the user answers no on the add-uk-trading-name page
@@ -97,59 +97,127 @@ Feature: Cross Schema scenarios
     And the user completes the registration email verification process
     And the bank details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the bank-details page
-      | data                   | fieldId     |
-      | GB29NWBK60161331926819 | iban        |
+      | data                   | fieldId |
+      | GB29NWBK60161331926819 | iban    |
     Then the user is at the check-answers page
     Then the user submits their registration
     And the text on the confirmation page is displayed when the trader has made changes and has multiple IOSS registrations
 
   Scenario: Amend registration for trader with a current IOSS registration - amends data
     Given the IOSS registered user signs into OSS amend with IOSS number IM9001234567 and VRN 300000002
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-add-uk-trading-name
+    And the correct number of existing trading names are displayed for a trader with a current IOSS registration
+    And the amend trading name warnings are displayed for a trader with a current IOSS registration
+    Then the user selects the change link for amend-uk-trading-name\/2
+    And the user amends answer to Trading name cross-schema two
+    Then the user is on the amend-add-uk-trading-name page
+    When the user selects the remove link for amend-remove-uk-trading-name\/1
+    And the user answers yes on the amend-remove-uk-trading-name/1 page
+    Then the user answers no on the amend-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-business-contact-details
+    And the contact details warnings are displayed for a trader with a current IOSS registration
+    And the user amends details on the amend-business-contact-details page
+      | data                   | fieldId      |
+      | CS full-name           | fullName     |
+      | email-cs-test@test.com | emailAddress |
+    And the user completes the amend email verification process
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-bank-details
+    And the bank details warnings are displayed for a trader with a current IOSS registration
+    And the user amends details on the amend-bank-details page
+      | data                      | fieldId     |
+      | CS Name                   | accountName |
+      | ABCDDD2A                  | bic         |
+      | GB33BUKB20201555555555555 | iban        |
+    Then the user is on the change-your-registration page
+    When the user presses the submit button
+    Then the user is on the successful-amend page
+    And all of the updated answers are displayed as changed on the amend confirmation page for a current IOSS registration
+    And the text on the confirmation page is displayed when the trader has made changes and has a current IOSS registration
 
   Scenario: Amend registration for trader with a previous IOSS registration - amends data
     Given the IOSS registered user signs into OSS amend with IOSS number IM9019999997 and VRN 300000002
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-add-uk-trading-name
+    And the correct number of existing trading names are displayed for a trader with a previous IOSS registration
+    And the amend trading name warnings are displayed for a trader with a previous IOSS registration
+    Then the user selects the change link for amend-uk-trading-name\/2
+    And the user amends answer to Trading name cross-schema two
+    Then the user answers no on the amend-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-business-contact-details
+    And the contact details warnings are displayed for a trader with a previous IOSS registration
+    And the user amends details on the amend-business-contact-details page
+      | data                   | fieldId      |
+      | CS full-name           | fullName     |
+    And the user completes the amend email verification process
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-bank-details
+    And the bank details warnings are displayed for a trader with a previous IOSS registration
+    And the user amends details on the amend-bank-details page
+      | GB33BUKB20201555555555555 | iban        |
+    Then the user is on the change-your-registration page
+    When the user presses the submit button
+    Then the user is on the successful-amend page
+    And all of the updated answers are displayed as changed on the amend confirmation page for a previous IOSS registration
+    And the text on the confirmation page is displayed when the trader has made changes and has a previous IOSS registration
 
   Scenario: Amend registration for trader with multiple IOSS registrations - amends data
     Given the IOSS registered user signs into OSS amend with IOSS number IM9007231111 and VRN 300000002
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-add-uk-trading-name
+    And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
+    And the amend trading name warnings are displayed for a trader with multiple IOSS registrations
+    When the user selects the remove link for amend-remove-uk-trading-name\/1
+    And the user answers yes on the amend-remove-uk-trading-name/1 page
+    Then the user answers no on the amend-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-business-contact-details
+    And the contact details warnings are displayed for a trader with multiple IOSS registrations
+    And the user amends details on the amend-business-contact-details page
+      | data                   | fieldId      |
+      | email-cs-test@test.com | emailAddress |
+    And the user completes the amend email verification process
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-bank-details
+    And the bank details warnings are displayed for a trader with multiple IOSS registrations
+    And the user amends details on the amend-bank-details page
+      | data                      | fieldId     |
+      | CS Name                   | accountName |
+    Then the user is on the change-your-registration page
+    When the user presses the submit button
+    Then the user is on the successful-amend page
+    And all of the updated answers are displayed as changed on the amend confirmation page for multiple IOSS registrations
+    And the text on the confirmation page is displayed when the trader has made changes and has multiple IOSS registrations
 
   Scenario: Rejoin registration for trader with a current IOSS registration - amends data
     Given the IOSS registered user signs into OSS rejoin with IOSS number IM9001234567 and VRN 600000050
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the rejoin-already-made-sales page
+    When the user answers yes on the rejoin-already-made-sales page
+    Then the user enters today for date-of-first-sale
+    Then the rejoin-start-date page displays a commencement date of today
+    And the user presses the continue button
+    Then the user is on the rejoin-registration page
 
   Scenario: Rejoin registration for trader with a previous IOSS registration - amends data
     Given the IOSS registered user signs into OSS rejoin with IOSS number IM9019999997 and VRN 600000050
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the rejoin-already-made-sales page
+    When the user answers yes on the rejoin-already-made-sales page
+    Then the user enters today for date-of-first-sale
+    Then the rejoin-start-date page displays a commencement date of today
+    And the user presses the continue button
+    Then the user is on the rejoin-registration page
 
   Scenario: Rejoin registration for trader with multiple IOSS registrations - amends data
     Given the IOSS registered user signs into OSS rejoin with IOSS number IM9007231111 and VRN 600000050
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the rejoin-already-made-sales page
+    When the user answers yes on the rejoin-already-made-sales page
+    Then the user enters today for date-of-first-sale
+    Then the rejoin-start-date page displays a commencement date of today
+    And the user presses the continue button
+    Then the user is on the rejoin-registration page
 
   Scenario: Registration for trader with multiple IOSS registrations - does not amend data
     Given the IOSS registered user signs into OSS registration with IOSS number IM9007231111 and VRN 600000050
@@ -160,7 +228,7 @@ Feature: Cross Schema scenarios
     Then the user is on the confirm-vat-details page
     And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
-    And the trading name warnings are displayed for a trader with multiple IOSS registrations
+    And the registration trading name warnings are displayed for a trader with multiple IOSS registrations
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters today for date-of-first-sale
@@ -181,19 +249,20 @@ Feature: Cross Schema scenarios
 
   Scenario: Amend registration for trader with multiple IOSS registrations - does not amend data
     Given the IOSS registered user signs into OSS amend with IOSS number IM9007231111 and VRN 600000050
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the change-your-registration page
+    When the user presses the submit button
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
+    And the text on the confirmation page is not displayed when the trader has not made changes and has multiple IOSS registrations
 
   Scenario: Rejoin registration for trader with multiple IOSS registrations - does not amend data
     Given the IOSS registered user signs into OSS rejoin with IOSS number IM9007231111 and VRN 600000050
-    When the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    Then the user is on the confirm-vat-details page
+    Then the user is on the rejoin-already-made-sales page
+    When the user answers yes on the rejoin-already-made-sales page
+    Then the user enters today for date-of-first-sale
+    Then the rejoin-start-date page displays a commencement date of today
+    And the user presses the continue button
+    Then the user is on the rejoin-registration page
 
   Scenario: Registration for trader with no other registrations - amends data
     Given the user accesses the service
@@ -207,7 +276,7 @@ Feature: Cross Schema scenarios
     And the user adds Only Trading Name on the first uk-trading-name page
     And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with no IOSS registrations
-    And the trading name warnings are not displayed for a trader with no IOSS registrations
+    And the registration trading name warnings are not displayed for a trader with no IOSS registrations
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters today for date-of-first-sale
@@ -239,6 +308,36 @@ Feature: Cross Schema scenarios
   Scenario: Amend registration for trader with no other registrations - amends data
     Given a registered user with VRN 300000002 accesses the amend registration journey
     Then the user is on the change-your-registration page
+    When the user selects the change link for amend-add-uk-trading-name
+    And only the existing trading names are displayed for a trader with no IOSS registrations
+    And the amend trading name warnings are not displayed for a trader with no IOSS registrations
+    Then the user selects the change link for amend-uk-trading-name\/2
+    And the user amends answer to Trading name cross-schema two
+    Then the user is on the amend-add-uk-trading-name page
+    When the user selects the remove link for amend-remove-uk-trading-name\/1
+    And the user answers yes on the amend-remove-uk-trading-name/1 page
+    Then the user answers no on the amend-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-business-contact-details
+    And the contact details warnings are not displayed for a trader with no IOSS registrations
+    And the user amends details on the amend-business-contact-details page
+      | data                   | fieldId      |
+      | CS full-name           | fullName     |
+      | email-cs-test@test.com | emailAddress |
+    And the user completes the amend email verification process
+    Then the user is on the change-your-registration page
+    When the user selects the change link for amend-bank-details
+    And the bank details warnings are not displayed for a trader with no IOSS registrations
+    And the user amends details on the amend-bank-details page
+      | data                      | fieldId     |
+      | CS Name                   | accountName |
+      | ABCDDD2A                  | bic         |
+      | GB33BUKB20201555555555555 | iban        |
+    Then the user is on the change-your-registration page
+    When the user presses the submit button
+    Then the user is on the successful-amend page
+    And all of the updated answers are displayed as changed on the amend confirmation page for no IOSS registrations
+    And the text on the confirmation page is not displayed when the trader has made changes and has no IOSS registrations
 
   Scenario: Rejoin registration for trader with no other registrations - amends data
     Given a registered user with VRN 600000050 accesses the rejoin registration journey

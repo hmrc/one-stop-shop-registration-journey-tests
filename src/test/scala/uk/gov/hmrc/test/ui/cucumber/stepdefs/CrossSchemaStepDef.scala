@@ -39,10 +39,10 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the trading name warnings (are|are not) displayed for a trader with (a current|a previous|multiple|no) IOSS (registration|registrations)$"""
-  ) { (displayed: String, version: String, registrationsNumber: String) =>
-    val htmlBody = driver.findElement(By.tagName("body")).getText
-    val hintText =
+    """^the (registration|amend|rejoin) trading name warnings (are|are not) displayed for a trader with (a current|a previous|multiple|no) IOSS (registration|registrations)$"""
+  ) { (journey: String, displayed: String, version: String, registrationsNumber: String) =>
+    val htmlBody    = driver.findElement(By.tagName("body")).getText
+    val hintText    =
       "We added the trading names you entered when you registered for the Import One Stop Shop service. Check they are still correct."
     val warningText = if (version == "multiple") {
       "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
@@ -53,10 +53,14 @@ class CrossSchemaStepDef extends BaseStepDef {
     }
 
     if (displayed == "are not") {
-      Assert.assertFalse(htmlBody.contains(hintText))
+      if (journey == "registration") {
+        Assert.assertFalse(htmlBody.contains(hintText))
+      }
       Assert.assertFalse(htmlBody.contains(warningText))
     } else {
-      Assert.assertTrue(htmlBody.contains(hintText))
+      if (journey == "registration") {
+        Assert.assertTrue(htmlBody.contains(hintText))
+      }
       Assert.assertTrue(htmlBody.contains(warningText))
     }
   }
@@ -121,5 +125,40 @@ class CrossSchemaStepDef extends BaseStepDef {
     Assert.assertTrue(driver.findElement(By.id("iban")).getAttribute("value").isEmpty)
   }
 
+  Then(
+    """^all of the updated answers are displayed as changed on the amend confirmation page for (a current|a previous|multiple|no) IOSS (registration|registrations)"""
+  ) { (version: String, registrationNumber: String) =>
+    val htmlBody = driver.findElement(By.tagName("body")).getText
+
+    if (version == "a current" || version == "no") {
+      Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+      Assert.assertTrue(htmlBody.contains("Trading names added Trading name cross-schema two"))
+      Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
+      Assert.assertTrue(htmlBody.contains("Trading name 2"))
+      Assert.assertTrue(htmlBody.contains("Contact name or business department CS full-name"))
+      Assert.assertTrue(htmlBody.contains("Email address email-cs-test@test.com"))
+      Assert.assertTrue(htmlBody.contains("Name on the account CS Name"))
+      Assert.assertTrue(htmlBody.contains("BIC or SWIFT code (if you have one) ABCDDD2A"))
+      Assert.assertTrue(htmlBody.contains("IBAN GB33BUKB20201555555555555"))
+    } else if (version == "a previous") {
+      Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+      Assert.assertTrue(htmlBody.contains("Trading names added Trading name cross-schema two"))
+      Assert.assertTrue(htmlBody.contains("Trading names removed Trading name 2"))
+      Assert.assertTrue(htmlBody.contains("Contact name or business department CS full-name"))
+      Assert.assertTrue(htmlBody.contains("IBAN GB33BUKB20201555555555555"))
+    } else if (version == "multiple") {
+      Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+      Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
+      Assert.assertTrue(htmlBody.contains("Email address email-cs-test@test.com"))
+      Assert.assertTrue(htmlBody.contains("Name on the account CS Name"))
+    }
+  }
+
+  Then(
+    """^only the existing trading names are displayed for a trader with no IOSS registrations$"""
+  ) { (version: String, registrationNumber: String) =>
+    val header = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(header.equals("You have added 2 UK trading names"))
+  }
 
 }
