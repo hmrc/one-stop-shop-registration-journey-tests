@@ -200,6 +200,35 @@ Feature: Cross Schema scenarios
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-add-uk-trading-name
+    And the correct number of existing trading names are displayed for a trader with a current IOSS registration
+    And the rejoin trading name warnings are displayed for a trader with a current IOSS registration
+    Then the user selects the change link for rejoin-uk-trading-name\/2
+    And the user amends answer to Trading name cross-schema two
+    Then the user is on the rejoin-add-uk-trading-name page
+    When the user selects the remove link for rejoin-remove-uk-trading-name\/1
+    And the user answers yes on the rejoin-remove-uk-trading-name/1 page
+    Then the user answers no on the rejoin-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for rejoin-business-contact-details
+    And the contact details warnings are displayed for a trader with a current IOSS registration
+    And the user amends details on the rejoin-business-contact-details page
+      | data                   | fieldId      |
+      | CS full-name           | fullName     |
+      | email-cs-test@test.com | emailAddress |
+    And the user completes the rejoin email verification process
+    Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-bank-details
+    And the bank details warnings are displayed for a trader with a current IOSS registration
+    And the user amends details on the rejoin-bank-details page
+      | data                      | fieldId     |
+      | CS Name                   | accountName |
+      | ABCDDD2A                  | bic         |
+      | GB33BUKB20201555555555555 | iban        |
+    Then the user is on the rejoin-registration page
+    When the user presses the submit button
+    Then the user is on the successful-rejoin page
+    And the text on the confirmation page is displayed when the trader has made changes and has a current IOSS registration
 
   Scenario: Rejoin registration for trader with a previous IOSS registration - amends data
     Given the IOSS registered user signs into OSS rejoin with IOSS number IM9019999997 and VRN 600000050
@@ -209,6 +238,30 @@ Feature: Cross Schema scenarios
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-add-uk-trading-name
+    And the correct number of existing trading names are displayed for a trader with a previous IOSS registration
+    And the rejoin trading name warnings are displayed for a trader with a previous IOSS registration
+    Then the user selects the change link for rejoin-uk-trading-name\/1
+    And the user amends answer to Trading name cross-schema 1
+    Then the user is on the rejoin-add-uk-trading-name page
+    Then the user answers no on the rejoin-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for rejoin-business-contact-details
+    And the contact details warnings are displayed for a trader with a previous IOSS registration
+    And the user amends details on the rejoin-business-contact-details page
+      | data                   | fieldId      |
+      | email-cs-test@test.com | emailAddress |
+    And the user completes the rejoin email verification process
+    Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-bank-details
+    And the bank details warnings are displayed for a trader with a previous IOSS registration
+    And the user amends details on the rejoin-bank-details page
+      | data                      | fieldId     |
+      | ABCDDD2A                  | bic         |
+    Then the user is on the rejoin-registration page
+    When the user presses the submit button
+    Then the user is on the successful-rejoin page
+    And the text on the confirmation page is displayed when the trader has made changes and has a previous IOSS registration
 
   Scenario: Rejoin registration for trader with multiple IOSS registrations - amends data
     Given the IOSS registered user signs into OSS rejoin with IOSS number IM9007231111 and VRN 600000050
@@ -218,6 +271,30 @@ Feature: Cross Schema scenarios
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-add-uk-trading-name
+    And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
+    And the rejoin trading name warnings are displayed for a trader with multiple IOSS registrations
+    When the user selects the remove link for rejoin-remove-uk-trading-name\/2
+    And the user answers yes on the rejoin-remove-uk-trading-name/2 page
+    Then the user answers no on the rejoin-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for rejoin-business-contact-details
+    And the contact details warnings are displayed for a trader with multiple IOSS registrations
+    And the user amends details on the rejoin-business-contact-details page
+      | data                   | fieldId      |
+      | CS full-name           | fullName     |
+    And the user completes the rejoin email verification process
+    Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-bank-details
+    And the bank details warnings are displayed for a trader with multiple IOSS registrations
+    And the user amends details on the rejoin-bank-details page
+      | data                      | fieldId     |
+      | CS Name                   | accountName |
+      | GB33BUKB20201555555555555 | iban        |
+    Then the user is on the rejoin-registration page
+    When the user presses the submit button
+    Then the user is on the successful-rejoin page
+    And the text on the confirmation page is displayed when the trader has made changes and has multiple IOSS registrations
 
   Scenario: Registration for trader with multiple IOSS registrations - does not amend data
     Given the IOSS registered user signs into OSS registration with IOSS number IM9007231111 and VRN 600000050
@@ -263,6 +340,9 @@ Feature: Cross Schema scenarios
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
+    When the user presses the submit button
+    Then the user is on the successful-rejoin page
+    And the text on the confirmation page is not displayed when the trader has not made changes and has multiple IOSS registrations
 
   Scenario: Registration for trader with no other registrations - amends data
     Given the user accesses the service
@@ -347,4 +427,28 @@ Feature: Cross Schema scenarios
     Then the rejoin-start-date page displays a commencement date of today
     And the user presses the continue button
     Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-add-uk-trading-name
+    And the correct number of existing trading names are displayed for a trader with no IOSS registrations
+    And the rejoin trading name warnings are not displayed for a trader with no IOSS registrations
+    Then the user selects the change link for rejoin-uk-trading-name\/1
+    And the user amends answer to Trading name cross-schema 1
+    Then the user is on the rejoin-add-uk-trading-name page
+    Then the user answers no on the rejoin-add-uk-trading-name page
+    Then the user is on the change-your-registration page
+    When the user selects the change link for rejoin-business-contact-details
+    And the contact details warnings are not displayed for a trader with no IOSS registrations
+    And the user amends details on the rejoin-business-contact-details page
+      | data                   | fieldId      |
+      | email-cs-test@test.com | emailAddress |
+    And the user completes the rejoin email verification process
+    Then the user is on the rejoin-registration page
+    When the user selects the change link for rejoin-bank-details
+    And the bank details warnings are not displayed for a trader with no IOSS registrations
+    And the user amends details on the rejoin-bank-details page
+      | data                      | fieldId     |
+      | ABCDDD2A                  | bic         |
+    Then the user is on the rejoin-registration page
+    When the user presses the submit button
+    Then the user is on the successful-rejoin page
+    And the text on the confirmation page is not displayed when the trader has made changes and has no IOSS registrations
 
