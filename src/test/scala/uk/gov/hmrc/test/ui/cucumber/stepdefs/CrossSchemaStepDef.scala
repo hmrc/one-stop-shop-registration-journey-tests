@@ -16,14 +16,8 @@
 
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
-import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.pages.EmailVerificationPage.{checkBusinessContactDetails, checkInterceptPage}
-import uk.gov.hmrc.test.ui.pages._
-
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class CrossSchemaStepDef extends BaseStepDef {
 
