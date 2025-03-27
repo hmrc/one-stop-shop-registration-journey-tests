@@ -40,6 +40,8 @@ class CrossSchemaStepDef extends BaseStepDef {
       "We added the trading names you entered when you registered for the Import One Stop Shop service. Check they are still correct."
     val warningText = if (version == "multiple") {
       "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
+    } else if (version == "a previous") {
+      "Any changes you make here will also update the trading names in your previous Import One Stop Shop registration."
     } else if (version != "no") {
       "Any changes you make here will also update the trading names in your Import One Stop Shop registration."
     } else {
@@ -139,7 +141,7 @@ class CrossSchemaStepDef extends BaseStepDef {
       Assert.assertTrue(htmlBody.contains("Trading names added Trading name cross-schema two"))
       Assert.assertTrue(htmlBody.contains("Trading names removed Trading name 2"))
       Assert.assertTrue(htmlBody.contains("Contact name or business department CS full-name"))
-      Assert.assertTrue(htmlBody.contains("IBAN GB33BUKB20201555555555555"))
+      Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
     } else if (version == "multiple") {
       Assert.assertTrue(htmlBody.contains("You changed the following details:"))
       Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
