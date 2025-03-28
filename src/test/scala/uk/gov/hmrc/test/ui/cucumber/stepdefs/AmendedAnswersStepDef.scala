@@ -78,7 +78,7 @@ class AmendedAnswersStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("Trading name 2"))
     Assert.assertTrue(htmlBody.contains("Countries registered in Spain"))
     Assert.assertTrue(htmlBody.contains("Countries registered in changed Bulgaria"))
-    Assert.assertTrue(htmlBody.contains("EU tax details removed Republic of Cyprus"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Cyprus"))
     Assert.assertTrue(htmlBody.contains("Romania"))
     Assert.assertTrue(htmlBody.contains("EU tax details changed Netherlands"))
     Assert.assertTrue(htmlBody.contains("Other businesses sell goods on your website or app No"))
@@ -95,7 +95,7 @@ class AmendedAnswersStepDef extends BaseStepDef {
     Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
     Assert.assertTrue(htmlBody.contains("Trading name 2"))
     Assert.assertTrue(htmlBody.contains("Registered for tax in other EU countries No"))
-    Assert.assertTrue(htmlBody.contains("EU tax details removed Republic of Cyprus"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Cyprus"))
     Assert.assertTrue(htmlBody.contains("Netherlands"))
     Assert.assertTrue(htmlBody.contains("Romania"))
     Assert.assertTrue(htmlBody.contains("Sell goods online No"))
@@ -106,7 +106,7 @@ class AmendedAnswersStepDef extends BaseStepDef {
   Then("""^the confirmation of a removed fixed establishment is displayed$""") { () =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You changed the following details:"))
-    Assert.assertTrue(htmlBody.contains("EU tax details removed Republic of Cyprus"))
+    Assert.assertTrue(htmlBody.contains("EU tax details removed Cyprus"))
   }
 
   Then("""^the updated email address is displayed as changed on the confirmation page$""") { () =>

@@ -379,7 +379,7 @@ Feature: Registering for One Stop Shop
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
     And the user answers yes on the previous-oss page
-    And the user selects Republic of Cyprus on the first previous-country page
+    And the user selects Cyprus on the first previous-country page
     And the user answer oss on the previous-scheme/1/1 page
     And the user add CY12345678X on the first previous-oss-scheme-number page
     Then the user is on the previous-scheme-answers/1 page
