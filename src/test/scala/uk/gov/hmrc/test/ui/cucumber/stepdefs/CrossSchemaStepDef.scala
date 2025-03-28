@@ -26,7 +26,7 @@ class CrossSchemaStepDef extends BaseStepDef {
   ) { (version: String, registrationNumber: String) =>
     val header = driver.findElement(By.tagName("h1")).getText
     if (version == "no") {
-      Assert.assertTrue(header.equals("You have added one UK trading name"))
+      Assert.assertTrue(header.equals("You have added 2 UK trading names"))
     } else {
       Assert.assertTrue(header.equals("You have 2 UK trading names from your Import One Stop Shop registration"))
     }
@@ -49,9 +49,7 @@ class CrossSchemaStepDef extends BaseStepDef {
     }
 
     if (displayed == "are not") {
-      if (journey == "registration") {
-        Assert.assertFalse(htmlBody.contains(hintText))
-      }
+      Assert.assertFalse(htmlBody.contains(hintText))
       Assert.assertFalse(htmlBody.contains(warningText))
     } else {
       if (journey == "registration") {
@@ -62,8 +60,8 @@ class CrossSchemaStepDef extends BaseStepDef {
   }
 
   Then(
-    """^the (contact|bank) details warnings (are|are not) displayed for a trader with (a current|a previous|multiple|no) IOSS (registration|registrations)$"""
-  ) { (page: String, displayed: String, version: String, registrationsNumber: String) =>
+    """^the (registration|amend|rejoin) (contact|bank) details warnings (are|are not) displayed for a trader with (a current|a previous|multiple|no) IOSS (registration|registrations)$"""
+  ) { (journey: String, page: String, displayed: String, version: String, registrationsNumber: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
     val hintText =
       "We have added the details you entered for the Import One Stop Shop service. Check they are still correct."
@@ -78,15 +76,13 @@ class CrossSchemaStepDef extends BaseStepDef {
       s"Any changes you make here will also update the $page details in"
     }
 
-    println(htmlBody)
-    println(s"the version is $version")
-    println(s"the warning text is $warningText")
-
     if (displayed == "are not") {
       Assert.assertFalse(htmlBody.contains(hintText))
       Assert.assertFalse(htmlBody.contains(warningText))
     } else {
-      Assert.assertTrue(htmlBody.contains(hintText))
+      if (journey == "registration") {
+        Assert.assertTrue(htmlBody.contains(hintText))
+      }
       Assert.assertTrue(htmlBody.contains(warningText))
     }
   }
@@ -95,6 +91,8 @@ class CrossSchemaStepDef extends BaseStepDef {
     """^the text on the confirmation page (is|is not) displayed when the trader (has|has not) made changes and (has a current|has a previous|has multiple|has no) IOSS (registration|registrations)$"""
   ) { (displayed: String, madeChanges: String, version: String, registrationNumber: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
+
+    println(htmlBody)
 
     val iossConfirmationText = if (version == "has a current") {
       "We've also updated your Import One Stop Shop registration."
@@ -154,11 +152,11 @@ class CrossSchemaStepDef extends BaseStepDef {
     }
   }
 
-//  Then(
-//    """^only the existing trading names are displayed for a trader with no IOSS registrations$"""
-//  ) { (version: String, registrationNumber: String) =>
-//    val header = driver.findElement(By.tagName("h1")).getText
-//    Assert.assertTrue(header.equals("You have added 2 UK trading names"))
-//  }
+  Then(
+    """^only the first trading name entered in a fresh registration is displayed$"""
+  ) { () =>
+    val header = driver.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(header.equals("You have added one UK trading name"))
+  }
 
 }
