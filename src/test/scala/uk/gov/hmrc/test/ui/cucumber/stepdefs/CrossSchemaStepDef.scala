@@ -42,7 +42,7 @@ class CrossSchemaStepDef extends BaseStepDef {
       "Any changes you make here will also update the trading names in all of your Import One Stop Shop registrations."
     } else if (version == "a previous") {
       "Any changes you make here will also update the trading names in your previous Import One Stop Shop registration."
-    } else if (version != "no") {
+    } else if (version == "a current") {
       "Any changes you make here will also update the trading names in your Import One Stop Shop registration."
     } else {
       "Any changes you make here will also update the trading names in"
@@ -77,6 +77,10 @@ class CrossSchemaStepDef extends BaseStepDef {
     } else {
       s"Any changes you make here will also update the $page details in"
     }
+
+    println(htmlBody)
+    println(s"the version is $version")
+    println(s"the warning text is $warningText")
 
     if (displayed == "are not") {
       Assert.assertFalse(htmlBody.contains(hintText))
@@ -150,11 +154,11 @@ class CrossSchemaStepDef extends BaseStepDef {
     }
   }
 
-  Then(
-    """^only the existing trading names are displayed for a trader with no IOSS registrations$"""
-  ) { (version: String, registrationNumber: String) =>
-    val header = driver.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(header.equals("You have added 2 UK trading names"))
-  }
+//  Then(
+//    """^only the existing trading names are displayed for a trader with no IOSS registrations$"""
+//  ) { (version: String, registrationNumber: String) =>
+//    val header = driver.findElement(By.tagName("h1")).getText
+//    Assert.assertTrue(header.equals("You have added 2 UK trading names"))
+//  }
 
 }
