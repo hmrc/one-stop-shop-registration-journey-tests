@@ -150,4 +150,20 @@ class CommonStepDef extends BaseStepDef {
     clickBackButton()
   }
 
+  Then(
+    """^the user clicks (remove|change) via list for (first|second|third) (.*)$"""
+  ) { (action: String, index: String, page: String) =>
+    val indexNumber = index match {
+      case "first"  => "1"
+      case "second" => "2"
+      case "third"  => "3"
+      case _        => throw new Exception("Index doesn't exist")
+    }
+    if (action == "remove") {
+      CommonPage.selectLink(s"remove-$page\\/$indexNumber")
+    } else {
+      CommonPage.selectLink(s"$page\\/$indexNumber")
+    }
+  }
+
 }

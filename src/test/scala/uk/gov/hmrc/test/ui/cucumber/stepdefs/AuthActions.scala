@@ -76,6 +76,15 @@ object AuthActions extends BrowserDriver {
         driver
           .findElement(By.id("input-2-0-value"))
           .sendKeys(iossNumber.get)
+        if (iossNumber.get == "IM9007231111") {
+          driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
+          driver
+            .findElement(By.id("input-3-0-name"))
+            .sendKeys("IOSSNumber")
+          driver
+            .findElement(By.id("input-3-0-value"))
+            .sendKeys("IM9006231111")
+        }
       }
     }
 
@@ -87,6 +96,15 @@ object AuthActions extends BrowserDriver {
       driver
         .findElement(By.id("input-1-0-value"))
         .sendKeys(iossNumber.get)
+      if (iossNumber.get == "IM9007231111") {
+        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
+        driver
+          .findElement(By.id("input-2-0-name"))
+          .sendKeys("IOSSNumber")
+        driver
+          .findElement(By.id("input-2-0-value"))
+          .sendKeys("IM9006231111")
+      }
     }
 
     driver.findElement(By.cssSelector("Input[value='Submit']")).click()
