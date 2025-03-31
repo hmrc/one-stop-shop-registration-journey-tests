@@ -1,4 +1,4 @@
-@Registration
+@RegistrationExtra
 
 Feature: Previous OSS or IOSS registrations in other countries
 

@@ -1,4 +1,4 @@
-@Registration
+@RegistrationExtra
 Feature: Unusable Email Status Scenarios
 
   Scenario: Intercept page for when a traders email address has unusable status
