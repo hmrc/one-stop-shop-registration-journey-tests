@@ -1,4 +1,4 @@
-@Registration
+@RegistrationExtra
 Feature: Entering the Registration service via BTA
 
   Scenario: A user registers via BTA and then has the correct BTA link on the registration submission page

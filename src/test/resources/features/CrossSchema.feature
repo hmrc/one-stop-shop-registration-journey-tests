@@ -1,4 +1,4 @@
-@Registration
+@RegistrationExtra
 Feature: Cross Schema scenarios
 
   Scenario: Registration for trader with a current IOSS registration - amends data

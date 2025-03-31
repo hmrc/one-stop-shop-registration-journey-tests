@@ -1,4 +1,4 @@
-@Registration
+@AmendRejoin
 Feature: Amending a registration for One Stop Shop
 
   Scenario: A user can amend all of the answers on their registration - first combination (no to yes)

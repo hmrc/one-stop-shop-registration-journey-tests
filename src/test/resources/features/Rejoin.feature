@@ -1,4 +1,4 @@
-@Registration
+@AmendRejoin
 Feature: Re-register for OSS Scheme
 
   Scenario: An excluded user who has made sales in this quarter can re-register for the OSS scheme

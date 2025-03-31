@@ -1,4 +1,4 @@
-@Registration
+@AmendRejoin
 Feature: Core validation during re-register for OSS Scheme
 
   Scenario: A trader with a quarantined VRN cannot access the rejoin journey
