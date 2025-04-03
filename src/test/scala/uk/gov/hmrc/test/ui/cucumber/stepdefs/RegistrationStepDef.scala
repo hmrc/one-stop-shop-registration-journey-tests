@@ -189,7 +189,7 @@ class RegistrationStepDef extends BaseStepDef {
     )
     Assert.assertTrue(
       htmlBody.contains(
-        s"If you make your first sale before $firstDayOfNextQuarter you must amend your registration to tell us."
+        s"If you make your first sale before $firstDayOfNextQuarter you must update your registration to tell us."
       )
     )
   }
