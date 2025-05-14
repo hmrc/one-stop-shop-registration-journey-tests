@@ -206,4 +206,15 @@ class RegistrationStepDef extends BaseStepDef {
     checkBusinessContactDetails()
   }
 
+  When("""^the user has been directed to the (registration|rejoin) quarantine page$""") { (registrationType: String) =>
+    val currentYear = LocalDate.now().getYear
+    println(s"what year is it? $currentYear")
+    if (registrationType == "registration") {
+      CommonPage.checkUrl(s"other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=$currentYear-01-01")
+    } else {
+      CommonPage.checkUrl(s"cannot-rejoin-quarantined-country?countryCode=EE&exclusionDate=$currentYear-01-01")
+
+    }
+  }
+
 }
