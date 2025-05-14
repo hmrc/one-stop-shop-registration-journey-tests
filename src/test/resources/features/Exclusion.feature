@@ -19,7 +19,7 @@ Feature: VRN exclusion reason pages after GG login
     And the user clicks through the business-pay page
     And the user signs in as an Organisation Admin with VAT enrolment 333333334 and strong credentials
     Then the user clicks on the continue to your account link
-    And the user is on the other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=2023-01-01 page
+    And the user has been directed to the registration quarantine page
 
   Scenario: Active OSS Reg in another EU country
     Given the user accesses the service
