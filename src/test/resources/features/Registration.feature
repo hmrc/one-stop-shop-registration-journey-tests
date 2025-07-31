@@ -134,7 +134,7 @@ Feature: Registering for One Stop Shop
     And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
     Then the user is at the no-saved-registration page
 
-  Scenario: A signed in user can complete a full registration with an intermediary identification number
+  Scenario: A signed in user can complete a full registration with a previous IOSS scheme
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page
@@ -154,7 +154,6 @@ Feature: Registering for One Stop Shop
     And the user answer ioss on the previous-scheme/1/1 page
     And the user answers yes on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM2501234567 on the previous-ioss-number/1/1 page
-    And the user inputs intermediary identification number IN2501234567 on the previous-ioss-number/1/1 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page

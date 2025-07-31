@@ -102,7 +102,6 @@ Feature: Amending a registration for One Stop Shop
     And the user answer ioss on the amend-previous-scheme/5/1 page
     And the user answers yes on the amend-previous-ioss-scheme/5/1 page
     And the user inputs ioss reg number IM7241234567 on the amend-previous-ioss-number/5/1 page
-    And the user inputs intermediary identification number IN7241234567 on the amend-previous-ioss-number/5/1 page
     Then the user answers yes on the amend-previous-scheme-answers/5 page
     And the user answer oss on the amend-previous-scheme/5/2 page
     And the user add ESX1234567X on the fifth amend-previous-oss-scheme-number page

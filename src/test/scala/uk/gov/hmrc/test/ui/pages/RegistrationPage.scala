@@ -23,13 +23,13 @@ import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
 object RegistrationPage extends BrowserDriver with Matchers {
 
-  def enterTheIossNumbers(iossNumber: String): Unit =
+  def enterTheIossNumbers(iossNumber: String): Unit = {
     driver.findElement(By.id("previousSchemeNumber")).sendKeys(iossNumber)
-
-  def enterTheIntermediaryIdentificationNumber(intermediaryNumber: String): Unit = {
-    driver.findElement(By.id("previousIntermediaryNumber")).sendKeys(intermediaryNumber)
     CommonPage.clickContinue()
   }
+
+  def enterTheIntermediaryIdentificationNumber(intermediaryNumber: String): Unit =
+    driver.findElement(By.id("previousIntermediaryNumber")).sendKeys(intermediaryNumber)
 
   def selectAnswerAs(data: String): Unit = {
     data match {
