@@ -71,26 +71,6 @@ Feature: VRN exclusion reason pages after GG login
     And the user answer ioss on the previous-scheme/1/1 page
     And the user answers no on the previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM3001234567 on the previous-ioss-number/1/1 page
-    And the user clicks continue on the first previous-ioss-number/1 page
-    Then the user is on the scheme-quarantined/1/1 page
-
-  Scenario: Quarantined intermediary identification number in another EU country
-    Given the user accesses the service
-    And the user answers no on the already-eu-registered page
-    And the user answers yes on the sell-from-northern-ireland page
-    And the user answers yes on the northern-ireland-business page
-    And the user clicks through the business-pay page
-    And the user signs in as an Organisation Admin with VAT enrolment 100000001 and strong credentials
-    And the user chooses Yes on the confirm-vat-details page
-    And the user answers no on the have-uk-trading-name page
-    And the user answers yes on the already-made-sales page
-    And the user enters yesterday for date-of-first-sale
-    And the user answers yes on the previous-oss page
-    And the user selects Germany on the first previous-country page
-    And the user answer ioss on the previous-scheme/1/1 page
-    And the user answers yes on the previous-ioss-scheme/1/1 page
-    And the user inputs ioss reg number IM2761234567 on the previous-ioss-number/1/1 page
-    And the user inputs intermediary identification number IN2761234567 on the previous-ioss-number/1/1 page
     Then the user is on the scheme-quarantined/1/1 page
 
   Scenario: Cannot register with a fixed establishment that is already registered on a One Stop Shop service

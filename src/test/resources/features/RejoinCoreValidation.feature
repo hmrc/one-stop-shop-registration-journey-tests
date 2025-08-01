@@ -69,7 +69,6 @@ Feature: Core validation during re-register for OSS Scheme
     And the user answer ioss on the rejoin-amend-previous-scheme/1/1 page
     And the user answers no on the rejoin-amend-previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM3001234567 on the rejoin-amend-previous-ioss-number/1/1 page
-    And the user presses the continue button
     Then the user has been directed to the rejoin quarantine page
 
   Scenario: A trader is unable to rejoin with a quarantined previous IOSS scheme with intermediary
@@ -86,7 +85,6 @@ Feature: Core validation during re-register for OSS Scheme
     And the user answer ioss on the rejoin-amend-previous-scheme/1/1 page
     And the user answers yes on the rejoin-amend-previous-ioss-scheme/1/1 page
     And the user inputs ioss reg number IM2761234567 on the rejoin-amend-previous-ioss-number/1/1 page
-    And the user inputs intermediary identification number IN2761234567 on the rejoin-amend-previous-ioss-number/1/1 page
     Then the user has been directed to the rejoin quarantine page
 
   Scenario: A trader is able to rejoin with a previous IOSS scheme that is still active

@@ -34,12 +34,6 @@ class RegistrationStepDef extends BaseStepDef {
     RegistrationPage.enterTheIossNumbers(iossNumber)
   }
 
-  And("""^the user inputs intermediary identification number (.*) on the (.*) page$""") {
-    (intermediaryNumber: String, url: String) =>
-      CommonPage.checkUrl(url)
-      RegistrationPage.enterTheIntermediaryIdentificationNumber(intermediaryNumber)
-  }
-
   When("^the user enters (yesterday|7 days ago|today) for (.*)$") { (date: String, url: String) =>
     val dateOfFirstSale = {
       if (date == "7 days ago") {
