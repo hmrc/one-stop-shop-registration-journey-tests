@@ -88,7 +88,7 @@ Feature: Check Your Answers
     Then the user answers yes on the check-remove-website-address/2 page
     And the user answers no on the check-add-website-address page
     Then the user is at the check-answers page
-@wip
+
   Scenario: Changing answers from yes to no from CYA to show delete all pages
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
