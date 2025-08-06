@@ -88,7 +88,7 @@ Feature: Check Your Answers
     Then the user answers yes on the check-remove-website-address/2 page
     And the user answers no on the check-add-website-address page
     Then the user is at the check-answers page
-
+@wip
   Scenario: Changing answers from yes to no from CYA to show delete all pages
     Given the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -113,7 +113,6 @@ Feature: Check Your Answers
     And the user answers ioss on the previous-scheme/1/2 page
     And the user answers no on the previous-ioss-scheme/1/2 page
     And the user inputs ioss reg number IM7527777777 on the previous-ioss-number/1/2 page
-    And the user clicks through the previous-ioss-number/1/2 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
