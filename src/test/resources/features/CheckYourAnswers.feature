@@ -113,7 +113,6 @@ Feature: Check Your Answers
     And the user answers ioss on the previous-scheme/1/2 page
     And the user answers no on the previous-ioss-scheme/1/2 page
     And the user inputs ioss reg number IM7527777777 on the previous-ioss-number/1/2 page
-    And the user clicks through the previous-ioss-number/1/2 page
     And the user answers no on the previous-scheme-answers/1 page
     And the user answers no on the previous-schemes-overview page
     And the user clicks through the start-date page
