@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,14 +21,17 @@ import org.openqa.selenium.By
 import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 
 import java.time.LocalDate
 import scala.jdk.CollectionConverters._
 
 object CommonPage extends BrowserDriver with Matchers {
 
-  def checkUrl(url: String): Unit =
+  def checkUrl(url: String): Unit = {
+    fluentWait.until(ExpectedConditions.urlContains(url))
     driver.getCurrentUrl should endWith(url)
+  }
 
   def goToStartOfJourney(): Unit =
     driver.navigate().to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/")

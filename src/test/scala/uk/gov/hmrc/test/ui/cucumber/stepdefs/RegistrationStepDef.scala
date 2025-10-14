@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,8 @@ package uk.gov.hmrc.test.ui.cucumber.stepdefs
 import io.cucumber.datatable.DataTable
 import org.junit.Assert
 import org.openqa.selenium.By
+import org.openqa.selenium.support.ui.ExpectedConditions
+import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 import uk.gov.hmrc.test.ui.pages.EmailVerificationPage.{checkBusinessContactDetails, checkInterceptPage}
 import uk.gov.hmrc.test.ui.pages._
 
@@ -55,6 +57,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When("^the (.*) page displays a commencement date of (today|yesterday)$") { (url: String, day: String) =>
+    CommonPage.checkUrl("start-date")
     var date          = LocalDate.now()
     if (day == "yesterday") {
       date = date.minusDays(1)
@@ -62,7 +65,6 @@ class RegistrationStepDef extends BaseStepDef {
     val htmlBody      = driver.findElement(By.tagName("body")).getText
     val startDateText =
       "You must include all eligible sales from " + date.format(dateFormatter) + " in your first return."
-    CommonPage.checkUrl("start-date")
     Assert.assertTrue(htmlBody.contains(startDateText))
   }
 
@@ -104,6 +106,8 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   And("""^the user completes the (registration|amend|rejoin) email verification process""") { (mode: String) =>
+    fluentWait.until(ExpectedConditions.urlContains("http://localhost:9890/email-verification/journey"))
+
     val journeyId = driver.getCurrentUrl.split("/")(5)
 
     EmailVerificationPage.goToEmailVerificationPasscodeGeneratorUrl()
@@ -112,6 +116,14 @@ class RegistrationStepDef extends BaseStepDef {
     EmailVerificationPage.goToEmailVerificationUrl(journeyId)
     driver.findElement(By.id("passcode")).sendKeys(passcode)
     driver.findElement(By.className("govuk-button")).click()
+
+    if (mode == "registration") {
+      fluentWait.until(
+        ExpectedConditions.urlContains(
+          "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details"
+        )
+      )
+    }
   }
 
   Then("""^the user submits their registration$""") { () =>

@@ -62,6 +62,7 @@ Feature: Entering the Registration service via BTA
   Scenario: The user enters the service via BTA and is directed back to BTA via the Cannot Use No VAT kickout page
     Given the user accesses the stub url
     And the user signs in as an Organisation Admin with Hmrc Mdt VAT enrolment 100000001 and strong credentials via authwiz
+    And the user is on the already-eu-registered page
     Then the user manually navigates to the from-external link
     And the user answers no on the already-eu-registered page
     And the user answers yes on the sell-from-northern-ireland page

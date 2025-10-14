@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,22 +16,34 @@
 
 package uk.gov.hmrc.test.ui.pages
 
+import org.openqa.selenium.support.ui.ExpectedConditions
 import org.scalatest.matchers.should.Matchers
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 
 object EmailVerificationPage extends BrowserDriver with Matchers {
 
-  def goToEmailVerificationUrl(journeyId: String): Unit =
+  def goToEmailVerificationUrl(journeyId: String): Unit = {
+
+    val emailVerificationUrl =
+      s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS&service=one-stop-shop-registration-frontend"
     driver
       .navigate()
-      .to(
-        s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS&service=one-stop-shop-registration-frontend"
-      )
+      .to(emailVerificationUrl)
 
-  def goToEmailVerificationPasscodeGeneratorUrl(): Unit =
+    fluentWait.until(ExpectedConditions.urlContains(emailVerificationUrl))
+  }
+
+  def goToEmailVerificationPasscodeGeneratorUrl(): Unit = {
+    val testOnlyUrl =
+      "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/get-passcodes"
+
     driver.navigate
-      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/get-passcodes")
+      .to(testOnlyUrl)
+
+    fluentWait.until(ExpectedConditions.urlContains(testOnlyUrl))
+  }
 
   def checkInterceptPage(): Unit =
     driver.getCurrentUrl should startWith(

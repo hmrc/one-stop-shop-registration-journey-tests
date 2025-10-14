@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 HM Revenue & Customs
+ * Copyright 2025 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +17,9 @@
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.Select
+import org.openqa.selenium.support.ui.{ExpectedConditions, Select}
 import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 
 object AuthActions extends BrowserDriver {
 
@@ -113,6 +114,8 @@ object AuthActions extends BrowserDriver {
 
   def loginUsingScpStub(affinityGroup: String, vrn: String): Unit = {
 
+    fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/login"))
+
     driver.findElement(By.partialLinkText("Register SCP User")).click()
     val selectAccountType = new Select(driver.findElement(By.id("accountType")))
     selectAccountType.selectByValue(affinityGroup)
@@ -128,6 +131,7 @@ object AuthActions extends BrowserDriver {
   }
 
   def selectMfaSuccess(): Unit = {
+    fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/required-mfa-register"))
     driver.findElement(By.id("mfaOutcome")).click()
     driver.findElement(By.className("submit")).click()
   }
