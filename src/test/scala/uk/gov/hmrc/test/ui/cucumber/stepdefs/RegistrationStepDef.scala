@@ -57,6 +57,7 @@ class RegistrationStepDef extends BaseStepDef {
   }
 
   When("^the (.*) page displays a commencement date of (today|yesterday)$") { (url: String, day: String) =>
+    CommonPage.checkUrl("start-date")
     var date          = LocalDate.now()
     if (day == "yesterday") {
       date = date.minusDays(1)
@@ -64,7 +65,6 @@ class RegistrationStepDef extends BaseStepDef {
     val htmlBody      = driver.findElement(By.tagName("body")).getText
     val startDateText =
       "You must include all eligible sales from " + date.format(dateFormatter) + " in your first return."
-    CommonPage.checkUrl("start-date")
     Assert.assertTrue(htmlBody.contains(startDateText))
   }
 

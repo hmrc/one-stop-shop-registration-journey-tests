@@ -148,8 +148,10 @@ Feature: Previous OSS or IOSS registrations in other countries
     And the user answers ioss on the previous-scheme/1/2 page
     And the user answers no on the previous-ioss-scheme/1/2 page
     And the user inputs ioss reg number IM7241234567 on the previous-ioss-number/1/2 page
+    And the user is on the previous-scheme-answers/1 page
     Then the user selects the remove link for remove-previous-scheme
     And the user answers yes on the remove-previous-scheme/1/1 page
+    And the user is on the previous-scheme-answers/1 page
     Then the user selects the remove link for remove-previous-scheme
     And the user answers yes on the remove-previous-scheme/1/1 page
     Then the user is at the previous-oss page

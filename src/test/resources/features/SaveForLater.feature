@@ -17,6 +17,7 @@ Feature: Save For Later Feature
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
+    And the user is on the previous-oss page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
     And the user answers yes on the previous-oss page
@@ -52,6 +53,7 @@ Feature: Save For Later Feature
       | A Town    | townOrCity |
     And the user clicks continue on the second check-tax-details page
     And the user answers no on the add-tax-details page
+    And the user is on the online-marketplace page
     And the user clicks on the save and come back later button
     Then the user clicks on the continue to complete your registration link
     And the user answers no on the online-marketplace page
@@ -91,6 +93,7 @@ Feature: Save For Later Feature
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
+    And the user is on the previous-oss page
     And the user clicks on the save and come back later button
     And the user select the sign and come back later link
     And the user accesses the service
@@ -168,6 +171,7 @@ Feature: Save For Later Feature
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
     And the user enters yesterday for date-of-first-sale
+    And the user is on the previous-oss page
     And the user clicks on the save and come back later button
     And the user select the sign and come back later link
     And the user accesses the continue on sign in url
