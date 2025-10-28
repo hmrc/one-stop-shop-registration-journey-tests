@@ -67,7 +67,7 @@ class AuthStepDef extends BaseStepDef {
   }
 
   Given(
-    "^the (user|assistant) signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
+    "^the (user) signs in as an Organisation Admin with Hmrc Mdt VAT enrolment (.*) and strong credentials via authwiz$"
   ) { (user: String, vrn: String) =>
     AuthActions.loginUsingAuthorityWizard(user, "Organisation", vrn, None, withOssEnrolment = false, "registration")
   }
