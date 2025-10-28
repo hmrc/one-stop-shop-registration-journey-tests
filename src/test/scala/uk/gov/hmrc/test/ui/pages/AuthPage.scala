@@ -17,14 +17,14 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.scalatest.concurrent.Eventually
+import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.test.ui.conf.TestConfiguration
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
 
-object AuthPage extends BasePage with BrowserDriver with Eventually {
+object AuthPage extends BasePage with PageObject with Eventually {
 
   val url: String = TestConfiguration.url("auth-login-stub") + "/gg-sign-in"
 
   def goToStartOfJourneyFromStub(): Unit =
-    driver.navigate().to(url)
+    get(url)
 
 }

@@ -43,9 +43,6 @@ class CommonStepDef extends BaseStepDef {
         case "third"  => CommonPage.checkUrl(url + "/3")
         case _        => throw new Exception("Index doesn't exist")
       }
-      if (mode == "amends") {
-        driver.findElement(By.id("value")).clear()
-      }
       CommonPage.enterData(data)
   }
 
@@ -110,23 +107,23 @@ class CommonStepDef extends BaseStepDef {
   Then("""^the user clicks on the (.*) link$""") { (link: String) =>
     link match {
       case "BTA"                                    =>
-        driver.findElement(By.id("back-to-your-account")).click()
+        CommonPage.selectLinkById("back-to-your-account")
       case "continue to complete your registration" =>
-        driver.findElement(By.cssSelector("a#continueToYourReturn")).click()
+        CommonPage.selectLinkByCss("a#continueToYourReturn")
       case "sign out and come back later"           =>
-        driver.findElement(By.xpath("/*[@id=‘signOut’]")).click()
+        CommonPage.selectLinkByXPath("/*[@id=‘signOut’]")
       case "continue to your account"               =>
-        driver.findElement(By.xpath("//*[@id='main-content']/div/div/div[1]/a"))
+        CommonPage.selectLinkByXPath("//*[@id='main-content']/div/div/div[1]/a")
       case "try again later"                        =>
-        driver.findElement(By.xpath("/html/body/div/main/div/div/p[1]/a")).click()
+        CommonPage.selectLinkByXPath("/html/body/div/main/div/div/p[1]/a")
       case "back to your account"                   =>
-        driver.findElement(By.id("backToYourAccount")).click()
+        CommonPage.selectLinkById("backToYourAccount")
       case "Change your registration"               =>
-        driver.findElement(By.id("change-your-registration")).click()
+        CommonPage.selectLinkById("change-your-registration")
       case "Returns account"                        =>
-        driver.findElement(By.id("back-to-your-account")).click()
+        CommonPage.selectLinkById("back-to-your-account")
       case "cancel"                                 =>
-        driver.findElement(By.id("cancel")).click()
+        CommonPage.selectLinkById("cancel")
       case _                                        =>
         throw new Exception("Link doesn't exist")
     }
@@ -160,9 +157,9 @@ class CommonStepDef extends BaseStepDef {
       case _        => throw new Exception("Index doesn't exist")
     }
     if (action == "remove") {
-      CommonPage.selectLink(s"remove-$page\\/$indexNumber")
+      CommonPage.selectLinkByCss(s"remove-$page\\/$indexNumber")
     } else {
-      CommonPage.selectLink(s"$page\\/$indexNumber")
+      CommonPage.selectLinkByCss(s"$page\\/$indexNumber")
     }
   }
 

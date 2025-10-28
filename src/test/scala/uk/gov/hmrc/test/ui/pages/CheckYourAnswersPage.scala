@@ -19,22 +19,21 @@ package uk.gov.hmrc.test.ui.pages
 import io.cucumber.datatable.DataTable
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.selenium.component.PageObject
 
 import scala.jdk.CollectionConverters._
 
-object CheckYourAnswersPage extends BrowserDriver with Matchers {
+object CheckYourAnswersPage extends PageObject with Matchers {
 
   def changeAnswers(dataTable: DataTable): Unit =
     dataTable.asMaps[String, String](classOf[String], classOf[String]).asScala.foreach { row =>
       val link = "change" + row.get("page").replace(" ", "")
-      driver.findElement(By.cssSelector(s"a[href*=$link]")).click()
+      click(By.cssSelector(s"a[href*=$link]"))
       CommonPage.checkUrl(link)
-      driver.findElement(By.id("value")).clear()
-      driver.findElement(By.id("value")).sendKeys(row.get("data"))
-      driver.findElement(By.xpath("//*[@id='main-content']/div/div/form/button")).click()
+      sendKeys(By.id("value"), "data")
+      click(By.xpath("//*[@id='main-content']/div/div/form/button"))
     }
 
   def selectLink(link: String): Unit =
-    driver.findElement(By.cssSelector(s"a[href*='$link']")).click()
+    click(By.cssSelector(s"a[href*='$link']"))
 }

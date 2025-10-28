@@ -19,22 +19,23 @@ package uk.gov.hmrc.test.ui.pages
 import org.junit.Assert
 import org.openqa.selenium.By
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.selenium.component.PageObject
+import uk.gov.hmrc.selenium.webdriver.Driver
 
-object RegistrationPage extends BrowserDriver with Matchers {
+object RegistrationPage extends PageObject with Matchers {
 
   def enterTheIossNumbers(iossNumber: String): Unit = {
-    driver.findElement(By.id("previousSchemeNumber")).sendKeys(iossNumber)
+    sendKeys(By.id("previousSchemeNumber"), iossNumber)
     CommonPage.clickContinue()
   }
 
   def enterTheIntermediaryIdentificationNumber(intermediaryNumber: String): Unit =
-    driver.findElement(By.id("previousIntermediaryNumber")).sendKeys(intermediaryNumber)
+    sendKeys(By.id("previousIntermediaryNumber"), intermediaryNumber)
 
   def selectAnswerAs(data: String): Unit = {
     data match {
-      case "oss"  => driver.findElement(By.id("value_0")).click()
-      case "ioss" => driver.findElement(By.id("value_1")).click()
+      case "oss"  => click(By.id("value_0"))
+      case "ioss" => click(By.id("value_1"))
       case _      => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
@@ -42,8 +43,8 @@ object RegistrationPage extends BrowserDriver with Matchers {
 
   def selectSortOfRegistrationAs(data: String): Unit = {
     data match {
-      case "vat number"    => driver.findElement(By.id("value_0")).click()
-      case "tax id number" => driver.findElement(By.id("value_1")).click()
+      case "vat number"    => click(By.id("value_0"))
+      case "tax id number" => click(By.id("value_1"))
       case _               => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
@@ -51,8 +52,8 @@ object RegistrationPage extends BrowserDriver with Matchers {
 
   def selectOperationAs(data: String): Unit = {
     data match {
-      case "fixed establishment" => driver.findElement(By.id("value_0")).click()
-      case "dispatch warehouse"  => driver.findElement(By.id("value_1")).click()
+      case "fixed establishment" => click(By.id("value_0"))
+      case "dispatch warehouse"  => click(By.id("value_1"))
       case _                     => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
@@ -60,15 +61,15 @@ object RegistrationPage extends BrowserDriver with Matchers {
 
   def selectContinueRegistration(data: String): Unit = {
     data match {
-      case "yes"                                  => driver.findElement(By.id("continueProgress")).click()
-      case "No,delete my answers and start again" => driver.findElement(By.id("deleteProgress")).click()
+      case "yes"                                  => click(By.id("continueProgress"))
+      case "No,delete my answers and start again" => click(By.id("deleteProgress"))
       case _                                      => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }
 
   def checkVersion(version: String): Unit = {
-    val htmlBody     = driver.findElement(By.tagName("body")).getText
+    val htmlBody     = Driver.instance.findElement(By.tagName("body")).getText
     val post10thText = "You registered after the 10th day of the next month following your first eligible sale."
     version match {
       case "pre"  => Assert.assertFalse(htmlBody.contains(post10thText))
