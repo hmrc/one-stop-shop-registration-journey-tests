@@ -17,18 +17,14 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.scalatest.matchers.should.Matchers
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.selenium.component.PageObject
 
-object BTAPage extends BrowserDriver with Matchers {
+object BTAPage extends PageObject with Matchers {
 
   def goToStartOfExternalJourney(): Unit =
-    driver
-      .navigate()
-      .to("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/from-external")
+    get("http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/from-external")
 
   def navigateToBtaLink(link: String): Unit =
-    driver
-      .navigate()
-      .to(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/$link")
+    get(s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/$link")
 
 }

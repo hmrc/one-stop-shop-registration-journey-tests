@@ -47,7 +47,6 @@ class RegistrationStepDef extends BaseStepDef {
       }
     }
     CommonPage.checkUrl(url)
-    CommonPage.clearDate()
     CommonPage.enterDate(
       dateOfFirstSale.getDayOfMonth.toString,
       dateOfFirstSale.getMonthValue.toString,

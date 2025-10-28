@@ -17,14 +17,14 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.selenium.component.PageObject
 
-object SalesChannelsPage extends BrowserDriver {
+object SalesChannelsPage extends PageObject {
 
   def selectChoice(data: String): Unit =
     data match {
-      case "Online Marketplace"     => driver.findElement(By.id("value_0")).click()
-      case "Mixed"                  => driver.findElement(By.id("value_1")).click()
-      case "Not Online Marketplace" => driver.findElement(By.id("value_2")).click()
+      case "Online Marketplace"     => click(By.id("value_0"))
+      case "Mixed"                  => click(By.id("value_1"))
+      case "Not Online Marketplace" => click(By.id("value_2"))
     }
 }

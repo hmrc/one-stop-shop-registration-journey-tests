@@ -27,6 +27,6 @@ trait BasePage extends Matchers {
   val url: String
 
   def fluentWait: Wait[WebDriver] = new FluentWait[WebDriver](Driver.instance)
-    .withTimeout(Duration.ofSeconds(3))
+    .withTimeout(Duration.ofSeconds(5))
     .pollingEvery(Duration.ofMillis(200))
 }

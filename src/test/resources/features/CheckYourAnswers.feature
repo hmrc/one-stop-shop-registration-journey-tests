@@ -216,7 +216,9 @@ Feature: Check Your Answers
       | 1 Address | line1      |
       | A Town    | townOrCity |
     And the user clicks continue on the second check-tax-details page
+    And the user is on the add-tax-details page
     Then the user selects the change link for check-tax-details\/1
+    And the user is on the check-tax-details/1 page
     And the user selects the change link for sells-goods-to-eu-consumer-method\/1
     Then the user answer fixed establishment on the sells-goods-to-eu-consumer-method/1 page
     And the user answer tax id number on the registration-type/1 page

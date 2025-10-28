@@ -17,14 +17,14 @@
 package uk.gov.hmrc.test.ui.pages
 
 import org.openqa.selenium.By
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import uk.gov.hmrc.selenium.component.PageObject
 
-object CheckVatDetailsPage extends BrowserDriver {
+object CheckVatDetailsPage extends PageObject {
 
   def selectChoice(data: String): Unit =
     data match {
-      case "Yes"                   => driver.findElement(By.id("value_0")).click()
-      case "No, details incorrect" => driver.findElement(By.id("value_1")).click()
-      case "No, wrong account"     => driver.findElement(By.id("value_2")).click()
+      case "Yes"                   => click(By.id("value_0"))
+      case "No, details incorrect" => click(By.id("value_1"))
+      case "No, wrong account"     => click(By.id("value_2"))
     }
 }
