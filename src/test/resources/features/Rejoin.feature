@@ -62,7 +62,6 @@ Feature: Re-register for OSS Scheme
     And the user answer ioss on the rejoin-amend-previous-scheme/1/2 page
     And the user answers no on the rejoin-amend-previous-ioss-scheme/1/2 page
     And the user inputs ioss reg number IM2467777777 on the rejoin-amend-previous-ioss-number/1/2 page
-    And the user presses the continue button
     And the user answers no on the rejoin-amend-previous-scheme-answers/1 page
     Then the user answers no on the rejoin-amend-previous-schemes-overview page
     Then the user is on the rejoin-registration page
@@ -184,7 +183,7 @@ Feature: Re-register for OSS Scheme
     And the user answer ioss on the rejoin-amend-previous-scheme/5/2 page
     And the user answers no on the rejoin-amend-previous-ioss-scheme/5/2 page
     And the user inputs ioss reg number IM0407777777 on the rejoin-amend-previous-ioss-number/5/2 page
-    And the user presses the continue button
+    And the user is on the rejoin-amend-previous-scheme-answers/5 page
     When the user selects the remove link for rejoin-amend-remove-previous-scheme\/5\/1
     Then the user answers yes on the rejoin-amend-remove-previous-scheme/5/1 page
     And the user answers no on the rejoin-amend-previous-scheme-answers/5 page

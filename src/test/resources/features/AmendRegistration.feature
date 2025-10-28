@@ -20,7 +20,6 @@ Feature: Amending a registration for One Stop Shop
     And the user answer ioss on the amend-previous-scheme/1/2 page
     And the user answers no on the amend-previous-ioss-scheme/1/2 page
     And the user inputs ioss reg number IM2467777777 on the amend-previous-ioss-number/1/2 page
-    And the user presses the continue button
     And the user answers no on the amend-previous-scheme-answers/1 page
     Then the user answers no on the amend-previous-schemes-overview page
     And the user is on the change-your-registration page
@@ -232,6 +231,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-online-marketplace
     Then the user answers yes on the amend-online-marketplace page
+    Then the user is on the change-your-registration page
     And the user selects the change link for amend-give-website-address
     And the user answers yes on the amend-give-website-address page
     And the user adds www.1stwebsite.org on the first amend-website-address page
