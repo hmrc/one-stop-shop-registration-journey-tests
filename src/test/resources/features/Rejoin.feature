@@ -139,11 +139,13 @@ Feature: Re-register for OSS Scheme
     And the user presses the continue button
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-add-tax-details
+    And the user is on the rejoin-amend-add-tax-details page
     Then the user selects the remove link for rejoin-amend-remove-tax-details\/2
     And the user answers yes on the rejoin-amend-remove-tax-details/2 page
     And the user answers no on the rejoin-amend-add-tax-details page
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-add-website-address
+    And the user is on the rejoin-amend-add-website-address page
     Then the user selects the remove link for rejoin-remove-website-address\/1
     And the user answers yes on the rejoin-remove-website-address/1 page
     And the user answers no on the rejoin-amend-add-website-address page

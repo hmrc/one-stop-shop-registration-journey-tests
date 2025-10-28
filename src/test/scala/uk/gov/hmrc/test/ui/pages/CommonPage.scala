@@ -74,6 +74,7 @@ object CommonPage extends PageObject with Matchers {
 
   def completeForm(dataTable: DataTable): Unit = {
     dataTable.asMaps[String, String](classOf[String], classOf[String]).asScala.foreach { row =>
+      Driver.instance.findElement(By.id(row.get("fieldId"))).clear()
       Driver.instance.findElement(By.id(row.get("fieldId"))).sendKeys(row.get("data"))
     }
     CommonPage.clickContinue()

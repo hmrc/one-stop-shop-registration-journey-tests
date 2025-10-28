@@ -109,7 +109,7 @@ class CommonStepDef extends BaseStepDef {
       case "BTA"                                    =>
         CommonPage.selectLinkById("back-to-your-account")
       case "continue to complete your registration" =>
-        CommonPage.selectLinkByCss("a#continueToYourReturn")
+        CommonPage.selectLinkById("continueToYourReturn")
       case "sign out and come back later"           =>
         CommonPage.selectLinkByXPath("/*[@id=‘signOut’]")
       case "continue to your account"               =>
