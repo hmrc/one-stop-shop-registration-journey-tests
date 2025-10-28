@@ -17,11 +17,11 @@
 package uk.gov.hmrc.test.ui.cucumber.stepdefs
 
 import org.openqa.selenium.By
-import org.openqa.selenium.support.ui.{ExpectedConditions, Select}
-import uk.gov.hmrc.test.ui.driver.BrowserDriver
+import org.openqa.selenium.support.ui.ExpectedConditions
+import uk.gov.hmrc.selenium.component.PageObject
 import uk.gov.hmrc.test.ui.pages.AuthPage.fluentWait
 
-object AuthActions extends BrowserDriver {
+object AuthActions extends PageObject {
 
   def loginUsingAuthorityWizard(
     user: String,
@@ -31,7 +31,6 @@ object AuthActions extends BrowserDriver {
     withOssEnrolment: Boolean,
     journey: String
   ): Unit = {
-    driver.findElement(By.id("redirectionUrl")).clear()
 
     val url = journey match {
       case "registration" =>
@@ -43,72 +42,41 @@ object AuthActions extends BrowserDriver {
         "http://localhost:10204/pay-vat-on-goods-sold-to-eu/northern-ireland-returns-payments/your-account"
     }
 
-    driver.findElement(By.id("redirectionUrl")).sendKeys(url)
-    val selectCredentialStrength = new Select(driver.findElement(By.id("credentialStrength")))
-    selectCredentialStrength.selectByValue("strong")
-    val selectAffinityGroup      = new Select(driver.findElement(By.id("affinityGroupSelect")))
-    selectAffinityGroup.selectByValue("Organisation")
+    sendKeys(By.id("redirectionUrl"), url)
 
-    if (user == "assistant") {
-      val selectCredentialRole = new Select(driver.findElement(By.id("credential-role-select")))
-      selectCredentialRole.selectByValue("Assistant")
-    }
+    selectByValue(By.id("affinityGroupSelect"), affinityGroup)
 
-    driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
-    driver
-      .findElement(By.id("input-0-0-name"))
-      .sendKeys("VRN")
-    driver
-      .findElement(By.id("input-0-0-value"))
-      .sendKeys(vrn)
+    sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+    sendKeys(By.id("input-0-0-name"), "VRN")
+    sendKeys(By.id("input-0-0-value"), vrn)
     if (withOssEnrolment) {
-      driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-OSS-ORG")
-      driver
-        .findElement(By.id("input-1-0-name"))
-        .sendKeys("VRN")
-      driver
-        .findElement(By.id("input-1-0-value"))
-        .sendKeys(vrn)
+      sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+      sendKeys(By.id("input-1-0-name"), "VRN")
+      sendKeys(By.id("input-1-0-value"), vrn)
       if (iossNumber.nonEmpty) {
-        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
-        driver
-          .findElement(By.id("input-2-0-name"))
-          .sendKeys("IOSSNumber")
-        driver
-          .findElement(By.id("input-2-0-value"))
-          .sendKeys(iossNumber.get)
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), iossNumber.get)
         if (iossNumber.get == "IM9007231111") {
-          driver.findElement(By.id("enrolment[3].name")).sendKeys("HMRC-IOSS-ORG")
-          driver
-            .findElement(By.id("input-3-0-name"))
-            .sendKeys("IOSSNumber")
-          driver
-            .findElement(By.id("input-3-0-value"))
-            .sendKeys("IM9006231111")
+          sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
+          sendKeys(By.id("input-3-0-name"), "IOSSNumber")
+          sendKeys(By.id("input-3-0-value"), "IM9006231111")
         }
       }
     }
 
     if (!withOssEnrolment && iossNumber.nonEmpty) {
-      driver.findElement(By.id("enrolment[1].name")).sendKeys("HMRC-IOSS-ORG")
-      driver
-        .findElement(By.id("input-1-0-name"))
-        .sendKeys("IOSSNumber")
-      driver
-        .findElement(By.id("input-1-0-value"))
-        .sendKeys(iossNumber.get)
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
+      sendKeys(By.id("input-1-0-name"), "IOSSNumber")
+      sendKeys(By.id("input-1-0-value"), iossNumber.get)
       if (iossNumber.get == "IM9007231111") {
-        driver.findElement(By.id("enrolment[2].name")).sendKeys("HMRC-IOSS-ORG")
-        driver
-          .findElement(By.id("input-2-0-name"))
-          .sendKeys("IOSSNumber")
-        driver
-          .findElement(By.id("input-2-0-value"))
-          .sendKeys("IM9006231111")
+        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+        sendKeys(By.id("input-2-0-value"), "IM9006231111")
       }
     }
 
-    driver.findElement(By.cssSelector("Input[value='Submit']")).click()
+    click(By.cssSelector("Input[value='Submit']"))
 
   }
 
@@ -116,23 +84,25 @@ object AuthActions extends BrowserDriver {
 
     fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/login"))
 
-    driver.findElement(By.partialLinkText("Register SCP User")).click()
-    val selectAccountType = new Select(driver.findElement(By.id("accountType")))
-    selectAccountType.selectByValue(affinityGroup)
+    click(By.partialLinkText("Register SCP User"))
 
-    driver.findElement(By.id("isAdmin")).click()
-    driver.findElement(By.id("groupProfile")).sendKeys("123")
+    fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/register"))
 
-    driver.findElement(By.id("enrolment[0].name")).sendKeys("HMRC-MTD-VAT")
-    driver.findElement(By.id("enrolment[0].identifier")).sendKeys("VRN")
-    driver.findElement(By.id("enrolment[0].value")).sendKeys(vrn)
+    selectByValue(By.id("accountType"), affinityGroup)
 
-    driver.findElement(By.className("submit")).click()
+    click(By.id("isAdmin"))
+    sendKeys(By.id("groupProfile"), "123")
+
+    sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+    sendKeys(By.id("enrolment[0].identifier"), "VRN")
+    sendKeys(By.id("enrolment[0].value"), vrn)
+
+    click(By.className("submit"))
   }
 
   def selectMfaSuccess(): Unit = {
     fluentWait.until(ExpectedConditions.urlContains("http://localhost:9597/bas-stub/required-mfa-register"))
-    driver.findElement(By.id("mfaOutcome")).click()
-    driver.findElement(By.className("submit")).click()
+    click(By.id("mfaOutcome"))
+    click(By.className("submit"))
   }
 }
