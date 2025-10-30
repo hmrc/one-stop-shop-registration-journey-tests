@@ -92,8 +92,6 @@ class CrossSchemaStepDef extends BaseStepDef {
   ) { (displayed: String, madeChanges: String, version: String, registrationNumber: String) =>
     val htmlBody = driver.findElement(By.tagName("body")).getText
 
-    println(htmlBody)
-
     val iossConfirmationText = if (version == "has a current") {
       "We've also updated your Import One Stop Shop registration."
     } else if (version == "has a previous") {
