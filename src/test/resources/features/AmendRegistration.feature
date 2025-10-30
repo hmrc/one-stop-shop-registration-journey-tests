@@ -104,6 +104,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers yes on the amend-previous-scheme-answers/5 page
     And the user answer oss on the amend-previous-scheme/5/2 page
     And the user add ESX1234567X on the fifth amend-previous-oss-scheme-number page
+    And the user is on the amend-previous-scheme-answers/5 page
     Then the user selects the remove link for amend-remove-previous-scheme\/5\/2
     And the user answers yes on the amend-remove-previous-scheme/5/2 page
     And the user answers no on the amend-previous-scheme-answers/5 page
@@ -112,12 +113,15 @@ Feature: Amending a registration for One Stop Shop
     And the user answer oss on the amend-previous-scheme/6/1 page
     And the user add MT12345666 on the sixth amend-previous-oss-scheme-number page
     And the user answers no on the amend-previous-scheme-answers/6 page
+    And the user is on the amend-previous-schemes-overview page
     Then the user selects the remove link for amend-remove-deregistration\/6
     And the user answers yes on the amend-remove-deregistration/6 page
     Then the user answers no on the amend-previous-schemes-overview page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-add-tax-details
+    And the user is on the amend-add-tax-details page
     Then the user selects the change link for amend-check-tax-details\/2
+    And the user is on the amend-check-tax-details/2 page
     And the user selects the change link for amend-sells-goods-to-eu-consumers\/2
     Then the user answers yes on the amend-sells-goods-to-eu-consumers/2 page
     And the user answer fixed establishment on the amend-sells-goods-to-eu-consumer-method/2 page
@@ -130,13 +134,15 @@ Feature: Amending a registration for One Stop Shop
       | A Town-City        | townOrCity |
       | AM4563 H           | postCode   |
     Then the user clicks continue on the second amend-check-tax-details page
+    And the user is on the amend-add-tax-details page
     When the user selects the change link for amend-check-tax-details\/1
+    And the user is on the amend-check-tax-details/1 page
     Then the user selects the change link for amend-sells-goods-to-eu-consumers\/1
     And the user answers no on the amend-sells-goods-to-eu-consumers/1 page
     And the user clicks continue on the first amend-sales-declaration-not-required page
     And the user answers no on the amend-eu-vat/1 page
     Then the user clicks continue on the first amend-no-vat-number-for-eu-country page
-    And the user presses the continue button
+    And the user is on the amend-add-tax-details page
     When the user selects the remove link for amend-remove-tax-details\/2
     And the user answers yes on the amend-remove-tax-details/2 page
     Then the user answers no on the amend-add-tax-details page
@@ -145,6 +151,7 @@ Feature: Amending a registration for One Stop Shop
     Then the user answers no on the amend-online-marketplace page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-add-website-address
+    And the user is on the amend-add-website-address page
     And the user selects the change link for amend-website-address\/1
     Then the user amends answer to www.anotherwebsite.com
     And the user is on the amend-add-website-address page

@@ -164,7 +164,7 @@ class RegistrationStepDef extends BaseStepDef {
     driver.findElement(By.id("saveProgress")).click()
   }
 
-  Then("""^the user select the sign and come back later link""") { () =>
+  Then("""^the user selects the sign out and come back later link""") { () =>
     driver.findElement(By.id("signOut")).click()
   }
 

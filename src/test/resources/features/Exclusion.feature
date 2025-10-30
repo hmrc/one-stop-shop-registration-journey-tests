@@ -156,8 +156,10 @@ Feature: VRN exclusion reason pages after GG login
     And the user clicks through the start-date page
     And the user answers yes on the tax-in-eu page
     And the user selects Romania on the first eu-tax page
+    And the user is on the sells-goods-to-eu-consumers/1 page
     And the user clicks on the save and come back later button
-    And the user select the sign and come back later link
+    And the user is on the progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fsells-goods-to-eu-consumers%2F1 page
+    And the user selects the sign out and come back later link
     When the user accesses the stub url
     Then the IOSS registered user signs into OSS registration with IOSS number IM9003999993 and VRN 100000600
     And the user answers no on the already-eu-registered page

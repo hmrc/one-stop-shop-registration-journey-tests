@@ -10,6 +10,7 @@ Feature: Cross Schema scenarios
     And the user clicks through the business-pay page
     Then the user is on the confirm-vat-details page
     And the user chooses Yes on the confirm-vat-details page
+    And the user is on the add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with a current IOSS registration
     And the registration trading name warnings are displayed for a trader with a current IOSS registration
     And the user clicks remove via list for first uk-trading-name
@@ -51,6 +52,7 @@ Feature: Cross Schema scenarios
     And the correct number of existing trading names are displayed for a trader with a previous IOSS registration
     And the registration trading name warnings are displayed for a trader with a previous IOSS registration
     And the user clicks change via list for second uk-trading-name
+    And the user is on the uk-trading-name/2 page
     And the user amends answer to an amended cross schema trading name
     And the user answers no on the add-uk-trading-name page
     And the user answers yes on the already-made-sales page
@@ -67,6 +69,7 @@ Feature: Cross Schema scenarios
       | +441234567890                   | telephoneNumber |
       | email-new-cross-schema@test.com | emailAddress    |
     And the user completes the registration email verification process
+    And the user is on the bank-details page
     And the registration bank details warnings are displayed for a trader with a previous IOSS registration
     And the user completes details on the bank-details page
       | data            | fieldId     |
@@ -102,6 +105,7 @@ Feature: Cross Schema scenarios
       | data            | fieldId         |
       | 123654448485656 | telephoneNumber |
     And the user completes the registration email verification process
+    And the user is on the bank-details page
     And the registration bank details warnings are displayed for a trader with multiple IOSS registrations
     And the user completes details on the bank-details page
       | data                   | fieldId |
@@ -115,6 +119,7 @@ Feature: Cross Schema scenarios
     When the IOSS registered user signs into OSS amend with IOSS number IM9001234567 and VRN 300000002
     Then the user is on the change-your-registration page
     And the user selects the change link for amend-add-uk-trading-name
+    And the user is on the amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with a current IOSS registration
     And the amend trading name warnings are displayed for a trader with a current IOSS registration
     Then the user selects the change link for amend-uk-trading-name\/2
@@ -125,6 +130,7 @@ Feature: Cross Schema scenarios
     Then the user answers no on the amend-add-uk-trading-name page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-business-contact-details
+    And the user is on the amend-business-contact-details page
     And the amend contact details warnings are displayed for a trader with a current IOSS registration
     And the user amends details on the amend-business-contact-details page
       | data                   | fieldId      |
@@ -133,6 +139,7 @@ Feature: Cross Schema scenarios
     And the user completes the amend email verification process
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-bank-details
+    And the user is on the amend-bank-details page
     And the amend bank details warnings are displayed for a trader with a current IOSS registration
     And the user amends details on the amend-bank-details page
       | data                      | fieldId     |
@@ -150,13 +157,16 @@ Feature: Cross Schema scenarios
     When the IOSS registered user signs into OSS amend with IOSS number IM9019999997 and VRN 300000002
     Then the user is on the change-your-registration page
     And the user selects the change link for amend-add-uk-trading-name
+    And the user is on the amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with a previous IOSS registration
     And the amend trading name warnings are displayed for a trader with a previous IOSS registration
     Then the user selects the change link for amend-uk-trading-name\/2
+    And the user is on the amend-uk-trading-name/2 page
     And the user amends answer to Trading name cross-schema two
     Then the user answers no on the amend-add-uk-trading-name page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-business-contact-details
+    And the user is on the amend-business-contact-details page
     And the amend contact details warnings are displayed for a trader with a previous IOSS registration
     And the user amends details on the amend-business-contact-details page
       | data         | fieldId  |
@@ -164,6 +174,7 @@ Feature: Cross Schema scenarios
     And the user completes the amend email verification process
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-bank-details
+    And the user is on the amend-bank-details page
     And the amend bank details warnings are displayed for a trader with a previous IOSS registration
     And the user amends details on the amend-bank-details page
       | data                   | fieldId |
@@ -179,6 +190,7 @@ Feature: Cross Schema scenarios
     When the IOSS registered user signs into OSS amend with IOSS number IM9007231111 and VRN 300000002
     Then the user is on the change-your-registration page
     And the user selects the change link for amend-add-uk-trading-name
+    And the user is on the amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
     And the amend trading name warnings are displayed for a trader with multiple IOSS registrations
     When the user selects the remove link for amend-remove-uk-trading-name\/1
@@ -186,6 +198,7 @@ Feature: Cross Schema scenarios
     Then the user answers no on the amend-add-uk-trading-name page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-business-contact-details
+    And the user is on the amend-business-contact-details page
     And the amend contact details warnings are displayed for a trader with multiple IOSS registrations
     And the user amends details on the amend-business-contact-details page
       | data                   | fieldId      |
@@ -193,6 +206,7 @@ Feature: Cross Schema scenarios
     And the user completes the amend email verification process
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-bank-details
+    And the user is on the amend-bank-details page
     And the amend bank details warnings are displayed for a trader with multiple IOSS registrations
     And the user amends details on the amend-bank-details page
       | data    | fieldId     |
@@ -213,9 +227,11 @@ Feature: Cross Schema scenarios
     And the user presses the continue button
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-add-uk-trading-name
+    And the user is on the rejoin-amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with a current IOSS registration
     And the rejoin trading name warnings are displayed for a trader with a current IOSS registration
     Then the user selects the change link for rejoin-amend-uk-trading-name\/2
+    And the user is on the rejoin-amend-uk-trading-name/2 page
     And the user amends answer to Trading name cross-schema two
     Then the user is on the rejoin-amend-add-uk-trading-name page
     When the user selects the remove link for rejoin-amend-remove-uk-trading-name\/1
@@ -223,6 +239,7 @@ Feature: Cross Schema scenarios
     Then the user answers no on the rejoin-amend-add-uk-trading-name page
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-business-contact-details
+    And the user is on the rejoin-amend-business-contact-details page
     And the rejoin contact details warnings are displayed for a trader with a current IOSS registration
     And the user amends details on the rejoin-amend-business-contact-details page
       | data                   | fieldId      |
@@ -231,6 +248,7 @@ Feature: Cross Schema scenarios
     And the user completes the rejoin email verification process
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-bank-details
+    And the user is on the rejoin-amend-bank-details page
     And the rejoin bank details warnings are displayed for a trader with a current IOSS registration
     And the user amends details on the rejoin-amend-bank-details page
       | data                      | fieldId     |
@@ -252,14 +270,17 @@ Feature: Cross Schema scenarios
     And the user presses the continue button
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-add-uk-trading-name
+    And the user is on the rejoin-amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with a previous IOSS registration
     And the rejoin trading name warnings are displayed for a trader with a previous IOSS registration
     Then the user selects the change link for rejoin-amend-uk-trading-name\/1
+    And the user is on the rejoin-amend-uk-trading-name/1 page
     And the user amends answer to Trading name cross-schema 1
     Then the user is on the rejoin-amend-add-uk-trading-name page
     Then the user answers no on the rejoin-amend-add-uk-trading-name page
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-business-contact-details
+    And the user is on the rejoin-amend-business-contact-details page
     And the rejoin contact details warnings are displayed for a trader with a previous IOSS registration
     And the user amends details on the rejoin-amend-business-contact-details page
       | data                   | fieldId      |
@@ -267,6 +288,7 @@ Feature: Cross Schema scenarios
     And the user completes the rejoin email verification process
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-bank-details
+    And the user is on the rejoin-amend-bank-details page
     And the rejoin bank details warnings are displayed for a trader with a previous IOSS registration
     And the user amends details on the rejoin-amend-bank-details page
       | data     | fieldId |
@@ -286,6 +308,7 @@ Feature: Cross Schema scenarios
     And the user presses the continue button
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-add-uk-trading-name
+    And the user is on the rejoin-amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with multiple IOSS registrations
     And the rejoin trading name warnings are displayed for a trader with multiple IOSS registrations
     When the user selects the remove link for rejoin-amend-remove-uk-trading-name\/2
@@ -293,6 +316,7 @@ Feature: Cross Schema scenarios
     Then the user answers no on the rejoin-amend-add-uk-trading-name page
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-business-contact-details
+    And the user is on the rejoin-amend-business-contact-details page
     And the rejoin contact details warnings are displayed for a trader with multiple IOSS registrations
     And the user amends details on the rejoin-amend-business-contact-details page
       | data         | fieldId  |
@@ -300,6 +324,7 @@ Feature: Cross Schema scenarios
     And the user completes the rejoin email verification process
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-bank-details
+    And the user is on the rejoin-amend-bank-details page
     And the rejoin bank details warnings are displayed for a trader with multiple IOSS registrations
     And the user amends details on the rejoin-amend-bank-details page
       | data                      | fieldId     |
@@ -408,9 +433,11 @@ Feature: Cross Schema scenarios
     Given a registered user with VRN 300000002 accesses the amend registration journey
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-add-uk-trading-name
+    And the user is on the amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with no IOSS registrations
     And the amend trading name warnings are not displayed for a trader with no IOSS registrations
     Then the user selects the change link for amend-uk-trading-name\/2
+    And the user is on the amend-uk-trading-name/2 page
     And the user amends answer to Trading name cross-schema two
     Then the user is on the amend-add-uk-trading-name page
     When the user selects the remove link for amend-remove-uk-trading-name\/1
@@ -418,6 +445,7 @@ Feature: Cross Schema scenarios
     Then the user answers no on the amend-add-uk-trading-name page
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-business-contact-details
+    And the user is on the amend-business-contact-details page
     And the amend contact details warnings are not displayed for a trader with no IOSS registrations
     And the user amends details on the amend-business-contact-details page
       | data                   | fieldId      |
@@ -426,6 +454,7 @@ Feature: Cross Schema scenarios
     And the user completes the amend email verification process
     Then the user is on the change-your-registration page
     When the user selects the change link for amend-bank-details
+    And the user is on the amend-bank-details page
     And the amend bank details warnings are not displayed for a trader with no IOSS registrations
     And the user amends details on the amend-bank-details page
       | data                      | fieldId     |
@@ -447,14 +476,17 @@ Feature: Cross Schema scenarios
     And the user presses the continue button
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-add-uk-trading-name
+    And the user is on the rejoin-amend-add-uk-trading-name page
     And the correct number of existing trading names are displayed for a trader with no IOSS registrations
     And the rejoin trading name warnings are not displayed for a trader with no IOSS registrations
     Then the user selects the change link for rejoin-amend-uk-trading-name\/1
+    And the user is on the rejoin-amend-uk-trading-name/1 page
     And the user amends answer to Trading name cross-schema 1
     Then the user is on the rejoin-amend-add-uk-trading-name page
     Then the user answers no on the rejoin-amend-add-uk-trading-name page
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-business-contact-details
+    And the user is on the rejoin-amend-business-contact-details page
     And the rejoin contact details warnings are not displayed for a trader with no IOSS registrations
     And the user amends details on the rejoin-amend-business-contact-details page
       | data                   | fieldId      |
@@ -462,6 +494,7 @@ Feature: Cross Schema scenarios
     And the user completes the rejoin email verification process
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-amend-bank-details
+    And the user is on the rejoin-amend-bank-details page
     And the rejoin bank details warnings are not displayed for a trader with no IOSS registrations
     And the user amends details on the rejoin-amend-bank-details page
       | data     | fieldId |
