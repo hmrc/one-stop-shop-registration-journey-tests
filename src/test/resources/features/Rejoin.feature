@@ -33,6 +33,7 @@ Feature: Re-register for OSS Scheme
     Then the user is on the rejoin-registration page
     When the user selects the change link for rejoin-already-made-sales
     And the user answers no on the rejoin-already-made-sales page
+    And the user is on the rejoin-start-date page
     And the commencement date is set to the first day of the next quarter
     And the user presses the continue button
     When the user presses the submit button

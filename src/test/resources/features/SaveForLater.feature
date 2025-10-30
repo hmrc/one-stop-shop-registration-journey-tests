@@ -19,6 +19,7 @@ Feature: Save For Later Feature
     And the user enters yesterday for date-of-first-sale
     And the user is on the previous-oss page
     And the user clicks on the save and come back later button
+    And the user is on the progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss page
     Then the user clicks on the continue to complete your registration link
     And the user answers yes on the previous-oss page
     And the user selects Ireland on the first previous-country page
@@ -55,6 +56,7 @@ Feature: Save For Later Feature
     And the user answers no on the add-tax-details page
     And the user is on the online-marketplace page
     And the user clicks on the save and come back later button
+    And the user is on the progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fonline-marketplace page
     Then the user clicks on the continue to complete your registration link
     And the user answers no on the online-marketplace page
     And the user answers yes on the give-website-address page
@@ -75,6 +77,7 @@ Feature: Save For Later Feature
       | GB33BUKB20201555555555 | iban        |
     Then the user is at the check-answers page
     And the user clicks on the save and come back later button
+    And the user is on the progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fcheck-answers page
     Then the user clicks on the continue to complete your registration link
     Then the user is at the check-answers page
 
@@ -95,6 +98,7 @@ Feature: Save For Later Feature
     And the user enters yesterday for date-of-first-sale
     And the user is on the previous-oss page
     And the user clicks on the save and come back later button
+    And the user is on the progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss page
     And the user selects the sign out and come back later link
     And the user accesses the service
     And the user answers no on the already-eu-registered page
@@ -173,6 +177,7 @@ Feature: Save For Later Feature
     And the user enters yesterday for date-of-first-sale
     And the user is on the previous-oss page
     And the user clicks on the save and come back later button
+    And the user is on the progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss page
     And the user selects the sign out and come back later link
     And the user accesses the continue on sign in url
     And the user signs in as an Organisation Admin with VAT enrolment 100000600 and strong credentials

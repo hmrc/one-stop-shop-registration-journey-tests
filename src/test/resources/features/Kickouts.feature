@@ -224,6 +224,7 @@ Feature: Not Eligible for One Stop Shop
 
   Scenario: A historic user who was registered on oss without an enrolment can't access the amend journey
     Given a non-registered user with VRN 300000002 accesses the amend registration journey
+    And the user is on the start-amend-journey page
     Then the user is presented with the problem page
 
   Scenario: User with expired VRN cannot register
