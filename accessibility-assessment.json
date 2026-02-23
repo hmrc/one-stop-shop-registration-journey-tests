@@ -1,0 +1,12 @@
+{
+  "exclusions": [
+    {
+      "path": "/bas-stub/",
+      "reason": "BAS stub auth endpoints are owned by a different team."
+    },
+    {
+      "path": "/contact/report-technical-problem",
+      "reason": "Contact frontend is owned by a different team."
+    }
+  ]
+}
