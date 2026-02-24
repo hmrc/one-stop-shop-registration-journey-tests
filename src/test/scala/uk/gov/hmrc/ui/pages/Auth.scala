@@ -48,7 +48,7 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = journey match {
-      case "amend"                                                                                         =>
+      case "amendMinimal"                                                                                  =>
         s"$registrationUrl$journeyUrl/start-amend-journey"
       case "noSavedRegistration" | "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
@@ -84,7 +84,7 @@ object Auth extends BasePage {
       sendKeys(By.id("input-0-0-value"), vrn)
     }
 
-    if (accountType != "noVat" && accountType != "vatOnly") {
+    if (accountType != "noVat" && accountType != "vatOnly" && accountType != "hasOSSEnrolment") {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
@@ -96,22 +96,28 @@ object Auth extends BasePage {
       if (journey != "registration") {
         sendKeys(By.id("input-1-0-value"), iossNumber)
       }
+    }
 
-      if (accountType == "onePreviousRegistration") {
-        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
-        sendKeys(By.id("input-2-0-name"), "IntNumber")
-        sendKeys(By.id("input-2-0-value"), "IN9007230001")
-      }
+    if (accountType == "hasOSSEnrolment") {
+      sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
+      sendKeys(By.id("input-1-0-name"), "VRN")
+      sendKeys(By.id("input-1-0-value"), vrn)
+    }
 
-      if (accountType == "multiplePreviousRegistrations") {
-        sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
-        sendKeys(By.id("input-2-0-name"), "IntNumber")
-        sendKeys(By.id("input-2-0-value"), "IN9008230002")
+    if (accountType == "onePreviousRegistration") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-2-0-name"), "IntNumber")
+      sendKeys(By.id("input-2-0-value"), "IN9007230001")
+    }
 
-        sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-INT")
-        sendKeys(By.id("input-3-0-name"), "IntNumber")
-        sendKeys(By.id("input-3-0-value"), "IN9007230002")
-      }
+    if (accountType == "multiplePreviousRegistrations") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-2-0-name"), "IntNumber")
+      sendKeys(By.id("input-2-0-value"), "IN9008230002")
+
+      sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-3-0-name"), "IntNumber")
+      sendKeys(By.id("input-3-0-value"), "IN9007230002")
     }
 
     click(By.cssSelector("Input[value='Submit']"))

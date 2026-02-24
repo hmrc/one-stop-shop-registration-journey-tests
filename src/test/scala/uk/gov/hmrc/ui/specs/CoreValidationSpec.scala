@@ -78,7 +78,9 @@ class CoreValidationSpec extends BaseSpec {
       registration.continue()
 
       And("the user is on the other-country-excluded-and-quarantined page")
-      registration.checkJourneyUrl(s"other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=$currentYear-01-01")
+      registration.checkJourneyUrl(
+        s"other-country-excluded-and-quarantined?countryCode=EE&exclusionDate=$currentYear-01-01"
+      )
     }
 
     Scenario("Active OSS Reg in another EU country") {
@@ -309,7 +311,9 @@ class CoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("cannot-register-quarantined-ioss-trader")
     }
 
-    Scenario("User can access the registration journey when a quarantine on the Import One Stop Shop service has expired") {
+    Scenario(
+      "User can access the registration journey when a quarantine on the Import One Stop Shop service has expired"
+    ) {
 
       Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()

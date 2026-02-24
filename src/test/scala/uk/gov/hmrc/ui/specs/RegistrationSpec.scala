@@ -198,7 +198,7 @@ class RegistrationSpec extends BaseSpec {
 
       And("the user selects fixed establishment on the sells-goods-to-eu-consumer-method/1 page")
       registration.checkJourneyUrl("sells-goods-to-eu-consumer-method/2")
-      registration.answerFixedEstablishment("fixed establishment")
+      registration.answerFixedEstablishment("dispatch warehouse")
 
       And("the user selects tax id number on the registration-type/2 page")
       registration.checkJourneyUrl("registration-type/2")
@@ -209,11 +209,11 @@ class RegistrationSpec extends BaseSpec {
       registration.enterAnswer("ABC123A")
 
       And("the user enters a trading name")
-      registration.checkJourneyUrl("eu-trading-name/2")
+      registration.checkJourneyUrl("eu-send-goods-trading-name/2")
       registration.enterAnswer("Another Trading Name")
 
       And("the user enters an address")
-      registration.checkJourneyUrl("eu-fixed-establishment-address/2")
+      registration.checkJourneyUrl("eu-send-goods-address/2")
       registration.enterFixedEstablishmentAddress("1 Street Name", "", "A town", "", "12345")
 
       And("the user continues through the check-tax-details page")
