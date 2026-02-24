@@ -204,28 +204,35 @@ object Registration extends BasePage {
     }
   }
 
-  def submitMinimalRegistration(): Unit = {
-    answerRadioButton("no")
-    checkJourneyUrl("registered-for-vat-in-uk")
+  def minimalRegistrationAnswers(): Unit = {
+    checkJourneyUrl("sell-from-northern-ireland")
     answerRadioButton("yes")
-    checkJourneyUrl("ni-or-eu-based")
+    checkJourneyUrl("northern-ireland-business")
     answerRadioButton("yes")
-    checkJourneyUrl("register-to-use-service")
+    checkJourneyUrl("business-pay")
     continue()
     checkJourneyUrl("confirm-vat-details")
     answerVatDetailsChoice("Yes")
-    checkJourneyUrl("have-other-trading-name")
+    checkJourneyUrl("have-uk-trading-name")
     answerRadioButton("no")
-    checkJourneyUrl("has-previously-registered-as-intermediary")
+    checkJourneyUrl("already-made-sales")
     answerRadioButton("no")
-    checkJourneyUrl("eu-fixed-establishment")
+    checkJourneyUrl("previous-oss")
     answerRadioButton("no")
-    checkJourneyUrl("contact-details")
-    fillContactDetails("Example Name", "24242424234", "test-name@email.co.uk")
+    checkJourneyUrl("start-date")
+    continue()
+    checkJourneyUrl("tax-in-eu")
+    answerRadioButton("no")
+    checkJourneyUrl("online-marketplace")
+    answerRadioButton("yes")
+    checkJourneyUrl("give-website-address")
+    answerRadioButton("no")
+    checkJourneyUrl("business-contact-details")
+    fillContactDetails("Joe Bloggs", "+01234567890", "email@test.com")
     email.completeEmailVerification("registration")
-    checkJourneyUrl("bank-account-details")
-    fillBankAccountDetails("Accountname", "SMCOGB2LXXM", "GB29NWBK60161331926819")
-    checkJourneyUrl("check-your-answers")
+    checkJourneyUrl("bank-details")
+    fillBankAccountDetails("Account Name", "", "GB33BUKB20201555555555")
+    checkJourneyUrl("check-answers")
     submit()
   }
 
@@ -373,5 +380,20 @@ object Registration extends BasePage {
       case _                     => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
+  }
+
+  def checkBtaUrl(): Unit = {
+    val url = "business-account"
+    fluentWait.until(ExpectedConditions.urlContains(url))
+    getCurrentUrl.endsWith(url)
+  }
+
+  def selectOnlineMarketplaceSales(answer: String): Unit = {
+    answer match {
+      case "All"  => click(By.id("value_0"))
+      case "Some" => click(By.id("value_1"))
+      case "None" => click(By.id("value_2"))
+    }
+    continue()
   }
 }
