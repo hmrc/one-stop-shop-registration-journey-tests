@@ -35,9 +35,10 @@ object Auth extends BasePage {
 
   var credId: String = "1234123412341234"
 
-  def goToAuthorityWizard(): Unit =
+  def goToAuthorityWizard(): Unit = {
     get(authUrl)
     fluentWait.until(ExpectedConditions.urlContains(authUrl))
+  }
 
   def checkAuthUrl(): Unit =
     getCurrentUrl should startWith(authUrl)
@@ -47,15 +48,15 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = journey match {
-      case "amend"                                                                 =>
+      case "amend"                                                                                         =>
         s"$registrationUrl$journeyUrl/start-amend-journey"
-      case "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
+      case "noSavedRegistration" | "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
-      case "rejoin"                                                                =>
+      case "rejoin"                                                                                        =>
         s"$registrationUrl$journeyUrl/start-rejoin-journey"
-      case "dashboard"                                                             =>
+      case "dashboard"                                                                                     =>
         s"$dashboardUrl$dashboardJourneyUrl"
-      case _                                                                       =>
+      case _                                                                                               =>
         s"$registrationUrl$journeyUrl"
     }
     sendKeys(By.name("redirectionUrl"), redirectUrl)

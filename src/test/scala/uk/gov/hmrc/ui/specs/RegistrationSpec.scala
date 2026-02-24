@@ -139,11 +139,11 @@ class RegistrationSpec extends BaseSpec {
       Then("the user selects no on the previous-schemes-overview page")
       registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("no")
-      
+
       And("the user continues on the start-date page")
       registration.checkJourneyUrl("start-date")
       registration.continue()
-      
+
       Then("the user selects yes on the tax-in-eu page")
       registration.checkJourneyUrl("tax-in-eu")
       registration.answerRadioButton("yes")
@@ -157,11 +157,11 @@ class RegistrationSpec extends BaseSpec {
       Then("the user selects yes on the sells-goods-to-eu-consumers page")
       registration.checkJourneyUrl("sells-goods-to-eu-consumers/1")
       registration.answerRadioButton("yes")
-      
+
       And("the user selects fixed establishment on the sells-goods-to-eu-consumer-method/1 page")
       registration.checkJourneyUrl("sells-goods-to-eu-consumer-method/1")
       registration.answerFixedEstablishment("fixed establishment")
-      
+
       And("the user selects vat number on the registration-type/1 page")
       registration.checkJourneyUrl("registration-type/1")
       registration.selectRegistrationType("vat number")
@@ -169,15 +169,15 @@ class RegistrationSpec extends BaseSpec {
       And("the user adds a vat number")
       registration.checkJourneyUrl("eu-vat-number/1")
       registration.enterAnswer("LU12345678")
-      
+
       And("the user enters a trading name")
       registration.checkJourneyUrl("eu-trading-name/1")
       registration.enterAnswer("A Trading Name")
-      
+
       And("the user enters an address")
       registration.checkJourneyUrl("eu-fixed-establishment-address/1")
       registration.enterFixedEstablishmentAddress("1 Street Name", "", "A town", "", "")
-      
+
       And("the user continues through the check-tax-details page")
       registration.checkJourneyUrl("check-tax-details/1")
       registration.continue()
@@ -223,25 +223,256 @@ class RegistrationSpec extends BaseSpec {
       Then("the user selects no on the add-tax-details page")
       registration.checkJourneyUrl("add-tax-details")
       registration.answerRadioButton("no")
-      
 
-//      Then("the user enters credentials on Contact-details page")
-//      registration.checkJourneyUrl("contact-details")
-//      registration.fillContactDetails("Testname", "12345678", "test@email.com")
-//
-//      Then("the user completes the email verification process")
-//      email.completeEmailVerification("registration")
-//
-//      Then("the user enters bank or building society account details on bank-account-details page")
-//      registration.checkJourneyUrl("bank-account-details")
-//      registration.fillBankAccountDetails("Accountname", "SMCOGB2LXXM", "GB29NWBK60161331926819")
-//
-//      When("the user submits the registration on the check-your-answers page")
-//      registration.checkJourneyUrl("check-your-answers")
-//      registration.submit()
-//
-//      Then("the user is on the successful submission page")
-//      registration.checkJourneyUrl("successful")
+      And("the user selects no on the online-marketplace page")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("no")
+
+      And("the user selects yes on the give-website-address page")
+      registration.checkJourneyUrl("give-website-address")
+      registration.answerRadioButton("yes")
+
+      Then("the user adds the first website address")
+      registration.checkJourneyUrl("website-address/1")
+      registration.enterAnswer("www.first-website.com")
+
+      Then("the user answers yes to add another website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("yes")
+
+      Then("the user adds the second website address")
+      registration.checkJourneyUrl("website-address/2")
+      registration.enterAnswer("http://websiteno2.co.uk")
+
+      Then("the user answers no to adding another website address")
+      registration.checkJourneyUrl("add-website-address")
+      registration.answerRadioButton("no")
+
+      Then("the user enters their contact details on business-contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Joe Bloggs", "01234567890", "email@test.com")
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("registration")
+
+      Then("the user enters bank details on bank-details page")
+      registration.checkJourneyUrl("bank-details")
+      registration.fillBankAccountDetails("Account Name", "SMCOGB2LXXM", "GB29NWBK60161331926819")
+
+      When("the user submits the registration on the check-answers page")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+    }
+
+    Scenario("User can complete a registration - minimal answers") {
+
+      Given("the user accesses the IOSS Intermediary Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
+      registration.checkJourneyUrl("already-eu-registered")
+
+      When("the user selects no on the already-eu-registered page")
+      registration.answerRadioButton("no")
+
+      And("the user selects yes on the sell-from-northern-ireland page")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+
+      And("the user selects yes on the northern-ireland-business")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+
+      Then("the user presses continue on the business-pay page")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+
+      Then("the user selects yes on the confirm-vat-details page")
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      And("the user selects no on the have-uk-trading-name page")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      And("the user selects no on the already-made-sales page")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("no")
+
+      Then("the user selects on no on previous-oss page")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+
+      And("the user continues on the start-date page")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+
+      Then("the user selects no on the tax-in-eu page")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+
+      And("the user selects yes on the online-marketplace page")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("yes")
+
+      And("the user selects no on the give-website-address page")
+      registration.checkJourneyUrl("give-website-address")
+      registration.answerRadioButton("no")
+
+      Then("the user enters their contact details on business-contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Joe Bloggs", "+01234567890", "email@test.com")
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("registration")
+
+      Then("the user enters bank details on bank-details page")
+      registration.checkJourneyUrl("bank-details")
+      registration.fillBankAccountDetails("Account Name", "", "GB33BUKB20201555555555")
+
+      When("the user submits the registration on the check-answers page")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+    }
+
+    Scenario("User cannot add fixed establishments when they are part of a VAT group") {
+
+      Given("the user who is not part of a VAT group accesses the IOSS Intermediary Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("777777779", "Organisation", "vatOnly", "registration")
+      registration.checkJourneyUrl("already-eu-registered")
+
+      When("the user answers all of the questions leading up to fixed establishments")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+
+      Then("the user selects yes on the tax-in-eu page")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("yes")
+
+      And(
+        "the user selects a country"
+      )
+      registration.checkJourneyUrl("eu-tax/1")
+      registration.selectCountry("Finland")
+
+      Then("the user selects yes on the sells-goods-to-eu-consumers page")
+      registration.checkJourneyUrl("sells-goods-to-eu-consumers/1")
+      registration.answerRadioButton("yes")
+
+      And("the user selects fixed establishment on the sells-goods-to-eu-consumer-method/1 page")
+      registration.checkJourneyUrl("sells-goods-to-eu-consumer-method/1")
+      registration.answerFixedEstablishment("fixed establishment")
+
+      Then("the user is on the no-fixed-establishments-required/1 page")
+      registration.checkJourneyUrl("no-fixed-establishments-required")
+      registration.continue()
+
+      Then("the user selects no on the tax-in-eu page")
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+
+      And("the user selects no on the online-marketplace page")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("no")
+
+      And("the user selects no on the give-website-address page")
+      registration.checkJourneyUrl("give-website-address")
+      registration.answerRadioButton("no")
+
+      Then("the user enters their contact details on business-contact-details page")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Joe Bloggs", "+01234567890", "email@test.com")
+
+      Then("the user completes the email verification process")
+      email.completeEmailVerification("registration")
+
+      Then("the user enters bank details on bank-details page")
+      registration.checkJourneyUrl("bank-details")
+      registration.fillBankAccountDetails("Account Name", "", "GB33BUKB20201555555555")
+
+      When("the user submits the registration on the check-answers page")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+    }
+
+    Scenario("User with an individual name instead of an organisation name can complete a registration") {
+
+      Given("the user who has an individual name accesses the IOSS Intermediary Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("777777778", "Organisation", "vatOnly", "registration")
+      registration.checkJourneyUrl("already-eu-registered")
+
+      When("the user selects no on the already-eu-registered page")
+      registration.answerRadioButton("no")
+
+      Then("the user can complete the rest of the registration")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("give-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Joe Bloggs", "+01234567890", "email@test.com")
+      email.completeEmailVerification("registration")
+      registration.checkJourneyUrl("bank-details")
+      registration.fillBankAccountDetails("Account Name", "", "GB33BUKB20201555555555")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+    }
+
+    //to be moved into save and come back later spec when created
+    Scenario("User accesses continue-on-sign-in url but does not have a saved registration") {
+
+      Given("the user accesses the IOSS Intermediary Registration Service via the continue-on-sign-in url")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "noSavedRegistration")
+
+      Then("the user is on the no-saved-registration page")
+      registration.checkJourneyUrl("no-saved-registration")
     }
   }
 }

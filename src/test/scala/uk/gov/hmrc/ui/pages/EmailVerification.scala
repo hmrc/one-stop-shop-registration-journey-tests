@@ -27,18 +27,14 @@ object EmailVerification extends BasePage {
 
     val journeyId   = getCurrentUrl.split("/")(5)
     val testOnlyUrl =
-      "http://localhost:10184/pay-clients-vat-on-eu-sales/register-import-one-stop-shop-intermediary/test-only/get-passcodes"
+      "http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/test-only/get-passcodes"
     get(testOnlyUrl)
     fluentWait.until(ExpectedConditions.urlContains(testOnlyUrl))
 
-    val passcode = if (journey == "secondPreviousRegistration") {
-      getText(By.tagName("body")).split("rocky.balboa@chartoffwinkler.co.uk,")(1).dropRight(42)
-    } else {
-      getText(By.tagName("body")).split(">")(3).dropRight(3)
-    }
+    val passcode = getText(By.tagName("body")).split(">")(3).dropRight(3)
 
     val emailVerificationUrl =
-      s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=http://localhost:10184/pay-clients-vat-on-eu-sales/register-import-one-stop-shop-intermediary/bank-account-details&origin=IOSS-Intermediary"
+      s"http://localhost:9890/email-verification/journey/$journeyId/passcode?continueUrl=http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/bank-details&origin=OSS"
     get(emailVerificationUrl)
     fluentWait.until(ExpectedConditions.urlContains(emailVerificationUrl))
 
@@ -52,12 +48,12 @@ object EmailVerification extends BasePage {
         "rejoin-check-your-details"
       case "previousRegistration" | "secondPreviousRegistration" =>
         "change-a-previous-registration"
-      case _                                                     => "bank-account-details"
+      case _                                                     => "bank-details"
     }
 
     fluentWait.until(
       ExpectedConditions.urlToBe(
-        s"http://localhost:10184/pay-clients-vat-on-eu-sales/register-import-one-stop-shop-intermediary/$page"
+        s"http://localhost:10200/pay-vat-on-goods-sold-to-eu/northern-ireland-register/$page"
       )
     )
   }

@@ -32,7 +32,7 @@ trait BaseSpec
 
   override def beforeEach(): Unit =
     startBrowser()
-    MongoConnection.dropSavedAnswers()
+  MongoConnection.dropSavedAnswers()
 
   //    This section is only required when strategic returns is toggled off
   //    MongoConnection.dropReturns()

@@ -39,10 +39,11 @@ object Registration extends BasePage {
   def goToRegistrationJourney(): Unit =
     get(registrationUrl + journeyUrl)
 
-  def checkJourneyUrl(page: String): Unit =
+  def checkJourneyUrl(page: String): Unit = {
     val url = s"$registrationUrl$journeyUrl/$page"
     fluentWait.until(ExpectedConditions.urlContains(url))
     getCurrentUrl.startsWith(url)
+  }
 
   def checkDashboardJourneyUrl(page: String): Unit =
     getCurrentUrl.startsWith(s"$dashboardUrl$dashboardJourneyUrl/$page")
@@ -76,9 +77,10 @@ object Registration extends BasePage {
   def goToPage(page: String): Unit =
     get(s"$registrationUrl$journeyUrl/$page")
 
-  def enterAnswer(answer: String): Unit =
+  def enterAnswer(answer: String): Unit = {
     sendKeys(By.id("value"), answer)
     click(continueButton)
+  }
 
   def selectChangeOrRemoveLink(link: String): Unit =
     click(By.cssSelector(s"a[href*=$link]"))
@@ -119,13 +121,14 @@ object Registration extends BasePage {
     townOrCity: String,
     stateOrRegion: String,
     postCode: String
-  ): Unit =
+  ): Unit = {
     sendKeys(By.id("line1"), line1)
     sendKeys(By.id("line2"), line2)
     sendKeys(By.id("townOrCity"), townOrCity)
     sendKeys(By.id("stateOrRegion"), stateOrRegion)
     sendKeys(By.id("postCode"), postCode)
     click(continueButton)
+  }
 
   def fillContactDetails(name: String, phone: String, email: String): Unit = {
     sendKeys(By.id("fullName"), name)
@@ -181,13 +184,14 @@ object Registration extends BasePage {
     townOrCity: String,
     county: String,
     postCode: String
-  ): Unit =
+  ): Unit = {
     sendKeys(By.id("line1"), line1)
     sendKeys(By.id("line2"), line2)
     sendKeys(By.id("townOrCity"), townOrCity)
     sendKeys(By.id("county"), county)
     sendKeys(By.id("postCode"), postCode)
     click(continueButton)
+  }
 
   def enterFETradingName(tradingName: String): Unit =
     sendKeys(By.id("tradingName"), tradingName)
@@ -350,9 +354,9 @@ object Registration extends BasePage {
 
   def answerSchemeType(answer: String): Unit = {
     answer match {
-      case "OSS" => click(By.id("value_0"))
+      case "OSS"  => click(By.id("value_0"))
       case "IOSS" => click(By.id("value_1"))
-      case _ => throw new Exception("Option doesn't exist")
+      case _      => throw new Exception("Option doesn't exist")
     }
     click(continueButton)
   }
@@ -365,8 +369,8 @@ object Registration extends BasePage {
   def answerFixedEstablishment(answer: String): Unit = {
     answer match {
       case "fixed establishment" => click(By.id("value_0"))
-      case "dispatch warehouse" => click(By.id("value_1"))
-      case _ => throw new Exception("Option doesn't exist")
+      case "dispatch warehouse"  => click(By.id("value_1"))
+      case _                     => throw new Exception("Option doesn't exist")
     }
     CommonPage.clickContinue()
   }
