@@ -28,7 +28,7 @@ class RegistrationSpec extends BaseSpec {
 
     Scenario("User can complete a registration - full answers") {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -269,7 +269,7 @@ class RegistrationSpec extends BaseSpec {
 
     Scenario("User can complete a registration - minimal answers") {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -439,7 +439,7 @@ class RegistrationSpec extends BaseSpec {
     //to be moved into save and come back later spec when created
     Scenario("User accesses continue-on-sign-in url but does not have a saved registration") {
 
-      Given("the user accesses the IOSS Intermediary Registration Service via the continue-on-sign-in url")
+      Given("the user accesses the OSS Registration Service via the continue-on-sign-in url")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "noSavedRegistration")
 

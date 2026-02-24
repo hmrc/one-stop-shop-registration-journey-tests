@@ -141,4 +141,9 @@ Feature: Core validation during re-register for OSS Scheme
     And the user adds EL123456788 on the first rejoin-amend-eu-vat-number page
     Then the user is on the rejoin-already-registered-other-country?countryCode=EE page
 
+  Scenario: Kickout when the user attempts to rejoin the service but is quarantined on the Import One Stop Shop service
+    When the user accesses the stub url
+    Then the IOSS registered user signs into OSS rejoin with IOSS number IM9003999993 and VRN 600000050
+    Then the user is on the cannot-register-quarantined-ioss-trader page
+
 

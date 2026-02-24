@@ -27,7 +27,7 @@ class BTASpec extends BaseSpec {
 
     Scenario("A user registers via BTA and then has the correct BTA link on the registration submission page") {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -52,9 +52,11 @@ class BTASpec extends BaseSpec {
       registration.checkBtaUrl()
     }
 
-    Scenario("The user enters the service via BTA and is directed back to BTA via the Already EU Registered kickout page") {
+    Scenario(
+      "The user enters the service via BTA and is directed back to BTA via the Already EU Registered kickout page"
+    ) {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -76,9 +78,11 @@ class BTASpec extends BaseSpec {
       registration.checkBtaUrl()
     }
 
-    Scenario("The user enters the service via BTA and is directed back to BTA via the Do Not Sell from NI kickout page") {
+    Scenario(
+      "The user enters the service via BTA and is directed back to BTA via the Do Not Sell from NI kickout page"
+    ) {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -106,7 +110,7 @@ class BTASpec extends BaseSpec {
 
     Scenario("The user enters the service via BTA and is directed back to BTA via the Cannot Use No VAT kickout page") {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -144,9 +148,11 @@ class BTASpec extends BaseSpec {
       registration.checkBtaUrl()
     }
 
-    Scenario("The user enters the service via BTA and is directed back to BTA via the post-auth already registered page") {
+    Scenario(
+      "The user enters the service via BTA and is directed back to BTA via the post-auth already registered page"
+    ) {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000003", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -175,15 +181,17 @@ class BTASpec extends BaseSpec {
 
       When("the user clicks on the Continue to your account button")
       registration.continue()
-      
+
 //      Currently broken - awaiting fix in VEOSS-2162
 //      Then("the user is on the business-account page")
 //      registration.checkBtaUrl()
     }
 
-    Scenario("A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing") {
+    Scenario(
+      "A Welsh user enters the service via BTA and is first directed to the Welsh transition page before continuing"
+    ) {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000003", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -201,9 +209,11 @@ class BTASpec extends BaseSpec {
       registration.checkJourneyUrl("already-eu-registered")
     }
 
-    Scenario("A user enters the service via BTA using the en parameter and is directed straight to the registration service") {
+    Scenario(
+      "A user enters the service via BTA using the en parameter and is directed straight to the registration service"
+    ) {
 
-      Given("the user accesses the IOSS Intermediary Registration Service")
+      Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000003", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")

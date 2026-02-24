@@ -85,35 +85,16 @@ object Auth extends BasePage {
     }
 
     if (accountType != "noVat" && accountType != "vatOnly") {
-      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
-      sendKeys(By.id("input-1-0-name"), "IntNumber")
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
+      sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
-      val intNumber = accountType match {
-        case "registration"                       => ""
-        case "fullAmendAnswers"                   => "IN9001234568"
-        case "amendNIManual"                      => "IN9001234444"
-        case "excludedPast"                       => "IN9002323232"
-        case "excludedFuture"                     => "IN9003232323"
-        case "reversal"                           => "IN9002323333"
-        case "quarantined"                        => "IN9002323334"
-        case "quarantineExpired"                  => "IN9002323335"
-        case "excludedFullData"                   => "IN9001113232"
-        case "excludedNiManual"                   => "IN9001235555"
-        case "fixedEstablishmentActiveVrn"        => "IN9003344551"
-        case "fixedEstablishmentQuarantineVrn"    => "IN9003344552"
-        case "fixedEstablishmentActiveTaxRef"     => "IN9003344553"
-        case "fixedEstablishmentQuarantineTaxRef" => "IN9003344554"
-        case "previousRegistrationActive"         => "IN9003344555"
-        case "previousRegistrationQuarantine"     => "IN9003344556"
-        case "onePreviousRegistration"            => "IN9008230001"
-        case "multiplePreviousRegistrations"      => "IN9009230002"
-        case "unusableEmailStatus"                => "IN9002222222"
-        case "netpOutstandingReturns"             => "IN9000306832"
-        case "amendFailure"                       => "IN9009999966"
-        case _                                    => "IN9001234567"
+      val iossNumber = journey match {
+        case "quarantineIOSS"        => "IM9003999993"
+        case "quarantineExpiredIOSS" => "IM9002999993"
+        case _                       => "IM9001234567"
       }
-      if (accountType != "registration") {
-        sendKeys(By.id("input-1-0-value"), intNumber)
+      if (journey != "registration") {
+        sendKeys(By.id("input-1-0-value"), iossNumber)
       }
 
       if (accountType == "onePreviousRegistration") {

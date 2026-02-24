@@ -244,4 +244,39 @@ Feature: Save For Later Feature
     Then the user is at the check-answers page
     Then the user submits their registration
 
+  Scenario: Kickout when the user returns to a saved registration but is now quarantined on the Import One Stop Shop service
+    Given the user accesses the service
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    And the user signs in as an Organisation Admin with VAT enrolment 100000600 and strong credentials
+    And the user chooses Yes on the confirm-vat-details page
+    And the user answers yes on the have-uk-trading-name page
+    And the user adds First trading name on the first uk-trading-name page
+    And the user answers no on the add-uk-trading-name page
+    And the user answers yes on the already-made-sales page
+    And the user enters yesterday for date-of-first-sale
+    And the user answers yes on the previous-oss page
+    And the user selects Ireland on the first previous-country page
+    And the user answer oss on the previous-scheme/1/1 page
+    And the user add IE1234567WI on the first previous-oss-scheme-number page
+    Then the user is on the previous-scheme-answers/1 page
+    And the user answers no on the previous-scheme-answers/1 page
+    And the user answers no on the previous-schemes-overview page
+    And the user clicks through the start-date page
+    And the user answers yes on the tax-in-eu page
+    And the user selects Romania on the first eu-tax page
+    And the user is on the sells-goods-to-eu-consumers/1 page
+    And the user clicks on the save and come back later button
+    And the user is on the progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fsells-goods-to-eu-consumers%2F1 page
+    And the user selects the sign out and come back later link
+    When the user accesses the stub url
+    Then the IOSS registered user signs into OSS registration with IOSS number IM9003999993 and VRN 100000600
+    And the user answers no on the already-eu-registered page
+    And the user answers yes on the sell-from-northern-ireland page
+    And the user answers yes on the northern-ireland-business page
+    And the user clicks through the business-pay page
+    Then the user is on the cannot-register-quarantined-ioss-trader page
+
 

@@ -257,4 +257,12 @@ Feature: Amending a registration for One Stop Shop
     Then the user is on the successful-amend page
     And the confirmation of no answers changed is displayed
 
-
+  Scenario: User can access the amend registration journey when quarantined on the Import One Stop Shop service
+    When the user accesses the stub url
+    Then the IOSS registered user signs into OSS amend with IOSS number IM9003999993 and VRN 300000001
+    Then the user is on the change-your-registration page
+    When the user presses the submit button
+    Then the user is on the successful-amend page
+    And the confirmation of no answers changed is displayed
+    
+    
