@@ -20,10 +20,10 @@ import uk.gov.hmrc.ui.pages.*
 
 class RejoinSpec extends BaseSpec {
 
-  private val registration = Registration
-  private val auth         = Auth
-  private val email        = EmailVerification
-  private val commencementDate        = CommencementDate
+  private val registration     = Registration
+  private val auth             = Auth
+  private val email            = EmailVerification
+  private val commencementDate = CommencementDate
 
   Feature("Rejoin Registration journeys") {
 
@@ -77,7 +77,9 @@ class RejoinSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
     }
 
-    Scenario("An excluded user can set date of first sale to this quarter and then change to not made sales in this quarter") {
+    Scenario(
+      "An excluded user can set date of first sale to this quarter and then change to not made sales in this quarter"
+    ) {
 
       Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -115,7 +117,9 @@ class RejoinSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
     }
 
-    Scenario("An excluded user who is rejoining the OSS scheme can make amendments to their minimal registration data") {
+    Scenario(
+      "An excluded user who is rejoining the OSS scheme can make amendments to their minimal registration data"
+    ) {
 
       Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -362,7 +366,232 @@ class RejoinSpec extends BaseSpec {
       And("the user can submit their registration successfully")
       registration.submit()
       registration.checkJourneyUrl("successful-rejoin")
+    }
 
+    Scenario("A trader can add and remove new previous schemes during rejoin") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000050", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      And("the user enters date of first sale information")
+      registration.checkJourneyUrl("rejoin-already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-date-of-first-sale")
+      registration.enterDate("today")
+      registration.checkJourneyUrl("rejoin-start-date")
+      commencementDate.checkCommencementDate("today")
+      registration.continue()
+      registration.checkJourneyUrl("rejoin-registration")
+
+      And("the user amends answers for previous schemes")
+      registration.selectChangeOrRemoveLink(
+        "rejoin-amend-previous-schemes-overview"
+      )
+      registration.checkJourneyUrl("rejoin-amend-previous-schemes-overview")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-amend-previous-country/5")
+      registration.selectCountry("Austria")
+      registration.checkJourneyUrl("rejoin-amend-previous-scheme/5/1")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl("rejoin-amend-previous-oss-scheme-number/5/1")
+      registration.enterAnswer("ATU12345678")
+      registration.checkJourneyUrl("rejoin-amend-previous-scheme-answers/5")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-amend-previous-scheme/5/2")
+      registration.answerSchemeType("IOSS")
+      registration.checkJourneyUrl("rejoin-amend-previous-ioss-scheme/5/2")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-amend-previous-ioss-number/5/2")
+      registration.enterIossNumber("IM0407777777")
+      registration.checkJourneyUrl("rejoin-amend-previous-scheme-answers/5")
+
+      And("the user removes an answer from the previous schemes section")
+      registration.selectChangeOrRemoveLink("rejoin-amend-remove-previous-scheme\\/5\\/1")
+      registration.checkJourneyUrl("rejoin-amend-remove-previous-scheme/5/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-amend-previous-scheme-answers/5")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("rejoin-amend-previous-schemes-overview")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      And("the user can submit their registration successfully")
+      registration.submit()
+      registration.checkJourneyUrl("successful-rejoin")
+    }
+
+    Scenario("A trader amends their email address during rejoin") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000050", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      And("the user enters date of first sale information")
+      registration.checkJourneyUrl("rejoin-already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-date-of-first-sale")
+      registration.enterDate("today")
+      registration.checkJourneyUrl("rejoin-start-date")
+      commencementDate.checkCommencementDate("today")
+      registration.continue()
+      registration.checkJourneyUrl("rejoin-registration")
+
+      And("the user updates their email address")
+      registration.selectChangeOrRemoveLink(
+        "rejoin-amend-business-contact-details"
+      )
+      registration.checkJourneyUrl("rejoin-amend-business-contact-details")
+      registration.updateField("emailAddress", "rejoin-test@email.com")
+      registration.continue()
+      email.completeEmailVerification("rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      And("the user can submit their registration successfully")
+      registration.submit()
+      registration.checkJourneyUrl("successful-rejoin")
+    }
+
+    Scenario("A trader who is rejoining cannot remove previous registrations for a country retrieved from ETMP") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000050", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      And("the user enters date of first sale information")
+      registration.checkJourneyUrl("rejoin-already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-date-of-first-sale")
+      registration.enterDate("today")
+      registration.checkJourneyUrl("rejoin-start-date")
+      commencementDate.checkCommencementDate("today")
+      registration.continue()
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user manually navigates to the rejoin-amend-remove-deregistration/1 page")
+      registration.goToPage("rejoin-amend-remove-deregistration/1")
+
+      Then("the user is on the cannot-delete-previous-registrations page")
+      registration.checkJourneyUrl("cannot-delete-previous-registrations")
+    }
+
+    Scenario("A trader who is rejoining cannot remove individual previous registrations retrieved from ETMP") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000050", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      And("the user enters date of first sale information")
+      registration.checkJourneyUrl("rejoin-already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-date-of-first-sale")
+      registration.enterDate("today")
+      registration.checkJourneyUrl("rejoin-start-date")
+      commencementDate.checkCommencementDate("today")
+      registration.continue()
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user manually navigates to the rejoin-amend-remove-previous-scheme/1/1 page")
+      registration.goToPage("rejoin-amend-remove-previous-scheme/1/1")
+
+      Then("the user is on the cannot-delete-previous-schemes page")
+      registration.checkJourneyUrl("cannot-delete-previous-schemes")
+    }
+
+    Scenario("A trader with a future exclusion effective date is not able to access the rejoin registration journey") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000018", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      Then("the user is on the cannot-rejoin page")
+      registration.checkJourneyUrl("cannot-rejoin")
+    }
+
+    Scenario("An excluded trader with outstanding returns is not able to access the rejoin registration journey") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000025", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      Then("the user is on the cannot-rejoin page")
+      registration.checkJourneyUrl("cannot-rejoin")
+    }
+
+    Scenario("A quarantined trader is not able to access the rejoin registration journey") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000026", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      Then("the user is on the cannot-rejoin page")
+      registration.checkJourneyUrl("cannot-rejoin")
+    }
+
+    Scenario("A currently registered trader who is not excluded cannot access the rejoin registration journey") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000002", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      Then("the user is on the cannot-rejoin page")
+      registration.checkJourneyUrl("cannot-rejoin")
+    }
+
+    Scenario(
+      "A currently registered trader who is not excluded cannot access the rejoin registration journey via the amend journey"
+    ) {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000002", "Organisation", "hasOSSEnrolment", "amendRejoin")
+
+      When("the user manually navigates to the rejoin-registration page")
+      registration.goToPage("rejoin-registration")
+
+      Then("the user is on the cannot-rejoin page")
+      registration.checkJourneyUrl("cannot-rejoin")
+    }
+
+    Scenario("A user with expired NI protocol cannot re-register for the OSS scheme") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("500000002", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      Then("the user is on the ni-protocol-expired page")
+      registration.checkJourneyUrl("ni-protocol-expired")
+    }
+
+    Scenario("A user that has now deregistered from VAT cannot re-register for the OSS scheme") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000003", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      Then("the user is on the cannot-rejoin page")
+      registration.checkJourneyUrl("cannot-rejoin")
+    }
+
+    Scenario("API failure from ETMP when rejoining OSS service") {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000301", "Organisation", "hasOSSEnrolment", "rejoin")
+
+      And("the user enters date of first sale information")
+      registration.checkJourneyUrl("rejoin-already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-date-of-first-sale")
+      registration.enterDate("today")
+      registration.checkJourneyUrl("rejoin-start-date")
+      commencementDate.checkCommencementDate("today")
+      registration.continue()
+      registration.checkJourneyUrl("rejoin-registration")
+
+      And("the user submits and is redirected to the error-submitting-rejoin page")
+      registration.submit()
+      registration.checkJourneyUrl("error-submitting-rejoin")
     }
   }
 }
