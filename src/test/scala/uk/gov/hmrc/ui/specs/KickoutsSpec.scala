@@ -337,7 +337,9 @@ class KickoutsSpec extends BaseSpec {
       registration.checkJourneyUrl("account-restore-error")
     }
 
-    Scenario("User who already has an OSS VAT enrolment and a saved registration lands on the already-registered page") {
+    Scenario(
+      "User who already has an OSS VAT enrolment and a saved registration lands on the already-registered page"
+    ) {
 
       Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()

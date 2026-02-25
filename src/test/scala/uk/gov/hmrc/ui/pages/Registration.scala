@@ -320,6 +320,9 @@ object Registration extends BasePage {
       case "fixedEstablishmentRemoved" =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
         Assert.assertTrue(htmlBody.contains("EU tax details removed Cyprus"))
+      case "email"                     =>
+        Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+        Assert.assertTrue(htmlBody.contains("Email address different-email@test.com"))
       case "noAmendments"              =>
         Assert.assertTrue(htmlBody.contains("You haven't changed any details"))
       case _                           =>
