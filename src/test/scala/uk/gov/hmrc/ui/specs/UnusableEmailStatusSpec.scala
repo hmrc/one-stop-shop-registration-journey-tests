@@ -22,7 +22,7 @@ class UnusableEmailStatusSpec extends BaseSpec {
 
   private val registration = Registration
   private val auth         = Auth
-  private val email = EmailVerification
+  private val email        = EmailVerification
 
   Feature("Unusable Email Status Scenarios") {
 
