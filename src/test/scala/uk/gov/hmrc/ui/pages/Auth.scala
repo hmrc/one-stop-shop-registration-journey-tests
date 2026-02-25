@@ -48,14 +48,14 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = journey match {
-      case "amendMinimal" | "amendFull"                                                                    =>
+      case "amendChangedVATGroup" | "dashboard"                                                            =>
+        s"$dashboardUrl$dashboardJourneyUrl"
+      case amend if amend.startsWith("amend")                                                              =>
         s"$registrationUrl$journeyUrl/start-amend-journey"
       case "noSavedRegistration" | "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
       case "rejoin"                                                                                        =>
         s"$registrationUrl$journeyUrl/start-rejoin-journey"
-      case "dashboard"                                                                                     =>
-        s"$dashboardUrl$dashboardJourneyUrl"
       case _                                                                                               =>
         s"$registrationUrl$journeyUrl"
     }
@@ -89,9 +89,9 @@ object Auth extends BasePage {
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
       val iossNumber = journey match {
-        case "quarantineIOSS"        => "IM9003999993"
-        case "quarantineExpiredIOSS" => "IM9002999993"
-        case _                       => "IM9001234567"
+        case "quarantineIOSS" | "amendQuarantinedIOSS" => "IM9003999993"
+        case "quarantineExpiredIOSS"                   => "IM9002999993"
+        case _                                         => "IM9001234567"
       }
       if (journey != "registration") {
         sendKeys(By.id("input-1-0-value"), iossNumber)
@@ -102,6 +102,12 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
       sendKeys(By.id("input-1-0-name"), "VRN")
       sendKeys(By.id("input-1-0-value"), vrn)
+    }
+
+    if (accountType == "hasOSSAndIOSSEnrolment") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-OSS-ORG")
+      sendKeys(By.id("input-2-0-name"), "VRN")
+      sendKeys(By.id("input-2-0-value"), vrn)
     }
 
     if (accountType == "onePreviousRegistration") {

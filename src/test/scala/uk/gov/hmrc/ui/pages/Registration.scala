@@ -23,6 +23,7 @@ import uk.gov.hmrc.configuration.TestEnvironment
 import uk.gov.hmrc.selenium.webdriver.Driver
 
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 object Registration extends BasePage {
 
@@ -35,6 +36,8 @@ object Registration extends BasePage {
   private val dashboardJourneyUrl: String = "/pay-vat-on-goods-sold-to-eu/northern-ireland-returns-payments"
 
   private val email = EmailVerification
+
+  val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("d MMMM yyyy")
 
   def goToRegistrationJourney(): Unit =
     get(registrationUrl + journeyUrl)
@@ -257,7 +260,7 @@ object Registration extends BasePage {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
 
     amendJourney match {
-      case "noToYes" =>
+      case "noToYes"                   =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
         Assert.assertTrue(htmlBody.contains("Have a different UK trading name Yes"))
         Assert.assertTrue(htmlBody.contains("Trading names added my trading name"))
@@ -275,7 +278,7 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("Name on the account Different Name"))
         Assert.assertTrue(htmlBody.contains("BIC or SWIFT code (if you have one) ABCDDD2A"))
         Assert.assertTrue(htmlBody.contains("IBAN GB33BUKB20201555555555555"))
-      case "amended" =>
+      case "amended"                   =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
         Assert.assertTrue(htmlBody.contains("Trading names added Trading name two"))
         Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
@@ -291,7 +294,35 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("www.website2.org.uk"))
         Assert.assertTrue(htmlBody.contains("Contact name or business department Another full-name"))
         Assert.assertTrue(htmlBody.contains("Email address email-test@test.com"))
-      case _         =>
+      case "websites"                  =>
+        Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+        Assert.assertTrue(htmlBody.contains("Have a different UK trading name No"))
+        Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
+        Assert.assertTrue(htmlBody.contains("Trading name 2"))
+        Assert.assertTrue(htmlBody.contains("Registered for tax in other EU countries No"))
+        Assert.assertTrue(htmlBody.contains("EU tax details removed Cyprus"))
+        Assert.assertTrue(htmlBody.contains("Netherlands"))
+        Assert.assertTrue(htmlBody.contains("Romania"))
+        Assert.assertTrue(htmlBody.contains("Sell goods online No"))
+        Assert.assertTrue(htmlBody.contains("Trading websites removed www.onewebsite.co.uk"))
+        Assert.assertTrue(htmlBody.contains("www.website2.org.uk"))
+      case "notMadeSales"              =>
+        val nextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
+        Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+        Assert.assertTrue(htmlBody.contains("Already made eligible sales No"))
+        Assert.assertTrue(htmlBody.contains(s"Include sales from this date $nextQuarter"))
+      case "changedDateOfFirstSale"    =>
+        val today = LocalDate.now().format(dateFormatter)
+        Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+        Assert.assertTrue(htmlBody.contains("Already made eligible sales Yes"))
+        Assert.assertTrue(htmlBody.contains(s"Date of first sale $today"))
+        Assert.assertTrue(htmlBody.contains(s"Include sales from this date $today"))
+      case "fixedEstablishmentRemoved" =>
+        Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+        Assert.assertTrue(htmlBody.contains("EU tax details removed Cyprus"))
+      case "noAmendments"              =>
+        Assert.assertTrue(htmlBody.contains("You haven't changed any details"))
+      case _                           =>
         throw new Exception("This amend variation does not exist")
     }
   }

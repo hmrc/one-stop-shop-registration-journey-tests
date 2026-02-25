@@ -397,5 +397,241 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the correct answers are displayed as amended on the confirmation page")
       registration.checkAmendedAnswers("amended")
     }
+
+    Scenario("A user can amend all of the answers on their registration - third combination (remove all)") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000002", "Organisation", "hasOSSEnrolment", "amendFull")
+
+      And("the user is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the user can remove all of their trading names")
+      registration.selectChangeOrRemoveLink(
+        "amend-have-uk-trading-name"
+      )
+      registration.checkJourneyUrl("amend-have-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("amend-remove-all-trading-names")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the user can remove all of their tax details")
+      registration.selectChangeOrRemoveLink(
+        "amend-tax-in-eu"
+      )
+      registration.checkJourneyUrl("amend-tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("amend-remove-all-eu-details")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the user can remove all of their website addresses")
+      registration.selectChangeOrRemoveLink(
+        "amend-give-website-address"
+      )
+      registration.checkJourneyUrl("amend-give-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("amend-remove-all-websites")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("change-your-registration")
+
+      And("the user can submit their amended registration")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the correct answers are displayed as amended on the confirmation page")
+      registration.checkAmendedAnswers("websites")
+    }
+
+    Scenario("A user is no longer able to amend their start date due to being over the time limit") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSEnrolment", "amendMinimal")
+
+      And("the user is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user selects the change link for date of first sale")
+      registration.selectChangeOrRemoveLink(
+        "amend-date-of-first-sale"
+      )
+
+      Then("the user is unable to change their date of first sale")
+      registration.checkJourneyUrl("no-longer-amendable")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user selects the change link for already made sales")
+      registration.selectChangeOrRemoveLink(
+        "amend-already-made-sales"
+      )
+
+      Then("the user is unable to change their answer for already made sales")
+      registration.checkJourneyUrl("no-longer-amendable")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+
+      And("the user can submit their registration with no amendments")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+      registration.checkAmendedAnswers("noAmendments")
+    }
+
+    Scenario("A user can amend their registration to have not yet made eligible sales within the time limit") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000003", "Organisation", "hasOSSEnrolment", "amendDate")
+
+      And("the user is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user selects the change link for already made sales")
+      registration.selectChangeOrRemoveLink(
+        "amend-already-made-sales"
+      )
+
+      Then("the user is able to change their answer for already made sales")
+      registration.checkJourneyUrl("amend-already-made-sales")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("amend-start-date")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+
+      And("the user can submit their amended registration")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the correct answers are displayed as amended on the confirmation page")
+      registration.checkAmendedAnswers("notMadeSales")
+    }
+
+    Scenario("A user can amend their start date within the time limit") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000003", "Organisation", "hasOSSEnrolment", "amendDate")
+
+      And("the user is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user selects the change link for date of first sale")
+      registration.selectChangeOrRemoveLink(
+        "amend-date-of-first-sale"
+      )
+
+      Then("the user is able to change their date of first sale")
+      registration.checkJourneyUrl("amend-date-of-first-sale")
+      registration.enterDate("today")
+      registration.checkJourneyUrl("amend-start-date")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+
+      And("the user can submit their amended registration")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the correct answers are displayed as amended on the confirmation page")
+      registration.checkAmendedAnswers("changedDateOfFirstSale")
+    }
+
+    Scenario(
+      "A user with fixed establishments enters amend registration after having VAT Group changed from No to Yes"
+    ) {
+
+      Given("the user accesses their OSS returns dashboard")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("777777771", "Organisation", "hasOSSEnrolment", "amendChangedVATGroup")
+
+      Then("the user is redirected to the delete-all-fixed-establishment page within the OSS registration service")
+      registration.checkJourneyUrl("delete-all-fixed-establishment")
+
+      And("the user continues to remove their fixed establishment")
+      registration.continue()
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the fixed establishment is shown as removed on the confirmation page")
+      registration.checkAmendedAnswers("fixedEstablishmentRemoved")
+    }
+
+    Scenario("A user can cancel their registration amends") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSEnrolment", "amendMinimal")
+
+      And("the user is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user selects the change link for online marketplace")
+      registration.selectChangeOrRemoveLink(
+        "amend-online-marketplace"
+      )
+
+      Then("the user answers yes on the amend-online-marketplace page")
+      registration.checkJourneyUrl("amend-online-marketplace")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user selects the change link for websites")
+      registration.selectChangeOrRemoveLink(
+        "amend-give-website-address"
+      )
+
+      Then("the user answers yes on the amend-give-website-address page")
+      registration.checkJourneyUrl("amend-give-website-address")
+      registration.answerRadioButton("yes")
+
+      And("the user adds two websites")
+      registration.checkJourneyUrl("amend-website-address/1")
+      registration.enterAnswer("www.1stwebsite.org")
+      registration.checkJourneyUrl("amend-add-website-address")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("amend-website-address/2")
+      registration.enterAnswer("www.a-website-url.eu")
+      registration.checkJourneyUrl("amend-add-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("change-your-registration")
+
+      And("the user clicks cancel to cancel their amendments")
+      registration.clickLink("cancel")
+      registration.checkJourneyUrl("cancel-amend-registration")
+
+      And("the user is redirected to their OSS Returns dashboard")
+      registration.checkDashboardJourneyUrl("your-account")
+    }
+
+    Scenario("A user can submit an amended registration without changing any details") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSEnrolment", "amendMinimal")
+
+      When("the user is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the user can submit their registration with no amendments")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+      registration.checkAmendedAnswers("noAmendments")
+    }
+
+    Scenario("User can access the amend registration journey when quarantined on the Import One Stop Shop service") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSAndIOSSEnrolment", "amendQuarantinedIOSS")
+
+      When("the user is on the change-your-registration page")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the user can submit their registration with no amendments")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+      registration.checkAmendedAnswers("noAmendments")
+    }
   }
 }
