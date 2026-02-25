@@ -48,7 +48,7 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = journey match {
-      case "amendMinimal"                                                                                  =>
+      case "amendMinimal" | "amendFull"                                                                    =>
         s"$registrationUrl$journeyUrl/start-amend-journey"
       case "noSavedRegistration" | "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
