@@ -20,10 +20,10 @@ import uk.gov.hmrc.ui.pages.*
 
 class CommencementDateSpec extends BaseSpec {
 
-  private val registration = Registration
-  private val auth         = Auth
-  private val email        = EmailVerification
-  private val commencementDate        = CommencementDate
+  private val registration     = Registration
+  private val auth             = Auth
+  private val email            = EmailVerification
+  private val commencementDate = CommencementDate
 
   Feature("User registers with different commencement dates") {
 
@@ -129,7 +129,9 @@ class CommencementDateSpec extends BaseSpec {
       registration.checkJourneyUrl("previous-schemes-overview")
       registration.answerRadioButton("no")
 
-      And("the user is shown a commencement date of today on the start date page instead of the date of their first sale")
+      And(
+        "the user is shown a commencement date of today on the start date page instead of the date of their first sale"
+      )
       registration.checkJourneyUrl("start-date")
       commencementDate.checkCommencementDate("today")
       registration.continue()
@@ -155,7 +157,9 @@ class CommencementDateSpec extends BaseSpec {
       registration.checkJourneyUrl("check-date-of-first-sale")
       registration.enterDate("7 days ago")
 
-      And("the user is shown the start date page with a commencement date of today due to previous scheme still overriding date of first sale")
+      And(
+        "the user is shown the start date page with a commencement date of today due to previous scheme still overriding date of first sale"
+      )
       registration.checkJourneyUrl("check-start-date")
       commencementDate.checkCommencementDate("today")
       registration.continue()
@@ -169,7 +173,9 @@ class CommencementDateSpec extends BaseSpec {
       commencementDate.checkVersion("pre")
     }
 
-    Scenario("A user adds a previous registration via CYA and commencement date is displayed correctly following the change") {
+    Scenario(
+      "A user adds a previous registration via CYA and commencement date is displayed correctly following the change"
+    ) {
 
       Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -227,7 +233,9 @@ class CommencementDateSpec extends BaseSpec {
       registration.checkJourneyUrl("check-previous-schemes-overview")
       registration.answerRadioButton("no")
 
-      And("the user is shown the start date page with a commencement date of today due to previous scheme overriding date of first sale")
+      And(
+        "the user is shown the start date page with a commencement date of today due to previous scheme overriding date of first sale"
+      )
       registration.checkJourneyUrl("check-start-date")
       commencementDate.checkCommencementDate("today")
       registration.continue()

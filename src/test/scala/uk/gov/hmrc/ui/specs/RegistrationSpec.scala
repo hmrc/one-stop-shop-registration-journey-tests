@@ -342,7 +342,7 @@ class RegistrationSpec extends BaseSpec {
 
     Scenario("User cannot add fixed establishments when they are part of a VAT group") {
 
-      Given("the user who is not part of a VAT group accesses the IOSS Intermediary Registration Service")
+      Given("the user who is not part of a VAT group accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("777777779", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")
@@ -421,7 +421,7 @@ class RegistrationSpec extends BaseSpec {
 
     Scenario("User with an individual name instead of an organisation name can complete a registration") {
 
-      Given("the user who has an individual name accesses the IOSS Intermediary Registration Service")
+      Given("the user who has an individual name accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("777777778", "Organisation", "vatOnly", "registration")
       registration.checkJourneyUrl("already-eu-registered")

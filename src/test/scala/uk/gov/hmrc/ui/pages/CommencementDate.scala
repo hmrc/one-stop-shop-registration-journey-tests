@@ -48,7 +48,7 @@ object CommencementDate extends BasePage {
       "You must include all eligible sales from " + date.format(dateFormatter) + " in your first return."
     Assert.assertTrue(htmlBody.contains(startDateText))
   }
-  
+
   def commencementDateNextQuarter(): Unit = {
     val firstDayOfNextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
 
