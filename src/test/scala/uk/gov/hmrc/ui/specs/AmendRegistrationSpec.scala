@@ -95,9 +95,6 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.answerRadioButton("yes")
 
       And("the user adds eu registration details for two countries")
-      And(
-        "the user selects a country"
-      )
       registration.checkJourneyUrl("amend-eu-tax/1")
       registration.selectCountry("Portugal")
       registration.checkJourneyUrl("amend-sells-goods-to-eu-consumers/1")
