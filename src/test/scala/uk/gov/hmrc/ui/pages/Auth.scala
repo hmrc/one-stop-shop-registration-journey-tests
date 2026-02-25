@@ -54,7 +54,7 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey"
       case "noSavedRegistration" | "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
-      case "rejoin"                                                                                        =>
+      case "rejoin" | "rejoinQuarantinedIOSS"                                                              =>
         s"$registrationUrl$journeyUrl/start-rejoin-journey"
       case _                                                                                               =>
         s"$registrationUrl$journeyUrl"
@@ -89,9 +89,9 @@ object Auth extends BasePage {
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
       val iossNumber = journey match {
-        case "quarantineIOSS" | "amendQuarantinedIOSS" => "IM9003999993"
-        case "quarantineExpiredIOSS"                   => "IM9002999993"
-        case _                                         => "IM9001234567"
+        case "quarantineIOSS" | "amendQuarantinedIOSS" | "rejoinQuarantinedIOSS" => "IM9003999993"
+        case "quarantineExpiredIOSS"                                             => "IM9002999993"
+        case _                                                                   => "IM9001234567"
       }
       if (journey != "registration") {
         sendKeys(By.id("input-1-0-value"), iossNumber)
