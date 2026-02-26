@@ -88,16 +88,6 @@ object Registration extends BasePage {
   def selectChangeOrRemoveLink(link: String): Unit =
     click(By.cssSelector(s"a[href*=$link]"))
 
-  def initialSteps(): Unit = {
-    answerRadioButton("no")
-    checkJourneyUrl("registered-for-vat-in-uk")
-    answerRadioButton("yes")
-    checkJourneyUrl("ni-or-eu-based")
-    answerRadioButton("yes")
-    checkJourneyUrl("register-to-use-service")
-    continue()
-  }
-
   def waitForElement(by: By): Unit =
     new FluentWait(Driver.instance).until(ExpectedConditions.presenceOfElementLocated(by))
 
@@ -147,65 +137,8 @@ object Registration extends BasePage {
     click(continueButton)
   }
 
-  def checkVatDetailsPage(): Unit = {
-    val h1 = Driver.instance.findElement(By.tagName("h1")).getText
-    Assert.assertTrue(h1.equals("Confirm VAT details for your business"))
-  }
-
-  def checkIndividualName(): Unit = {
-    val body = Driver.instance.findElement(By.tagName("body")).getText
-    Assert.assertFalse(body.contains("Business name"))
-    Assert.assertTrue(body.contains("Name first middle last"))
-  }
-
   def updateField(id: String, text: String): Unit =
     sendKeys(By.id(id), text)
-
-  def checkPrincipalPlaceOfBusiness(shouldBeDisplayed: Boolean): Unit = {
-    val body        = Driver.instance.findElement(By.tagName("body")).getText
-    val textToCheck = "Principal place of business address"
-    if (shouldBeDisplayed) {
-      Assert.assertTrue(body.contains(textToCheck))
-    } else {
-      Assert.assertFalse(body.contains(textToCheck))
-    }
-  }
-
-  def checkNiAddressOnCya(shouldBeDisplayed: Boolean): Unit = {
-    val body        = Driver.instance.findElement(By.tagName("body")).getText
-    val textToCheck = "Business address in Northern Ireland"
-    if (shouldBeDisplayed) {
-      Assert.assertTrue(body.contains(textToCheck))
-    } else {
-      Assert.assertFalse(body.contains(textToCheck))
-    }
-  }
-
-  def enterNiAddress(
-    line1: String,
-    line2: String,
-    townOrCity: String,
-    county: String,
-    postCode: String
-  ): Unit = {
-    sendKeys(By.id("line1"), line1)
-    sendKeys(By.id("line2"), line2)
-    sendKeys(By.id("townOrCity"), townOrCity)
-    sendKeys(By.id("county"), county)
-    sendKeys(By.id("postCode"), postCode)
-    click(continueButton)
-  }
-
-  def enterFETradingName(tradingName: String): Unit =
-    sendKeys(By.id("tradingName"), tradingName)
-
-  def clearCountry(): Unit = {
-    val input = Driver.instance.findElement(By.id("value")).getAttribute("value")
-    if (input != null) {
-      for (n <- input)
-        Driver.instance.findElement(By.id("value")).sendKeys(Keys.BACK_SPACE)
-    }
-  }
 
   def minimalRegistrationAnswers(): Unit = {
     checkJourneyUrl("sell-from-northern-ireland")
@@ -241,9 +174,6 @@ object Registration extends BasePage {
 
   def clickLink(link: String): Unit =
     click(By.id(link))
-
-  def saveAndComeBackLater(): Unit =
-    click(By.id("saveProgress"))
 
   def checkProblemPage(): Unit = {
     val h1 = Driver.instance.findElement(By.tagName("h1")).getText
@@ -307,7 +237,7 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("Trading websites removed www.onewebsite.co.uk"))
         Assert.assertTrue(htmlBody.contains("www.website2.org.uk"))
       case "notMadeSales"              =>
-        val nextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
+        val nextQuarter = CommencementDate.getNextQuarterCommencementDate().format(dateFormatter)
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
         Assert.assertTrue(htmlBody.contains("Already made eligible sales No"))
         Assert.assertTrue(htmlBody.contains(s"Include sales from this date $nextQuarter"))
@@ -328,15 +258,6 @@ object Registration extends BasePage {
       case _                           =>
         throw new Exception("This amend variation does not exist")
     }
-  }
-
-  def answerNiAddress(answer: String): Unit = {
-    answer match {
-      case "Yes, go back and add a new address" => click(By.id("value_0"))
-      case "No, leave this service"             => click(By.id("value_1"))
-      case _                                    => throw new Exception("Option doesn't exist")
-    }
-    click(continueButton)
   }
 
   def enterDate(day: String): Unit = {
@@ -368,7 +289,7 @@ object Registration extends BasePage {
 
   def enterIossNumber(iossNumber: String): Unit = {
     sendKeys(By.id("previousSchemeNumber"), iossNumber)
-    CommonPage.clickContinue()
+    continue()
   }
 
   def answerFixedEstablishment(answer: String): Unit = {
@@ -377,7 +298,7 @@ object Registration extends BasePage {
       case "dispatch warehouse"  => click(By.id("value_1"))
       case _                     => throw new Exception("Option doesn't exist")
     }
-    CommonPage.clickContinue()
+    continue()
   }
 
   def checkBtaUrl(): Unit = {
