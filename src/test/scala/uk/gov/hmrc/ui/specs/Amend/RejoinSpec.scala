@@ -543,9 +543,10 @@ class RejoinSpec extends BaseSpec {
       "A currently registered trader who is not excluded cannot access the rejoin registration journey via the amend journey"
     ) {
 
-      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("100000002", "Organisation", "hasOSSEnrolment", "amendRejoin")
+      registration.checkJourneyUrl("change-your-registration")
 
       When("the user manually navigates to the rejoin-registration page")
       registration.goToPage("rejoin-registration")
