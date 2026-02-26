@@ -435,16 +435,5 @@ class RegistrationSpec extends BaseSpec {
       Then("the user is on the successful submission page")
       registration.checkJourneyUrl("successful")
     }
-
-    //to be moved into save and come back later spec when created
-    Scenario("User accesses continue-on-sign-in url but does not have a saved registration") {
-
-      Given("the user accesses the OSS Registration Service via the continue-on-sign-in url")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard("100000001", "Organisation", "vatOnly", "noSavedRegistration")
-
-      Then("the user is on the no-saved-registration page")
-      registration.checkJourneyUrl("no-saved-registration")
-    }
   }
 }

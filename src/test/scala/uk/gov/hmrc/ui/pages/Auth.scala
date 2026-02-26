@@ -64,7 +64,9 @@ object Auth extends BasePage {
     if (journey == "registrationFailure" || journey == "savedWithCredId") {
       generateCredId()
       sendKeys(By.name("authorityId"), retrieveCredId())
-    } else if (journey == "registrationFailureSave" || journey == "retrievedWithCredId") {
+    } else if (
+      journey == "registrationFailureSave" || journey == "retrievedWithCredId" || journey == "savedRegistration"
+    ) {
       sendKeys(By.name("authorityId"), retrieveCredId())
     }
 

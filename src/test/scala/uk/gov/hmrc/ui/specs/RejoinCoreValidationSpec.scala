@@ -24,7 +24,6 @@ class RejoinCoreValidationSpec extends BaseSpec {
 
   private val registration     = Registration
   private val auth             = Auth
-  private val email            = EmailVerification
   private val commencementDate = CommencementDate
 
   private val currentYear = LocalDate.now().getYear
@@ -71,7 +70,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-already-registered-other-country?countryCode=EE")
     }
 
-    Scenario("A trader with a VRN that is still active on a previous registration retrieved from ETMP cannot access the rejoin journey") {
+    Scenario(
+      "A trader with a VRN that is still active on a previous registration retrieved from ETMP cannot access the rejoin journey"
+    ) {
 
       Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -81,7 +82,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-already-registered-other-country?countryCode=EE")
     }
 
-    Scenario(" A trader with a VRN that is still active on an EU VAT registration retrieved from ETMP cannot access the rejoin journey") {
+    Scenario(
+      " A trader with a VRN that is still active on an EU VAT registration retrieved from ETMP cannot access the rejoin journey"
+    ) {
 
       Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -231,7 +234,7 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-registration")
       registration.submit()
       registration.checkJourneyUrl("successful-rejoin")
-     }
+    }
 
     Scenario("A trader is unable to rejoin with a quarantined EU registration") {
 
@@ -307,7 +310,9 @@ class RejoinCoreValidationSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-already-registered-other-country?countryCode=EE")
     }
 
-    Scenario("Kickout when the user attempts to rejoin the service but is quarantined on the Import One Stop Shop service") {
+    Scenario(
+      "Kickout when the user attempts to rejoin the service but is quarantined on the Import One Stop Shop service"
+    ) {
 
       Given("the user accesses the Amend Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()

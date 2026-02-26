@@ -17,14 +17,11 @@
 package uk.gov.hmrc.ui.pages
 
 import org.junit.Assert
-import org.openqa.selenium.support.ui.{ExpectedConditions, FluentWait}
-import org.openqa.selenium.{By, Keys}
-import uk.gov.hmrc.configuration.TestEnvironment
+import org.openqa.selenium.By
 import uk.gov.hmrc.selenium.webdriver.Driver
 import uk.gov.hmrc.ui.pages.Registration.dateFormatter
 
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 object CommencementDate extends BasePage {
 
