@@ -48,52 +48,42 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = journey match {
-      case "amendChangedVATGroup" | "dashboard" =>
+      case "amendChangedVATGroup" | "dashboard"                      =>
         s"$dashboardUrl$dashboardJourneyUrl"
-      case amend if amend.startsWith("amend")   =>
+      case amend if amend.startsWith("amend")                        =>
         s"$registrationUrl$journeyUrl/start-amend-journey"
-      case "noSavedRegistration" | "savedRegistration" | "savedIOSS" | "registrationFailureSave" |
-          "retrievedWithCredId" =>
+      case "noSavedRegistration" | "savedRegistration" | "savedIOSS" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
-      case "rejoin" | "rejoinQuarantinedIOSS"   =>
+      case "rejoin" | "rejoinQuarantinedIOSS"                        =>
         s"$registrationUrl$journeyUrl/start-rejoin-journey"
-      case _                                    =>
+      case _                                                         =>
         s"$registrationUrl$journeyUrl"
     }
+
     sendKeys(By.name("redirectionUrl"), redirectUrl)
 
-    if (journey == "registrationFailure" || journey == "savedWithCredId") {
+    if (journey == "savedWithCredId") {
       generateCredId()
       sendKeys(By.name("authorityId"), retrieveCredId())
-    } else if (
-      journey == "registrationFailureSave" || journey == "retrievedWithCredId" || journey == "savedRegistration" || journey == "savedIOSS"
-    ) {
+    } else if (journey == "savedRegistration" || journey == "savedIOSS") {
       sendKeys(By.name("authorityId"), retrieveCredId())
     }
 
-    if (affinityGroup == "Agent") {
-      selectByValue(By.id("affinityGroupSelect"), "Agent")
-    } else if (affinityGroup == "Individual") {
-      selectByValue(By.id("affinityGroupSelect"), "Individual")
-      selectByValue(By.id("confidenceLevel"), "250")
-      sendKeys(By.id("nino"), "AA123456D")
-    } else {
-      selectByValue(By.id("affinityGroupSelect"), "Organisation")
-    }
+    sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
+    sendKeys(By.id("input-0-0-name"), "VRN")
+    sendKeys(By.id("input-0-0-value"), vrn)
 
-    if (vrn != "None") {
-      sendKeys(By.id("enrolment[0].name"), "HMRC-MTD-VAT")
-      sendKeys(By.id("input-0-0-name"), "VRN")
-      sendKeys(By.id("input-0-0-value"), vrn)
-    }
+    selectByValue(By.id("affinityGroupSelect"), "Organisation")
 
-    if (accountType != "noVat" && accountType != "vatOnly" && accountType != "hasOSSEnrolment") {
+    if (accountType != "vatOnly" && accountType != "hasOSSEnrolment") {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
       val iossNumber = journey match {
         case "quarantineIOSS" | "amendQuarantinedIOSS" | "rejoinQuarantinedIOSS" | "savedIOSS" => "IM9003999993"
         case "quarantineExpiredIOSS"                                                           => "IM9002999993"
+        case "crossSchemaPreviousIOSSRegistration"                                             => "IM9019999997"
+        case "crossSchemaMultipleIOSSRegistrations"                                            => "IM9007231111"
         case _                                                                                 => "IM9001234567"
       }
       if (journey != "registration") {
@@ -113,44 +103,13 @@ object Auth extends BasePage {
       sendKeys(By.id("input-2-0-value"), vrn)
     }
 
-    if (accountType == "onePreviousRegistration") {
-      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
-      sendKeys(By.id("input-2-0-name"), "IntNumber")
-      sendKeys(By.id("input-2-0-value"), "IN9007230001")
-    }
-
-    if (accountType == "multiplePreviousRegistrations") {
-      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
-      sendKeys(By.id("input-2-0-name"), "IntNumber")
-      sendKeys(By.id("input-2-0-value"), "IN9008230002")
-
-      sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-INT")
-      sendKeys(By.id("input-3-0-name"), "IntNumber")
-      sendKeys(By.id("input-3-0-value"), "IN9007230002")
+    if (journey == "crossSchemaMultipleIOSSRegistrations") {
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+      sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+      sendKeys(By.id("input-2-0-value"), "IM9006231111")
     }
 
     click(By.cssSelector("Input[value='Submit']"))
-
-    if (journey == "accountType") {
-      fluentWait.until(
-        ExpectedConditions.urlContains(
-          s"$registrationUrl$journeyUrl/cannot-rejoin"
-        )
-      )
-    } else if (journey != "dashboard") {
-      fluentWait.until(
-        ExpectedConditions.urlContains(
-          s"$registrationUrl$journeyUrl"
-        )
-      )
-    } else {
-      fluentWait.until(
-        ExpectedConditions.urlContains(
-          s"$dashboardUrl$dashboardJourneyUrl"
-        )
-      )
-    }
-
   }
 
   def retrieveCredId(): String =
