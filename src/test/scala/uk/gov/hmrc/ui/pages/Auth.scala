@@ -48,15 +48,16 @@ object Auth extends BasePage {
     getCurrentUrl should startWith(authUrl)
 
     val redirectUrl = journey match {
-      case "amendChangedVATGroup" | "dashboard"                                                            =>
+      case "amendChangedVATGroup" | "dashboard" =>
         s"$dashboardUrl$dashboardJourneyUrl"
-      case amend if amend.startsWith("amend")                                                              =>
+      case amend if amend.startsWith("amend")   =>
         s"$registrationUrl$journeyUrl/start-amend-journey"
-      case "noSavedRegistration" | "savedRegistration" | "registrationFailureSave" | "retrievedWithCredId" =>
+      case "noSavedRegistration" | "savedRegistration" | "savedIOSS" | "registrationFailureSave" |
+          "retrievedWithCredId" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
-      case "rejoin" | "rejoinQuarantinedIOSS"                                                              =>
+      case "rejoin" | "rejoinQuarantinedIOSS"   =>
         s"$registrationUrl$journeyUrl/start-rejoin-journey"
-      case _                                                                                               =>
+      case _                                    =>
         s"$registrationUrl$journeyUrl"
     }
     sendKeys(By.name("redirectionUrl"), redirectUrl)
@@ -65,7 +66,7 @@ object Auth extends BasePage {
       generateCredId()
       sendKeys(By.name("authorityId"), retrieveCredId())
     } else if (
-      journey == "registrationFailureSave" || journey == "retrievedWithCredId" || journey == "savedRegistration"
+      journey == "registrationFailureSave" || journey == "retrievedWithCredId" || journey == "savedRegistration" || journey == "savedIOSS"
     ) {
       sendKeys(By.name("authorityId"), retrieveCredId())
     }
@@ -91,9 +92,9 @@ object Auth extends BasePage {
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
       val iossNumber = journey match {
-        case "quarantineIOSS" | "amendQuarantinedIOSS" | "rejoinQuarantinedIOSS" => "IM9003999993"
-        case "quarantineExpiredIOSS"                                             => "IM9002999993"
-        case _                                                                   => "IM9001234567"
+        case "quarantineIOSS" | "amendQuarantinedIOSS" | "rejoinQuarantinedIOSS" | "savedIOSS" => "IM9003999993"
+        case "quarantineExpiredIOSS"                                                           => "IM9002999993"
+        case _                                                                                 => "IM9001234567"
       }
       if (journey != "registration") {
         sendKeys(By.id("input-1-0-value"), iossNumber)

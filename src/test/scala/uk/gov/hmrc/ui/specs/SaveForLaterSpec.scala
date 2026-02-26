@@ -63,7 +63,9 @@ class SaveForLaterSpec extends BaseSpec {
       Then("the user clicks on the save and come back later button")
       registration.checkJourneyUrl("previous-oss")
       registration.clickLink("saveProgress")
-      registration.checkJourneyUrl("progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss")
+      registration.checkJourneyUrl(
+        "progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss"
+      )
 
       And("the user clicks on the continue to complete your registration link")
       registration.clickLink("continueToYourReturn")
@@ -125,7 +127,9 @@ class SaveForLaterSpec extends BaseSpec {
 
       Then("the user clicks on the save and come back later button")
       registration.clickLink("saveProgress")
-      registration.checkJourneyUrl("progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fonline-marketplace")
+      registration.checkJourneyUrl(
+        "progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fonline-marketplace"
+      )
 
       And("the user clicks on the continue to complete your registration link")
       registration.clickLink("continueToYourReturn")
@@ -152,7 +156,9 @@ class SaveForLaterSpec extends BaseSpec {
 
       Then("the user clicks on the save and come back later button")
       registration.clickLink("saveProgress")
-      registration.checkJourneyUrl("progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fcheck-answers")
+      registration.checkJourneyUrl(
+        "progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fcheck-answers"
+      )
 
       And("the user clicks on the continue to complete your registration link")
       registration.clickLink("continueToYourReturn")
@@ -202,7 +208,9 @@ class SaveForLaterSpec extends BaseSpec {
       Then("the user clicks on the save and come back later button")
       registration.checkJourneyUrl("previous-oss")
       registration.clickLink("saveProgress")
-      registration.checkJourneyUrl("progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss")
+      registration.checkJourneyUrl(
+        "progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss"
+      )
 
       And("the user clicks on the sign out and come back later link")
       registration.clickLink("signOut")
@@ -295,6 +303,163 @@ class SaveForLaterSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
     }
 
+    Scenario("A user can delete an in progress registration and start again") {
+
+      Given("the user accesses the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000602", "Organisation", "vatOnly", "savedWithCredId")
+      registration.checkJourneyUrl("already-eu-registered")
+
+      And("the user answers the filter questions")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      When("the user adds some answers to their registration")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("first trading name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("trading 2!")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("date-of-first-sale")
+      registration.enterDate("yesterday")
+
+      Then("the user clicks on the save and come back later button")
+      registration.checkJourneyUrl("previous-oss")
+      registration.clickLink("saveProgress")
+      registration.checkJourneyUrl(
+        "progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fprevious-oss"
+      )
+
+      And("the user clicks on the sign out and come back later link")
+      registration.clickLink("signOut")
+
+      When("the user logs in again to the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000602", "Organisation", "vatOnly", "savedRegistration")
+
+      Then("the user is presented with the continue-registration page")
+      registration.checkJourneyUrl("continue-registration")
+
+      And("the user answers no to delete their saved registration and start again")
+      registration.clickLink("deleteProgress")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("date-of-first-sale")
+      registration.enterDate("yesterday")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("give-website-address")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("business-contact-details")
+      registration.fillContactDetails("Joe Bloggs", "01234567890", "email@test.com")
+      email.completeEmailVerification("registration")
+      registration.checkJourneyUrl("bank-details")
+      registration.fillBankAccountDetails("Account Name", "SMCOGB2LXXM", "GB29NWBK60161331926819")
+      registration.checkJourneyUrl("check-answers")
+
+      And("the user submits their registration")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+    }
+
+    Scenario(
+      "Kickout when the user returns to a saved registration but is now quarantined on the Import One Stop Shop service"
+    ) {
+
+      Given("the user accesses the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000603", "Organisation", "vatOnly", "savedWithCredId")
+      registration.checkJourneyUrl("already-eu-registered")
+
+      And("the user answers the filter questions")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      When("the user adds some answers to their registration")
+      registration.checkJourneyUrl("have-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/1")
+      registration.enterAnswer("first trading name")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("trading 2!")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("date-of-first-sale")
+      registration.enterDate("yesterday")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("previous-country/1")
+      registration.selectCountry("Ireland")
+      registration.checkJourneyUrl("previous-scheme/1/1")
+      registration.answerSchemeType("OSS")
+      registration.checkJourneyUrl("previous-oss-scheme-number/1/1")
+      registration.enterAnswer("IE1234567WI")
+      registration.checkJourneyUrl("previous-scheme-answers/1")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("previous-schemes-overview")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("eu-tax/1")
+      registration.selectCountry("Romania")
+      registration.checkJourneyUrl("sells-goods-to-eu-consumers/1")
+
+      Then("the user clicks on the save and come back later button")
+      registration.clickLink("saveProgress")
+      registration.checkJourneyUrl(
+        "progress-saved?continueUrl=%2Fpay-vat-on-goods-sold-to-eu%2Fnorthern-ireland-register%2Fsells-goods-to-eu-consumers%2F1"
+      )
+
+      And("the user clicks on the sign out and come back later link")
+      registration.clickLink("signOut")
+
+      When("the user logs in again to the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100000603", "Organisation", "hasIOSSEnrolment", "savedIOSS")
+
+      Then("the user is presented with the cannot-register-quarantined-ioss-trader page")
+      registration.checkJourneyUrl("cannot-register-quarantined-ioss-trader")
+    }
 
     Scenario("User accesses continue-on-sign-in url but does not have a saved registration") {
 
