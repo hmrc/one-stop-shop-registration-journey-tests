@@ -1,6 +1,3 @@
 #!/bin/bash -e
 
-BROWSER=$1
-ENVIRONMENT=$2
-
-sbt clean -Dbrowser="${BROWSER:=chrome}" -Denvironment="${ENVIRONMENT:=local}" "testOnly uk.gov.hmrc.test.ui.cucumber.runner.RegistrationRunner" testReport
+sbt clean -Dbrowser="chrome" -Denvironment="local" -Daccessibility.timeout="1000" "testOnly uk.gov.hmrc.ui.specs.Registration.*" testReport

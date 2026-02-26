@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,16 @@ object CommencementDate extends BasePage {
     Assert.assertTrue(htmlBody.contains(startDateText))
   }
 
+  def getNextQuarterCommencementDate(): LocalDate = {
+    val lastMonthofQuarter       = (((LocalDate.now().getMonthValue - 1) / 3) + 1) * 3
+    val dateInLastMonthOfQuarter = LocalDate.now().withMonth(lastMonthofQuarter)
+    val lastDayOfCurrentQuarter  = dateInLastMonthOfQuarter.withDayOfMonth(dateInLastMonthOfQuarter.lengthOfMonth())
+
+    lastDayOfCurrentQuarter.plusDays(1)
+  }
+
   def commencementDateNextQuarter(): Unit = {
-    val firstDayOfNextQuarter = CommonPage.getNextQuarterCommencementDate().format(dateFormatter)
+    val firstDayOfNextQuarter = getNextQuarterCommencementDate().format(dateFormatter)
 
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(

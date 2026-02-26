@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.ui.specs
+package uk.gov.hmrc.ui.specs.Extra
 
 import uk.gov.hmrc.ui.pages.*
+import uk.gov.hmrc.ui.specs.BaseSpec
 
 class CrossSchemaSpec extends BaseSpec {
 
