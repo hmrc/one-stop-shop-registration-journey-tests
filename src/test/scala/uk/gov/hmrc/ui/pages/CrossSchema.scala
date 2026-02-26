@@ -23,12 +23,12 @@ import uk.gov.hmrc.selenium.webdriver.Driver
 object CrossSchema extends BasePage {
 
   def tradingNamesDisplayed(version: String): Unit = {
-      val header = Driver.instance.findElement(By.tagName("h1")).getText
-      if (version == "no") {
-        Assert.assertTrue(header.equals("You have added 2 UK trading names"))
-      } else {
-        Assert.assertTrue(header.equals("You have 2 UK trading names from your Import One Stop Shop registration"))
-      }
+    val header = Driver.instance.findElement(By.tagName("h1")).getText
+    if (version == "no") {
+      Assert.assertTrue(header.equals("You have added 2 UK trading names"))
+    } else {
+      Assert.assertTrue(header.equals("You have 2 UK trading names from your Import One Stop Shop registration"))
+    }
   }
 
   def tradingNameWarnings(version: String, journey: String, displayed: Boolean): Unit = {
@@ -105,7 +105,7 @@ object CrossSchema extends BasePage {
   def amendments(version: String): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
 
-    if (version == "current" || version == "no") {
+    if (version == "current" || version == "noRegistration") {
       Assert.assertTrue(htmlBody.contains("You changed the following details:"))
       Assert.assertTrue(htmlBody.contains("Trading names added Trading name cross-schema two"))
       Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
@@ -126,6 +126,13 @@ object CrossSchema extends BasePage {
       Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
       Assert.assertTrue(htmlBody.contains("Email address email-cs-test@test.com"))
       Assert.assertTrue(htmlBody.contains("Name on the account CS Name"))
+    } else {
+      Assert.assertTrue(htmlBody.contains("You haven't changed any details"))
     }
+  }
+
+  def oneTradingName(): Unit = {
+    val header = Driver.instance.findElement(By.tagName("h1")).getText
+    Assert.assertTrue(header.equals("You have added one UK trading name"))
   }
 }

@@ -54,7 +54,7 @@ object Auth extends BasePage {
         s"$registrationUrl$journeyUrl/start-amend-journey"
       case "noSavedRegistration" | "savedRegistration" | "savedIOSS" =>
         s"$registrationUrl$journeyUrl/continue-on-sign-in"
-      case "rejoin" | "rejoinQuarantinedIOSS"                        =>
+      case rejoin if rejoin.startsWith("rejoin")                     =>
         s"$registrationUrl$journeyUrl/start-rejoin-journey"
       case _                                                         =>
         s"$registrationUrl$journeyUrl"
@@ -82,8 +82,12 @@ object Auth extends BasePage {
       val iossNumber = journey match {
         case "quarantineIOSS" | "amendQuarantinedIOSS" | "rejoinQuarantinedIOSS" | "savedIOSS" => "IM9003999993"
         case "quarantineExpiredIOSS"                                                           => "IM9002999993"
-        case "crossSchemaPreviousIOSSRegistration"                                             => "IM9019999997"
-        case "crossSchemaMultipleIOSSRegistrations"                                            => "IM9007231111"
+        case "crossSchemaPreviousIOSSRegistration" | "amendCrossSchemaPreviousIOSSRegistration" |
+            "rejoinCrossSchemaPreviousIOSSRegistration" =>
+          "IM9019999997"
+        case "crossSchemaMultipleIOSSRegistrations" | "amendCrossSchemaMultipleIOSSRegistrations" |
+            "rejoinCrossSchemaMultipleIOSSRegistrations" =>
+          "IM9007231111"
         case _                                                                                 => "IM9001234567"
       }
       if (journey != "registration") {
@@ -107,6 +111,13 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-2-0-name"), "IOSSNumber")
       sendKeys(By.id("input-2-0-value"), "IM9006231111")
+    }
+    if (
+      journey == "amendCrossSchemaMultipleIOSSRegistrations" || journey == "rejoinCrossSchemaMultipleIOSSRegistrations"
+    ) {
+      sendKeys(By.id("enrolment[3].name"), "HMRC-IOSS-ORG")
+      sendKeys(By.id("input-3-0-name"), "IOSSNumber")
+      sendKeys(By.id("input-3-0-value"), "IM9006231111")
     }
 
     click(By.cssSelector("Input[value='Submit']"))
