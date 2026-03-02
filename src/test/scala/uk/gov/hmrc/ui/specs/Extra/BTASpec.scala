@@ -183,9 +183,8 @@ class BTASpec extends BaseSpec {
       When("the user clicks on the Continue to your account button")
       registration.continue()
 
-//      Currently broken - awaiting fix in VEOSS-2162
-//      Then("the user is on the business-account page")
-//      registration.checkBtaUrl()
+      Then("the user is on the business-account page")
+      registration.checkBtaUrl()
     }
 
     Scenario(
