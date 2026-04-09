@@ -113,14 +113,14 @@ object CrossSchema extends BasePage {
       Assert.assertTrue(htmlBody.contains("Contact name or business department CS full-name"))
       Assert.assertTrue(htmlBody.contains("Email address email-cs-test@test.com"))
       Assert.assertTrue(htmlBody.contains("Name on the account CS Name"))
-      Assert.assertTrue(htmlBody.contains("BIC or SWIFT code (if you have one) ABCDDD2A"))
-      Assert.assertTrue(htmlBody.contains("IBAN GB33BUKB20201555555555555"))
+      Assert.assertTrue(htmlBody.contains("BIC (Business Identifier Code) or SWIFT code (if you have one) ABCDDD2A"))
+      Assert.assertTrue(htmlBody.contains("IBAN (International Bank Account Number) GB33BUKB20201555555555555"))
     } else if (version == "previous") {
       Assert.assertTrue(htmlBody.contains("You changed the following details:"))
       Assert.assertTrue(htmlBody.contains("Trading names added Trading name cross-schema two"))
       Assert.assertTrue(htmlBody.contains("Trading names removed Trading name 2"))
       Assert.assertTrue(htmlBody.contains("Contact name or business department CS full-name"))
-      Assert.assertTrue(htmlBody.contains("IBAN GB29NWBK60161331926819"))
+      Assert.assertTrue(htmlBody.contains("IBAN (International Bank Account Number) GB29NWBK60161331926819"))
     } else if (version == "multiple") {
       Assert.assertTrue(htmlBody.contains("You changed the following details:"))
       Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
