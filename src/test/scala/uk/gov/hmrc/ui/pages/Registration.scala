@@ -206,8 +206,8 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("Contact name or business department Another full name"))
         Assert.assertTrue(htmlBody.contains("Telephone number 09852355522525"))
         Assert.assertTrue(htmlBody.contains("Name on the account Different Name"))
-        Assert.assertTrue(htmlBody.contains("BIC or SWIFT code (if you have one) ABCDDD2A"))
-        Assert.assertTrue(htmlBody.contains("IBAN GB33BUKB20201555555555555"))
+        Assert.assertTrue(htmlBody.contains("BIC (Business Identifier Code) or SWIFT code (if you have one) ABCDDD2A"))
+        Assert.assertTrue(htmlBody.contains("IBAN (International Bank Account Number) GB33BUKB20201555555555555"))
       case "amended"                   =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
         Assert.assertTrue(htmlBody.contains("Trading names added Trading name two"))
