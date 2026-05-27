@@ -33,8 +33,9 @@ class AmendRegistrationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSEnrolment", "amendMinimal")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user selects the change link for have uk trading name")
       registration.selectChangeOrRemoveLink(
@@ -204,8 +205,9 @@ class AmendRegistrationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000002", "Organisation", "hasOSSEnrolment", "amendFull")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user selects the change link for add uk trading name")
       registration.selectChangeOrRemoveLink(
@@ -402,8 +404,9 @@ class AmendRegistrationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000002", "Organisation", "hasOSSEnrolment", "amendFull")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the user can remove all of their trading names")
       registration.selectChangeOrRemoveLink(
@@ -449,8 +452,9 @@ class AmendRegistrationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSEnrolment", "amendMinimal")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user selects the change link for date of first sale")
       registration.selectChangeOrRemoveLink(
@@ -472,10 +476,8 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.continue()
       registration.checkJourneyUrl("change-your-registration")
 
-      And("the user can submit their registration with no amendments")
-      registration.submit()
-      registration.checkJourneyUrl("successful-amend")
-      registration.checkAmendedAnswers("noAmendments")
+      And("the user has no amendments to submit")
+      registration.noAmendments()
     }
 
     Scenario("A user can amend their registration to have not yet made eligible sales within the time limit") {
@@ -484,8 +486,9 @@ class AmendRegistrationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000003", "Organisation", "hasOSSEnrolment", "amendDate")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user selects the change link for already made sales")
       registration.selectChangeOrRemoveLink(
@@ -513,8 +516,9 @@ class AmendRegistrationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000003", "Organisation", "hasOSSEnrolment", "amendDate")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user selects the change link for date of first sale")
       registration.selectChangeOrRemoveLink(
@@ -561,8 +565,9 @@ class AmendRegistrationSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSEnrolment", "amendMinimal")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user selects the change link for online marketplace")
       registration.selectChangeOrRemoveLink(
@@ -602,34 +607,34 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkDashboardJourneyUrl("your-account")
     }
 
-    Scenario("A user can submit an amended registration without changing any details") {
+    Scenario("A user can return to their account after viewing their registration without changing any details") {
 
       Given("the user accesses the Amend Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSEnrolment", "amendMinimal")
 
-      When("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
-      Then("the user can submit their registration with no amendments")
-      registration.submit()
-      registration.checkJourneyUrl("successful-amend")
-      registration.checkAmendedAnswers("noAmendments")
+      When("the user clicks on the Return to your account link")
+      registration.clickLink("returnToYourAccount")
+
+      Then("the user is redirected to their dashboard")
+      registration.checkDashboardJourneyUrl("your-account")
     }
 
     Scenario("User can access the amend registration journey when quarantined on the Import One Stop Shop service") {
 
-      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      Given("the user logs into the OSS Registration Service")
       auth.goToAuthorityWizard()
+
+      When("the user is quarantined on the IOSS service")
       auth.loginUsingAuthorityWizard("300000001", "Organisation", "hasOSSAndIOSSEnrolment", "amendQuarantinedIOSS")
 
-      When("the user is on the change-your-registration page")
+      Then("the user can access the change-your-registration page")
       registration.checkJourneyUrl("change-your-registration")
-
-      Then("the user can submit their registration with no amendments")
-      registration.submit()
-      registration.checkJourneyUrl("successful-amend")
-      registration.checkAmendedAnswers("noAmendments")
+      registration.noAmendments()
     }
   }
 }

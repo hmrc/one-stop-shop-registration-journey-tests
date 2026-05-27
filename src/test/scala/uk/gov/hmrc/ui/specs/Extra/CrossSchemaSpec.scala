@@ -281,8 +281,9 @@ class CrossSchemaSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000002", "Organisation", "hasOSSAndIOSSEnrolment", "amend")
 
-      When("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the user clicks change on trading name")
       registration.selectChangeOrRemoveLink(
@@ -364,8 +365,9 @@ class CrossSchemaSpec extends BaseSpec {
         "amendCrossSchemaPreviousIOSSRegistration"
       )
 
-      When("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the user clicks change on trading name")
       registration.selectChangeOrRemoveLink(
@@ -438,8 +440,9 @@ class CrossSchemaSpec extends BaseSpec {
         "amendCrossSchemaMultipleIOSSRegistrations"
       )
 
-      When("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       Then("the user clicks change on trading name")
       registration.selectChangeOrRemoveLink(
@@ -800,31 +803,6 @@ class CrossSchemaSpec extends BaseSpec {
       crossSchema.confirmationText("multiple", false)
     }
 
-    Scenario("Amend registration for trader with multiple IOSS registrations - does not amend data") {
-
-      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
-      auth.goToAuthorityWizard()
-      auth.loginUsingAuthorityWizard(
-        "300000002",
-        "Organisation",
-        "hasOSSAndIOSSEnrolment",
-        "amendCrossSchemaMultipleIOSSRegistrations"
-      )
-
-      When("the user is on the change-your-registration page")
-      registration.checkJourneyUrl("change-your-registration")
-
-      And("the user can submit their registration")
-      registration.submit()
-      registration.checkJourneyUrl("successful-amend")
-
-      And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("multiple", false)
-
-      And("the correct amendments are displayed")
-      crossSchema.amendments("no")
-    }
-
     Scenario(
       "Rejoin registration for trader with multiple IOSS registrations - does not amend data"
     ) {
@@ -930,8 +908,9 @@ class CrossSchemaSpec extends BaseSpec {
       auth.goToAuthorityWizard()
       auth.loginUsingAuthorityWizard("300000002", "Organisation", "hasOSSEnrolment", "amendFull")
 
-      And("the user is on the change-your-registration page")
+      And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
 
       When("the user selects the change link for add uk trading name")
       registration.selectChangeOrRemoveLink(
