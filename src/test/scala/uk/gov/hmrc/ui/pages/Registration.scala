@@ -315,4 +315,9 @@ object Registration extends BasePage {
     }
     continue()
   }
+
+  def noAmendments(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("You have not made any changes."))
+  }
 }

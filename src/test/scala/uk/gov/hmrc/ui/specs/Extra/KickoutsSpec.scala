@@ -397,6 +397,15 @@ class KickoutsSpec extends BaseSpec {
       auth.loginUsingAuthorityWizard("600000022", "Organisation", "hasOSSEnrolment", "amendError")
       registration.checkJourneyUrl("change-your-registration")
 
+      And("the user amends some bank details")
+      registration.selectChangeOrRemoveLink(
+        "amend-bank-details"
+      )
+      registration.checkJourneyUrl("amend-bank-details")
+      registration.updateField("accountName", "Different Name")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+
       When("the user submits their amended registration")
       registration.submit()
 
