@@ -859,6 +859,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.enterAnswer("first trading name")
 
       And("the correct number of trading names have been added")
+      registration.checkJourneyUrl("add-uk-trading-name")
       crossSchema.oneTradingName()
       crossSchema.tradingNameWarnings("no", "registration", false)
 
