@@ -229,10 +229,6 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("online-marketplace")
       registration.answerRadioButton("no")
 
-      And("the user selects yes on the give-website-address page")
-      registration.checkJourneyUrl("give-website-address")
-      registration.answerRadioButton("yes")
-
       Then("the user adds the first website address")
       registration.checkJourneyUrl("website-address/1")
       registration.enterAnswer("www.first-website.com")
@@ -318,9 +314,9 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("online-marketplace")
       registration.answerRadioButton("yes")
 
-      And("the user selects no on the give-website-address page")
-      registration.checkJourneyUrl("give-website-address")
-      registration.answerRadioButton("no")
+      And("the user leaves the website-address/1 page blank")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
 
       Then("the user enters their contact details on business-contact-details page")
       registration.checkJourneyUrl("business-contact-details")
@@ -335,6 +331,7 @@ class RegistrationSpec extends BaseSpec {
 
       When("the user submits the registration on the check-answers page")
       registration.checkJourneyUrl("check-answers")
+      registration.noWebsitesAdded()
       registration.submit()
 
       Then("the user is on the successful submission page")
@@ -397,9 +394,9 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("online-marketplace")
       registration.answerRadioButton("no")
 
-      And("the user selects no on the give-website-address page")
-      registration.checkJourneyUrl("give-website-address")
-      registration.answerRadioButton("no")
+      And("the user leaves the website-address/1 page blank")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
 
       Then("the user enters their contact details on business-contact-details page")
       registration.checkJourneyUrl("business-contact-details")

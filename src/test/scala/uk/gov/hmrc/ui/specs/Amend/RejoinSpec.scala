@@ -135,6 +135,7 @@ class RejoinSpec extends BaseSpec {
       commencementDate.checkCommencementDate("today")
       registration.continue()
       registration.checkJourneyUrl("rejoin-registration")
+      registration.noWebsitesAdded()
 
       Then("the user amends trading name details")
       registration.selectChangeOrRemoveLink("rejoin-amend-have-uk-trading-name")
@@ -220,12 +221,10 @@ class RejoinSpec extends BaseSpec {
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("rejoin-registration")
 
-      Then("the user amends website addresses")
+      Then("the user adds website addresses")
       registration.selectChangeOrRemoveLink(
-        "rejoin-amend-give-website-address"
+        "rejoin-amend-website-address\\/1"
       )
-      registration.checkJourneyUrl("rejoin-amend-give-website-address")
-      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("rejoin-amend-website-address/1")
       registration.enterAnswer("www.first-website.com")
       registration.checkJourneyUrl("rejoin-amend-add-website-address")
@@ -287,12 +286,24 @@ class RejoinSpec extends BaseSpec {
 
       Then("the user can remove all of their website addresses")
       registration.selectChangeOrRemoveLink(
-        "rejoin-amend-give-website-address"
+        "rejoin-amend-add-website-address"
       )
-      registration.checkJourneyUrl("rejoin-amend-give-website-address")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("rejoin-amend-remove-all-websites")
+      registration.checkJourneyUrl("rejoin-amend-add-website-address")
+      registration.selectChangeOrRemoveLink(
+        "rejoin-remove-website-address\\/1"
+      )
+      registration.checkJourneyUrl("rejoin-remove-website-address/1")
       registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-amend-add-website-address")
+      registration.selectChangeOrRemoveLink(
+        "rejoin-remove-website-address\\/1"
+      )
+      registration.checkJourneyUrl("rejoin-remove-website-address/1")
+      registration.answerRadioButton("yes")
+
+      And("the user leaves the website address blank")
+      registration.checkJourneyUrl("rejoin-amend-website-address/1")
+      registration.continue()
       registration.checkJourneyUrl("rejoin-registration")
 
       And("the user can submit their registration successfully")

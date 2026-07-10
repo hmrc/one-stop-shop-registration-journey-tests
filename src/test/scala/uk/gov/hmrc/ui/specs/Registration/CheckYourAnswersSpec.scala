@@ -68,8 +68,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("online-marketplace")
       registration.answerRadioButton("no")
-      registration.checkJourneyUrl("give-website-address")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Joe Bloggs", "01234567890", "email@test.com")
       email.completeEmailVerification("registration")
@@ -158,11 +158,10 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("check-answers")
 
       And("the user amends their website address answers via check-answers")
+      registration.noWebsitesAdded()
       registration.selectChangeOrRemoveLink(
-        "check-give-website-address"
+        "check-website-address\\/1"
       )
-      registration.checkJourneyUrl("check-give-website-address")
-      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("check-website-address/1")
       registration.enterAnswer("www.example.com")
       registration.checkJourneyUrl("check-add-website-address")
@@ -279,8 +278,6 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("online-marketplace")
       registration.answerRadioButton("no")
-      registration.checkJourneyUrl("give-website-address")
-      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("website-address/1")
       registration.enterAnswer("www.website1.co.uk")
       registration.checkJourneyUrl("add-website-address")
@@ -328,12 +325,24 @@ class CheckYourAnswersSpec extends BaseSpec {
 
       Then("the user can remove all of their website addresses")
       registration.selectChangeOrRemoveLink(
-        "check-give-website-address"
+        "check-add-website-address"
       )
-      registration.checkJourneyUrl("check-give-website-address")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("check-remove-all-websites")
+      registration.checkJourneyUrl("check-add-website-address")
+      registration.selectChangeOrRemoveLink(
+        "check-remove-website-address\\/2"
+      )
+      registration.checkJourneyUrl("check-remove-website-address/2")
       registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("check-add-website-address")
+      registration.selectChangeOrRemoveLink(
+        "check-remove-website-address\\/1"
+      )
+      registration.checkJourneyUrl("check-remove-website-address/1")
+      registration.answerRadioButton("yes")
+
+      And("the user leaves the website address blank")
+      registration.checkJourneyUrl("check-website-address/1")
+      registration.continue()
       registration.checkJourneyUrl("check-answers")
 
       When("the user submits the registration on the check-answers page")
@@ -456,8 +465,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       And("the user completes the rest of their registration")
       registration.checkJourneyUrl("online-marketplace")
       registration.answerRadioButton("no")
-      registration.checkJourneyUrl("give-website-address")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
       registration.checkJourneyUrl("business-contact-details")
       registration.fillContactDetails("Joe Bloggs", "+01234567890", "email@test.com")
       email.completeEmailVerification("registration")
