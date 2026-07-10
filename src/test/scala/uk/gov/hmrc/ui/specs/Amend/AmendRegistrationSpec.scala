@@ -147,12 +147,8 @@ class AmendRegistrationSpec extends BaseSpec {
 
       When("the user selects the change link for websites")
       registration.selectChangeOrRemoveLink(
-        "amend-give-website-address"
+        "amend-website-address\\/1"
       )
-
-      Then("the user answers yes on the amend-give-website-address page")
-      registration.checkJourneyUrl("amend-give-website-address")
-      registration.answerRadioButton("yes")
 
       And("the user adds two websites")
       registration.checkJourneyUrl("amend-website-address/1")
@@ -430,12 +426,24 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the user can remove all of their website addresses")
       registration.selectChangeOrRemoveLink(
-        "amend-give-website-address"
+        "amend-add-website-address"
       )
-      registration.checkJourneyUrl("amend-give-website-address")
-      registration.answerRadioButton("no")
-      registration.checkJourneyUrl("amend-remove-all-websites")
+      registration.checkJourneyUrl("amend-add-website-address")
+      registration.selectChangeOrRemoveLink(
+        "amend-remove-website-address\\/2"
+      )
+      registration.checkJourneyUrl("amend-remove-website-address/2")
       registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("amend-add-website-address")
+      registration.selectChangeOrRemoveLink(
+        "amend-remove-website-address\\/1"
+      )
+      registration.checkJourneyUrl("amend-remove-website-address/1")
+      registration.answerRadioButton("yes")
+
+      And("the user leaves the website address blank")
+      registration.checkJourneyUrl("amend-website-address/1")
+      registration.continue()
       registration.checkJourneyUrl("change-your-registration")
 
       And("the user can submit their amended registration")
@@ -568,6 +576,7 @@ class AmendRegistrationSpec extends BaseSpec {
       And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
       registration.noAmendments()
+      registration.noWebsitesAdded()
 
       When("the user selects the change link for online marketplace")
       registration.selectChangeOrRemoveLink(
@@ -581,12 +590,8 @@ class AmendRegistrationSpec extends BaseSpec {
 
       When("the user selects the change link for websites")
       registration.selectChangeOrRemoveLink(
-        "amend-give-website-address"
+        "amend-website-address\\/1"
       )
-
-      Then("the user answers yes on the amend-give-website-address page")
-      registration.checkJourneyUrl("amend-give-website-address")
-      registration.answerRadioButton("yes")
 
       And("the user adds two websites")
       registration.checkJourneyUrl("amend-website-address/1")

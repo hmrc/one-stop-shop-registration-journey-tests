@@ -161,8 +161,8 @@ object Registration extends BasePage {
     answerRadioButton("no")
     checkJourneyUrl("online-marketplace")
     answerRadioButton("yes")
-    checkJourneyUrl("give-website-address")
-    answerRadioButton("no")
+    checkJourneyUrl("website-address/1")
+    continue()
     checkJourneyUrl("business-contact-details")
     fillContactDetails("Joe Bloggs", "+01234567890", "email@test.com")
     email.completeEmailVerification("registration")
@@ -200,7 +200,6 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("Registered for tax in other EU countries Yes"))
         Assert.assertTrue(htmlBody.contains("EU tax details added Portugal"))
         Assert.assertTrue(htmlBody.contains("Slovenia"))
-        Assert.assertTrue(htmlBody.contains("Sell goods online Yes"))
         Assert.assertTrue(htmlBody.contains("Trading websites added https://www.first-website.com"))
         Assert.assertTrue(htmlBody.contains("https://www.anotherwebsiteurl.com"))
         Assert.assertTrue(htmlBody.contains("Contact name or business department Another full name"))
@@ -233,7 +232,6 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("EU tax details removed Cyprus"))
         Assert.assertTrue(htmlBody.contains("Netherlands"))
         Assert.assertTrue(htmlBody.contains("Romania"))
-        Assert.assertTrue(htmlBody.contains("Sell goods online No"))
         Assert.assertTrue(htmlBody.contains("Trading websites removed www.onewebsite.co.uk"))
         Assert.assertTrue(htmlBody.contains("www.website2.org.uk"))
       case "notMadeSales"              =>
@@ -319,5 +317,10 @@ object Registration extends BasePage {
   def noAmendments(): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("You have not made any changes."))
+  }
+
+  def noWebsitesAdded(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
   }
 }
