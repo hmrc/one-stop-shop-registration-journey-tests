@@ -641,5 +641,19 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("change-your-registration")
       registration.noAmendments()
     }
+
+    Scenario("An excluded user has the correct change links available in amend registration") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000019", "Organisation", "hasOSSEnrolment", "amendExcluded")
+
+      When("the user is on the change-your-registration page with no amendments")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      Then("the correct change links are displayed")
+      registration.excludedChangeLinks()
+    }
   }
 }

@@ -323,4 +323,32 @@ object Registration extends BasePage {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
   }
+
+  def excludedChangeLinks(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(
+      htmlBody.contains(
+        "One Stop Shop details\n" +
+          "Have a different UK trading name No\n" +
+          "Already made eligible sales Yes\n" +
+          "Date of first sale 1 January 2024\n" +
+          "Include sales from this date 1 January 2024\n" +
+          "Other One Stop Shop registrations No\n" +
+          "Registered for tax in other EU countries No\n" +
+          "Other businesses sell goods on your website or app No\n" +
+          "Trading websites None supplied\n" +
+          "Contact name or business department Test name Change\n" +
+          "contact name or business department\n" + //hidden text
+          "Telephone number 0123456789 Change\n" +
+          "your telephone number\n" + //hidden text
+          "Email address test@test.com Change\n" +
+          "your email address\n" + //hidden text
+          "Name on the account Test name Change\n" +
+          "name on the account\n" + //hidden text
+          "BIC (Business Identifier Code) or SWIFT code (if you have one) Change\n" +
+          "your BIC or SWIFT code\n" + //hidden text
+          "IBAN (International Bank Account Number) GB33BUKB20201555555555 Change"
+      )
+    )
+  }
 }
