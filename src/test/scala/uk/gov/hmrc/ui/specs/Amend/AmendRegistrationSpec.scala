@@ -35,6 +35,7 @@ class AmendRegistrationSpec extends BaseSpec {
 
       And("the user is on the change-your-registration page with no amendments")
       registration.checkJourneyUrl("change-your-registration")
+      registration.checkAmendHeading("amend")
       registration.noAmendments()
 
       When("the user selects the change link for have uk trading name")

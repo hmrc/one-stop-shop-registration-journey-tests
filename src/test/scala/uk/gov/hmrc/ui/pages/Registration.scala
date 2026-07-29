@@ -251,6 +251,11 @@ object Registration extends BasePage {
       case "email"                     =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
         Assert.assertTrue(htmlBody.contains("Email address different-email@test.com"))
+      case "tradingNames"              =>
+        Assert.assertTrue(htmlBody.contains("You changed the following details:"))
+        Assert.assertTrue(htmlBody.contains("Have a different UK trading name No"))
+        Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
+        Assert.assertTrue(htmlBody.contains("Trading name 2"))
       case "noAmendments"              =>
         Assert.assertTrue(htmlBody.contains("You haven't changed any details"))
       case _                           =>
@@ -319,6 +324,11 @@ object Registration extends BasePage {
     Assert.assertTrue(htmlBody.contains("You have not made any changes."))
   }
 
+  def noAmendmentsReview(): Unit = {
+    val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
+    Assert.assertTrue(htmlBody.contains("Confirm your details are correct."))
+  }
+
   def noWebsitesAdded(): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
     Assert.assertTrue(htmlBody.contains("Trading websites None supplied Add"))
@@ -351,4 +361,17 @@ object Registration extends BasePage {
       )
     )
   }
+
+  def checkAmendHeading(version: String): Unit = {
+    val heading = Driver.instance.findElement(By.tagName("h1")).getText
+
+    if (version == "review") {
+      Assert.assertTrue(heading.equals("Review your registration"))
+    } else {
+      Assert.assertTrue(heading.equals("Change your registration"))
+    }
+  }
+
+  def selectLinkCss(link: String): Unit =
+    click(By.cssSelector(s"a[href*=$link]"))
 }
