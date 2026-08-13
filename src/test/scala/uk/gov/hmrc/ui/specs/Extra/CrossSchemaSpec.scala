@@ -50,7 +50,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is shown their existing trading names from their IOSS registration")
       registration.checkJourneyUrl("add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("current")
-      crossSchema.tradingNameWarnings("current", "registration", true)
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
 
       And("the user removes the first trading name")
       registration.selectChangeOrRemoveLink("remove-uk-trading-name\\/1")
@@ -87,7 +87,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the contact details from the IOSS registration are provided")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "current", "registration", true)
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
 
       And("the user amends the contact name")
       registration.updateField("fullName", "CrossSchema Full Name")
@@ -96,7 +96,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the bank details from the IOSS registration are provided")
       registration.checkJourneyUrl("bank-details")
-      crossSchema.contactAndBankWarnings("bank", "current", "registration", true)
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
 
       And("the user amends the iban")
       registration.updateField("iban", "GB29NWBK60161331926819")
@@ -110,7 +110,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("current", true)
+      crossSchema.confirmationText(true)
     }
 
     Scenario("Registration for trader with a previous IOSS registration - amends data") {
@@ -139,7 +139,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is shown their existing trading names from their IOSS registration")
       registration.checkJourneyUrl("add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("previous")
-      crossSchema.tradingNameWarnings("previous", "registration", true)
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
 
       And("the user amends the second trading name")
       registration.selectChangeOrRemoveLink("uk-trading-name\\/2")
@@ -168,7 +168,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the contact details from the IOSS registration are provided")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "previous", "registration", true)
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
 
       And("the user amends contact details")
       registration.updateField("telephoneNumber", "+441234567890")
@@ -178,7 +178,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the bank details from the IOSS registration are provided")
       registration.checkJourneyUrl("bank-details")
-      crossSchema.contactAndBankWarnings("bank", "previous", "registration", true)
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
 
       And("the user amends the bank details")
       registration.updateField("accountName", "Account Name CS")
@@ -192,7 +192,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("previous", true)
+      crossSchema.confirmationText(true)
     }
 
     Scenario("Registration for trader with multiple IOSS registrations - amends data") {
@@ -221,7 +221,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is shown their existing trading names from their IOSS registration")
       registration.checkJourneyUrl("add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("multiple")
-      crossSchema.tradingNameWarnings("multiple", "registration", true)
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
 
       And("the user adds another trading name")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -249,7 +249,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the contact details from the IOSS registration are provided")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "multiple", "registration", true)
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
 
       And("the user amends contact details")
       registration.updateField("telephoneNumber", "123654448485656")
@@ -258,7 +258,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the bank details from the IOSS registration are provided")
       registration.checkJourneyUrl("bank-details")
-      crossSchema.contactAndBankWarnings("bank", "multiple", "registration", true)
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
 
       And("the user amends the bank details")
       registration.updateField("iban", "GB29NWBK60161331926819")
@@ -272,7 +272,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("multiple", true)
+      crossSchema.confirmationText(true)
     }
 
     Scenario("Amend registration for trader with a current IOSS registration - amends data") {
@@ -293,7 +293,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is shown their existing trading names from their IOSS registration")
       registration.checkJourneyUrl("amend-add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("current")
-      crossSchema.tradingNameWarnings("current", "amend", true)
+      crossSchema.hintTextAndWarnings("trading names", "amend", true)
 
       And("the user makes amendments")
       registration.selectChangeOrRemoveLink(
@@ -318,7 +318,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the contact details from the IOSS registration are provided")
       registration.checkJourneyUrl("amend-business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "current", "amend", true)
+      crossSchema.hintTextAndWarnings("contact details", "amend", true)
 
       And("the user updates some of their contact details")
       registration.updateField("fullName", "CS full-name")
@@ -334,7 +334,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the bank details from the IOSS registration are provided")
       registration.checkJourneyUrl("amend-bank-details")
-      crossSchema.contactAndBankWarnings("bank", "current", "amend", true)
+      crossSchema.hintTextAndWarnings("bank details", "amend", true)
 
       And("the user updates their bank details")
       registration.updateField("accountName", "CS Name")
@@ -348,7 +348,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-amend")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("current", true)
+      crossSchema.confirmationText(true)
 
       And("the correct amendments are displayed")
       crossSchema.amendments("current")
@@ -377,7 +377,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is shown their existing trading names from their IOSS registration")
       registration.checkJourneyUrl("amend-add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("previous")
-      crossSchema.tradingNameWarnings("previous", "amend", true)
+      crossSchema.hintTextAndWarnings("trading names", "amend", true)
 
       And("the user makes amendments")
       registration.selectChangeOrRemoveLink(
@@ -396,7 +396,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the contact details from the IOSS registration are provided")
       registration.checkJourneyUrl("amend-business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "previous", "amend", true)
+      crossSchema.hintTextAndWarnings("contact details", "amend", true)
 
       And("the user updates some of their contact details")
       registration.updateField("fullName", "CS full-name")
@@ -411,7 +411,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the bank details from the IOSS registration are provided")
       registration.checkJourneyUrl("amend-bank-details")
-      crossSchema.contactAndBankWarnings("bank", "previous", "amend", true)
+      crossSchema.hintTextAndWarnings("bank details", "amend", true)
 
       And("the user updates their bank details")
       registration.updateField("iban", "GB29NWBK60161331926819")
@@ -423,7 +423,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-amend")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("previous", true)
+      crossSchema.confirmationText(true)
 
       And("the correct amendments are displayed")
       crossSchema.amendments("previous")
@@ -452,7 +452,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is shown their existing trading names from their IOSS registration")
       registration.checkJourneyUrl("amend-add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("multiple")
-      crossSchema.tradingNameWarnings("multiple", "amend", true)
+      crossSchema.hintTextAndWarnings("trading names", "amend", true)
 
       And("the user makes amendments")
       registration.selectChangeOrRemoveLink(
@@ -471,7 +471,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the contact details from the IOSS registration are provided")
       registration.checkJourneyUrl("amend-business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "multiple", "amend", true)
+      crossSchema.hintTextAndWarnings("contact details", "amend", true)
 
       And("the user updates some of their contact details")
       registration.updateField("emailAddress", "email-cs-test@test.com")
@@ -486,7 +486,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the bank details from the IOSS registration are provided")
       registration.checkJourneyUrl("amend-bank-details")
-      crossSchema.contactAndBankWarnings("bank", "multiple", "amend", true)
+      crossSchema.hintTextAndWarnings("bank details", "amend", true)
 
       And("the user updates their bank details")
       registration.updateField("accountName", "CS Name")
@@ -498,7 +498,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-amend")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("multiple", true)
+      crossSchema.confirmationText(true)
 
       And("the correct amendments are displayed")
       crossSchema.amendments("multiple")
@@ -528,7 +528,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the user is shown their existing trading names from their IOSS registration")
       crossSchema.tradingNamesDisplayed("current")
-      crossSchema.tradingNameWarnings("current", "rejoin", true)
+      crossSchema.hintTextAndWarnings("trading names", "rejoin", true)
 
       And("the user amends answers")
       registration.selectChangeOrRemoveLink("rejoin-amend-uk-trading-name\\/2")
@@ -549,7 +549,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-business-contact-details")
 
       Then("the contact details from the IOSS registration are provided")
-      crossSchema.contactAndBankWarnings("contact", "current", "rejoin", true)
+      crossSchema.hintTextAndWarnings("contact details", "rejoin", true)
 
       And("the user amends contact details")
       registration.updateField("fullName", "CS full-name")
@@ -565,7 +565,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-bank-details")
 
       Then("the bank details from the IOSS registration are provided")
-      crossSchema.contactAndBankWarnings("bank", "current", "rejoin", true)
+      crossSchema.hintTextAndWarnings("bank details", "rejoin", true)
 
       And("the user amends bank details")
       registration.updateField("accountName", "CS Name")
@@ -579,7 +579,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("current", true)
+      crossSchema.confirmationText(true)
     }
 
     Scenario(
@@ -611,7 +611,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the user is shown their existing trading names from their IOSS registration")
       crossSchema.tradingNamesDisplayed("previous")
-      crossSchema.tradingNameWarnings("previous", "rejoin", true)
+      crossSchema.hintTextAndWarnings("trading names", "rejoin", true)
 
       And("the user amends answers")
       registration.selectChangeOrRemoveLink("rejoin-amend-uk-trading-name\\/1")
@@ -628,7 +628,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-business-contact-details")
 
       Then("the contact details from the IOSS registration are provided")
-      crossSchema.contactAndBankWarnings("contact", "previous", "rejoin", true)
+      crossSchema.hintTextAndWarnings("contact details", "rejoin", true)
 
       And("the user amends contact details")
       registration.updateField("emailAddress", "email-cs-test@test.com")
@@ -643,7 +643,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-bank-details")
 
       Then("the bank details from the IOSS registration are provided")
-      crossSchema.contactAndBankWarnings("bank", "previous", "rejoin", true)
+      crossSchema.hintTextAndWarnings("bank details", "rejoin", true)
 
       And("the user amends bank details")
       registration.updateField("bic", "ABCDDD2A")
@@ -655,7 +655,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("previous", true)
+      crossSchema.confirmationText(true)
     }
 
     Scenario(
@@ -687,7 +687,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the user is shown their existing trading names from their IOSS registration")
       crossSchema.tradingNamesDisplayed("multiple")
-      crossSchema.tradingNameWarnings("multiple", "rejoin", true)
+      crossSchema.hintTextAndWarnings("trading names", "rejoin", true)
 
       And("the user amends answers")
       registration.selectChangeOrRemoveLink("rejoin-amend-remove-uk-trading-name\\/2")
@@ -704,7 +704,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-business-contact-details")
 
       Then("the contact details from the IOSS registration are provided")
-      crossSchema.contactAndBankWarnings("contact", "multiple", "rejoin", true)
+      crossSchema.hintTextAndWarnings("contact details", "rejoin", true)
 
       And("the user amends contact details")
       registration.updateField("fullName", "CS full-name")
@@ -719,7 +719,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-bank-details")
 
       Then("the bank details from the IOSS registration are provided")
-      crossSchema.contactAndBankWarnings("bank", "multiple", "rejoin", true)
+      crossSchema.hintTextAndWarnings("bank details", "rejoin", true)
 
       And("the user amends bank details")
       registration.updateField("accountName", "CS Name")
@@ -732,7 +732,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("multiple", true)
+      crossSchema.confirmationText(true)
     }
 
     Scenario("Registration for trader with multiple IOSS registrations - does not amend data") {
@@ -761,7 +761,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("the user is shown their existing trading names from their IOSS registration")
       registration.checkJourneyUrl("add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("multiple")
-      crossSchema.tradingNameWarnings("multiple", "registration", true)
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
       registration.checkJourneyUrl("add-uk-trading-name")
       registration.answerRadioButton("no")
 
@@ -783,13 +783,13 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("the contact details from the IOSS registration are provided")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "multiple", "registration", true)
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
       registration.continue()
       email.completeEmailVerification("registration")
 
       Then("the bank details from the IOSS registration are provided")
       registration.checkJourneyUrl("bank-details")
-      crossSchema.contactAndBankWarnings("bank", "multiple", "registration", true)
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
       registration.continue()
 
       When("the user submits the registration on the check-answers page")
@@ -800,7 +800,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("multiple", false)
+      crossSchema.confirmationText(false)
     }
 
     Scenario(
@@ -831,7 +831,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("multiple", false)
+      crossSchema.confirmationText(false)
     }
 
     Scenario("Registration for trader with no other registrations - amends data") {
@@ -861,7 +861,7 @@ class CrossSchemaSpec extends BaseSpec {
       And("the correct number of trading names have been added")
       registration.checkJourneyUrl("add-uk-trading-name")
       crossSchema.oneTradingName()
-      crossSchema.tradingNameWarnings("no", "registration", false)
+      crossSchema.hintTextAndWarnings("trading names", "registration", false)
 
       And("the user selects no on the add-uk-trading-name page and continues until next cross schema section")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -883,13 +883,13 @@ class CrossSchemaSpec extends BaseSpec {
 
       And("there are no warnings on the contact details page")
       registration.checkJourneyUrl("business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "no", "registration", false)
+      crossSchema.hintTextAndWarnings("contact deteails", "registration", false)
       registration.fillContactDetails("Joe Bloggs", "01234567890", "email@test.com")
       email.completeEmailVerification("registration")
 
       Then("there are no warnings on the bank details page")
       registration.checkJourneyUrl("bank-details")
-      crossSchema.contactAndBankWarnings("bank", "no", "registration", false)
+      crossSchema.hintTextAndWarnings("bank details", "registration", false)
       registration.fillBankAccountDetails("Account Name", "SMCOGB2LXXM", "GB29NWBK60161331926819")
 
       When("the user submits the registration on the check-answers page")
@@ -900,7 +900,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("current", false)
+      crossSchema.confirmationText(false)
     }
 
     Scenario("Amend registration for trader with no other registrations - amends data") {
@@ -921,7 +921,7 @@ class CrossSchemaSpec extends BaseSpec {
       Then("there are no warnings displayed")
       registration.checkJourneyUrl("amend-add-uk-trading-name")
       crossSchema.tradingNamesDisplayed("no")
-      crossSchema.tradingNameWarnings("no", "amend", false)
+      crossSchema.hintTextAndWarnings("trading names", "amend", false)
       registration.selectChangeOrRemoveLink("amend-uk-trading-name\\/2")
       registration.checkJourneyUrl("amend-uk-trading-name/2")
       registration.enterAnswer("Trading name cross-schema two")
@@ -940,7 +940,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("there are no warnings displayed")
       registration.checkJourneyUrl("amend-business-contact-details")
-      crossSchema.contactAndBankWarnings("contact", "no", "amend", false)
+      crossSchema.hintTextAndWarnings("contact details", "amend", false)
       registration.updateField("fullName", "CS full-name")
       registration.updateField("emailAddress", "email-cs-test@test.com")
       registration.continue()
@@ -954,7 +954,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("there are no warnings displayed")
       registration.checkJourneyUrl("amend-bank-details")
-      crossSchema.contactAndBankWarnings("bank", "no", "amend", false)
+      crossSchema.hintTextAndWarnings("bank details", "amend", false)
       registration.updateField("accountName", "CS Name")
       registration.updateField("bic", "ABCDDD2A")
       registration.updateField("iban", "GB33BUKB20201555555555555")
@@ -966,7 +966,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-amend")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("no", false)
+      crossSchema.confirmationText(false)
 
       And("the correct amendments are displayed")
       crossSchema.amendments("noRegistration")
@@ -996,7 +996,7 @@ class CrossSchemaSpec extends BaseSpec {
 
       Then("no warnings are displayed")
       crossSchema.tradingNamesDisplayed("no")
-      crossSchema.tradingNameWarnings("no", "rejoin", false)
+      crossSchema.hintTextAndWarnings("trading names", "rejoin", false)
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("rejoin-registration")
 
@@ -1007,7 +1007,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-business-contact-details")
 
       Then("no warnings are displayed")
-      crossSchema.contactAndBankWarnings("contact", "current", "rejoin", false)
+      crossSchema.hintTextAndWarnings("contact details", "rejoin", false)
       registration.updateField("emailAddress", "email-cs-test@test.com")
       registration.continue()
       email.completeEmailVerification("rejoin")
@@ -1020,7 +1020,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("rejoin-amend-bank-details")
 
       Then("no warnings are displayed")
-      crossSchema.contactAndBankWarnings("bank", "current", "rejoin", false)
+      crossSchema.hintTextAndWarnings("bank details", "rejoin", false)
       registration.updateField("bic", "ABCDDD2A")
       registration.continue()
       registration.checkJourneyUrl("rejoin-registration")
@@ -1030,7 +1030,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("successful-rejoin")
 
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
-      crossSchema.confirmationText("no", false)
+      crossSchema.confirmationText(false)
     }
   }
 }
