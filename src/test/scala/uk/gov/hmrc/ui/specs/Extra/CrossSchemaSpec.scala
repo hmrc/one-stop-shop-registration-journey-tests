@@ -1032,5 +1032,490 @@ class CrossSchemaSpec extends BaseSpec {
       And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
       crossSchema.confirmationText(false)
     }
+
+    Scenario("Registration for trader with a current Intermediary registration - amends data") {
+
+      Given("the user accesses the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100005555", "Organisation", "hasIntermediaryEnrolment", "crossSchemaRegistration")
+      registration.checkJourneyUrl("already-eu-registered")
+
+      And("the user answers the filter questions")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      Then("the user is shown their existing trading names from their IOSS registration")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      crossSchema.tradingNamesDisplayed("current")
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
+
+      And("the user removes the first trading name")
+      registration.selectChangeOrRemoveLink("remove-uk-trading-name\\/1")
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+
+      And("the user selects yes on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+
+      And("the user adds the second trading name")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("second cross schema name")
+
+      And("the user selects no on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      And("the user provides answers until the next cross schema section")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("date-of-first-sale")
+      registration.enterDate("yesterday")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+
+      Then("the contact details from the IOSS registration are provided")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
+
+      And("the user amends the contact name")
+      registration.updateField("fullName", "CrossSchema Full Name")
+      registration.continue()
+      email.completeEmailVerification("registration")
+
+      Then("the bank details from the IOSS registration are provided")
+      registration.checkJourneyUrl("bank-details")
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
+
+      And("the user amends the iban")
+      registration.updateField("iban", "GB29NWBK60161331926819")
+      registration.continue()
+
+      When("the user submits the registration on the check-answers page")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+
+      And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
+      crossSchema.confirmationText(true)
+    }
+
+    Scenario("Registration for trader with a current Intermediary registration - does not amend data") {
+
+      Given("the user accesses the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("100005555", "Organisation", "hasIntermediaryEnrolment", "crossSchemaRegistration")
+      registration.checkJourneyUrl("already-eu-registered")
+
+      And("the user answers the filter questions")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      Then("the user is shown their existing trading names from their IOSS registration")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      crossSchema.tradingNamesDisplayed("current")
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      And("the user provides answers until the next cross schema section")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("date-of-first-sale")
+      registration.enterDate("yesterday")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+
+      Then("the contact details from the IOSS registration are provided")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
+      registration.continue()
+      email.completeEmailVerification("registration")
+
+      Then("the bank details from the IOSS registration are provided")
+      registration.checkJourneyUrl("bank-details")
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
+      registration.continue()
+
+      When("the user submits the registration on the check-answers page")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+
+      And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
+      crossSchema.confirmationText(false)
+    }
+
+    Scenario("Amend registration for trader with a current Intermediary registration - amends data") {
+
+      Given("the user accesses the Amend Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("300000002", "Organisation", "hasIntermediaryEnrolment", "amend")
+
+      And("the user is on the change-your-registration page with no amendments")
+      registration.checkJourneyUrl("change-your-registration")
+      registration.noAmendments()
+
+      Then("the user clicks change on trading name")
+      registration.selectChangeOrRemoveLink(
+        "amend-add-uk-trading-name"
+      )
+
+      Then("the user is shown their existing trading names from their IOSS registration")
+      registration.checkJourneyUrl("amend-add-uk-trading-name")
+      crossSchema.tradingNamesDisplayed("current")
+      crossSchema.hintTextAndWarnings("trading names", "amend", true)
+
+      And("the user makes amendments")
+      registration.selectChangeOrRemoveLink(
+        "amend-uk-trading-name\\/2"
+      )
+      registration.checkJourneyUrl("amend-uk-trading-name/2")
+      registration.enterAnswer("Trading name cross-schema two")
+      registration.checkJourneyUrl("amend-add-uk-trading-name")
+      registration.selectChangeOrRemoveLink(
+        "amend-remove-uk-trading-name\\/1"
+      )
+      registration.checkJourneyUrl("amend-remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("amend-add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("change-your-registration")
+
+      Then("the user clicks change on contact details")
+      registration.selectChangeOrRemoveLink(
+        "amend-business-contact-details"
+      )
+
+      Then("the contact details from the IOSS registration are provided")
+      registration.checkJourneyUrl("amend-business-contact-details")
+      crossSchema.hintTextAndWarnings("contact details", "amend", true)
+
+      And("the user updates some of their contact details")
+      registration.updateField("fullName", "CS full-name")
+      registration.updateField("emailAddress", "email-cs-test@test.com")
+      registration.continue()
+      email.completeEmailVerification("amend")
+      registration.checkJourneyUrl("change-your-registration")
+
+      When("the user clicks change on bank details")
+      registration.selectChangeOrRemoveLink(
+        "amend-bank-details"
+      )
+
+      Then("the bank details from the IOSS registration are provided")
+      registration.checkJourneyUrl("amend-bank-details")
+      crossSchema.hintTextAndWarnings("bank details", "amend", true)
+
+      And("the user updates their bank details")
+      registration.updateField("accountName", "CS Name")
+      registration.updateField("bic", "ABCDDD2A")
+      registration.updateField("iban", "GB33BUKB20201555555555555")
+      registration.continue()
+      registration.checkJourneyUrl("change-your-registration")
+
+      And("the user can submit their amended registration")
+      registration.submit()
+      registration.checkJourneyUrl("successful-amend")
+
+      And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
+      crossSchema.confirmationText(true)
+
+      And("the correct amendments are displayed")
+      crossSchema.amendments("current")
+    }
+
+    Scenario(
+      "Rejoin registration for trader with a current Intermediary registration - amends data"
+    ) {
+
+      Given("the user accesses the Rejoin Registration journey within the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard("600000050", "Organisation", "hasIntermediaryEnrolment", "rejoin")
+
+      And("the user enters date of first sale information")
+      registration.checkJourneyUrl("rejoin-already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-date-of-first-sale")
+      registration.enterDate("today")
+      registration.checkJourneyUrl("rejoin-start-date")
+      commencementDate.checkCommencementDate("today")
+      registration.continue()
+      registration.checkJourneyUrl("rejoin-registration")
+
+      Then("the user clicks amend for trading name details")
+      registration.selectChangeOrRemoveLink("rejoin-amend-add-uk-trading-name")
+      registration.checkJourneyUrl("rejoin-amend-add-uk-trading-name")
+
+      Then("the user is shown their existing trading names from their IOSS registration")
+      crossSchema.tradingNamesDisplayed("current")
+      crossSchema.hintTextAndWarnings("trading names", "rejoin", true)
+
+      And("the user amends answers")
+      registration.selectChangeOrRemoveLink("rejoin-amend-uk-trading-name\\/2")
+      registration.checkJourneyUrl("rejoin-amend-uk-trading-name/2")
+      registration.enterAnswer("Trading name cross-schema two")
+      registration.checkJourneyUrl("rejoin-amend-add-uk-trading-name")
+      registration.selectChangeOrRemoveLink("rejoin-amend-remove-uk-trading-name\\/1")
+      registration.checkJourneyUrl("rejoin-amend-remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("rejoin-amend-add-uk-trading-name")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user selects change for contact details")
+      registration.selectChangeOrRemoveLink(
+        "rejoin-amend-business-contact-details"
+      )
+      registration.checkJourneyUrl("rejoin-amend-business-contact-details")
+
+      Then("the contact details from the IOSS registration are provided")
+      crossSchema.hintTextAndWarnings("contact details", "rejoin", true)
+
+      And("the user amends contact details")
+      registration.updateField("fullName", "CS full-name")
+      registration.updateField("emailAddress", "email-cs-test@test.com")
+      registration.continue()
+      email.completeEmailVerification("rejoin")
+      registration.checkJourneyUrl("rejoin-registration")
+
+      When("the user selects change for bank details")
+      registration.selectChangeOrRemoveLink(
+        "rejoin-amend-bank-details"
+      )
+      registration.checkJourneyUrl("rejoin-amend-bank-details")
+
+      Then("the bank details from the IOSS registration are provided")
+      crossSchema.hintTextAndWarnings("bank details", "rejoin", true)
+
+      And("the user amends bank details")
+      registration.updateField("accountName", "CS Name")
+      registration.updateField("bic", "ABCDDD2A")
+      registration.updateField("iban", "GB33BUKB20201555555555555")
+      registration.continue()
+      registration.checkJourneyUrl("rejoin-registration")
+
+      And("the user can submit their registration successfully")
+      registration.submit()
+      registration.checkJourneyUrl("successful-rejoin")
+
+      And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
+      crossSchema.confirmationText(true)
+    }
+
+    Scenario("Registration for trader with multiple Intermediary registrations - amends data") {
+
+      Given("the user accesses the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(
+        "100005555",
+        "Organisation",
+        "hasMultipleIntermediaryEnrolments",
+        "crossSchemaRegistration"
+      )
+      registration.checkJourneyUrl("already-eu-registered")
+
+      And("the user answers the filter questions")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      Then("the user is shown their existing trading names from their IOSS registration")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      crossSchema.tradingNamesDisplayed("current")
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
+
+      And("the user removes the first trading name")
+      registration.selectChangeOrRemoveLink("remove-uk-trading-name\\/1")
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+
+      And("the user selects yes on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+
+      And("the user adds the second trading name")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("second cross schema name")
+
+      And("the user selects no on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      And("the user provides answers until the next cross schema section")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("date-of-first-sale")
+      registration.enterDate("yesterday")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+
+      Then("the contact details from the IOSS registration are provided")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
+
+      And("the user amends the contact name")
+      registration.updateField("fullName", "CrossSchema Full Name")
+      registration.continue()
+      email.completeEmailVerification("registration")
+
+      Then("the bank details from the IOSS registration are provided")
+      registration.checkJourneyUrl("bank-details")
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
+
+      And("the user amends the iban")
+      registration.updateField("iban", "GB29NWBK60161331926819")
+      registration.continue()
+
+      When("the user submits the registration on the check-answers page")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+
+      And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
+      crossSchema.confirmationText(true)
+    }
+
+    Scenario("Registration for trader with Intermediary and IOSS registrations - amends data") {
+
+      Given("the user accesses the OSS Registration Service")
+      auth.goToAuthorityWizard()
+      auth.loginUsingAuthorityWizard(
+        "100005555",
+        "Organisation",
+        "hasIntermediaryAndIossEnrolments",
+        "crossSchemaRegistration"
+      )
+      registration.checkJourneyUrl("already-eu-registered")
+
+      And("the user answers the filter questions")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("sell-from-northern-ireland")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("northern-ireland-business")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("business-pay")
+      registration.continue()
+      registration.checkJourneyUrl("confirm-vat-details")
+      registration.answerVatDetailsChoice("Yes")
+
+      Then("the user is shown their existing trading names from their IOSS registration")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      crossSchema.tradingNamesDisplayed("current")
+      crossSchema.hintTextAndWarnings("trading names", "registration", true)
+
+      And("the user removes the first trading name")
+      registration.selectChangeOrRemoveLink("remove-uk-trading-name\\/1")
+      registration.checkJourneyUrl("remove-uk-trading-name/1")
+      registration.answerRadioButton("yes")
+
+      And("the user selects yes on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("yes")
+
+      And("the user adds the second trading name")
+      registration.checkJourneyUrl("uk-trading-name/2")
+      registration.enterAnswer("second cross schema name")
+
+      And("the user selects no on the add-uk-trading-name page")
+      registration.checkJourneyUrl("add-uk-trading-name")
+      registration.answerRadioButton("no")
+
+      And("the user provides answers until the next cross schema section")
+      registration.checkJourneyUrl("already-made-sales")
+      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("date-of-first-sale")
+      registration.enterDate("yesterday")
+      registration.checkJourneyUrl("previous-oss")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("start-date")
+      registration.continue()
+      registration.checkJourneyUrl("tax-in-eu")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("online-marketplace")
+      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("website-address/1")
+      registration.continue()
+
+      Then("the contact details from the IOSS registration are provided")
+      registration.checkJourneyUrl("business-contact-details")
+      crossSchema.hintTextAndWarnings("contact details", "registration", true)
+
+      And("the user amends the contact name")
+      registration.updateField("fullName", "CrossSchema Full Name")
+      registration.continue()
+      email.completeEmailVerification("registration")
+
+      Then("the bank details from the IOSS registration are provided")
+      registration.checkJourneyUrl("bank-details")
+      crossSchema.hintTextAndWarnings("bank details", "registration", true)
+
+      And("the user amends the iban")
+      registration.updateField("iban", "GB29NWBK60161331926819")
+      registration.continue()
+
+      When("the user submits the registration on the check-answers page")
+      registration.checkJourneyUrl("check-answers")
+      registration.submit()
+
+      Then("the user is on the successful submission page")
+      registration.checkJourneyUrl("successful")
+
+      And("the user is shown the correct text on the confirmation page regarding updating existing registrations")
+      crossSchema.confirmationText(true)
+    }
+
+//    add scenarios for:
+    // no trading names in a previous reg but check warnings etc on the bank and contact details
   }
 }
