@@ -1544,7 +1544,7 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("first trading name")
       registration.checkJourneyUrl("add-uk-trading-name")
-      crossSchema.hintTextAndWarnings("trading names", "registration", false)
+      crossSchema.hintTextAndWarnings("trading names", "registrationNoTradingNames", true)
       registration.answerRadioButton("no")
 
       And("the user provides answers until the next cross schema section")
@@ -1608,13 +1608,13 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
 
-      Then("the user has no existing trading names from their IOSS registration")
+      Then("the user has no existing trading names from their Intermediary registration")
       registration.checkJourneyUrl("have-uk-trading-name")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("first trading name")
       registration.checkJourneyUrl("add-uk-trading-name")
-      crossSchema.hintTextAndWarnings("trading names", "registration", false)
+      crossSchema.hintTextAndWarnings("trading names", "registrationNoTradingNames", true)
       registration.answerRadioButton("no")
 
       And("the user provides answers until the next cross schema section")
@@ -1633,13 +1633,13 @@ class CrossSchemaSpec extends BaseSpec {
       registration.checkJourneyUrl("website-address/1")
       registration.continue()
 
-      Then("the contact details from the IOSS registration are provided")
+      Then("the contact details from the Intermediary registration are provided")
       registration.checkJourneyUrl("business-contact-details")
       crossSchema.hintTextAndWarnings("contact details", "registration", true)
       registration.continue()
       email.completeEmailVerification("registration")
 
-      Then("the bank details from the IOSS registration are provided")
+      Then("the bank details from the Intermediary registration are provided")
       registration.checkJourneyUrl("bank-details")
       crossSchema.hintTextAndWarnings("bank details", "registration", true)
       registration.continue()
