@@ -52,7 +52,7 @@ object CrossSchema extends BasePage {
   def confirmationText(displayed: Boolean): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
 
-    val iossConfirmationText = "We've also updated any One Stop Shop registrations you have."
+    val iossConfirmationText = "We've also updated any other One Stop Shop registrations you have."
 
     if (!displayed) {
       Assert.assertFalse(htmlBody.contains(iossConfirmationText))
