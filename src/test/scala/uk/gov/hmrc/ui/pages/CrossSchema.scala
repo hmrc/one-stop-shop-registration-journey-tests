@@ -36,7 +36,7 @@ object CrossSchema extends BasePage {
     val hintText    =
       "We have added the details you entered for a previous One Stop Shop scheme. Check they are still correct."
     val warningText =
-      s"Changes you make here will also update the $version in any Import One Stop Shop accounts you registered for."
+      s"Changes you make here will also update the $version in any One Stop Shop accounts you registered for."
 
     if (!displayed) {
       Assert.assertFalse(htmlBody.contains(hintText))
@@ -52,7 +52,7 @@ object CrossSchema extends BasePage {
   def confirmationText(displayed: Boolean): Unit = {
     val htmlBody = Driver.instance.findElement(By.tagName("body")).getText
 
-    val iossConfirmationText = "We've also updated any Import One Stop Shop registrations you have."
+    val iossConfirmationText = "We've also updated any One Stop Shop registrations you have."
 
     if (!displayed) {
       Assert.assertFalse(htmlBody.contains(iossConfirmationText))
