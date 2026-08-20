@@ -27,7 +27,7 @@ object CrossSchema extends BasePage {
     if (version == "no") {
       Assert.assertTrue(header.equals("You have added 2 UK trading names"))
     } else {
-      Assert.assertTrue(header.equals("You have 2 UK trading names from your Import One Stop Shop registration"))
+      Assert.assertTrue(header.equals("You have 2 UK trading names from previous One Stop Shop scheme registrations"))
     }
   }
 
