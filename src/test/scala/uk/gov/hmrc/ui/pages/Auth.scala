@@ -75,7 +75,7 @@ object Auth extends BasePage {
 
     selectByValue(By.id("affinityGroupSelect"), "Organisation")
 
-    if (accountType != "vatOnly" && accountType != "hasOSSEnrolment") {
+    if (accountType != "vatOnly" && accountType != "hasOSSEnrolment" && accountType != "hasIntermediaryEnrolment") {
       sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-ORG")
       sendKeys(By.id("input-1-0-name"), "IOSSNumber")
 
@@ -88,6 +88,8 @@ object Auth extends BasePage {
         case "crossSchemaMultipleIOSSRegistrations" | "amendCrossSchemaMultipleIOSSRegistrations" |
             "rejoinCrossSchemaMultipleIOSSRegistrations" =>
           "IM9007231111"
+        case "crossSchemaRegistrationNoTradingNamesIoss"                                       =>
+          "IM9009999998"
         case _                                                                                 => "IM9001234567"
       }
       if (journey != "registration") {
@@ -99,6 +101,44 @@ object Auth extends BasePage {
       sendKeys(By.id("enrolment[1].name"), "HMRC-OSS-ORG")
       sendKeys(By.id("input-1-0-name"), "VRN")
       sendKeys(By.id("input-1-0-value"), vrn)
+    }
+
+    if (accountType == "hasIntermediaryEnrolment") {
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-1-0-name"), "IntNumber")
+      sendKeys(By.id("input-1-0-value"), "IN9001234568")
+
+      if (journey == "amend" || journey == "rejoin") {
+        sendKeys(By.id("enrolment[2].name"), "HMRC-OSS-ORG")
+        sendKeys(By.id("input-2-0-name"), "VRN")
+        sendKeys(By.id("input-2-0-value"), vrn)
+      }
+    }
+
+    if (accountType == "hasIntermediaryEnrolmentNoTradingNames") {
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-1-0-name"), "IntNumber")
+      sendKeys(By.id("input-1-0-value"), "IN9001234567")
+    }
+
+    if (accountType == "hasMultipleIntermediaryEnrolments") {
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-1-0-name"), "IntNumber")
+      sendKeys(By.id("input-1-0-value"), "IN9008230001")
+
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-2-0-name"), "IntNumber")
+      sendKeys(By.id("input-2-0-value"), "IN9007230001")
+    }
+
+    if (accountType == "hasIntermediaryAndIossEnrolments") {
+      sendKeys(By.id("enrolment[1].name"), "HMRC-IOSS-INT")
+      sendKeys(By.id("input-1-0-name"), "IntNumber")
+      sendKeys(By.id("input-1-0-value"), "IN9001234568")
+
+      sendKeys(By.id("enrolment[2].name"), "HMRC-IOSS-ORG")
+      sendKeys(By.id("input-2-0-name"), "IOSSNumber")
+      sendKeys(By.id("input-2-0-value"), "IM9001234567")
     }
 
     if (accountType == "hasOSSAndIOSSEnrolment") {
