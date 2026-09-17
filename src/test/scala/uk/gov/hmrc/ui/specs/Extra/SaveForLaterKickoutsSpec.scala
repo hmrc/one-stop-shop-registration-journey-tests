@@ -85,5 +85,47 @@ class SaveForLaterKickoutsSpec extends BaseSpec {
       Then("the user is redirected to the revalidate-quarantined-trader page")
       registration.checkJourneyUrl("revalidate-quarantined-trader")
     }
+
+    Scenario("EU IOSS Number added to Saved OSS Registration is now quarantined in another country") {
+
+      Given("the user accesses their saved registration")
+      auth.goToAuthorityWizard()
+
+      When("the EU IOSS Number used in the registration data is now quarantined on IOSS in another country")
+      auth.loginUsingAuthorityWizard("100000103", "Organisation", "vatOnly", "savedPreviously")
+
+      Then("the user is redirected to the revalidate-quarantined-trader page")
+      registration.checkJourneyUrl("revalidate-quarantined-trader")
+    }
+
+    Scenario("Fixed Establishment EU VRN added to Saved OSS Registration is now active in another country") {
+
+      Given("the user accesses their saved registration")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the Fixed Establishment EU VRN Number used in the registration data is now active on OSS in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000104", "Organisation", "vatOnly", "savedPreviously")
+
+      Then("the user is redirected to the revalidate-already-registered page")
+      registration.checkJourneyUrl("revalidate-already-registered")
+    }
+
+    Scenario(
+      "Fixed Establishment EU Tax ID added to Saved OSS Registration is now quarantined in another country for OSS"
+    ) {
+
+      Given("the user accesses their saved registration")
+      auth.goToAuthorityWizard()
+
+      When(
+        "the Fixed Establishment EU Tax ID Number used in the registration data is now quarantined on OSS in another country"
+      )
+      auth.loginUsingAuthorityWizard("100000105", "Organisation", "vatOnly", "savedPreviously")
+
+      Then("the user is redirected to the revalidate-quarantined-trader page")
+      registration.checkJourneyUrl("revalidate-quarantined-trader")
+    }
   }
 }

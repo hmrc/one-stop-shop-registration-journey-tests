@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 HM Revenue & Customs
+ * Copyright 2026 HM Revenue & Customs
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,6 +81,42 @@ object RegistrationData {
          |  "data": "r3xqvyjSyzWwzD4RIqNG/YFQpA9bW25cvUCXpjr4QLSrJDFzsV6qLYB9RshIQs6s2Bo+zVtzrqGMo1n5Mnzmz12Fu4nCgX8tAwrIm7STluvuIe4tZ/wiUWj2FJ351myRQ+yqgLQAKWYHP71DP53ZK3oQc/NBNm3GPe0TCRtVOUO1sGMuuWLb58hOMCCkUkKhdd3Y0sB55zf1BQk72ukCbgA6o+gHMryUuRQfXPgFilYB7G/oMMkX0HMUBcZsJr+grUedW01zj3V5A4yLZ2LdlasgEq+aoAXYxBXLYK4psqspdfgPnRwY31v9iVZ+yn0RpvyWUb0jEdkewjdvRD/VYgQwvUBm7vVAjBXF7xK4nAlRWkTr+bbw2cvcqgnGVKJcMVmvJ+Vw69BeqjhLHkgLEQWR9aUQC2U05kV1eH6DYwsEbZX6TL3UK+Rcn/mnX3q5m+dKU26QQEet7huy9i5c6DahDzkRn5F+3iVCrcZLe/kJXrSF4g5evZSIiCvZv6gN5JPMPobQe9VxYin8P8+tMSrRzcr7bmzhs6mnMxXSTfy6Poror1I3Y3QihoATNEHYYOiZAdbGHdkTsNgFfqbLhOb4ju6hfy3smVUDQfkYvIo0H1jj9JSY4h/9BQhkM2xkSG+3i2Glkodd6OYRwpBy4U8T+bCdxWgFCOO0KqGTeaLedHce0gOOCmfhluhTBh7Ck0+GMPftnJ0T3jhQIMdT2onpt3Fbnfo0u8g2Hw==",
          |  "lastUpdated": {
          |    "$$date": "${yesterday}T15:42:35.150Z"
+         |  }
+         |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6aabb7624e6882f28ea80360"
+         |  },
+         |  "vrn": "100000103",
+         |  "data": "tyJsSluYvyMdzgLanAmle9Dv95MLMxxDtz/CvqRu+Qdkzgio4rjl65YfS9vsRVY7iArX0LkovLitO/KaUoaBUxNBsagLffD6Lykxg4H6my7zT5/OFDK4Lp0uzr4Z6tf4kG27LWqi2UNbBGYvSTrVWw/HMA0yzNOEkc8E6a2KQovtQAmgOYidUwqEyvWZka1t3F0MYd8uS9AoJ8VvKlDwOR7fiXNBnMnsY+NQfX2pqi0JjTIs05o6hlhCfdSOAtKW7QEFjdcr8xv81Vo0V8ytlmNvIuzL96NWyUmdHutMBGldDPNTv8jwfAg6AhzN6asY8mKmVwFgliBZ0uXbIgFcA1a4nDwv9YNyHvMIKg4sirpQwEUgnXgRP5LIZ2iN6NA/xVJLVjhY7jNVdNxXEKssD0HGJ4JktNsO+2Q7PoBHrJyx4WYVvnSAZsS6n17SqhLpYunpYPnYLYvFcLwd2SsuYnvor6OhTS12nq75Z5x+/rb+WljXDqLTkSN5I8MNFkDoij0rko9nhijwzPkLeYXKxHQIzRObizrIp1Y4b0U6qAoVCx2OxOl0QtU6tpa1xXZKa0hz+H9fBipDOZZFZe7/KJbp12w8jGqvOHd7N2M0KiMabFJH1onZU0N8eJl22g9FWevv/SlajMZXI8Fv0mbBXdS+y+UnsD4WBX1V2ug9EIkLo1MAVAQGMPxjKGfEVCt/qWJMhqiMRsdhxxJ6/4cwjy26ZV17qtra1vuUBi/ha6PNo7dvF4uFfA+M4UFWxr04hzCedVQp",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T09:48:17.994Z"
+         |  }
+         |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6aabb8584e6882f28ea8ff67"
+         |  },
+         |  "vrn": "100000104",
+         |  "data": "KV8yWo3hu9UPVudukHEHF986QC4cBK0vjak3eAHWRKQTwFoSO3PrmEKMuGhJGz9wXpYroPKfPra2mvgtHEzO/uDEEeaTuceAOnuZX5q84jdChUw9ptLIF2jp5OSqVu4QyYkWrPxHQkfxTP0htiBFqoLklsdnWznpUS6a2r1oELwrU8Gn1JmdBsQT6dahWwJK3r+oZCX9uJSrVoiqI4Pt6i/dRH9tcno8t60qW2gUslKU9PLpKEFDR1HFZXIpd0q8L0ZaJmmYGx2FYRlCcIXphd+eqPUkbG2NWoumio5IDGvn+e/w88H36oqxdZhy4weP+wJQn9MQDBwdu5JtJ6HaZvYz6NMQHaZz6TxfWJeT2w+KuTIfQYHXi+7XpTHRushYA5yckTQcPfm0WBXyEOujNmi/vse5JD0gG7ibjLOnytjTQBnBP3dS+K1sYXs6aXKtwLe5kdEqhEBuuMXo+sXlyxFlweX6huFMH+pZOvhODpnhoQNzpr1rCxJnV1K9nKPIC0Tcq0g0hfWiLOrQbNgEXsBa3zXEBtBs0qm09SRkoW25Y2nESod/3shql4NPvHqVtvi+Ohnk6sZzu6LOZbYAgjwxeBOyf0F0Fa48ZZyOLkNmYGBf6N+gW4eXS+raU9y/26CHbFS9iUQy+5CSmFMDZOTP7InCJewaoMYEFEgMUymfps2ROmBBxHq5PApJvJZPDF9WXFmzr4sJONmfW1hVA0OAyQQXLQ/fpMdN8OC2Gsi0JZwBntuaetuXRPOf4RyfcN4WxjDWPANoZ26nr6HyuJrOgCVD76cYv6SoaSWXsw0ojcK+POA=",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T09:52:24.920Z"
+         |  }
+         |}
+         |""".stripMargin,
+      s"""
+         |{
+         |  "_id": {
+         |    "$$oid": "6aabda8b4e6882f28ebe9a72"
+         |  },
+         |  "vrn": "100000105",
+         |  "data": "3X/3T1y0l392CRVJXlfMkKWFV4xPINsnVBRnNqfd+jrwsZxRHSQAI/RFmgussm/npyKXuuDBQ3K6MocFlD7JiveuKg59YvcoCsKvwHfXRZpSTMJB3EKe+4SdaSgfjt/i0/4p9b7dy/lB6Ses/n+p9vl1x6fVY8d3F78GMfON5pjuu7uurOMiC+9JVSz72sIjWcdUU3oGnDb2sa578PJpb8l68YpMTN0XW9DZyqSa1xrRvUWhDLSvPwA1syDLcEb+I9JbTlLTx1dyPgH3pJKv4fVs5LxQrLpI0lwhXbeSP4JkSBG6ppWu0bhw0BcJZW9kjuQWFqzL4AAUerfC7qku/x0Du/nwZRq00lzS5WhCwWZqAh9fb4YQ/TXSHQcox6gSp1QzHHH9IzZrW7ZHymhe3ODPFYvkXcRiouoCaikJK/n+gerXOqbHVQ267ENIYV/MHOTbc+0nGF1XUoQxNerPRSRbAd7r3monoYDHYiXPRJ0QlhBTYIVQzHhPU6JsP1YJYrUzPAImebzWjyCRU35BdAk1TiSi78vACU9rm5+E6UqUwGwF7CMbf7g4k9/T4wXH1Newu3k8L9/POrdgDXbLtYr8XTrHECXf1jg9tBwODZGXEtwk4Hw7qr6AvJvknBVbxcS8v9wo97r0Qr7M/Oh73yFJuA9jbS59L6aeUncjjHzRopKmLyqEuhFAWAbcoN+dfUBcW/W87bA976vlHKLBtU9Q/mzY",
+         |  "lastUpdated": {
+         |    "$$date": "${yesterday}T12:18:19.003Z"
          |  }
          |}
          |""".stripMargin
