@@ -150,7 +150,7 @@ object Registration extends BasePage {
     checkJourneyUrl("confirm-vat-details")
     answerVatDetailsChoice("Yes")
     checkJourneyUrl("have-no-other-uk-trading-names")
-    answerRadioButton("no")
+    answerRadioButton("yes")
     checkJourneyUrl("already-made-sales")
     answerRadioButton("no")
     checkJourneyUrl("previous-oss")
