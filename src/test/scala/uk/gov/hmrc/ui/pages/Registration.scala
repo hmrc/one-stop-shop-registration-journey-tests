@@ -63,10 +63,10 @@ object Registration extends BasePage {
 
   def answerVatDetailsChoice(answer: String): Unit = {
     answer match {
-      case "Yes"                                           => click(By.id("value_0"))
-      case "Yes, but some of my VAT details are incorrect" => click(By.id("value_1"))
-      case "No, I want to register a different business"   => click(By.id("value_2"))
-      case _                                               => throw new Exception("Option doesn't exist")
+      case "Yes"                                         => click(By.id("value_0"))
+      case "Yes, but some of my details are incorrect"   => click(By.id("value_1"))
+      case "No, I want to register a different business" => click(By.id("value_2"))
+      case _                                             => throw new Exception("Option doesn't exist")
     }
     click(continueButton)
   }
@@ -149,7 +149,7 @@ object Registration extends BasePage {
     continue()
     checkJourneyUrl("confirm-vat-details")
     answerVatDetailsChoice("Yes")
-    checkJourneyUrl("have-uk-trading-name")
+    checkJourneyUrl("have-no-other-uk-trading-names")
     answerRadioButton("no")
     checkJourneyUrl("already-made-sales")
     answerRadioButton("no")
@@ -192,7 +192,7 @@ object Registration extends BasePage {
     amendJourney match {
       case "noToYes"                   =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
-        Assert.assertTrue(htmlBody.contains("Have a different UK trading name Yes"))
+        Assert.assertTrue(htmlBody.contains("Is your only trading name No"))
         Assert.assertTrue(htmlBody.contains("Trading names added my trading name"))
         Assert.assertTrue(htmlBody.contains("another company"))
         Assert.assertTrue(htmlBody.contains("Other One Stop Shop registrations Yes"))
@@ -225,7 +225,7 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("Email address email-test@test.com"))
       case "websites"                  =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
-        Assert.assertTrue(htmlBody.contains("Have a different UK trading name No"))
+        Assert.assertTrue(htmlBody.contains("Is your only trading name Yes"))
         Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
         Assert.assertTrue(htmlBody.contains("Trading name 2"))
         Assert.assertTrue(htmlBody.contains("Registered for tax in other EU countries No"))
@@ -253,7 +253,7 @@ object Registration extends BasePage {
         Assert.assertTrue(htmlBody.contains("Email address different-email@test.com"))
       case "tradingNames"              =>
         Assert.assertTrue(htmlBody.contains("You changed the following details:"))
-        Assert.assertTrue(htmlBody.contains("Have a different UK trading name No"))
+        Assert.assertTrue(htmlBody.contains("Is your only trading name Yes"))
         Assert.assertTrue(htmlBody.contains("Trading names removed Trading name one"))
         Assert.assertTrue(htmlBody.contains("Trading name 2"))
       case "noAmendments"              =>
@@ -339,7 +339,7 @@ object Registration extends BasePage {
     Assert.assertTrue(
       htmlBody.contains(
         "One Stop Shop details\n" +
-          "Have a different UK trading name No\n" +
+          "Is your only trading name Yes\n" +
           "Already made eligible sales Yes\n" +
           "Date of first sale 1 January 2024\n" +
           "Include sales from this date 1 January 2024\n" +

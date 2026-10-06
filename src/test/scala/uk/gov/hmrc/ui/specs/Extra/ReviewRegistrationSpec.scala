@@ -85,10 +85,10 @@ class ReviewRegistrationSpec extends BaseSpec {
 
       And("the user removes trading names")
       registration.selectChangeOrRemoveLink(
-        "amend-have-uk-trading-name"
+        "amend-have-no-other-uk-trading-names"
       )
-      registration.checkJourneyUrl("amend-have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("amend-have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("amend-remove-all-trading-names")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("change-your-registration")

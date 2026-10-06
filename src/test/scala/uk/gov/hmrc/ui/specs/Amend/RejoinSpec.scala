@@ -138,9 +138,9 @@ class RejoinSpec extends BaseSpec {
       registration.noWebsitesAdded()
 
       Then("the user amends trading name details")
-      registration.selectChangeOrRemoveLink("rejoin-amend-have-uk-trading-name")
-      registration.checkJourneyUrl("rejoin-amend-have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.selectChangeOrRemoveLink("rejoin-amend-have-no-other-uk-trading-names")
+      registration.checkJourneyUrl("rejoin-amend-have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("rejoin-amend-uk-trading-name/1")
       registration.enterAnswer("my rejoined trading name")
       registration.checkJourneyUrl("rejoin-amend-add-uk-trading-name")
@@ -258,10 +258,10 @@ class RejoinSpec extends BaseSpec {
 
       Then("the user can remove all of their trading names")
       registration.selectChangeOrRemoveLink(
-        "rejoin-amend-have-uk-trading-name"
+        "rejoin-amend-have-no-other-uk-trading-names"
       )
-      registration.checkJourneyUrl("rejoin-amend-have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("rejoin-amend-have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("rejoin-amend-remove-all-trading-names")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("rejoin-registration")
