@@ -853,8 +853,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.answerVatDetailsChoice("Yes")
 
       And("the user adds one trading name")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("first trading name")
 
@@ -1539,8 +1539,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.answerVatDetailsChoice("Yes")
 
       Then("the user has no existing trading names from their IOSS registration")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("first trading name")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -1609,8 +1609,8 @@ class CrossSchemaSpec extends BaseSpec {
       registration.answerVatDetailsChoice("Yes")
 
       Then("the user has no existing trading names from their Intermediary registration")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("first trading name")
       registration.checkJourneyUrl("add-uk-trading-name")

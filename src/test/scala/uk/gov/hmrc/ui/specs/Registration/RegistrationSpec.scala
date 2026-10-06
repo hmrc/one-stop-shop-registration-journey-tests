@@ -53,9 +53,9 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
 
-      And("the user selects yes on the have-uk-trading-name page")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      And("the user selects no on the have-no-other-uk-trading-names page")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
 
       And("the user adds the first trading name")
       registration.checkJourneyUrl("uk-trading-name/1")
@@ -290,9 +290,9 @@ class RegistrationSpec extends BaseSpec {
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
 
-      And("the user selects no on the have-uk-trading-name page")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      And("the user selects yes on the have-no-other-uk-trading-names page")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
 
       And("the user selects no on the already-made-sales page")
       registration.checkJourneyUrl("already-made-sales")
@@ -355,8 +355,8 @@ class RegistrationSpec extends BaseSpec {
       registration.continue()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("already-made-sales")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("previous-oss")

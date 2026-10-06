@@ -44,8 +44,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.continue()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("already-made-sales")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("date-of-first-sale")
@@ -79,10 +79,10 @@ class CheckYourAnswersSpec extends BaseSpec {
 
       Then("the user amends their trading name answers via check-answers")
       registration.selectChangeOrRemoveLink(
-        "check-have-uk-trading-name"
+        "check-have-no-other-uk-trading-names"
       )
-      registration.checkJourneyUrl("check-have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("check-have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("check-uk-trading-name/1")
       registration.enterAnswer("new trading name")
       registration.checkJourneyUrl("check-add-uk-trading-name")
@@ -185,7 +185,7 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.checkJourneyUrl("successful")
     }
 
-    Scenario("Changing answers from yes to no from CYA to show delete all pages") {
+    Scenario("Removing non-mandatory answers via yes/no pages from CYA to show delete all pages") {
 
       Given("the user accesses the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -202,8 +202,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.continue()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
       registration.checkJourneyUrl("uk-trading-name/1")
       registration.enterAnswer("Trading Name")
       registration.checkJourneyUrl("add-uk-trading-name")
@@ -295,10 +295,10 @@ class CheckYourAnswersSpec extends BaseSpec {
 
       Then("the user can remove all of their trading names")
       registration.selectChangeOrRemoveLink(
-        "check-have-uk-trading-name"
+        "check-have-no-other-uk-trading-names"
       )
-      registration.checkJourneyUrl("check-have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("check-have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("check-remove-all-trading-names")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("check-answers")
@@ -370,8 +370,8 @@ class CheckYourAnswersSpec extends BaseSpec {
       registration.continue()
       registration.checkJourneyUrl("confirm-vat-details")
       registration.answerVatDetailsChoice("Yes")
-      registration.checkJourneyUrl("have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("already-made-sales")
       registration.answerRadioButton("no")
       registration.checkJourneyUrl("previous-oss")

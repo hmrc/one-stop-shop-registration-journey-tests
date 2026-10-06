@@ -27,7 +27,9 @@ class AmendRegistrationSpec extends BaseSpec {
 
   Feature("Amend Registration journeys") {
 
-    Scenario("A user can amend all of the answers on their registration - first combination (no to yes)") {
+    Scenario(
+      "A user can amend all of the answers on their registration - first combination (adding non-mandatory answers)"
+    ) {
 
       Given("the user accesses the Amend Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -40,12 +42,12 @@ class AmendRegistrationSpec extends BaseSpec {
 
       When("the user selects the change link for have uk trading name")
       registration.selectChangeOrRemoveLink(
-        "amend-have-uk-trading-name"
+        "amend-have-no-other-uk-trading-names"
       )
 
-      Then("the user answers yes on the amend-have-uk-trading-name page")
-      registration.checkJourneyUrl("amend-have-uk-trading-name")
-      registration.answerRadioButton("yes")
+      Then("the user answers no on the amend-have-no-other-uk-trading-names page")
+      registration.checkJourneyUrl("amend-have-no-other-uk-trading-names")
+      registration.answerRadioButton("no")
 
       And("the user adds two trading names")
       registration.checkJourneyUrl("amend-uk-trading-name/1")
@@ -196,7 +198,9 @@ class AmendRegistrationSpec extends BaseSpec {
       registration.checkAmendedAnswers("noToYes")
     }
 
-    Scenario("A user can amend all of the answers on their registration - second combination (yes to no/amends)") {
+    Scenario(
+      "A user can amend all of the answers on their registration - second combination (removing non-mandatory/amends)"
+    ) {
 
       Given("the user accesses the Amend Registration journey within the OSS Registration Service")
       auth.goToAuthorityWizard()
@@ -407,10 +411,10 @@ class AmendRegistrationSpec extends BaseSpec {
 
       Then("the user can remove all of their trading names")
       registration.selectChangeOrRemoveLink(
-        "amend-have-uk-trading-name"
+        "amend-have-no-other-uk-trading-names"
       )
-      registration.checkJourneyUrl("amend-have-uk-trading-name")
-      registration.answerRadioButton("no")
+      registration.checkJourneyUrl("amend-have-no-other-uk-trading-names")
+      registration.answerRadioButton("yes")
       registration.checkJourneyUrl("amend-remove-all-trading-names")
       registration.answerRadioButton("yes")
       registration.checkJourneyUrl("change-your-registration")
