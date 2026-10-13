@@ -27,7 +27,7 @@ class ReviewRegistrationSpec extends BaseSpec {
   Feature("Review registration scenarios") {
 
     Scenario(
-      "Review registration when registration has not been updated for 2 years - no amendments"
+      "Review registration when registration has not been updated for six months - no amendments"
     ) {
 
       Given("the user accesses their OSS returns dashboard")
@@ -60,7 +60,7 @@ class ReviewRegistrationSpec extends BaseSpec {
     }
 
     Scenario(
-      "Review registration when registration has not been updated for 2 years - with amendments"
+      "Review registration when registration has not been updated for six months - with amendments"
     ) {
 
       Given("the user accesses their OSS returns dashboard")
